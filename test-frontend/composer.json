@@ -1,0 +1,24 @@
+{
+    "name": "kocietexty/test-frontend",
+    "description": "Moja niestandardowa strona PHP jako frontend dla headless Grav.",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "erusev/parsedown": "^1.7",
+        "symfony/yaml": "^5.4|^6.0"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Marcel",
+            "email": "twoj@email.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
