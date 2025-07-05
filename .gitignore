@@ -48,3 +48,5 @@ tests/cache/*
 tests/error.log
 system/templates/testing/*
 /user/config/versions.yaml
+test-frontend/vendor/symfony/deprecation-contracts/
+test-frontend/vendor/symfony/yaml/
