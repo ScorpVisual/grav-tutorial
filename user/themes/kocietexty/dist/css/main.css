@@ -1,0 +1,247 @@
+.c-ink {
+  color: #090b15;
+}
+
+.c-paper {
+  color: #f5f0f4;
+}
+
+.c-orange {
+  color: #f78f1f;
+}
+
+.c-red {
+  color: #9d1f2f;
+}
+
+.c-teal {
+  color: #058983;
+}
+
+.c-green {
+  color: #24c447;
+}
+
+.c-gold {
+  color: #f9c74f;
+}
+
+.c-gray {
+  color: #6d6e75;
+}
+
+.c-stone {
+  color: #928382;
+}
+
+.c-nature {
+  color: #1b4b5a;
+}
+
+.c-plum {
+  color: #892ed4;
+}
+
+.c-white {
+  color: #fff;
+}
+
+.c-black {
+  color: #000;
+}
+
+.c-trans {
+  color: rgba(0, 0, 0, 0);
+}
+
+.color-box {
+  height: 5rem;
+  width: 5rem;
+  display: inline-block;
+  margin: 0.5rem;
+  border: #fff 1px solid;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+.color-box:hover {
+  transform: scale(1.05);
+}
+.color-box.c-ink {
+  background-color: #090b15;
+}
+.color-box.c-paper {
+  background-color: #f5f0f4;
+}
+.color-box.c-orange {
+  background-color: #f78f1f;
+}
+.color-box.c-red {
+  background-color: #9d1f2f;
+}
+.color-box.c-teal {
+  background-color: #058983;
+}
+.color-box.c-green {
+  background-color: #24c447;
+}
+.color-box.c-gold {
+  background-color: #f9c74f;
+}
+.color-box.c-gray {
+  background-color: #6d6e75;
+}
+.color-box.c-stone {
+  background-color: #928382;
+}
+.color-box.c-nature {
+  background-color: #1b4b5a;
+}
+.color-box.c-plum {
+  background-color: #892ed4;
+}
+.color-box.c-white {
+  background-color: #fff;
+}
+.color-box.c-black {
+  background-color: #000;
+}
+.color-box.c-trans {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("../../fonts/GlacialIndifference-Regular.woff2") format("woff2"), url("../../fonts/GlacialIndifference-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("../../fonts/GlacialIndifference-Bold.woff2") format("woff2"), url("../../fonts/GlacialIndifference-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+  font-family: "Glacial Indifference", sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Glacial Indifference", sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 1.8rem;
+}
+
+h1 {
+  font-size: 2.44140625rem;
+}
+
+h2 {
+  font-size: 1.953125rem;
+}
+
+h3 {
+  font-size: 1.5625rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.8rem;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 1.125rem;
+  }
+  h1 {
+    font-size: 2.603515625rem;
+  }
+  h2 {
+    font-size: 2.0828125rem;
+  }
+  h3 {
+    font-size: 1.66625rem;
+  }
+  h4 {
+    font-size: 1.333rem;
+  }
+  h4, h5 {
+    font-size: 1.333rem;
+  }
+}
+h1 {
+  position: relative;
+  padding-left: 1rem;
+}
+h1::before {
+  content: "";
+  background-color: #9d1f2f;
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-20%, -50%);
+  z-index: -1;
+}
+
+h2 {
+  border-bottom: 2px solid #9d1f2f;
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  color: #f78f1f;
+}
+
+h4 {
+  color: #058983;
+}
+
+h5 {
+  color: #a6155b;
+}
+
+h6 {
+  color: #892ed4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #090b15;
+  color: #f5f0f4;
+}
+
+a {
+  color: #f78f1f;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+a:hover {
+  color: rgb(248.7586206897, 167.6206896552, 80.2413793103);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*# sourceMappingURL=main.css.map */

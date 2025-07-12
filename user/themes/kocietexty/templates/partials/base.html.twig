@@ -1,0 +1,61 @@
+{# 
+  This is the main skeleton file for your entire website.
+  Every other page template will "extend" this file.
+  It defines the core HTML structure, including the <head> and <body>.
+#}
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: 'en' }}">
+<head>
+    {# Basic meta tags for character set and responsive design #}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {# 
+      This pulls the title from the page's frontmatter.
+      For example, if a page file has "title: About Us", that's what will appear.
+    #}
+    <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+
+{# This loads your Tailwind CSS #}
+    {% do assets.addCss('theme://dist/css/site.css', 100) %}
+{# Add this line to load your compiled SASS styles #}
+    {% do assets.addCss('theme://dist/css/main.css', 90) %}
+{# This prints all the CSS links #}
+{{ assets.css()|raw }}
+</head>
+<body>
+
+    {# A simple header structure to get you started. #}
+    <header class="p-4 bg-ink text-paper shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ base_url_absolute }}" class="font-bold text-lg hover:text-orange">{{ site.title }}</a>
+            <nav>
+                {# This line pulls in your dynamic navigation menu #}
+                {% include 'partials/navigation.html.twig' %}
+            </nav>
+        </div>
+    </header>
+
+    {# This is the main content area. #}
+    {# The content from files like `default.html.twig` will be injected here. #}
+    <main class="container mx-auto p-4 my-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    {# A simple footer structure. #}
+    <footer class="bg-gray-200 text-center p-4 mt-8">
+        <p>&copy; {{ "now"|date("Y") }} - {{ site.title }}</p>
+    </footer>
+
+    {# 
+      This is where you can add JavaScript files.
+      Let's assume you have a file named 'app.js' in your theme's 'js/' folder.
+    #}
+    {% do assets.addJs('theme://js/app.js', {'group': 'bottom', 'loading': 'defer'}) %}
+
+    {# This line prints the <script> tags into the final HTML, just before the closing </body> tag. #}
+    {{ assets.js('bottom')|raw }}
+
+</body>
+</html>

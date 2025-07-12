@@ -1,0 +1,26 @@
+
+@use 'abstracts/functions';
+@use 'abstracts/mixins';
+@use 'abstracts/breakpoints';
+@use 'abstracts/colors';
+@use 'abstracts/variables';
+@use 'abstracts/placeholders';
+
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/base';
+
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/forms';
+
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/grid';
+
+@use 'pages/home';
+@use 'pages/contact';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

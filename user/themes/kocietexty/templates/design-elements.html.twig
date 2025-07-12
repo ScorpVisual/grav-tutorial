@@ -1,0 +1,194 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    {# This pulls the title and content from your .md file #}
+    <h1>{{ page.title }}</h1>
+    {{ page.content|raw }}
+
+    {# The inline <style> block has been removed from here. #}
+
+    {# =================================================================== #}
+    {# I. FOUNDATIONAL & GLOBAL ELEMENTS                                 #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>I. Foundational & Global Elements</h2>
+        <p><em>These are typically styled globally in your main CSS file.</em></p>
+        
+        <h3>Typography</h3>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+        <p>This is a standard paragraph of body text. It contains a <strong>strong (bold)</strong> element and an <em>emphasized (italic)</em> element. It also includes <a href="#">an inline link</a>.</p>
+        <blockquote>This is a blockquote, useful for highlighting a key passage or quote.</blockquote>
+        <ul>
+            <li>Unordered List Item 1</li>
+            <li>Unordered List Item 2</li>
+        </ul>
+        <ol>
+            <li>Ordered List Item 1</li>
+            <li>Ordered List Item 2</li>
+        </ol>
+
+        <h3>Color Palette</h3>
+        <div class="p-6 rounded-lg shadow-inner">
+            <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
+                
+                <div class="color-box c-ink aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-paper aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-orange aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-red aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-teal aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-green aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-gold aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-gray aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-plum aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                
+                <div class="color-box c-stone aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-nature aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-white aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-black aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-trans aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+            </div>
+        </div>
+    </div>
+
+    {# =================================================================== #}
+    {# II. NAVIGATION & STRUCTURE                                        #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>II. Navigation & Structure</h2>
+        <p><em>Styling for these components will be handled by your SASS files.</em></p>
+        
+        <h3>Breadcrumbs</h3>
+        <nav aria-label="breadcrumb">
+            <ol>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><span aria-current="page">Article Title</span></li>
+            </ol>
+        </nav>
+    </div>
+
+    {# =================================================================== #}
+    {# III. INTERACTIVE & COMMON UI ELEMENTS                             #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>III. Interactive & Common UI Elements</h2>
+
+        <h3>Buttons</h3>
+        <button class="button-primary">Primary Button</button>
+        <button class="button-secondary">Secondary Button</button>
+        <button class="button-tertiary">Tertiary Button</button>
+        <br/><br/>
+        <button class="button-primary" disabled>Disabled Button</button>
+
+        <h3>Forms</h3>
+        <form>
+            <div>
+                <label for="text-input">Text Input</label>
+                <input type="text" id="text-input" placeholder="e.g., John Doe">
+            </div>
+            <div>
+                <label for="text-area">Text Area</label>
+                <textarea id="text-area" rows="4" placeholder="Your message..."></textarea>
+            </div>
+            <div>
+                <label for="select-menu">Select Menu</label>
+                <select id="select-menu">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                </select>
+            </div>
+            <div>
+                <input type="checkbox" id="checkbox1">
+                <label for="checkbox1">Checkbox</label>
+            </div>
+            <div>
+                <input type="radio" id="radio1" name="radio-group">
+                <label for="radio1">Radio Button 1</label>
+                <input type="radio" id="radio2" name="radio-group">
+                <label for="radio2">Radio Button 2</label>
+            </div>
+            <div class="has-error">
+                <label for="text-input-error">Input with Error</label>
+                <input type="text" id="text-input-error" value="Invalid entry">
+                <span>This field is required.</span>
+            </div>
+        </form>
+
+        <h3>Cards</h3>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200" alt="Placeholder Image">
+            <div>
+                <h4>Card Title</h4>
+                <p>This is some example text for the card body, giving a brief description.</p>
+                <a href="#" class="button-primary">Read More</a>
+            </div>
+        </div>
+    </div>
+    
+    {# =================================================================== #}
+    {# IV. CONTENT-SPECIFIC ELEMENTS                                     #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>IV. Content-Specific Elements</h2>
+
+        <h3>Social Sharing Buttons</h3>
+        <div>
+            <a href="#">Share on X</a>
+            <a href="#">Share on Facebook</a>
+        </div>
+
+        <h3>Author Box</h3>
+        <div class="author-box">
+            <img src="https://via.placeholder.com/100" alt="Author Headshot">
+            <div>
+                <h4>About Jane Doe</h4>
+                <p>Jane is a web developer and writer who loves creating useful tools for the community.</p>
+            </div>
+        </div>
+
+        <h3>Comments Section</h3>
+        <div class="comments-section">
+            <h4>2 Comments</h4>
+            <div class="comment">
+                <p><strong>User1:</strong> This is a great resource!</p>
+            </div>
+            <form>
+                <label for="comment-field">Leave a comment</label>
+                <textarea id="comment-field" rows="4"></textarea>
+                <button type="submit" class="button-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    {# =================================================================== #}
+    {# V. MARKETING & CONVERSION ELEMENTS                                #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>V. Marketing & Conversion Elements</h2>
+
+        <h3>Pricing Tables</h3>
+        <div class="pricing-table">
+            <div class="plan">
+                <h4>Basic Plan</h4>
+                <span>$10/mo</span>
+                <ul>
+                    <li>Feature 1</li>
+                    <li>Feature 2</li>
+                </ul>
+                <button class="button-secondary">Choose Plan</button>
+            </div>
+        </div>
+
+        <h3>Testimonials</h3>
+        <div class="testimonial">
+            <blockquote>"This product changed my life!"</blockquote>
+            <cite>- Happy Customer</cite>
+        </div>
+    </div>
+
+{% endblock %}

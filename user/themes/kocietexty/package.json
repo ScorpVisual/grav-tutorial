@@ -1,0 +1,31 @@
+{
+  "name": "kocietexty",
+  "repository": "",
+  "private": true,
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:tailwind": "cross-env NODE_ENV=development tailwindcss -i ./css/site.css -o ./dist/css/site.css --postcss",
+    "watch:tailwind": "cross-env NODE_ENV=development tailwindcss -i ./css/site.css -o ./dist/css/site.css --postcss --watch",
+    "build:sass": "sass ./sass/main.scss ./dist/css/main.css --style=compressed",
+    "watch:sass": "sass --watch ./sass/main.scss ./dist/css/main.css",
+    "build": "npx npm-run-all --parallel build:tailwind build:sass",
+    "watch": "npx npm-run-all --parallel watch:tailwind watch:sass",
+    "prod": "npx npm-run-all --parallel build:tailwind build:sass"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9",
+    "alpinejs": "^2.8.2",
+    "autoprefixer": "^10.4.13",
+    "cross-env": "^7.0.3",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.21",
+    "postcss-import": "^15.1.0",
+    "sass": "^1.77.4",
+    "tailwindcss": "^3.2.6",
+    "tailwindcss-debug-screens": "^2.2.1"
+  }
+}
