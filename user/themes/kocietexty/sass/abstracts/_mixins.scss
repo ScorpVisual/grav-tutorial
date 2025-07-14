@@ -1,42 +1,59 @@
 @use '../abstracts/colors' as *;
 @use '../abstracts/variables' as *;
 @use '../abstracts/breakpoints' as *;
+
+// =================================================================== 
+//       BASE STYLES                             
+// =================================================================== 
+@mixin base-div ($background: $ink, $color: $text-color, $border-color: $orange) {
+  display: flexbox;
+  flex-direction: column;
+  background: $background;
+  color: $color;
+  padding: $base-padding;
+  border: $border-thickness solid $border-color;
+  box-shadow: $base-shadow;
+  margin: $base-margin auto;
+  height: auto;
+  width: 100%;
+  max-width: $screen-xl;
+  border-radius: $border-radius;
+}
+
+// =================================================================== 
+//       BUTTONS                            
+// =================================================================== 
+
+
+@mixin basic-btn ($background: $orange, $btn-text-color: $ink, $background-focus: $gold, $btn-text-focus: $ink, $shadow-color: $red) {
+    display: inline-block;
+    padding: .6rem .8rem;
+    margin: .2rem .6rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: $border-radius;
+    background-color: $background;
+    color: $btn-text-color;
+    transition: box-shadow 0.4s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out;    
+    position: relative;
+    isolation: isolate;
+    z-index: 1;
+      transform: translateZ(0);
+
+    &:hover,
+  &:focus {
+    box-shadow: 0 .4rem 0 rgba($shadow-color, 1);
+    transform: translateY(-0.1rem);
+    background-color: $background-focus;
+    color: $btn-text-focus
+  }
+}
+
 // =================================================================== 
 //       TYPOGRAPHY                             
 // =================================================================== 
-@mixin cat-list-animation {
-  li {
-    margin-bottom: 0.5rem;
-    padding-left: 0.25rem;
-    position: relative;
-    color: $orange;
 
 
-    &::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -0.1rem;
-      height: 0.12rem;
-      width: 0;
-      background: $secondary-color;
-      border-radius: 1rem;
-      transition: width 0.5s cubic-bezier(0.77,0,0.18,1);
-      z-index: 1;
-    }
-
-    &:hover::after,
-    &:focus::after {
-      width: 100%;
-    }
-    a {
-      color: $orange;
-      text-decoration: none;
-      transition: color 0.2s ease-in-out;
-
-      &:hover {
-        color: $gold;
-      }
-    }
-  }
-}
+// ===================================================================

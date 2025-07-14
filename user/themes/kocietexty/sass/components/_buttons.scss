@@ -1,0 +1,68 @@
+@use '../abstracts/breakpoints' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/animations' as *;
+
+// ===================================================================
+
+
+.button-primary {
+    @include basic-btn(
+    $background: $orange,
+    $btn-text-color: $ink,
+    $background-focus: $paper,
+    $btn-text-focus: $ink,
+    $shadow-color: $orange);
+}
+
+.button-CTA {
+        @include basic-btn(
+    $background: $red,
+    $btn-text-color: $paper,
+    $background-focus: $paper,
+    $btn-text-focus: $red,
+    $shadow-color: $red);
+}
+.button-secondary {
+            @include basic-btn(
+    $background: $nature,
+    $btn-text-color: $paper,
+    $background-focus: $paper,
+    $btn-text-focus: $teal,
+    $shadow-color: $nature);
+}
+.button-tertiary {
+            @include basic-btn(
+    $background: $plum,
+    $btn-text-color: $paper,
+    $background-focus: $paper,
+    $btn-text-focus: $plum,
+    $shadow-color: $plum);
+}
+
+.button-primary {
+    @include basic-btn(
+        $background: $orange,
+        $btn-text-color: $ink,
+        $background-focus: $paper,
+        $btn-text-focus: $ink,
+        $shadow-color: $orange
+    );
+
+    &:disabled,
+    &.is-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
+          @include basic-btn(
+        $background: $stone,
+        $btn-text-color: $ink,
+        $background-focus: $paper,
+        $btn-text-focus: $ink,
+        $shadow-color: $orange
+    );
+    }
+}
+// ===================================================================

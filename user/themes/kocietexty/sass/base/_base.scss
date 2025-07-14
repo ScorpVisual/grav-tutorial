@@ -8,9 +8,15 @@
 @use '../abstracts/colors' as *;
 @use 'sass:color';
 
+
 // =========================================
 // Body & HTML Defaults
 // =========================================
+
+* {
+  transition: all 0.2s ease-in-out;
+}
+
 html {
   // Provides a smoother scrolling experience.
   scroll-behavior: smooth;

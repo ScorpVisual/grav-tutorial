@@ -27,5 +27,12 @@ $danger-color:      $crimson;      // Errors, warnings, destructive actions
 $border-color: color.adjust($background-color, $lightness: 15%);
 $text-muted: color.adjust($text-color, $lightness: -30%);
 
-// Border radius for components
-$border-radius: 0.5rem;
+// =========================================
+// BASIC DIV STYLES
+// These are used for basic layout and structure across the theme.
+// =========================================
+$border-radius: 0.8rem;
+$border-thickness: 0.2rem;
+$base-shadow: 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+$base-padding: 1.6rem;
+$base-margin: 1.6rem;

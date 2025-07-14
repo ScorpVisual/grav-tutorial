@@ -4,6 +4,8 @@
 @use '../abstracts/breakpoints' as *;
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
+@use '../abstracts/animations' as *;
+@use 'sass:math';
 
 // =========================================================================
 //  FONT IMPORT (@font-face)
@@ -41,8 +43,7 @@ $h4-mobile: $base-font-size * $scale-ratio-mobile;
 $h3-mobile: $h4-mobile * $scale-ratio-mobile;
 $h2-mobile: $h3-mobile * $scale-ratio-mobile;
 $h1-mobile: $h2-mobile * $scale-ratio-mobile;
-$small-text: $base-font-size / $scale-ratio-mobile;
-
+$small-text: math.div($base-font-size, $scale-ratio-mobile);
 // =========================================
 // 3. Base & Heading Styles
 // =========================================
