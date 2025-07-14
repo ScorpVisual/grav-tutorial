@@ -32,13 +32,21 @@
     $btn-text-focus: $teal,
     $shadow-color: $nature);
 }
-.button-tertiary {
+.button-design {
             @include basic-btn(
     $background: $plum,
     $btn-text-color: $paper,
     $background-focus: $paper,
     $btn-text-focus: $plum,
     $shadow-color: $plum);
+}
+.button-copy {
+            @include basic-btn(
+    $background: $crimson,
+    $btn-text-color: $paper,
+    $background-focus: $paper,
+    $btn-text-focus: $crimson,
+    $shadow-color: $crimson);
 }
 
 .button-primary {

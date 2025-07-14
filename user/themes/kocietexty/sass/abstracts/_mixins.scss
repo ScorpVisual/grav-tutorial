@@ -36,7 +36,7 @@
     border-radius: $border-radius;
     background-color: $background;
     color: $btn-text-color;
-    transition: box-shadow 0.4s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out;    
+    transition: box-shadow 0.2s ease-in, transform 0.4s ease-in-out, background-color 0.3s ease-in-out;    
     position: relative;
     isolation: isolate;
     z-index: 1;
@@ -45,7 +45,7 @@
     &:hover,
   &:focus {
     box-shadow: 0 .4rem 0 rgba($shadow-color, 1);
-    transform: translateY(-0.1rem);
+    transform: translateY(-0.4rem);
     background-color: $background-focus;
     color: $btn-text-focus
   }
