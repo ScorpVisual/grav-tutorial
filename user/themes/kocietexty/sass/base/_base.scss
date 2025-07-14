@@ -5,6 +5,8 @@
 
 // Import the variables so they can be used in this file.
 @use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use 'sass:color';
 
 // =========================================
 // Body & HTML Defaults
@@ -25,12 +27,23 @@ body {
 // =========================================
 a {
   // Use the theme's primary color for all links.
-  color: $primary-color;
+  color: $teal;
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 
   &:hover {
     // Lighten the primary color on hover for feedback.
-    color: lighten($primary-color, 10%);
+    color: color.adjust($primary-color, $lightness: 10%);
   }
 }
+
+hr {
+  content: "";
+  width: 100%;
+  height: 0.3rem;
+  background-color: $orange;
+  z-index: 2;
+  border-radius: 16rem;
+  margin-bottom: 2.4rem;
+}
+

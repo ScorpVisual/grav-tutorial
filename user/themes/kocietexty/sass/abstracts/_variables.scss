@@ -7,6 +7,7 @@
 // =========================================
 // 1. Core Brand Palette
 // =========================================
+@use 'sass:color';
 @use '../abstracts/colors' as *; // Import the core color definitions
 
 // =========================================
@@ -23,5 +24,8 @@ $success-color:     $plum;    // Success messages, confirmations
 $danger-color:      $crimson;      // Errors, warnings, destructive actions
 
 // You can also define shades for borders, disabled states, etc.
-$border-color:      lighten($background-color, 15%);
-$text-muted:        darken($text-color, 30%);
+$border-color: color.adjust($background-color, $lightness: 15%);
+$text-muted: color.adjust($text-color, $lightness: -30%);
+
+// Border radius for components
+$border-radius: 0.5rem;

@@ -5,6 +5,7 @@
 @use 'abstracts/colors';
 @use 'abstracts/variables';
 @use 'abstracts/placeholders';
+@use 'abstracts/index';
 
 @use 'base/reset';
 @use 'base/typography';
@@ -13,6 +14,7 @@
 @use 'components/buttons';
 @use 'components/cards';
 @use 'components/forms';
+@use 'components/article';
 
 @use 'layout/header';
 @use 'layout/footer';

@@ -41,3 +41,8 @@ system/templates/testing/*
 /user/config/versions.yaml
 test-frontend/vendor/symfony/deprecation-contracts/
 test-frontend/vendor/symfony/yaml/
+user/plugins/problems/
+user/plugins/error/
+user/plugins/markdown-notices/
+user/themes/modiquark/
+user/themes/quark/
