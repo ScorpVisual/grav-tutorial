@@ -81,13 +81,25 @@
 
         <h3>Buttons</h3>
         <div class="col">
-            <button class="button-primary">Primary Button</button>
-            <button class="button-CTA">CONTACT Button</button>
-            <button class="button-design">Secondary Button</button>
-            <button class="button-copy">Tertiary Button</button>
-            <button class="button-secondary">Tertiary Button</button>
+            <button class="btn-primary--orange">Primary Button</button>
+            <button class="btn-primary--red">CONTACT Button</button>
+            <button class="btn-primary--design">Secondary Button</button>
+            <button class="btn-primary--copy">Tertiary Button</button>
+            <button class="btn-primary--nature">Tertiary Button</button>
             <br/><br/>
-            <button class="button-primary" disabled>Disabled Button</button>
+            <button class="btn-primary" disabled>Disabled Button</button>
+            <button class="btn-primary" >unDisabled Button</button>
+        </div>
+
+      <div class="col">
+            <button class="btn-secondary--orange">Primary Button</button>
+            <button class="btn-secondary--red">RED Button</button>
+            <button class="btn-secondary--design">Secondary Button</button>
+            <button class="btn-secondary--copy">Tertiary Button</button>
+            <button class="btn-secondary--teal">Tertiary Button</button>
+            <br/><br/>
+            <button class="btn-secondary" disabled>Disabled Button</button>
+            <button class="btn-secondary" >unDisabled Button</button>
         </div>
 
         <h3>Forms</h3>
@@ -139,19 +151,33 @@
                     <input type="email" id="email" name="email" value="invalid-email">
                     <span class="error-message">Please enter a valid email address.</span>
                 </div>
-            <button type="submit" class="button-primary">Submit</button>
+            <button type="submit" class="btn-primary--orange">Submit</button>
         </form>
 
         <h3>Cards</h3>
         <div class="card">
-            <img src="https://via.placeholder.com/400x200" alt="Placeholder Image">
+            <img src="https://placehold.co/400x200/EEE/31343C" alt="Placeholder Image">
             <div>
                 <h4>Card Title</h4>
                 <p>This is some example text for the card body, giving a brief description.</p>
-                <a href="#" class="button-primary submit-btn">Read More</a>
+                <a href="#" class="btn-primary--orange submit-btn">Read More</a>
             </div>
         </div>
     </div>
+
+
+    <div class="card" tabindex="0">
+  <div class="card__header">
+    <h3>Card Title</h3>
+  </div>
+  <img class="card__image" src="https://placehold.co/400x200/EEE/31343C" alt="Placeholder Image">
+  <div class="card__body">
+    <p>This is the main content of the card. It can contain text, lists, or other elements.</p>
+  </div>
+  <div class="card__footer">
+    <a href="#" class="btn-secondary">Read More</a>
+  </div>
+</div>
     
     {# =================================================================== #}
     {# IV. CONTENT-SPECIFIC ELEMENTS                                     #}
@@ -183,7 +209,7 @@
             <form>
                 <label for="comment-field">Leave a comment</label>
                 <textarea id="comment-field" rows="4"></textarea>
-                <button type="submit" class="button-primary">Submit</button>
+                <button type="submit" class="btn-primary--orange">Submit</button>
             </form>
         </div>
     </div>
@@ -203,7 +229,7 @@
                     <li>Feature 1</li>
                     <li>Feature 2</li>
                 </ul>
-                <button class="button-secondary">Choose Plan</button>
+                <button class="btn-secondary">Choose Plan</button>
             </div>
         </div>
 

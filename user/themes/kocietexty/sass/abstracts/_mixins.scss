@@ -1,6 +1,8 @@
+@use 'sass:color';
 @use '../abstracts/colors' as *;
 @use '../abstracts/variables' as *;
 @use '../abstracts/breakpoints' as *;
+@use '../abstracts/animations' as *;
 
 // =================================================================== 
 //       BASE STYLES                             
@@ -20,12 +22,76 @@
   border-radius: $border-radius;
 }
 
+// ===================================================================
+//   CARD 
+// ===================================================================
+
+@mixin base-card(
+  $background: $ink,
+  $border-color: $dark-nature,
+  $hover-border-color: $orange,
+  $header-color: $orange,
+  $hover-header-color: $paper,
+  $max-width: 42rem
+) {
+  background: $background;
+  border: $border-thickness solid $border-color;
+  border-radius: $border-radius;
+  box-shadow: $base-shadow;
+  max-width: $max-width;
+  margin: $base-margin auto;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+
+ .card__header {
+    padding: 1rem 1.5rem;
+    border-bottom: $border-thickness solid $border-color;
+
+    h3 {
+      @include animated-underline($initial-color: $header-color);
+      margin: 0;
+    }
+  }
+
+  .card__image {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+  }
+
+  .card__body {
+    padding: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .card__footer {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+ &:hover,
+  &:focus-within {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: $hover-border-color;
+
+    .card__header h3 {
+      color: $hover-header-color;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
 // =================================================================== 
 //       BUTTONS                            
 // =================================================================== 
 
 
-@mixin basic-btn ($background: $orange, $btn-text-color: $ink, $background-focus: $gold, $btn-text-focus: $ink, $shadow-color: $red) {
+@mixin base-btn ($background: $orange, $btn-text-color: $ink, $background-focus: $gold, $btn-text-focus: $ink, $shadow-color: $red) {
     display: inline-block;
     padding: .6rem .8rem;
     margin: .2rem .6rem;
@@ -51,6 +117,35 @@
   }
 }
 
+@mixin base-btn-secondary (
+  $background: $ink,
+  $background-focus: $teal,
+  $btn-text-color: $teal,
+  $btn-text-focus: $paper,
+  $border-color: $teal,
+  $border-color-focus: $teal
+  ) {
+    display: inline-block;
+    padding: .4rem .6rem;
+    margin: .12rem .32rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: $border-radius;
+    border: 2px solid $border-color;
+    background-color: $background;
+    color: $btn-text-color;
+    transition: background-color 0.3s ease-in-out;    
+
+    &:hover,
+  &:focus {
+    background-color: $background-focus;
+    color: $btn-text-focus;
+        border: 2px solid $border-color-focus;
+
+  }
+
+}
 // =================================================================== 
 //       TYPOGRAPHY                             
 // =================================================================== 

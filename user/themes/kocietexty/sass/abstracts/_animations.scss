@@ -1,7 +1,6 @@
 @use '../abstracts/colors' as *;
 @use '../abstracts/variables' as *;
 @use '../abstracts/breakpoints' as *;
-@use '../abstracts/mixins' as *;
 
 
 @mixin cat-list-animation {
@@ -39,6 +38,40 @@
       &:hover {
         color: $paper;
       }
+    }
+  }
+}
+@mixin animated-underline(
+  $initial-color: $orange,
+  $hover-color: $paper,
+  $underline-color: $secondary-color
+) {
+  // Core setup
+  position: relative;
+  color: $initial-color;
+  transition: color 0.2s ease-in-out;
+  padding-bottom: 0.2rem; 
+  width: 100%;
+
+  // Underline pseudo-element
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0.12rem;
+    width: 0;
+    background: $underline-color;
+    border-radius: 1rem;
+    transition: width 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+  }
+
+  // Hover and focus state
+  &:hover,
+  &:focus {
+    color: $hover-color;
+    &::after {
+      width: 100%;
     }
   }
 }

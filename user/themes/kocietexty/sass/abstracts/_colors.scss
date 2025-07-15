@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // =========================================
 // 1. kocieTexty Theme Colors
 // =========================================
@@ -28,6 +30,12 @@ $crimson: #a6155b;
 $nature: #14566b;
 $plum: #6e31a0;       // Rich purple for decorative elements or special highlights
 
+// --- Kolory modyfikowane ---
+// =========================================
+$dark-red: color.adjust($red, $alpha: -0.7);
+$dark-gold: color.adjust($gold, $alpha: -0.7);
+$dark-nature: color.adjust($nature, $alpha: -0.7);
+$dark-nature-bg: color.adjust($nature, $alpha: -0.9);
 
 .c-ink {
   color: $ink;
