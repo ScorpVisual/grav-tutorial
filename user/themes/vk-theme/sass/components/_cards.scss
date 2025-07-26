@@ -1,0 +1,270 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
+@use '../mixins/mixins' as *;
+@use '../mixins/mixins-divs.scss' as *;
+@use 'sass:color';
+
+
+// MIXINS
+
+// CODE:
+.vkCard {
+  &__white {
+      @include vkCard(
+          '/src/img/textures/marble-white-2.jpg',
+          rgba($white, .3),
+          rgba($grey, 0),
+          rgba($marble, .9),
+          $white,
+          normal
+        );
+      color: $ink;
+      & img {
+          @include cherry-img-border;
+         }
+  }
+  &__black  {
+      @include vkCard(
+          '/src/img/textures/marble-black-5.jpg',
+          rgba($white, .4),
+          rgba($ink, .2),
+          rgba($ink, .9),
+          $white,
+          multiply
+        );
+      color: $marble;
+      & img {
+          @include golden-img-border;
+         }
+  }
+  &__red {
+      @include vkCard(
+          '/src/img/textures/marble-red-2.jpg',
+          rgba($white, .3),
+          rgba($red-marble, .7),
+          rgba($red-marble, 1),
+          $red-marble,
+        );
+      color: $marble;
+      & img {
+          @include golden-img-border;
+         }
+  }
+  &__grey {
+      @include vkCard('/src/img/textures/granite-4.jpg', rgba($granite, .9));
+      color: $marble;
+      & img {
+          @include dark-img-border;
+         }
+  }
+}
+
+
+.stone-div {
+  @include stone-slab("/src/img/textures/granite-4.jpg");
+  margin: 1rem;
+  color: $marble;
+}
+
+.white-gradient-down {
+  position: relative;
+  z-index: 1;
+  color: $ink;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  box-shadow: 
+    inset -2px -2px 6px rgba($white, 0.6),
+    inset 2px 2px 6px rgba($grey, 0.3),
+    0 8px 8px rgba($ink, 0.3);
+  padding: 1rem;
+  isolation: isolate;
+  border: 1px solid rgba($white, 0.4);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    border: 1px solid rgba($white, 0.8);
+    box-shadow: 
+      inset -2px -2px 6px rgba($white, 0.7),
+      inset 2px 2px 6px rgba($grey, 0.4),
+      0 10px 12px rgba($ink, 0.4);
+  }
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      0deg,
+      rgba($white, .97) 0%,   // Increased opacity
+      rgba($white, 0.6) 80%,  // Increased opacity
+      rgba($white, .1) 100%
+    );
+    z-index: -1;
+  }
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/src/img/textures/marble-white-2.jpg') center/cover no-repeat;
+    z-index: -2;
+    opacity: 1;
+  }
+}
+
+.card-icon-bg {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 
+    inset -2px -2px 6px rgba($white, 0.8),
+    inset 2px 2px 6px rgba($grey, 0.3),
+    0 10px 8px rgba($ink, 0.1);
+    background: $white;
+    z-index: -1;
+    filter: blur(4px);
+    opacity: 0.8;
+    mix-blend-mode: multiply; // Added blend mode
+  } 
+}
+.card-icon-photo {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 
+    inset -2px -2px 6px rgba($white, 0.6),
+    inset 2px 2px 6px rgba($grey, 0.3),
+    0 10px 8px rgba($ink, 0.6);
+    background: radial-gradient(
+      circle at center,
+      rgba($white, .97) 0%,   
+      rgba($white, .6) 60%,   
+      rgba($white, .1) 100%
+    );
+    z-index: -1;
+    // filter: blur(2px);
+    opacity: 0.8;
+    mix-blend-mode: multiply; // Added blend mode
+  } 
+}
+// .card {
+//     @include base-card;
+// }
+
+// big article card
+
+// .articleCard {
+//     display: flex;
+//     flex-direction: column;
+//     flex-grow: 1;
+//     width: 100%;
+//     height: 100%;
+//     border-radius: $border-radius;
+//     position: relative;
+//     isolation: isolate;
+//     z-index: 1;
+//     overflow: hidden;
+//     border: 1px solid $trans;
+
+//     &:hover {
+//         border: 1px solid color.adjust($paper, $alpha: -0.3);
+//         box-shadow: 0 0 12px color.adjust($paper, $alpha: -0.4);
+        
+//     }
+//     &:focus {
+//         border: 1px solid color.adjust($orange, $alpha: -0.3);
+//         box-shadow: 0 0 12px color.adjust($orange, $alpha: -0.4);
+        
+//     }
+//     &--big {
+//     max-width: 37.5rem; //600px
+//     // max-height: 22.5rem; //360px
+//     }
+//     &__img {
+//         position: absolute;
+//         width: 100%;
+//         height: 100%;
+//         top: 0;
+//         left: 0;
+//         z-index: 2;
+//     }
+//     &__header {
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: end;
+//         align-items: end;
+//         position: absolute;
+//         width: 100%;
+//         height: auto;
+//         bottom: 0;
+//         right: 0;
+//         border-bottom-left-radius: 0;
+//         border-bottom-right-radius: 0;
+//         background: $ink-gradient-up;
+//         z-index: 3;
+//         text-shadow: 1px 1px 1px $ink;
+//         padding-inline: 1.2rem;
+//         padding-top: 2.4rem;
+//         &--title {
+//             margin-bottom: .2rem;
+//             border-bottom: none;
+//             &::after {
+//                 content: '.';
+//                 color: $red;
+//             }
+//         }
+//         &--desc {
+//             color: $orange;
+//             text-shadow: 1px 1px 1px $ink;
+//             font-size: 1rem;
+//         }
+//     }
+//     &__info {
+//         display: flex;
+//         flex-direction: row;
+//         height: auto;
+//         width: 100%;
+//         justify-content: end;
+//         gap: 2.4rem;
+//         padding-block: .6rem;
+//         &--row {
+//             display: flex;
+//             width: fit-content;
+//             flex-direction: row;
+//             gap: .4rem;
+//             align-items: center;
+//             white-space: nowrap;
+//         }
+//     }
+// }
+
+// vertical article card
+
+// square article card
+
+// horizontal small card

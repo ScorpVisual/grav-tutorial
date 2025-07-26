@@ -1,0 +1,23 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  min-height: 100vh;
+
+  &__navbar {
+    grid-column: 1 / -1;
+  }
+
+  &__sidebar {
+    grid-column: span 2;
+  }
+
+  &__main-content {
+    grid-column: span 10;
+  }
+  
+  &__footer {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,136 @@
+// =========================================================================
+// MODULE IMPORTS
+// =========================================================================
+@use '../abstracts/breakpoints' as *;
+@use '../abstracts/variables' as *;
+@use '../mixins/mixins' as *;
+@use '../abstracts/animations' as *;
+@use 'sass:math';
+
+// =========================================================================
+//  FONT IMPORT (@font-face)
+// =========================================================================
+// @font-face {
+//   font-family: 'Glacial Indifference';
+//   src: url('../../fonts/GlacialIndifference-Regular.woff2') format('woff2'),
+//        url('../../fonts/GlacialIndifference-Regular.woff') format('woff');
+//   font-weight: normal;
+//   font-style: normal;
+//   font-display: swap;
+// }
+// @font-face {
+//   font-family: 'Glacial Indifference';
+//   src: url('../../fonts/GlacialIndifference-Bold.woff2') format('woff2'),
+//   url('../../fonts/GlacialIndifference-Bold.woff') format('woff');
+//   font-weight: bold;
+//   font-style: normal;
+//   font-display: swap;
+// }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// =========================================
+// 2. Variables (Mobile First)
+// =========================================
+$font-main: 'Poppins', sans-serif;
+
+// Mobile-first typographic scale (Major Third ratio)
+$base-font-size: 1rem;      // Approx 16px
+$scale-ratio-mobile: 1.25;
+
+// Calculating mobile heading sizes
+$h4-mobile: $base-font-size * $scale-ratio-mobile;
+$h3-mobile: $h4-mobile * $scale-ratio-mobile;
+$h2-mobile: $h3-mobile * $scale-ratio-mobile;
+$h1-mobile: $h2-mobile * $scale-ratio-mobile;
+$small-text: math.div($base-font-size, $scale-ratio-mobile);
+// =========================================
+// 3. Base & Heading Styles
+// =========================================
+body {
+  font-family: $font-main;
+  font-weight: normal;
+  font-size: $base-font-size;
+  line-height: 1.6;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-main;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 1.8rem;
+}
+
+// Applying mobile-first sizes
+h1 { font-size: $h1-mobile; }
+h2 { font-size: $h2-mobile; }
+h3 { font-size: $h3-mobile; }
+h4 { font-size: $h4-mobile; }
+h5 { font-size: $base-font-size; }
+h6 { font-size: $small-text; }
+
+
+// =========================================
+// 4. Responsive Adjustments for Desktop 📱➡️💻
+// =========================================
+@media (min-width: $screen-md) {
+  // Use a larger base size and scale for desktop
+  body {
+    font-size: 1.125rem; // Approx 18px
+  }
+
+  // Desktop typographic scale (Perfect Fourth ratio)
+  $scale-ratio-desktop: 1.333;
+
+  h1 { font-size: $h2-mobile * $scale-ratio-desktop; } // ~2.6rem
+  h2 { font-size: $h3-mobile * $scale-ratio-desktop; } // ~2.0rem
+  h3 { font-size: $h4-mobile * $scale-ratio-desktop; } // ~1.6rem
+  h4 { font-size: $base-font-size * $scale-ratio-desktop; } // ~1.3rem
+  h4, h5 {
+      font-size: $base-font-size * $scale-ratio-desktop;
+    }
+}
+    
+// =========================================
+// 5. Custom design of Headings
+// =========================================
+
+
+h1 {
+  position: relative;
+  padding-left: 1rem; 
+
+  &::before {
+    content: '';
+    background-color: $secondary-color;
+    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
+    position: absolute;
+    top: 50%; 
+    left: 0;
+    transform: translate(-20%, -50%);
+    z-index: -1;
+  }
+}
+h2 {
+  border-bottom: 2px solid $secondary-color;
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  color: $primary-color;
+}
+
+h4 {
+  color: $accent-color;
+}
+h5 {
+  color: $danger-color;
+}
+h6 {
+  color: $success-color;
+}
+
+

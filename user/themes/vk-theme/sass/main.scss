@@ -1,0 +1,34 @@
+
+@use 'abstracts/functions';
+@use 'abstracts/breakpoints';
+@use 'abstracts/colors';
+@use 'abstracts/variables';
+
+@use 'mixins/mixins';
+@use 'mixins/mixins-backgrounds';
+@use 'mixins/mixins-divs';
+
+@use 'abstracts/animations';
+@use 'abstracts/placeholders';
+@use 'abstracts/index';
+
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/base';
+@use 'base/divs';
+
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/forms';
+@use 'components/article';
+
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/grid';
+
+@use 'pages/home';
+@use 'pages/contact';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,38 @@
+// abstracts/_variables.scss
+//
+// This file defines the color palette and maps specific brand colors
+// to their functional roles in the theme. To create a new theme,
+// you only need to change the assignments in the "Theme Mapping" section.
+
+// =========================================
+// 1. Core Brand Palette
+// =========================================
+@use 'sass:color';
+@use '../abstracts/colors' as *; // Import the core color definitions
+
+// =========================================
+// 2. Theme Mapping
+// =========================================
+// Assign brand colors to abstract, functional roles.
+// To change the theme, just change the values here.
+$background-color:  $pink;
+$text-color:        $ink;
+$primary-color:     $cherry;   // Main interactive color for links, buttons
+$secondary-color:   $slate;     // Secondary actions, info boxes
+$accent-color:      $pink;     // Highlights, special branding elements, CTA buttons
+$success-color:     $carnelian;    // Success messages, confirmations
+$danger-color:      $red-marble;      // Errors, warnings, destructive actions
+
+// You can also define shades for borders, disabled states, etc.
+$border-color: color.adjust($background-color, $lightness: 15%);
+$text-muted: color.adjust($text-color, $lightness: -30%);
+
+// =========================================
+// BASIC DIV STYLES
+// These are used for basic layout and structure across the theme.
+// =========================================
+$border-radius: 0.8rem;
+$border-thickness: 0.2rem;
+$base-shadow: 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+$base-padding: 1.6rem;
+$base-margin: 1.6rem;

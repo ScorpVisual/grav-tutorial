@@ -10,29 +10,29 @@
 // =========================================================================
 //  FONT IMPORT (@font-face)
 // =========================================================================
-@font-face {
-  font-family: 'Glacial Indifference';
-  src: url('../../fonts/GlacialIndifference-Regular.woff2') format('woff2'),
-       url('../../fonts/GlacialIndifference-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+// @font-face {
+//   font-family: 'Glacial Indifference';
+//   src: url('../../fonts/GlacialIndifference-Regular.woff2') format('woff2'),
+//        url('../../fonts/GlacialIndifference-Regular.woff') format('woff');
+//   font-weight: normal;
+//   font-style: normal;
+//   font-display: swap;
+// }
+// @font-face {
+//   font-family: 'Glacial Indifference';
+//   src: url('../../fonts/GlacialIndifference-Bold.woff2') format('woff2'),
+//   url('../../fonts/GlacialIndifference-Bold.woff') format('woff');
+//   font-weight: bold;
+//   font-style: normal;
+//   font-display: swap;
+// }
 
-@font-face {
-  font-family: 'Glacial Indifference';
-  src: url('../../fonts/GlacialIndifference-Bold.woff2') format('woff2'),
-       url('../../fonts/GlacialIndifference-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 // =========================================
 // 2. Variables (Mobile First)
 // =========================================
-$font-main: 'Glacial Indifference', sans-serif;
+$font-main: 'Poppins', sans-serif;
 
 // Mobile-first typographic scale (Major Third ratio)
 $base-font-size: 1rem;      // Approx 16px
