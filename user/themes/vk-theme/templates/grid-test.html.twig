@@ -10,6 +10,7 @@
     {# Tutaj dodajemy wszystkie potrzebne pliki CSS do kolejki #}
     {% do assets.addCss('theme://dist/css/site.css', 100) %} {# Tailwind #}
     {% do assets.addCss('theme://dist/css/main.css', 90) %} {# Twój SCSS #}
+    {% do assets.addCss('theme://dist/css/tailwind-output.css', 90) %} {# Twój SCSS #}
     
     {# Ta linia "drukuje" tagi <link> w HTML-u #}
     {{ assets.css()|raw }}
@@ -64,19 +65,18 @@
         </div>
         <div class="marble-slab test-div"></div>
         <div class="marble-slab test-div"></div>
-         <section id="uslugi" class="py-12 px-4">
-            <div class="text-center mb-16 md:mb-20 lg:mb-24">
-                <div class="flex justify-center col my-8 ">
+         <section id="uslugi" class="">
+            <div class="text-center mb-16 md:mb-20 lg:mb-24 marble-slab">
+                <div class="flex justify-center col ">
                 </div>
-                <h2 class="text-4xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-ink mb-6">
+                <h2 class="text-4xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-ink">
                     Nasze usługi
                 </h2>
-                <div class="w-128 h-1 bg-red-900 mx-auto mb-6"></div>
                 <p class="text-lg md:text-xl text-text-near-black max-w-xl lg:max-w-2xl mx-auto leading-relaxed">
                     Kamieniarstwo Wiśniewski oferuje kompleksowe usługi kamieniarskie:&nbsp;budowę&nbsp;i&nbsp;renowację nagrobków, liternictwo nagrobkowe oraz&nbsp;profesjonalne czyszczenie kamienia. Pomagamy w realizacji nawet&nbsp;najbardziej wymagających pomysłów.
                 </p>
             </div>
-            <div class="grid md:grid-cols-3 gap-6 mt-8">
+            <div class="grid md:grid-cols-3 gap-6 ">
                 <div class="bg-white p-6 rounded-lg shadow-md vkCard__white flex flex-col">
                     <div class="vk_gold">
                         <img src="src/img/placeholders/renowacja-pomnika.jpg" alt="Renowacja pomnika nagrobnego" class="w-full h-64 object-cover rounded-md">
