@@ -39,7 +39,11 @@ $gold: linear-gradient(
     rgba(243, 198, 102, 0.9) 50%,
     rgba(213, 168, 72, 0.8) 100%
 );
-
+$cherry-dark-gradient: linear-gradient(135deg, 
+    rgba($cherry, 0.98) 0%,
+    rgba($dark-slate, 0.08) 45%,
+    rgba($ink, 0.15) 100%
+);
 // --- Kolory modyfikowane ---
 // =========================================
 // $dark-red: color.adjust($red, $alpha: -0.7);

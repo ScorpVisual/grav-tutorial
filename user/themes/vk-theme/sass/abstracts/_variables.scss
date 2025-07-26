@@ -10,11 +10,19 @@
 @use 'sass:color';
 @use '../abstracts/colors' as *; // Import the core color definitions
 
+// BREAKPOINTS
+$breakpoint-xs: 100%;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-xxl: 1440px;
 // =========================================
 // 2. Theme Mapping
 // =========================================
 // Assign brand colors to abstract, functional roles.
 // To change the theme, just change the values here.
+$background-gradient: $cherry-dark-gradient;
 $background-color:  $pink;
 $text-color:        $ink;
 $primary-color:     $cherry;   // Main interactive color for links, buttons
@@ -34,5 +42,9 @@ $text-muted: color.adjust($text-color, $lightness: -30%);
 $border-radius: 0.8rem;
 $border-thickness: 0.2rem;
 $base-shadow: 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+$div-shadow: 
+      inset -2px -2px 6px rgba($white, 0.7),
+      inset 2px 2px 6px rgba($grey, 0.4),
+      0 10px 12px rgba($ink, 0.4);
 $base-padding: 1.6rem;
 $base-margin: 1.6rem;

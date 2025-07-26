@@ -14,7 +14,9 @@
   }
 
   &__main-content {
+    display: grid;
     grid-column: span 10;
+    gap: 2rem;
   }
   
   &__footer {

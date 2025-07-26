@@ -6,6 +6,7 @@
 // Import the variables so they can be used in this file.
 @use '../abstracts/variables' as *;
 @use '../abstracts/colors' as *;
+@use '../base/backgrounds' as *;
 @use 'sass:color';
 
 
@@ -16,15 +17,14 @@
 * {
   transition: all 0.2s ease-in-out;
 }
-
 html {
-  // Provides a smoother scrolling experience.
   scroll-behavior: smooth;
+  background-image: $background-gradient;
+  background-color: $ink;
+  overflow-x: hidden;
 }
-
 body {
   // Apply the theme's background and text colors.
-  background-color: $background-color;
   color: $text-color;
 }
 

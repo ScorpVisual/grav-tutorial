@@ -22,41 +22,41 @@
 {# Add this line to load your compiled SASS styles #}
     {% do assets.addCss('theme://dist/css/main.css', 90) %}
 {# This prints all the CSS links #}
+{% do assets.addJs('theme://js/main.js') %}
 {{ assets.css()|raw }}
+{{ assets.js()|raw }}
 </head>
 <body>
 {# Definiujemy, co ma się znaleźć w bloku 'content' szablonu bazowego #}
 {% block content %}
     {# Tutaj wstawiamy unikalną treść dla tej strony, czyli nasz grid #}
 <div class="grid-container">
-    <header class="grid-container__navbar flex items-center justify-between px-6">
-        <div>
-            <a href="{{ base_url_absolute }}/" class="text-xl font-bold c-ink hover:text-orange transition-colors">
-                Kamieniarstwo Wiśniewski
-            </a>
-        </div>
-        <nav>
-            <ul class="flex items-center space-x-2">
-                <li>
-                    <a href="{{ base_url_absolute }}/" class="block py-2 px-4 rounded-md c-ink hover:bg-white/10 hover:text-orange transition-all duration-300">Start</a>
-                </li>
-                <li>
-                    <a href="{{ base_url_absolute }}/nagrobki" class="block py-2 px-4 rounded-md c-ink hover:bg-white/10 hover:text-orange transition-all duration-300">Nagrobki</a>
-                </li>
-                <li>
-                    <a href="{{ base_url_absolute }}/uslugi" class="block py-2 px-4 rounded-md c-ink hover:bg-white/10 hover:text-orange transition-all duration-300">Usługi</a>
-                </li>
-                <li>
-                    <a href="{{ base_url_absolute }}/realizacje" class="block py-2 px-4 rounded-md c-ink hover:bg-white/10 hover:text-orange transition-all duration-300">Realizacje</a>
-                </li>
-                <li>
-                    <a href="{{ base_url_absolute }}/o-firmie" class="block py-2 px-4 rounded-md c-ink hover:bg-white/10 hover:text-orange transition-all duration-300">O firmie</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <header class="grid-container__navbar flex items-center justify-between px-6 marble-slab">
 
-    <aside class="grid-container__sidebar">
+    <div>
+        <a href="{{ base_url_absolute }}/" class="text-xl font-bold c-ink hover:text-orange transition-colors">
+            Kamieniarstwo Wiśniewski
+        </a>
+    </div>
+
+    <nav class="navbar__menu" id="nav-menu">
+        <ul class="navbar__links">
+            <li><a href="/uslugi">Usługi</a></li>
+            <li><a href="/realizacje">Realizacje</a></li>
+            <li><a href="/o-firmie">O firmie</a></li>
+        </ul>
+        <a href="/kontakt" class="navbar__cta">Wycena</a>
+    </nav>
+
+    <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+</header>
+
+    <aside class="grid-container__sidebar marble-slab">
         <p class="p-4 text-sm">Sidebar z nawigacją</p>
         <p class="p-4 text-sm">Sidebar z nawigacją</p>
         <p class="p-4 text-sm">Sidebar z nawigacją</p>
@@ -70,11 +70,73 @@
     </aside>
 
     <main class="grid-container__main-content">
-        <div class="p-8 bg-white rounded-lg shadow">
+        <div class="p-8 bg-white rounded-lg shadow marble-slab test-div">
             <h2 class="text-3xl text-gray-800">Główna treść strony</h2>
             <p class="mt-4 text-gray-600">Ta sekcja znajduje się wewnątrz głównej kolumny siatki.</p>
         </div>
-        
+        <div class="marble-slab test-div"></div>
+        <div class="marble-slab test-div"></div>
+         <section id="uslugi" class="py-12 px-4">
+            <div class="text-center mb-16 md:mb-20 lg:mb-24">
+                <div class="flex justify-center col my-8 ">
+                </div>
+                <h2 class="text-4xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-ink mb-6">
+                    Nasze usługi
+                </h2>
+                <div class="w-128 h-1 bg-red-900 mx-auto mb-6"></div>
+                <p class="text-lg md:text-xl text-text-near-black max-w-xl lg:max-w-2xl mx-auto leading-relaxed">
+                    Kamieniarstwo Wiśniewski oferuje kompleksowe usługi kamieniarskie:&nbsp;budowę&nbsp;i&nbsp;renowację nagrobków, liternictwo nagrobkowe oraz&nbsp;profesjonalne czyszczenie kamienia. Pomagamy w realizacji nawet&nbsp;najbardziej wymagających pomysłów.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 mt-8">
+                <div class="bg-white p-6 rounded-lg shadow-md vkCard__white flex flex-col">
+                    <div class="vk_gold">
+                        <img src="src/img/placeholders/renowacja-pomnika.jpg" alt="Renowacja pomnika nagrobnego" class="w-full h-64 object-cover rounded-md">
+                    </div>
+                    <h3 class="text-2xl font-semibold mt-4 underline--cherry">RENOWACJA POMNIKÓW</h3>
+                    <p class="text-elegant text-2xl font-semibold mt-2">Cena: od 1000 - 1500zł</p>
+                    <p class="mt-4 text-lg flex-grow">Oferujemy usługę renowacji pomników wymagających naprawy. Nasze działania rozpoczynamy od demontażu nagrobka, a następnie wykonujemy zbrojoną betonową wylewkę pod jego ramę. Dzięki temu konstrukcja zyskuje stabilność i odporność na działanie sił natury.
+                    <br><br>Po zakończeniu prac przygotowawczych składamy pomnik ponownie, dodatkowo montując specjalne klamry, które zapewniają trwałe utrzymanie wszystkich elementów na miejscu. Na koniec, powierzchnię nagrobka wykańczamy powłoką zabezpieczającą. W ten sposób przedłużamy żywotność pomnika i ułatwiamy jego późniejszą pielęgnację.
+                    </p>
+                    <a href="#kontakt" class="mt-auto">
+                        <button class="w-full mt-4 bg-red-900 text-white py-2 px-4 rounded hover:bg-red-800 transition-colors">
+                            Kontakt
+                        </button>
+                    </a>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md vkCard__red flex flex-col">
+                    <div class="vk_gold">
+                        <img src="src/img/placeholders/liternictwo.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full h-64 object-cover rounded-md">
+                    </div>
+                    <h3 class="text-2xl font-semibold mt-4 underline--gold">LITERNICTWO NAGROBKOWE</h3>
+                    <p class="text-elegant text-2xl font-semibold mt-2">Cena: od 300zł</p>
+                    <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
+                    <a href="#kontakt" class="mt-auto">
+                        <button class="w-full mt-4 bg-red-900 text-white py-2 px-4 rounded hover:bg-red-800 transition-colors">
+                            Kontakt
+                        </button>
+                    </a>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md vkCard__black flex flex-col">
+                    <div class="vk_gold">
+                        <img src="src/img/placeholders/czyszczenie-pomnika.jpg" alt="Liternictwo nagrobkowe na pomniku z czarnego granitu" class="w-full h-64 object-cover rounded-md">
+                    </div>
+                    <h3 class="text-2xl font-semibold mt-4 underline--gold whitespace-nowrap">CZYSZCZENIE POMNIKA</h3>
+                    <p class="text-elegant text-2xl font-semibold mt-2">Cena: od 800zł</p>
+                    <p class="mt-4 text-lg flex-grow">Zajmujemy się profesjonalnym czyszczeniem lastryko, przywracając pomnikom ich dawny blask. Wygładzamy powierzchnię, usuwając wszelkie zanieczyszczenia i nadając kamieniowi idealną gładkość. Następnie impregnujemy nagrobek, aby wydobyć delikatny połysk i skutecznie zabezpieczyć powierzchnię przed czynnikami zewnętrznymi.
+                        <br><br>W przypadku granitowych pomników, czyścimy je specjalistyczną myjką, a potem zabezpieczamy krystalizatorem, który zapewnia długotrwałą ochronę i piękny wygląd. Wypełnia on pory w strukturze kamienia, zapewniając mu trwałość – zgodnie z naszą dewizą – na wieki!
+                        </p>
+                    <a href="#kontakt" class="mt-auto">
+                        <button class="w-full mt-4 bg-red-900 text-white py-2 px-4 rounded hover:bg-red-800 transition-colors">
+                            Kontakt
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <div class="marble-slab test-div"></div>
     {# The inline <style> block has been removed from here. #}
 
     {# =================================================================== #}
@@ -330,7 +392,7 @@
 
     </main>
 
-    <footer class="grid-container__footer bg-gray-800 text-gray-400 p-6 flex justify-between items-center">
+    <footer class="grid-container__footer bg-gray-800 text-gray-400 p-6 flex justify-between items-center marble-slab">
         <div>
             <p class="text-sm">&copy; 2025 Kamieniarstwo Wiśniewski. Wszelkie prawa zastrzeżone.</p>
         </div>
