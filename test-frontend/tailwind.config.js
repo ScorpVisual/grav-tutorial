@@ -1,11 +1,15 @@
 // C:\Users\marce\Documents\GitHub\grav-tutorial\test-frontend\tailwind.config.js
 export default {
- content: [
-    '../user/themes/vk-theme/templates/**/*.twig',
-    '../user/themes/vk-theme/js/**/*.js',
-    
+  content: [
+    "./public/**/*.php",
+    "./templates/**/*.php",
+    "./src/**/*.php",
+    "./js/**/*.js",
     '../user/themes/kocietexty/templates/**/*.twig',
-    '../user/themes/kocietexty/js/**/*.js'
+    '../user/themes/kocietexty/js/**/*.js',
+    '../user/themes/vk-theme/templates/**/*.twig',
+    '../user/themes/vk-theme/js/**/*.js' 
+    
   ],
   theme: {
     extend: {

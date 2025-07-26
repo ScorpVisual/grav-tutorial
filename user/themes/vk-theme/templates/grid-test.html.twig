@@ -1,30 +1,18 @@
-{# 
-  This is the main skeleton file for your entire website.
-  Every other page template will "extend" this file.
-  It defines the core HTML structure, including the <head> and <body>.
-#}
 <!DOCTYPE html>
 <html lang="{{ grav.language.getActive ?: 'en' }}">
 <head>
-    {# Basic meta tags for character set and responsive design #}
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    {# 
-      This pulls the title from the page's frontmatter.
-      For example, if a page file has "title: About Us", that's what will appear.
-    #}
     <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
 
-{# This loads your Tailwind CSS #}
-    {% do assets.addCss('theme://dist/css/site.css', 100) %}
-{# Add this line to load your compiled SASS styles #}
-    {% do assets.addCss('theme://dist/css/main.css', 90) %}
-{# This prints all the CSS links #}
-{% do assets.addJs('theme://js/main.js') %}
-{{ assets.css()|raw }}
-{{ assets.js()|raw }}
+    {# Tutaj dodajemy wszystkie potrzebne pliki CSS do kolejki #}
+    {% do assets.addCss('theme://dist/css/site.css', 100) %} {# Tailwind #}
+    {% do assets.addCss('theme://dist/css/main.css', 90) %} {# Twój SCSS #}
+    
+    {# Ta linia "drukuje" tagi <link> w HTML-u #}
+    {{ assets.css()|raw }}
 </head>
 <body>
 {# Definiujemy, co ma się znaleźć w bloku 'content' szablonu bazowego #}
@@ -401,4 +389,13 @@
         </div>
     </footer>
 </div>
+
+    {# Tutaj dodajemy i renderujemy skrypty JS #}
+    {% do assets.addJs('theme://js/main.js', {'group': 'bottom', 'loading': 'defer'}) %}
+    
+    {# Ta linia "drukuje" tagi <script> w HTML-u przed zamknięciem </body> #}
+    {{ assets.js('bottom')|raw }}
+
+</body>
+</html>
 {% endblock %}
