@@ -674,10 +674,6 @@ video {
   aspect-ratio: 1 / 1;
 }
 
-.h-1 {
-  height: 0.25rem;
-}
-
 .h-64 {
   height: 16rem;
 }
@@ -823,11 +819,6 @@ video {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-}
-
-.py-12 {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
 }
 
 .py-2 {
