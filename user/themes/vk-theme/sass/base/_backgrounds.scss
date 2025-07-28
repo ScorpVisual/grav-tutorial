@@ -20,7 +20,7 @@
 // Usage example:
 .bg-clip-texture-white-marble {
     @include bg-clip-texture(
-        $bg-image: '/src/img/textures/marble-white-1.jpg', 
+        $bg-image: '../../images/textures/marble-white-1.jpg', 
         $overlay-color: $marble,
         $clip-path: polygon(0% 0, 20% 0%, 65% 100%, 100% 100%, 100% 0)
     );
@@ -40,20 +40,20 @@
 }
 .bg-clip-texture-dark-marble {
     @include bg-clip-texture(
-        $bg-image: '/src/img/textures/marble-black-3.jpg', 
+        $bg-image: '../../images/textures/marble-black-3.jpg', 
         $overlay-color: $ink,
         $clip-path: polygon(55% 0, 100% 0, 100% 100%, 60% 100%, 36% 100%)
     ) ;
 }
 .bg-texture-dark-marble {
     @include bg-texture(
-        $bg-image: '/src/img/textures/marble-black-3.jpg', 
+        $bg-image: '../../images/textures/marble-black-3.jpg', 
         $overlay-color: rgba($ink, .7)
     ) ;
 }
 .bg-texture-limestone {
     @include bg-texture(
-        $bg-image: '/src/img/textures/limestone-2.jpg', 
+        $bg-image: '../../images/textures/limestone-2.jpg', 
         $overlay-color: rgba($sand, .7)
     ) ;
 }

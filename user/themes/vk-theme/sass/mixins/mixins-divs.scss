@@ -209,7 +209,7 @@
   
   // MARBLE SLAB Section
   @mixin polished-marble(
-      $background-image: '/src/img/textures/granite-4.jpg',
+      $background-image: '../images/textures/granite-4.jpg',
       $gradient-start: rgba($white, 1),
       $gradient-middle: rgba(178, 1, 1, 0),
       $gradient-end: rgba($black, 0),
@@ -275,7 +275,7 @@
     
 // CARD
 @mixin vkCard(
-  $background-image: '/src/img/textures/granite-4.jpg',
+  $background-image: '../../images/textures/granite-4.jpg',
   $gradient-start: rgba($white, 1),
   $gradient-middle: rgba(178, 1, 1, 0),
   $gradient-end: rgba($black, 0),
@@ -323,5 +323,65 @@
 
     pointer-events: none;
     z-index: -1;
+  }
+}
+
+@mixin marbleSlab(
+  // Kolor tekstu wewnątrz elementu
+  $text-color,
+  // Główny kolor tła, widoczny w pseudo-elemencie ::after
+  $base-color,
+  // Kolor podświetlenia w cieniu wewnętrznym
+  $shadow-highlight-color,
+  // Kolor obramowania
+  $border-color,
+  // Cała definicja gradientu dla pseudo-elementu ::before
+  $before-gradient,
+  // Kolor cienia wewnętrznego dla pseudo-elementu ::before
+  $before-shadow-color,
+  $texture-image-url
+) {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+
+  // --- Style parametryzowane ---
+  color: $text-color;
+  border: 1px solid $border-color;
+  box-shadow: 
+    inset -2px -2px 6px $shadow-highlight-color,
+    inset 2px 2px 6px rgba($grey, 0.3),
+    0 8px 8px rgba($ink, 0.3);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    // --- Style parametryzowane ---
+    background: $before-gradient;
+    // background-image: '.../../images/textures/marble-white-2.jpg';
+    box-shadow: inset 2px 2px 2px $before-shadow-color;
+  }
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    // --- Style parametryzowane ---
+    background: url($texture-image-url) center/cover no-repeat;
+    background-color: $base-color;
+    opacity: 1;
   }
 }
