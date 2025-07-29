@@ -96,41 +96,15 @@ h6 { font-size: $small-text; }
 // 5. Custom design of Headings
 // =========================================
 
-
-h1 {
-  position: relative;
-  padding-left: 1rem; 
-
-  &::before {
-    content: '';
-    background-color: $secondary-color;
-    border-radius: 50%;
-    width: 1.2em;
-    height: 1.2em;
-    position: absolute;
-    top: 50%; 
-    left: 0;
-    transform: translate(-20%, -50%);
-    z-index: -1;
-  }
-}
-h2 {
+.h1-big {
   border-bottom: 2px solid $secondary-color;
   padding-bottom: 0.5rem;
 }
-
-h3 {
-  color: $primary-color;
+.h2-decorative {
+  border-bottom: 2px solid $secondary-color;
+  padding-bottom: 0.5rem;
 }
-
-h4 {
-  color: $accent-color;
+.h3-decorative {
+  border-bottom: 2px solid $secondary-color;
+  padding-bottom: 0.5rem;
 }
-h5 {
-  color: $danger-color;
-}
-h6 {
-  color: $success-color;
-}
-
-

@@ -223,42 +223,19 @@ h6 {
     font-size: 1.333rem;
   }
 }
-h1 {
-  position: relative;
-  padding-left: 1rem;
-}
-h1::before {
-  content: "";
-  background-color: #393c45;
-  border-radius: 50%;
-  width: 1.2em;
-  height: 1.2em;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translate(-20%, -50%);
-  z-index: -1;
-}
-
-h2 {
+.h1-big {
   border-bottom: 2px solid #393c45;
   padding-bottom: 0.5rem;
 }
 
-h3 {
-  color: #800020;
+.h2-decorative {
+  border-bottom: 2px solid #393c45;
+  padding-bottom: 0.5rem;
 }
 
-h4 {
-  color: #FCD3C1;
-}
-
-h5 {
-  color: #572015;
-}
-
-h6 {
-  color: #6b2525;
+.h3-decorative {
+  border-bottom: 2px solid #393c45;
+  padding-bottom: 0.5rem;
 }
 
 .bg-sand {
