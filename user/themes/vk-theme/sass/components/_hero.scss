@@ -1,0 +1,31 @@
+
+@use 'sass:color';
+@use '../abstracts/variables' as *; // Import the core color definitions
+@use '../abstracts/colors' as *; // Import the core color definitions
+
+.hero-video {
+    position: relative;
+    
+  // Kontener hero jest już wystylizowany przez Tailwind.
+  // Możemy dodać tu dodatkowe style w razie potrzeby.
+
+  &__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1; // Pozycjonujemy wideo tuż pod nakładką .bg-overlay (która ma z-index: 2)
+  }
+}
+
+// Dodatkowy efekt dla lepszej czytelności tekstu na wideo
+.drop-shadow-lg {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+}
+.drop-shadow-md {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}

@@ -1,0 +1,5 @@
+@use '../abstracts/variables' as *; 
+
+.rounded-lg {
+    border-radius: $border-radius !important;
+}

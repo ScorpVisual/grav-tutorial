@@ -30,7 +30,7 @@ body {
   color: $text-color;
 }
 main {
-    display: flex;
+  display: flex;
   flex-direction: column;
   max-width: $breakpoint-xxl;
   margin: auto;
@@ -57,7 +57,7 @@ hr {
   height: 0.3rem;
   background-color: $accent-color;
   z-index: 2;
-  border-radius: 16rem;
+  // border-radius: 16rem;
   margin-bottom: 2.4rem;
 }
 

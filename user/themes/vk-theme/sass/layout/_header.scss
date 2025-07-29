@@ -1,5 +1,6 @@
 @use '../abstracts/colors' as *;
 @use '../abstracts/variables' as *;
+@use '../abstracts/animations' as *;
 @use '../abstracts/breakpoints' as *;
 @use '../mixins/mixins' as *;
 @use '../mixins/mixins-divs.scss' as *;
@@ -14,37 +15,92 @@
         align-items: center;
         width: 100%;
         gap: 2rem;
+        padding-block: .8rem;
+        
     }
 
     &__logotype {
-        font-weight: 700;
-        font-size: 1.5rem;
-        color: inherit;
-        text-decoration: none;
-        flex-shrink: 0;
+    position: relative;
+    padding: 0.8rem 1.2rem;
+    isolation: isolate; 
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: inherit;
+    text-decoration: none;
+    flex-shrink: 0;    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0; 
+        height: 100%;
+        background-image: url('../../images/textures/marble-white-1.jpg');
+        border-radius: 2px; 
+        // border: 1px solid transparent;
+        z-index: -1; 
+        transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
+
+    &:hover::before {
+        width: 100%;
+        border: 1px solid $white;
+         box-shadow: 
+            inset 2px 2px 6px $white,
+            inset 2px 2px 6px rgba($grey, 0.3),
+            0 8px 8px rgba($ink, 0.3);
+            
+    }
+
+    &--svg {
+        cursor: pointer;
+        transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        .logotype-symbol,
+        .logotype-text {
+            fill: $marble;
+            transition: fill 0.3s ease-out;
+        }
+        .logotype-text {
+            transition-delay: 0.1s;
+        }
+        &:hover {
+            transform: translateX(-5px);
+
+            .logotype-symbol,
+            .logotype-text {
+                fill: $cherry;
+            }
+        }
+    }
+}
 
     &__menu {
         display: flex;
-        align-items: center;
         gap: 2rem;
+        align-items: center;
+        flex-grow: 1;
+        justify-content: center;
+        
     }
 
     &__links {
         display: flex;
-        gap: 1.5rem;
+        gap: 2.5rem;
         margin: 0;
         padding: 0;
         list-style: none;
+        color: $marble;
+        
 
         a {
             text-decoration: none;
             color: inherit;
             font-weight: 500;
-            transition: color 0.3s ease;
-            &:hover {
-                color: $cherry;
-            }
+            @include animated-underline(
+                    $initial-color: $marble,
+                    $hover-color: $pink,
+                    $underline-color: $cherry
+                    )
         }
     }
 

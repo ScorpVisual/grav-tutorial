@@ -39,7 +39,7 @@ $text-muted: color.adjust($text-color, $lightness: -30%);
 // BASIC DIV STYLES
 // These are used for basic layout and structure across the theme.
 // =========================================
-$border-radius: 0.8rem;
+$border-radius: 4px;
 $border-thickness: 0.2rem;
 $base-shadow: 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
 $div-shadow: 
