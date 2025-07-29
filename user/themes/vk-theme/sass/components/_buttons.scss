@@ -8,14 +8,68 @@
 //   PRIMARY btnS
 // ===================================================================
 
-// .btn-primary--orange {
-//     @include base-btn(
-//     $background: $orange,
-//     $btn-text-color: $ink,
-//     $background-focus: $paper,
-//     $btn-text-focus: $ink,
-//     $shadow-color: $orange);
-// }
+.btn-primary {
+    @include base-btn();
+    
+    &:disabled,
+    &.is-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
+          @include base-btn(
+        $background: $granite,
+        $btn-text-color: $grey,
+        $background-focus: $granite,
+        $btn-text-focus: $grey,
+        $shadow-color: $granite
+    );
+    }
+}
+.btn-cta {
+    @include base-btn(
+        $background: $cherry, 
+        $btn-text-color: $white, 
+        $background-focus: $light-cherry, 
+        $btn-text-focus: $white, 
+        $shadow-color: $ink);
+        font-weight: 700;
+        text-transform: uppercase;
+}
+.btn-cta--big {
+    @include base-btn(
+        $background: $cherry, 
+        $btn-text-color: $white, 
+        $background-focus: $light-cherry, 
+        $btn-text-focus: $white, 
+        $shadow-color: $ink);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 1.6rem;
+}
+.btn-secondary {
+        @include base-btn(
+        $background: $sand, 
+        $btn-text-color: $slate, 
+        $background-focus: $slate, 
+        $btn-text-focus: $white, 
+        $shadow-color: $ink);
+            
+    &:disabled,
+    &.is-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
+          @include base-btn(
+        $background: $granite,
+        $btn-text-color: $grey,
+        $background-focus: $granite,
+        $btn-text-focus: $grey,
+        $shadow-color: $granite
+    );
+    }
+}
 
 // .btn-primary--red {
 //     @include base-btn(

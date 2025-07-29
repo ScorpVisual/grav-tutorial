@@ -35,11 +35,11 @@
 }
 
 .c-slate {
-  color: #3d3c3a;
+  color: #393c45;
 }
 
 .c-dark-slate {
-  color: #393c45;
+  color: #1e2939;
 }
 
 .c-granite {
@@ -104,10 +104,10 @@
   background-color: #FCD3C1;
 }
 .color-box.c-slate {
-  background-color: #3d3c3a;
+  background-color: #393c45;
 }
 .color-box.c-dark-slate {
-  background-color: #393c45;
+  background-color: #1e2939;
 }
 .color-box.c-granite {
   background-color: #2f2f2f;
