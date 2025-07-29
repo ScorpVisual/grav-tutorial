@@ -9,7 +9,7 @@
 
     "kocietexty:watch:tailwind": "tailwindcss -i ./src/css/tailwind-input.css -o ../user/themes/kocieTexty/dist/css/tailwind-output.css --watch",
     "kocietexty:watch:sass": "sass --watch ../user/themes/kocieTexty/sass:../user/themes/kocieTexty/dist/css",
-    "kocietexty:watch:browser": "browser-sync start --proxy \"localhost:8000\" --files \"../user/themes/kocieTexty/dist/css/*.css, ../user/themes/kocieTexty/**/*.twig\"",
+    "kocietexty:watch:browser": "browser-sync start --proxy \"localhost:8080\" --files \"../user/themes/kocieTexty/dist/css/*.css, ../user/themes/kocieTexty/**/*.twig\"",
     "kocietexty:dev": "npm-run-all --parallel kocietexty:watch:tailwind kocietexty:watch:sass kocietexty:watch:browser",
 
     "vktheme:build:tailwind": "tailwindcss -i ./src/css/tailwind-input.css -o ../user/themes/vk-theme/dist/css/tailwind-output.css --minify",
@@ -18,7 +18,7 @@
     
     "vktheme:watch:tailwind": "tailwindcss -i ./src/css/tailwind-input.css -o ../user/themes/vk-theme/dist/css/tailwind-output.css --watch",
     "vktheme:watch:sass": "sass --watch ../user/themes/vk-theme/sass:../user/themes/vk-theme/dist/css",
-    "vktheme:watch:browser": "browser-sync start --proxy \"localhost:8000\" --files \"../user/themes/vk-theme/dist/css/*.css, ../user/themes/vk-theme/**/*.twig\"",
+    "vktheme:watch:browser": "browser-sync start --proxy \"localhost:8080\" --files \"../user/themes/vk-theme/dist/css/*.css, ../user/themes/vk-theme/**/*.twig\"",
     "vktheme:dev": "npm-run-all --parallel vktheme:watch:tailwind vktheme:watch:sass vktheme:watch:browser"
 },
   "devDependencies": {
