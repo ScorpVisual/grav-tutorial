@@ -1186,6 +1186,7 @@ option {
 .navbar__logotype::before {
   content: "";
   position: absolute;
+  pointer-events: none !important;
   top: 0;
   left: 0;
   width: 0;
@@ -1212,11 +1213,12 @@ option {
 .navbar__logotype--svg .logotype-text {
   transition-delay: 0.1s;
 }
-.navbar__logotype--svg:hover {
+.navbar__logotype--svg:hover, .navbar__logotype:hover .navbar__logotype--svg {
   transform: translateX(-5px);
 }
 .navbar__logotype--svg:hover .logotype-symbol,
-.navbar__logotype--svg:hover .logotype-text {
+.navbar__logotype--svg:hover .logotype-text, .navbar__logotype:hover .navbar__logotype--svg .logotype-symbol,
+.navbar__logotype:hover .navbar__logotype--svg .logotype-text {
   fill: #800020;
 }
 .navbar__menu {

@@ -31,18 +31,19 @@
     &::before {
         content: '';
         position: absolute;
+        pointer-events: none !important;
         top: 0;
         left: 0;
         width: 0; 
         height: 100%;
         background-image: url('../../images/textures/marble-white-1.jpg');
         border-radius: 2px; 
-        // border: 1px solid transparent;
         z-index: -1; 
         transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    &:hover::before {
+    &:hover {
+        &::before {
         width: 100%;
         border: 1px solid $white;
          box-shadow: 
@@ -51,27 +52,32 @@
             0 8px 8px rgba($ink, 0.3);
             
     }
+    }
 
-    &--svg {
-        cursor: pointer;
-        transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+&--svg {
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    .logotype-symbol,
+    .logotype-text {
+        fill: $marble;
+        transition: fill 0.3s ease-out;
+    }
+    
+    .logotype-text {
+        transition-delay: 0.1s;
+    }
+
+    &:hover,
+    .navbar__logotype:hover & {
+        transform: translateX(-5px);
         .logotype-symbol,
         .logotype-text {
-            fill: $marble;
-            transition: fill 0.3s ease-out;
-        }
-        .logotype-text {
-            transition-delay: 0.1s;
-        }
-        &:hover {
-            transform: translateX(-5px);
-
-            .logotype-symbol,
-            .logotype-text {
-                fill: $cherry;
-            }
+            fill: $cherry;
         }
     }
+}
 }
 
     &__menu {
