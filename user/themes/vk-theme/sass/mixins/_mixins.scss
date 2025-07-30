@@ -62,6 +62,12 @@
   }
 }
 
+@mixin bottom-border ($border-color: $cherry) {
+  border-bottom: 3px solid $border-color;
+  border-start-end-radius: 3rem;
+  padding-bottom: 0.5rem;
+}
+
 // @mixin base-btn-secondary (
 //   $background: $ink,
 //   $background-focus: $teal,

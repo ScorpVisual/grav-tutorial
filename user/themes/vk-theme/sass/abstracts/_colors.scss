@@ -102,3 +102,7 @@ $cherry-dark-gradient: linear-gradient(135deg,
     &.c-carnelian { background-color: $carnelian; }
     &.c-red-marble { background-color: $red-marble; }
 }
+
+
+// ANIMATIONS
+$fadeInUp: fadeInUp .6s ease-out forwards;

@@ -1,0 +1,185 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../base/backgrounds' as *;
+@use '../mixins/mixins-divs' as *;
+@use 'sass:color';
+
+.gallery {
+    padding-block: 4rem;
+    &__image {
+        &--container {
+            display: flex;
+            gap: 1rem;
+            max-width: 56.25rem; // 900px
+            width: calc(100% - 6.25rem); // 100px
+            margin-inline: auto;
+            padding: 0 1rem;
+            overflow: hidden;
+    
+            @media (max-width: $breakpoint-sm) {
+                flex-direction: column;
+                max-width: $breakpoint-xxl;
+                width: $breakpoint-xs;
+                height: 25rem; // 400px
+            }
+        }
+    }
+
+
+    &__image {
+        position: relative;
+        width: 3.75rem; // 60px
+        height: 25rem; // 400px
+        border-radius: $border-radius;
+        overflow: hidden;
+        transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+            border: 1px solid rgba($white, 0.2);
+            box-shadow: 
+              0 4px 15px rgba($black, 0.1),
+              0 8px 12px rgba($black, .6),
+              inset 0 1px 4px rgba($white, 0.3);
+            
+        }
+
+        &--tag {
+            display: inline-block;
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            background-color: $cherry;
+            padding: 0.7rem 1rem;
+            border-radius: $border-radius;
+            color: $white;
+            font-size: 1.2rem;
+            transform: scale(0);
+            transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95) 0.3s;
+            border: 1px solid rgba($white, 0.2);
+            box-shadow: 
+              0 4px 15px rgba($black, 0.1),
+              0 8px 12px rgba($black, .6),
+              inset 0 1px 4px rgba($white, 0.3);
+            
+            @media (max-width: $breakpoint-sm) {
+                font-size: .8rem;
+            }
+        }
+
+        &.active {
+            width: 100%;
+
+            .gallery__image--tag {
+                transform: scale(1);
+            }
+
+            @media (max-width: $breakpoint-sm) {
+                height: 25rem; // 400px
+            }
+        }
+
+        @media (max-width: $breakpoint-sm) {
+            width: 100%;
+            height: 3.75rem; // 60px
+            transition: height 0.5s ease-in-out;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+
+
+.dark-img-border {
+    @include dark-img-border;
+}
+.cherry-img-border {
+    @include cherry-img-border;
+}
+.golden-img-border {
+    @include golden-img-border;
+}
+.white-img-border {
+    @include white-img-border;
+}
+.pale-img-border {
+    @include white-img-border;
+}
+.hard-shadow {
+    filter: drop-shadow(0 12px 6px rgba($black, 0.75));
+}
+
+.gallery-module {
+    max-width: 94%;
+    &__wrapper {
+        gap: 1rem;
+        will-change: transform;
+    }
+
+    &__slide {
+        width: 90vw;
+        
+        img {
+            display: block;
+            margin: 0 auto;
+            border-radius: $border-radius;
+            border: 1px solid rgba($white, 1);
+            box-shadow: 
+                0 4px 15px rgba($black, 0.1),
+                0 4px 8px rgba($black, .4),
+                inset 0 1px 4px rgba($white, 0.3);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+    }
+
+    @media (min-width: 768px) {
+        &__slide {
+            width: 400px;
+
+            img {
+                width: 400px;
+                height: 400px;
+            }
+        }
+    }
+}
+
+.navigation-module {
+        @media (min-width: 768px) {
+
+    &__list {}
+    &__item {
+        width: 12px;
+        height: 12px;
+        margin: 0 6px;
+        background-color: $marble;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        text-indent: -999px;
+        overflow: hidden;
+        transition: background-color 0.3s ease;
+        &.is-active {
+            background-color: $carnelian;
+        }
+    }
+}
+}
+
+.gallery-nav-button {
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
