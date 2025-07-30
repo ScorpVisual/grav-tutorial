@@ -68,6 +68,19 @@
   padding-bottom: 0.5rem;
 }
 
+// UNDERLINE
+@mixin underline($color) {
+    &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: $color;
+        margin-top: .4rem;
+        border-radius: 2px;
+    }
+}
+
 // @mixin base-btn-secondary (
 //   $background: $ink,
 //   $background-focus: $teal,
