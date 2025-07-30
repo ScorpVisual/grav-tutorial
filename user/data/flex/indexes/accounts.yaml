@@ -1,0 +1,14 @@
+version: '1.2'
+timestamp: 1753528730
+count: 2
+index:
+  kocietexty:
+    storage_key: kocietexty
+    storage_timestamp: 1752307740
+    key: kocietexty
+    email: scorpvisualcontact@gmail.com
+  vk-theme:
+    storage_key: vk-theme
+    storage_timestamp: 1753528619
+    key: vk-theme
+    email: scorpvisualcontact@gmail.com

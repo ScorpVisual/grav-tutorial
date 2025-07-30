@@ -1,0 +1,11 @@
+state: enabled
+email: scorpvisualcontact@gmail.com
+fullname: kocieTexty
+title: Administrator
+access:
+  admin:
+    login: true
+    super: true
+  site:
+    login: true
+hashed_password: $2y$12$3sD44ZPBCMgYLLEzWyy4qereaFI8ce8G7tozYMEs2BfUmySjjWRs6

@@ -1,0 +1,387 @@
+@use 'sass:color';
+@use '../abstracts/colors' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
+@use '../abstracts/animations' as *;
+// divs
+
+
+// STONE SLAB
+@mixin stone-slab($image-url, $highlight: rgba(255, 255, 255, 0.4), $shadow: rgba(0, 0, 0, 0.4) , $gradient-color: rgba(0, 0, 0, 0.9)) {
+  position: relative;
+  border-radius: $border-radius;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url($image-url) center/cover no-repeat;
+    z-index: -2;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      $highlight 25%,   
+      transparent 30%,  
+      $gradient-color 50%,  
+      $shadow 100%      
+    );
+    z-index: -1;
+  }
+
+  box-shadow: 
+    inset -3px -3px 6px $highlight,
+    inset 3px 3px 6px $shadow;
+}
+
+
+
+
+
+@mixin polished-div-typography {
+  h2 {
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    @media (min-width: $breakpoint-lg) {
+      font-size: 2.4rem;
+      // line-height: 4.8rem;
+    }
+    @media (min-width: $breakpoint-md) {
+      font-size: 1.8rem;
+      // line-height: 4.8rem;
+    }
+  }
+  @media (min-width: $breakpoint-lg) {
+  }
+  @media (min-width: $breakpoint-md) {
+    
+  }
+}
+
+@mixin golden-img-border {
+    position: relative;
+    isolation: isolate;
+    z-index: 2;
+    border-radius: 0.3rem;
+    filter: drop-shadow(0 0 4px rgba($black, 0.2));
+    
+    // Create gradient border that follows border-radius
+    background: linear-gradient(
+    45deg,
+    rgba(213, 168, 72, 0.5) 0%,
+    rgba(243, 198, 102, 0.7) 50%,
+    rgba(213, 168, 72, 0.5) 100%
+    );
+    padding: 2px;
+    
+    &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    border-radius: inherit;
+    z-index: -1;
+    }
+  }
+@mixin white-img-border {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba($black, 0.2));
+  
+  // Create gradient border that follows border-radius
+  background: linear-gradient(
+  45deg,
+  rgba(255, 255, 255, 0.5) 0%,
+  rgba(255, 255, 255, 0.9) 50%,
+  rgba(255, 255, 255, 0.5) 100%
+  );
+  padding: 2px;
+  
+  &::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+  }
+  }
+@mixin pale-img-border {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba($black, 0.2));
+  
+  // Create gradient border that follows border-radius
+  background: pink;
+  padding: 2px;
+  
+  &::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0.5;
+  }
+  }
+@mixin dark-img-border {
+    position: relative;
+    isolation: isolate;
+    z-index: 2;
+    border-radius: 0.3rem;
+    filter: drop-shadow(0 0 4px rgba($black, 0.4));
+    
+    background: linear-gradient(
+    45deg,
+    rgba(40, 40, 40, 0.8) 0%,
+    rgba(60, 60, 60, 0.9) 50%,
+    rgba(40, 40, 40, 0.8) 100%
+    );
+    padding: 2px;
+    
+    &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    border-radius: inherit;
+    z-index: -1;
+    }
+}
+
+@mixin cherry-img-border {
+    position: relative;
+    isolation: isolate;
+    z-index: 2;
+    border-radius: 0.3rem;
+    filter: drop-shadow(0 0 4px rgba($black, 0.3));
+    
+    background: linear-gradient(
+    45deg,
+    rgba(128, 0, 32, 0.5) 0%,
+    rgba(128, 0, 32, 0.7) 50%,
+    rgba(128, 0, 32, 0.5) 100%
+    );
+    padding: 2px;
+    
+    &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    border-radius: inherit;
+    z-index: -1;
+    }
+}
+  
+  
+  // MARBLE SLAB Section
+  @mixin polished-marble(
+      $background-image: '../images/textures/granite-4.jpg',
+      $gradient-start: rgba($white, 1),
+      $gradient-middle: rgba(178, 1, 1, 0),
+      $gradient-end: rgba($black, 0),
+      $mix-blend-mode: multiply
+      ) {
+      position: relative;
+
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba($white, 0.2);
+      box-shadow: 
+        0 4px 15px rgba($black, 0.1),
+        0 8px 12px rgba($black, .6),
+        inset 0 1px 4px rgba($white, 0.3);
+  
+  
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          150deg,
+          $gradient-start 0%,
+          $gradient-middle 12.5%,
+          $gradient-middle 30%,
+          $gradient-end 55%
+        );
+        mix-blend-mode: $mix-blend-mode;
+        pointer-events: none;
+        z-index: -1;
+        @media (max-width: $breakpoint-md) {
+          background: linear-gradient(
+            180deg,
+            $gradient-start 0%,
+            $gradient-middle 0%,
+            $gradient-middle 0%,
+            $gradient-end 35%
+          );
+      }
+      }
+  
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        background-image: url($background-image);
+        background-size: contain no-repeat;
+        background-position: center;
+      }
+    @media (min-width: $breakpoint-lg) {
+        margin-inline: 4rem;
+    }
+  }
+
+
+    
+// CARD
+@mixin vkCard(
+  $background-image: '../../images/textures/granite-4.jpg',
+  $gradient-start: rgba($white, 1),
+  $gradient-middle: rgba(178, 1, 1, 0),
+  $gradient-end: rgba($black, 0),
+  $border-color: $white,
+  $mix-blend-mode: multiply
+  ) {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba($border-color, 0.2);
+  box-shadow: 
+    0 4px 15px rgba($black, 0.1),
+    0 8px 12px rgba($black, .6),
+    inset 0 1px 4px rgba($white, 0.3);
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-image: url($background-image);
+    background-size: contain no-repeat;
+    background-position: center;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      165deg,
+      $gradient-start 0%,
+      $gradient-middle 12.5%,
+      $gradient-middle 30%,
+      $gradient-end 55%
+    );
+    mix-blend-mode: $mix-blend-mode;
+
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+@mixin marbleSlab(
+  // Kolor tekstu wewnątrz elementu
+  $text-color,
+  // Główny kolor tła, widoczny w pseudo-elemencie ::after
+  $base-color,
+  // Kolor podświetlenia w cieniu wewnętrznym
+  $shadow-highlight-color,
+  // Kolor obramowania
+  $border-color,
+  // Cała definicja gradientu dla pseudo-elementu ::before
+  $before-gradient,
+  // Kolor cienia wewnętrznego dla pseudo-elementu ::before
+  $before-shadow-color,
+  $texture-image-url
+) {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 1rem;
+  border-radius: $border-radius;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+
+  // --- Style parametryzowane ---
+  color: $text-color;
+  border: 1px solid $border-color;
+  box-shadow: 
+    inset -2px -2px 6px $shadow-highlight-color,
+    inset 2px 2px 6px rgba($grey, 0.3),
+    0 8px 8px rgba($ink, 0.3);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    // --- Style parametryzowane ---
+    background: $before-gradient;
+    // background-image: '.../../images/textures/marble-white-2.jpg';
+    box-shadow: inset 2px 2px 2px $before-shadow-color;
+  }
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    // --- Style parametryzowane ---
+    background: url($texture-image-url) center/cover no-repeat;
+    background-color: $base-color;
+    opacity: 1;
+  }
+}

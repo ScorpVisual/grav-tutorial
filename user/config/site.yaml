@@ -1,7 +1,12 @@
-title: Grav
+title: 'Moja strona'
 author:
-  name: Joe Bloggs
-  email: 'joe@example.com'
-metadata:
-    description: 'Grav is an easy to use, yet powerful, open source flat-file CMS'
+  name: 'Marcel Czowalla'
+  email: 'kocietexty@gmail.com'
 
+# This menu is at the root level (zero indentation)
+menu:
+  # This dash is indented with 2 spaces
+  - text: 'Style Guide'
+    # These properties are indented with 4 spaces
+    url: '/styleguide'
+    icon: 'paint-brush'

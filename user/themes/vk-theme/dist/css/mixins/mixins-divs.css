@@ -1,0 +1,125 @@
+.c-white {
+  color: #fff;
+}
+
+.c-black {
+  color: #000;
+}
+
+.c-grey {
+  color: rgb(150, 150, 150);
+}
+
+.c-marble {
+  color: #e1dfdd;
+}
+
+.c-ink {
+  color: #030208;
+}
+
+.c-cherry {
+  color: #800020;
+}
+
+.c-trans {
+  color: rgba(0, 0, 0, 0);
+}
+
+.c-light-cherry {
+  color: #d12852;
+}
+
+.c-pink {
+  color: #FCD3C1;
+}
+
+.c-slate {
+  color: #393c45;
+}
+
+.c-dark-slate {
+  color: #1e2939;
+}
+
+.c-granite {
+  color: #2f2f2f;
+}
+
+.c-sand {
+  color: #edd7cb;
+}
+
+.c-carnelian {
+  color: #6b2525;
+}
+
+.c-red-marble {
+  color: #572015;
+}
+
+.c-gold {
+  color: linear-gradient(45deg, rgba(213, 168, 72, 0.8) 0%, rgba(243, 198, 102, 0.9) 50%, rgba(213, 168, 72, 0.8) 100%);
+}
+
+.color-box {
+  height: 5rem;
+  width: 5rem;
+  display: inline-block;
+  margin: 0.5rem;
+  border: #fff 1px solid;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+.color-box:hover {
+  transform: scale(1.05);
+}
+.color-box.c-white {
+  background-color: #fff;
+}
+.color-box.c-black {
+  background-color: #000;
+}
+.color-box.c-grey {
+  background-color: rgb(150, 150, 150);
+}
+.color-box.c-marble {
+  background-color: #e1dfdd;
+}
+.color-box.c-ink {
+  background-color: #030208;
+}
+.color-box.c-cherry {
+  background-color: #800020;
+}
+.color-box.c-trans {
+  background-color: rgba(0, 0, 0, 0);
+}
+.color-box.c-light-cherry {
+  background-color: #d12852;
+}
+.color-box.c-pink {
+  background-color: #FCD3C1;
+}
+.color-box.c-slate {
+  background-color: #393c45;
+}
+.color-box.c-dark-slate {
+  background-color: #1e2939;
+}
+.color-box.c-granite {
+  background-color: #2f2f2f;
+}
+.color-box.c-sand {
+  background-color: #edd7cb;
+}
+.color-box.c-carnelian {
+  background-color: #6b2525;
+}
+.color-box.c-red-marble {
+  background-color: #572015;
+}
+
+/*# sourceMappingURL=mixins-divs.css.map */

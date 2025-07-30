@@ -1,0 +1,34 @@
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+
+        options:
+          type: tab
+          fields:
+            gitsyncoptions:
+              unset@: true
+            header.hide_git_sync_repo_link:
+              unset@: true
+
+            sidebar:
+              type: section
+              underline: true
+              title: TEMPLATE.PARTIALS.SIDEBAR.TITLE
+              import@:
+                type: partials/sidebar
+                context: blueprints://pages
+
+        advanced:
+          fields:
+            columns:
+              fields:
+                column1:
+                  fields:
+                    header.body_classes:
+                      markdown: true
+                      description: TEMPLATE.DEFAULT.BODY_CLASSES.DESCRIPTION

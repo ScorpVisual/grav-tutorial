@@ -1,0 +1,261 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    {# This pulls the title and content from your .md file #}
+    <h1>{{ page.title }}</h1>
+    {{ page.content|raw }}
+
+    {# The inline <style> block has been removed from here. #}
+
+    {# =================================================================== #}
+    {# I. FOUNDATIONAL & GLOBAL ELEMENTS                                 #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>I. Foundational & Global Elements</h2>
+        <p><em>These are typically styled globally in your main CSS file.</em></p>
+        
+        <h3>Typography</h3>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+        <p>This is a standard paragraph of body text. It contains a <strong>strong (bold)</strong> element and an <em>emphasized (italic)</em> element. It also includes <a href="#">an inline link</a>.</p>
+        <blockquote>This is a blockquote, useful for highlighting a key passage or quote.</blockquote>
+        <ul>
+            <li>Unordered List Item 1</li>
+            <li>Unordered List Item 2</li>
+        </ul>
+        <ol>
+            <li>Ordered List Item 1</li>
+            <li>Ordered List Item 2</li>
+        </ol>
+
+        <h3>Color Palette</h3>
+        <div class="p-6 rounded-lg shadow-inner">
+            <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
+                
+                <div class="color-box c-ink aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-paper aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-orange aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-red aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-teal aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-green aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-gold aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-gray aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-plum aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                
+                <div class="color-box c-stone aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-nature aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-white aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-black aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-trans aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+            </div>
+        </div>
+    </div>
+
+    {# =================================================================== #}
+    {# II. NAVIGATION & STRUCTURE                                        #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>II. Navigation & Structure</h2>
+        <p><em>Styling for these components will be handled by your SASS files.</em></p>
+        <div class="table-of-contents">
+            <h3>Breadcrumbs</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="cat-list-red">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><span aria-current="page">Article Title</span></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    {# =================================================================== #}
+    {# III. INTERACTIVE & COMMON UI ELEMENTS                             #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>III. Interactive & Common UI Elements</h2>
+
+        <h3>Buttons</h3>
+        <div class="col">
+            <button class="btn-primary--orange">Primary Button</button>
+            <button class="btn-primary--red">CONTACT Button</button>
+            <button class="btn-primary--design">Secondary Button</button>
+            <button class="btn-primary--copy">Tertiary Button</button>
+            <button class="btn-primary--nature">Tertiary Button</button>
+            <br/><br/>
+            <button class="btn-primary" disabled>Disabled Button</button>
+            <button class="btn-primary" >unDisabled Button</button>
+        </div>
+
+      <div class="col">
+            <button class="btn-secondary--orange">Primary Button</button>
+            <button class="btn-secondary--red">RED Button</button>
+            <button class="btn-secondary--design">Secondary Button</button>
+            <button class="btn-secondary--copy">Tertiary Button</button>
+            <button class="btn-secondary--teal">Tertiary Button</button>
+            <br/><br/>
+            <button class="btn-secondary" disabled>Disabled Button</button>
+            <button class="btn-secondary" >unDisabled Button</button>
+        </div>
+
+        <h3>Forms</h3>
+        <form class="form-container">
+            <div>
+                <label for="text-input">Text Input</label>
+                <input type="text" id="text-input" placeholder="e.g., John Doe">
+            </div>
+            <div>
+                <label for="text-area">Text Area</label>
+                <textarea id="text-area" rows="4" placeholder="Your message..."></textarea>
+            </div>
+            <div>
+                <label for="select-menu">Select Menu</label>
+            <div class="select-wrapper">
+                <select id="select-menu" name="category">
+                <option value="tech">Technology</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+                </select>
+            </div>
+            </div>
+          <div>
+                <label class="custom-checkbox m-2" for="newsletter">
+                    Sign up for newsletter
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p>Choose an option:</p>
+                <label class="custom-radio m-2" for="option1">
+                    Option One
+                    <input type="radio" id="option1" name="options">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="custom-radio m-2" for="option2">
+                    Option Two
+                    <input type="radio" id="option2" name="options">
+                    <span class="checkmark"></span>
+                </label>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username">
+                </div>
+
+                <div class="form-group has-error">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="invalid-email">
+                    <span class="error-message">Please enter a valid email address.</span>
+                </div>
+            <button type="submit" class="btn-primary--orange">Submit</button>
+        </form>
+
+        <h3>Cards</h3>
+        <div class="card">
+            <img src="https://placehold.co/400x200/EEE/31343C" alt="Placeholder Image">
+            <div>
+                <h4>Card Title</h4>
+                <p>This is some example text for the card body, giving a brief description.</p>
+                <a href="#" class="btn-primary--orange submit-btn">Read More</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card" tabindex="0">
+  <div class="card__header">
+    <h3>Card Title</h3>
+  </div>
+  <img class="card__image" src="https://placehold.co/400x200/EEE/31343C" alt="Placeholder Image">
+  <div class="card__body">
+    <p>This is the main content of the card. It can contain text, lists, or other elements.</p>
+  </div>
+  <div class="card__footer">
+    <a href="#" class="btn-secondary">Read More</a>
+  </div>
+</div>
+
+<div class="articleCard articleCard--big mb-5">
+    <img src="https://placehold.co/600x360" alt="" class="articleCard-big__img">
+    <div class="articleCard__header">
+        <h2 class="articleCard__header--title">This is title</h2>
+        <p class="articleCard__header--desc">This is description of the article featured by this card.</p>
+    <div class="articleCard__info">
+        <div class="articleCard__info--row">
+        <img src="{{ url('theme://images/svg/articleCard--calendar.svg') }}" alt="" class="icon-svg">
+        <p class="articleCard__header--desc">20.02.2025</p>
+        </div>
+        <div class="articleCard__info--row">
+        <img src="{{ url('theme://images/svg/articleCard--watch.svg') }}" alt="" class="icon-svg">
+        <p class="articleCard__header--desc">5 minut/y</p>
+        </div>
+    </div>
+    </div>
+</div>
+
+    {# =================================================================== #}
+    {# IV. CONTENT-SPECIFIC ELEMENTS                                     #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>IV. Content-Specific Elements</h2>
+
+        <h3>Social Sharing Buttons</h3>
+        <div>
+            <a href="#">Share on X</a>
+            <a href="#">Share on Facebook</a>
+        </div>
+
+        <h3>Author Box</h3>
+        <div class="author-box">
+            <img src="https://via.placeholder.com/100" alt="Author Headshot">
+            <div>
+                <h4>About Jane Doe</h4>
+                <p>Jane is a web developer and writer who loves creating useful tools for the community.</p>
+            </div>
+        </div>
+
+        <h3>Comments Section</h3>
+        <div class="comments-section">
+            <h4>2 Comments</h4>
+            <div class="comment">
+                <p><strong>User1:</strong> This is a great resource!</p>
+            </div>
+            <form>
+                <label for="comment-field">Leave a comment</label>
+                <textarea id="comment-field" rows="4"></textarea>
+                <button type="submit" class="btn-primary--orange">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    {# =================================================================== #}
+    {# V. MARKETING & CONVERSION ELEMENTS                                #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>V. Marketing & Conversion Elements</h2>
+
+        <h3>Pricing Tables</h3>
+        <div class="pricing-table">
+            <div class="plan">
+                <h4>Basic Plan</h4>
+                <span>$10/mo</span>
+                <ul>
+                    <li>Feature 1</li>
+                    <li>Feature 2</li>
+                </ul>
+                <button class="btn-secondary">Choose Plan</button>
+            </div>
+        </div>
+
+        <h3>Testimonials</h3>
+        <div class="testimonial">
+            <blockquote>"This product changed my life!"</blockquote>
+            <cite>- Happy Customer</cite>
+        </div>
+    </div>
+
+{% endblock %}

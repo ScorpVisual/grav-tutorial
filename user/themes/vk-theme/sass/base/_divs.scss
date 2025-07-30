@@ -1,0 +1,164 @@
+@use 'sass:color';
+@use '../abstracts/colors' as *; 
+@use '../abstracts/variables' as *; 
+@use '../mixins/mixins-backgrounds' as *; 
+@use '../mixins/mixins-divs' as *; 
+
+
+
+.marble-slab {
+  @include marbleSlab(
+    $ink,
+    $marble,
+    rgba($white, 0.6),
+    rgba($white, 0.4),
+    linear-gradient(0deg, 
+      rgba($white, .35) 5%, 
+      rgba($marble, 0.4) 95%, 
+      rgba($white, 1) 100%),
+    rgba($white, .75),
+    '../../images/textures/marble-white-2.jpg'
+  );
+}
+
+.dark-marble-slab {
+  @include marbleSlab(
+    $marble,
+    $ink,
+    rgba($white, 0.3),
+    rgba($white, 0.25),
+    linear-gradient(-23deg, 
+      rgba($marble, .1) 8%, 
+      rgba($ink, 0.2) 92.5%, 
+      rgba($marble, .35) 100%),
+    rgba($white, .1),
+    '../../images/textures/marble-black.jpg'
+  );
+}
+
+
+.white-marble-slab {
+  @include marbleSlab(
+    $ink,
+    $marble,
+    rgba($white, 0.6),
+    rgba($white, 0.4),
+    linear-gradient(0deg, 
+      rgba($white, .65) 5%,
+      rgba($marble, .95) 75%,
+      rgba($white, 1) 100%),
+    rgba($white, .75),
+    '../../images/textures/marble-white-2.jpg'
+  );
+}
+
+.dark-textured-marble-slab {
+  @include marbleSlab(
+    $marble,
+    $ink,
+    rgba($white, 0.3),
+    rgba($white, 0.25),
+    linear-gradient(-23deg, 
+      rgba($ink, .1) 8%, 
+      rgba($ink, 0.95) 75%, 
+      rgba($marble, .35) 100%),
+    rgba($white, .1),
+    '../../images/textures/marble-black-1.jpg'
+  );
+}
+
+
+.test-div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    min-height: 600px;
+}
+
+// ciekawa animacja
+// /* Zdefiniuj animację dla ruchu żył */
+// @keyframes moveVeins {
+//   from {
+//     /* Pozycja startowa dla wszystkich warstw tła */
+//     background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
+//   }
+//   to {
+//     /* Pozycja końcowa - przesunięta o wielkość największego tła,
+//        aby pętla była płynna */
+//     background-position: 400px 400px, 450px 450px, 500px 500px, 550px 550px;
+//   }
+// }
+
+// .marble-slab {
+//   position: relative;
+//   z-index: 1;
+//   color: $ink;
+//   overflow: hidden;
+//   border-radius: 0.4rem;
+//   box-shadow: 
+//     inset -2px -2px 6px rgba($white, 0.6),
+//     inset 2px 2px 6px rgba($grey, 0.3),
+//     0 8px 8px rgba($ink, 0.3);
+//   padding: 1rem;
+//   isolation: isolate;
+//   border: 1px solid rgba($white, 0.4);
+//   transition: border 0.3s ease, box-shadow 0.3s ease;
+
+  
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background: linear-gradient(
+//       0deg,
+//       rgba($white, .35) 5%,      
+//       rgba($marble, 0.2) 92.5%,      
+//       rgba($white, 1) 100%
+//     );
+//     box-shadow: 
+//     inset 2px 2px 2px rgba($white, .75);
+//     z-index: -1;
+//   }
+  
+//   &::after {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     z-index: -2;
+//     background-color: $marble;
+
+//     /* --- ✨ TUTAJ ZACZYNA SIĘ MAGIA MARMURU --- */
+    
+//     /* Nakładamy na siebie kilka gradientów, aby stworzyć żyły */
+//     background-image: 
+//         /* Warstwa 1: Cienkie, ciemne żyły pod kątem 115 stopni */
+//         linear-gradient(115deg, transparent 49.5%, rgba($grey, 0.3) 50%, transparent 50.5%),
+//         /* Warstwa 2: Grubsze, jaśniejsze żyły pod kątem -45 stopni */
+//         linear-gradient(-45deg, transparent 49%, rgba($grey, 0.15) 50%, transparent 51%),
+//         /* Warstwa 3: Bardzo cienkie żyły pod kątem 25 stopni */
+//         linear-gradient(25deg, transparent 49.8%, rgba($ink, 0.2) 50%, transparent 50.2%),
+//         /* Warstwa 4: Rozproszone, jaśniejsze żyły pod kątem -80 stopni */
+//         linear-gradient(-80deg, transparent 49.5%, rgba($grey, 0.2) 50%, transparent 50.5%);
+    
+//     /* Rozmiar każdej warstwy tła - różne rozmiary tworzą nieregularny wzór */
+//     background-size: 400px 400px, 250px 250px, 300px 300px, 350px 350px;
+    
+//     /* Aplikujemy naszą animację */
+//     animation: moveVeins 40s linear infinite;
+//   }
+// }
+
+// .test-div {
+//     display: flex;
+//     flex-direction: column;
+//     flex-grow: 1;
+//     width: 100%;
+//     min-height: 600px;
+// }

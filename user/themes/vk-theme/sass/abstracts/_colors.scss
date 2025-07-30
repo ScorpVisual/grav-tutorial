@@ -1,0 +1,103 @@
+@use 'sass:color';
+
+// =========================================
+// 1. VK Theme Colors
+// =========================================
+
+// GŁÓWNE KOLORY MARKI
+// =========================================
+
+$white: #fff;
+$black: #000;
+$grey: rgb(150, 150, 150);
+$marble: #e1dfdd;
+$ink: #030208;
+$cherry: #800020;
+
+// --- Dodatki użytkowe ---
+// =========================================
+$white: #fff;
+$black: #000;
+$trans: rgba(0, 0, 0, 0);
+
+
+// --- Kolory dopełniające ---
+// =========================================
+$site-background: #e2e0dd;
+$light-cherry: #d12852;
+$pink: #FCD3C1;
+// $slate: #3d3c3a;
+$slate: #393c45;
+$dark-slate: #1e2939;
+$granite: #2f2f2f;
+// $cherry: #9C3D30;
+$sand: #edd7cb;
+$carnelian: #6b2525;
+$red-marble: #572015;
+$gold: linear-gradient(
+    45deg,
+    rgba(213, 168, 72, 0.8) 0%,
+    rgba(243, 198, 102, 0.9) 50%,
+    rgba(213, 168, 72, 0.8) 100%
+);
+$cherry-dark-gradient: linear-gradient(135deg, 
+    rgba($cherry, 0.98) 0%,
+    rgba($dark-slate, 0.08) 45%,
+    rgba($ink, 0.15) 100%
+);
+// --- Kolory modyfikowane ---
+// =========================================
+// $dark-red: color.adjust($red, $alpha: -0.7);
+// $dark-gold: color.adjust($gold, $alpha: -0.7);
+// $dark-nature: color.adjust($nature, $alpha: -0.7);
+// $dark-nature-bg: color.adjust($nature, $alpha: -0.9);
+
+
+.c-white { color: $white; }
+.c-black { color: $black; }
+.c-grey { color: $grey; }
+.c-marble { color: $marble; }
+.c-ink { color: $ink; }
+.c-cherry { color: $cherry; }
+.c-trans { color: $trans; }
+.c-light-cherry { color: $light-cherry; }
+.c-pink { color: $pink; }
+.c-slate { color: $slate; }
+.c-dark-slate { color: $dark-slate; }
+.c-granite { color: $granite; }
+.c-sand { color: $sand; }
+.c-carnelian { color: $carnelian; }
+.c-red-marble { color: $red-marble; }
+.c-gold { color: $gold; }
+
+.color-box {
+    height: 5rem;
+    width: 5rem;
+    display: inline-block;
+    margin: 0.5rem;
+    border: $white 1px solid;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &.c-white { background-color: $white; }
+    &.c-black { background-color: $black; }
+    &.c-grey { background-color: $grey; }
+    &.c-marble { background-color: $marble; }
+    &.c-ink { background-color: $ink; }
+    &.c-cherry { background-color: $cherry; }
+    &.c-trans { background-color: $trans; }
+    &.c-light-cherry { background-color: $light-cherry; }
+    &.c-pink { background-color: $pink; }
+    &.c-slate { background-color: $slate; }
+    &.c-dark-slate { background-color: $dark-slate; }
+    &.c-granite { background-color: $granite; }
+    &.c-sand { background-color: $sand; }
+    &.c-carnelian { background-color: $carnelian; }
+    &.c-red-marble { background-color: $red-marble; }
+}

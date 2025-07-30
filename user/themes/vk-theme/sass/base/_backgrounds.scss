@@ -1,0 +1,104 @@
+@use 'sass:color';
+@use '../abstracts/colors' as *; 
+@use '../abstracts/variables' as *; 
+@use '../mixins/mixins-backgrounds' as *; 
+@use '../mixins/mixins-divs' as *; 
+
+// =========================================
+// SITE BACKGROUND
+// =========================================
+html {
+    // background-image: url('../../images/textures/asfalt-dark.png');
+    background-image: url('../../images/textures/asfalt-medium.png');
+    background-color: $site-background;
+}
+
+// =========================================
+// CLASSES
+// =========================================
+
+.bg-sand {
+    background: $sand;
+}
+.bg-ink {
+    background: $ink;
+}
+.bg-marble {
+    background: $marble;
+}
+.bg-cherry {
+    background: $cherry;
+}
+
+.bg-snow {
+    background-image: url('../../images/textures/fresh-snow.png');
+}
+.bg-graph {
+    background-image: url('../../images/textures/graphy.png');
+}
+// Usage example:
+.bg-clip-texture-white-marble {
+    @include bg-clip-texture(
+        $bg-image: '../../images/textures/marble-white-1.jpg', 
+        $overlay-color: $marble,
+        $clip-path: polygon(0% 0, 20% 0%, 65% 100%, 100% 100%, 100% 0)
+    );
+    
+    @media (max-width: $breakpoint-md) {
+        position: relative;
+    isolation: isolate;
+    z-index: 1;
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: $marble;
+        z-index: -2;
+    }
+        }
+}
+.bg-clip-texture-dark-marble {
+    @include bg-clip-texture(
+        $bg-image: '../../images/textures/marble-black-3.jpg', 
+        $overlay-color: $ink,
+        $clip-path: polygon(55% 0, 100% 0, 100% 100%, 60% 100%, 36% 100%)
+    ) ;
+}
+.bg-texture-dark-marble {
+    @include bg-texture(
+        $bg-image: '../../images/textures/marble-black-3.jpg', 
+        $overlay-color: rgba($ink, .7)
+    ) ;
+}
+.bg-texture-limestone {
+    @include bg-texture(
+        $bg-image: '../../images/textures/limestone-2.jpg', 
+        $overlay-color: rgba($sand, .7)
+    ) ;
+}
+
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($ink, .65);
+    z-index: 2;
+
+    }
+
+
+
+.video-overlay {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: rgba($ink, .65);
+    z-index: 2;
+}
+.video-overlay-color {
+    background-color: rgba($ink, .55);
+}

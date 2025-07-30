@@ -1,0 +1,30 @@
+// general
+@import 'theme';
+@import 'overrides';
+@import 'sizes';
+
+// components
+@import 'header-footer';
+@import 'navigation';
+@import 'hero';
+@import 'form';
+@import 'table';
+@import 'components';
+
+// css reset
+* { box-sizing: border-box; }
+
+// smooth scroll (for anchor links)
+html { scroll-behavior: smooth; }
+
+.f {
+	display: flex;
+
+	&.col { flex-direction: column; }
+
+	&.row { flex-direction: row; }
+
+	&.c { justify-content: center; }
+
+	&.a { align-items: center; }
+}

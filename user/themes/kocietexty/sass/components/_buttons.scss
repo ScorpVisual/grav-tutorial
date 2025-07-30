@@ -1,0 +1,167 @@
+@use '../abstracts/breakpoints' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/animations' as *;
+
+// ===================================================================
+//   PRIMARY btnS
+// ===================================================================
+
+.btn-primary--orange {
+    @include base-btn(
+    $background: $orange,
+    $btn-text-color: $ink,
+    $background-focus: $paper,
+    $btn-text-focus: $ink,
+    $shadow-color: $orange);
+}
+
+.btn-primary--red {
+    @include base-btn(
+    $background: $red,
+    $btn-text-color: $paper,
+    $background-focus: $paper,
+    $btn-text-focus: $red,
+    $shadow-color: $red);
+}
+.btn-primary--nature {
+    @include base-btn(
+    $background: $nature,
+    $btn-text-color: $paper,
+    $background-focus: $paper,
+    $btn-text-focus: $teal,
+    $shadow-color: $nature);
+}
+.btn-primary--design {
+    @include base-btn(
+    $background: $plum,
+    $btn-text-color: $paper,
+    $background-focus: $paper,
+    $btn-text-focus: $plum,
+    $shadow-color: $plum);
+}
+.btn-primary--copy {
+    @include base-btn(
+    $background: $crimson,
+    $btn-text-color: $paper,
+    $background-focus: $paper,
+    $btn-text-focus: $crimson,
+    $shadow-color: $crimson);
+}
+//DISABLED PRIMARY BUTTON
+.btn-primary {
+    @include base-btn(
+        $background: $orange,
+        $btn-text-color: $ink,
+        $background-focus: $paper,
+        $btn-text-focus: $ink,
+        $shadow-color: $orange
+    );
+
+    &:disabled,
+    &.is-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
+          @include base-btn(
+        $background: $stone,
+        $btn-text-color: $ink,
+        $background-focus: $paper,
+        $btn-text-focus: $ink,
+        $shadow-color: $orange
+    );
+    }
+}
+// ===================================================================
+//   SECONDARY BUTTONS
+// ===================================================================
+
+.btn-secondary--nature {
+    @include base-btn-secondary (
+  $background: $ink,
+  $background-focus: $nature,
+  $btn-text-color: $nature,
+  $btn-text-focus: $paper,
+  $border-color: $nature,
+  $border-color-focus: $nature
+  ) 
+}
+.btn-secondary--orange {
+    @include base-btn-secondary (
+  $background: $ink,
+  $background-focus: $orange,
+  $btn-text-color: $orange,
+  $btn-text-focus: $paper,
+  $border-color: $orange,
+  $border-color-focus: $orange
+  ) 
+}
+.btn-secondary--teal {
+    @include base-btn-secondary (
+  $background: $ink,
+  $background-focus: $teal,
+  $btn-text-color: $teal,
+  $btn-text-focus: $paper,
+  $border-color: $teal,
+  $border-color-focus: $teal
+  ) 
+}
+.btn-secondary--red {
+    @include base-btn-secondary (
+  $background: $ink,
+  $background-focus: $red,
+  $btn-text-color: $red,
+  $btn-text-focus: $paper,
+  $border-color: $red,
+  $border-color-focus: $red
+  ) 
+}
+.btn-secondary--design {
+    @include base-btn-secondary (
+  $background: $ink,
+  $background-focus: $plum,
+  $btn-text-color: $plum,
+  $btn-text-focus: $paper,
+  $border-color: $plum,
+  $border-color-focus: $plum
+  ) 
+}
+.btn-secondary--copy {
+    @include base-btn-secondary (
+  $background: $ink,
+  $background-focus: $crimson,
+  $btn-text-color: $crimson,
+  $btn-text-focus: $paper,
+  $border-color: $crimson,
+  $border-color-focus: $crimson
+  ) 
+}
+.btn-secondary {
+    @include base-btn-secondary (
+  $background: $ink,
+  $background-focus: $nature,
+  $btn-text-color: $nature,
+  $btn-text-focus: $paper,
+  $border-color: $nature,
+  $border-color-focus: $nature
+  ) ;
+    &:disabled,
+    &.is-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
+              @include base-btn-secondary (
+  $background: $ink,
+  $background-focus: $stone,
+  $btn-text-color: $stone,
+  $btn-text-focus: $paper,
+  $border-color: $stone,
+  $border-color-focus: $stone
+  );
+    }
+}
+
+// ===================================================================
