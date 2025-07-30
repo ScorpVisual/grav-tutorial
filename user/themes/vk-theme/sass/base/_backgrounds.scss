@@ -4,6 +4,19 @@
 @use '../mixins/mixins-backgrounds' as *; 
 @use '../mixins/mixins-divs' as *; 
 
+// =========================================
+// SITE BACKGROUND
+// =========================================
+html {
+    // background-image: url('../../images/textures/asfalt-dark.png');
+    background-image: url('../../images/textures/asfalt-medium.png');
+    background-color: $site-background;
+}
+
+// =========================================
+// CLASSES
+// =========================================
+
 .bg-sand {
     background: $sand;
 }
@@ -17,6 +30,12 @@
     background: $cherry;
 }
 
+.bg-snow {
+    background-image: url('../../images/textures/fresh-snow.png');
+}
+.bg-graph {
+    background-image: url('../../images/textures/graphy.png');
+}
 // Usage example:
 .bg-clip-texture-white-marble {
     @include bg-clip-texture(

@@ -5,6 +5,7 @@
 @use '../abstracts/variables' as *;
 @use '../mixins/mixins' as *;
 @use '../abstracts/animations' as *;
+@use '../abstracts/colors' as *;
 @use 'sass:math';
 
 // =========================================================================
@@ -28,11 +29,13 @@
 // }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 // =========================================
 // 2. Variables (Mobile First)
 // =========================================
 $font-main: 'Poppins', sans-serif;
+$font-serif: 'Cormorant';
 
 // Mobile-first typographic scale (Major Third ratio)
 $base-font-size: 1rem;      // Approx 16px
@@ -47,64 +50,90 @@ $small-text: math.div($base-font-size, $scale-ratio-mobile);
 // =========================================
 // 3. Base & Heading Styles
 // =========================================
+html {
+  font-size: $base-font-size;
+  @media (min-width: $breakpoint-md) {
+      font-size: 18px;
+  }
+}
+
 body {
   font-family: $font-main;
   font-weight: normal;
-  font-size: $base-font-size;
   line-height: 1.6;
   color: #333;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $font-main;
+  font-family: $font-serif;
   font-weight: bold;
   line-height: 1.2;
   margin-bottom: 1.8rem;
 }
 
 // Applying mobile-first sizes
-h1 { font-size: $h1-mobile; }
-h2 { font-size: $h2-mobile; }
-h3 { font-size: $h3-mobile; }
-h4 { font-size: $h4-mobile; }
-h5 { font-size: $base-font-size; }
-h6 { font-size: $small-text; }
 
-
+.font-cormorant {
+  font-family: 'Cormorant';
+}
+.underline-cherry {
+  text-decoration: underline;
+  text-decoration-color: $cherry;
+}
 // =========================================
 // 4. Responsive Adjustments for Desktop 📱➡️💻
 // =========================================
-@media (min-width: $screen-md) {
-  // Use a larger base size and scale for desktop
-  body {
-    font-size: 1.125rem; // Approx 18px
+.typography {
+  h1 {
+    font-size: $h1-mobile;
+    line-height: 1.2;
+    font-family: 'Cormorant', serif;
+    color: inherit;
   }
 
-  // Desktop typographic scale (Perfect Fourth ratio)
-  $scale-ratio-desktop: 1.333;
+  h2 { font-size: $h2-mobile; }
+  h3 { font-size: $h3-mobile; }
+  h4 { font-size: $h4-mobile; }
+  h5 { font-size: $base-font-size; }
+  h6 { font-size: $small-text; }
 
-  h1 { font-size: $h2-mobile * $scale-ratio-desktop; } // ~2.6rem
-  h2 { font-size: $h3-mobile * $scale-ratio-desktop; } // ~2.0rem
-  h3 { font-size: $h4-mobile * $scale-ratio-desktop; } // ~1.6rem
-  h4 { font-size: $base-font-size * $scale-ratio-desktop; } // ~1.3rem
-  h4, h5 {
-      font-size: $base-font-size * $scale-ratio-desktop;
-    }
+  @media (min-width: $breakpoint-md) {
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.75rem; }
+    h3 { font-size: 2rem; }
+    h4 { font-size: 1.5rem; }
+    h5 { font-size: 1.25rem; }
+    h6 { font-size: 1rem; }
+  }
+
+  p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
 }
+
     
 // =========================================
 // 5. Custom design of Headings
 // =========================================
-
-.h1-big {
-  border-bottom: 2px solid $secondary-color;
+.border-bot-cherry {
+  border-bottom: 2px solid $cherry;
   padding-bottom: 0.5rem;
 }
-.h2-decorative {
-  border-bottom: 2px solid $secondary-color;
+.border-bot-pink {
+  border-bottom: 2px solid $pink;
   padding-bottom: 0.5rem;
 }
-.h3-decorative {
-  border-bottom: 2px solid $secondary-color;
+.border-bot-slate {
+  border-bottom: 2px solid $slate;
+  padding-bottom: 0.5rem;
+}
+.border-bot-carnelian {
+  border-bottom: 2px solid $carnelian;
+  padding-bottom: 0.5rem;
+}
+.border-bot-gold {
+  border-bottom: 2px solid $gold;
   padding-bottom: 0.5rem;
 }

@@ -7,12 +7,17 @@
 
     <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
 
-    {# Tutaj dodajemy wszystkie potrzebne pliki CSS do kolejki #}
-    {% do assets.addCss('theme://dist/css/site.css', 100) %}
+    {# Tutaj dodajemy wszystkie potrzebne pliki CSS do kolejki
     {% do assets.addCss('theme://dist/css/tailwind-output.css', 80) %}
-    {% do assets.addCss('theme://dist/css/main.css', 90) %}
-    
+    {% do assets.addCss('theme://dist/css/site.css', 90) %}
+    {% do assets.addCss('theme://dist/css/main.css', 100) %} #}
+    {# This loads your Tailwind CSS #}
+{# Add this line to load your compiled SASS styles #}
+{# This prints all the CSS links #}
     {# Ta linia "drukuje" tagi <link> w HTML-u #}
+    {% do assets.addCss('theme://dist/css/site.css', 30) %}
+    {% do assets.addCss('theme://dist/css/tailwind-output.css', 50) %}
+    {% do assets.addCss('theme://dist/css/main.css', 100) %}
     {{ assets.css()|raw }}
 </head>
 <body>
@@ -110,7 +115,7 @@
                 Twoja przeglądarka nie obsługuje tagu wideo.
             </video>
             <div class="relative z-10 px-4">
-                <h1 class="text-4xl md:text-6xl font-bold c-white drop-shadow-lg">
+                <h1 class="md:text-6xl font-bold c-white drop-shadow-lg font-cormorant underline-cherry">
                      JAKOŚĆ NA WIEKI 
                 </h1>
                 <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto c-white drop-shadow-md">
@@ -128,7 +133,7 @@
     </header>
 
     {# 3. NOWY KONTENER GRIDOWY ZACZYNA SIĘ TUTAJ, JUŻ PO HEADERZE #}
-    <div id="main-content" class="grid-container">
+    <div id="main-content" class="grid-container typography">
         <aside class="grid-container__sidebar marble-slab">
         <p class="p-4 text-sm">Sidebar z nawigacją</p>
         <p class="p-4 text-sm">Sidebar z nawigacją</p>
@@ -148,7 +153,7 @@
     </video> #}
         <div class="py-8"></div>
         <div class="p-8 rounded-lg ">
-            <h2 class="text-3xl h2-decorative">Główna treść strony</h2>
+            <h1 class="test-lg">Główna treść strony</h1>
             <p class="mt-4">Ta sekcja znajduje się wewnątrz głównej kolumny siatki.</p>
             <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
             <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
@@ -156,7 +161,7 @@
             <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
         </div>
         <div class="p-8  rounded-lg test-div">
-            <h2 class="text-3xl">Główna treść strony</h2>
+            <h2 class="">Główna treść strony</h2>
             <p class="mt-4">Ta sekcja znajduje się wewnątrz głównej kolumny siatki.</p>
             <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
             <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>

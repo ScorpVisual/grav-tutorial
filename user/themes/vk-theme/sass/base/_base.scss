@@ -19,21 +19,21 @@
 }
 html {
   scroll-behavior: smooth;
-  // background-image: $background-gradient;
-  // background-color: $ink;
-  // background-color: #e6dfda; //paper
-  background-color: #e2e0dd;
   overflow-x: hidden;
 }
 body {
   // Apply the theme's background and text colors.
   color: $text-color;
+  overflow-x: hidden;
+
 }
 main {
   display: flex;
   flex-direction: column;
   max-width: $breakpoint-xxl;
   margin: auto;
+  overflow-x: hidden;
+
 }
 
 // =========================================

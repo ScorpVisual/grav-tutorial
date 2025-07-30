@@ -2,6 +2,7 @@
 @use 'sass:color';
 @use '../abstracts/variables' as *; // Import the core color definitions
 @use '../abstracts/colors' as *; // Import the core color definitions
+@use '../base/typography' as *; // Import the core color definitions
 
 .hero-video {
     position: relative;
