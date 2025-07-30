@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
-  padding: 1rem;
+  padding-inline: 1rem;
+  padding-block: 2rem;
   min-height: 100vh;
 
   &__navbar {

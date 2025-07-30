@@ -71,6 +71,25 @@
     }
 }
 
+
+.switcher {
+    border: 2px solid $cherry;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    &:hover {
+        background-color: $sand;
+        color: $slate;
+    }
+    &:focus, &.is-active {
+        background-color: $white;
+        color: $carnelian;
+    }
+     &:focus-visible {
+    outline: 2px solid $sand;
+    outline-offset: 2px;
+  }
+}
+
+
 // .btn-primary--red {
 //     @include base-btn(
 //     $background: $red,

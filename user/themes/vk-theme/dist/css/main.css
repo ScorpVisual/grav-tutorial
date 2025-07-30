@@ -125,6 +125,40 @@
   background-color: #572015;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulsate-effect {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.1;
+  }
+}
+@keyframes bg-slide {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 466px 349px;
+  }
+}
 .gradient-up-ink {
   position: relative;
   isolation: isolate;
@@ -298,6 +332,10 @@ html {
   background-image: url("../../images/textures/graphy.png");
 }
 
+.bg-animate-slide {
+  animation: bg-slide 80s linear infinite;
+}
+
 .bg-clip-texture-white-marble {
   position: relative;
   isolation: isolate;
@@ -450,6 +488,10 @@ main {
   max-width: 1440px;
   margin: auto;
   overflow-x: hidden;
+}
+
+main div {
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
 a {
@@ -781,6 +823,23 @@ hr {
   background-color: #2f2f2f;
   color: rgb(150, 150, 150);
   filter: drop-shadow(0 10px 4px rgba(47, 47, 47, 0.35));
+}
+
+.switcher {
+  border: 2px solid #800020;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+.switcher:hover {
+  background-color: #edd7cb;
+  color: #393c45;
+}
+.switcher:focus, .switcher.is-active {
+  background-color: #fff;
+  color: #6b2525;
+}
+.switcher:focus-visible {
+  outline: 2px solid #edd7cb;
+  outline-offset: 2px;
 }
 
 .vkCard__white {
@@ -1505,7 +1564,8 @@ option {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
-  padding: 1rem;
+  padding-inline: 1rem;
+  padding-block: 2rem;
   min-height: 100vh;
 }
 .grid-container__navbar {
@@ -1521,6 +1581,23 @@ option {
 }
 .grid-container__footer {
   grid-column: 1/-1;
+}
+
+.svg-part {
+  fill: #e1dfdd;
+  transition: fill 400ms ease-in-out;
+}
+
+.svg-part.highlighted {
+  fill: #d12852;
+}
+
+.svg-part.pulsate {
+  animation: pulsate-effect 1.5s ease-in-out infinite alternate;
+}
+
+.tombstone__tomb--outline {
+  fill: #252120;
 }
 
 @tailwind base;
