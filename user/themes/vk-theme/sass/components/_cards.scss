@@ -172,6 +172,34 @@
     mix-blend-mode: multiply; // Added blend mode
   } 
 }
+
+
+.pick-a-card {
+  padding: 1rem;
+  border: 1px solid $light-grey;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background-color 200ms, border-color 200ms, box-shadow 200ms;
+
+  &:hover {
+    border-color: $cherry;
+    background-color: $white;
+  }
+
+  &.is-active {
+    border-color: $cherry;
+    box-shadow: 0 0 0 1px $cherry;
+    background-color: rgba($white, .5);
+    
+    &:hover {
+      border-color: $cherry;
+      box-shadow: 0 0 0 1px $cherry;
+      background-color: $white;
+    }
+  }
+}
+
+
 // .card {
 //     @include base-card;
 // }

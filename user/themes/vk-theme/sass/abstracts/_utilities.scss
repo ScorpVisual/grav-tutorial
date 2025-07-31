@@ -33,15 +33,28 @@
 
 .underline {
     &--marble {
-        @include underline($marble);
+        @include underline($marble, 2px);
     }
     &--ink {
-        @include underline($ink);
+        @include underline($ink, 2px);
     }
     &--cherry {
-        @include underline($cherry);
+        @include underline($cherry, 2px);
+    }
+    &--light-cherry {
+        @include underline($cherry, 1px);
     }
     &--gold {
-        @include underline($gold);
+        @include underline($gold, 2px);
     }
+    &--grey {
+        @include underline($grey, 2px);
+    }
+    &--light-grey {
+        @include underline($light-grey, 1px);
+    }
+}
+
+.border-cherry {
+    border: 2px solid $cherry;
 }

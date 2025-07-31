@@ -27,6 +27,7 @@ $site-background: #e2e0dd;
 $light-cherry: #d12852;
 $pink: #FCD3C1;
 // $slate: #3d3c3a;
+$light-grey: #cbcdd1;
 $slate: #393c45;
 $dark-slate: #1e2939;
 $granite: #2f2f2f;
@@ -46,6 +47,7 @@ $cherry-dark-gradient: linear-gradient(135deg,
     rgba($dark-slate, 0.08) 45%,
     rgba($ink, 0.15) 100%
 );
+$img-gradient: linear-gradient(180deg, $trans 20%, $ink 100%);
 // --- Kolory modyfikowane ---
 // =========================================
 // $dark-red: color.adjust($red, $alpha: -0.7);

@@ -30,8 +30,8 @@
     @include base-btn(
         $background: $cherry, 
         $btn-text-color: $white, 
-        $background-focus: $light-cherry, 
-        $btn-text-focus: $white, 
+        $background-focus: $white, 
+        $btn-text-focus: $cherry, 
         $shadow-color: $ink);
         font-weight: 700;
         text-transform: uppercase;
@@ -40,8 +40,8 @@
     @include base-btn(
         $background: $cherry, 
         $btn-text-color: $white, 
-        $background-focus: $light-cherry, 
-        $btn-text-focus: $white, 
+        $background-focus: $white, 
+        $btn-text-focus: $cherry, 
         $shadow-color: $ink);
         font-weight: 700;
         text-transform: uppercase;
