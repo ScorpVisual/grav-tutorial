@@ -189,6 +189,19 @@
     &:hover {
         box-shadow: 0 0 12px $white;
     }
+
+    &.is-active {
+        position: relative;
+        &::before {
+            content: '';
+            height: 120%;
+            width: 120%;
+            top: 0;
+            left: 0;
+            background: $gold;
+            z-index: -1;
+        }
+    }
     &__mini {
         &--check {
             position: absolute;
