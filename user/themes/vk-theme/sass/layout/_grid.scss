@@ -16,8 +16,10 @@
     display: none;
 
     @media (min-width: $breakpoint-md) {
+      min-height: 200vh;
       display: block;
       grid-column: span 1;
+      padding-inline: 2px;
     }
   }
 
@@ -30,7 +32,7 @@
       grid-column: span 11;
     }
   }
-  
+
   &__footer {
     grid-column: 1 / -1;
   }

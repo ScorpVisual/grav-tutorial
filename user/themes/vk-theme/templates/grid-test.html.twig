@@ -134,17 +134,41 @@
     {# 3. NOWY KONTENER GRIDOWY ZACZYNA SIĘ TUTAJ, JUŻ PO HEADERZE #}
     <div id="main-content" class="grid-container typography">
         <aside class="grid-container__sidebar marble-slab">
-        <p class="p-4 text-sm">Sidebar z nawigacją</p>
-        <p class="p-4 text-sm">Sidebar z nawigacją</p>
-        <p class="p-4 text-sm">Sidebar z nawigacją</p>
-        <p class="p-4 text-sm">Sidebar z nawigacją</p>
-        <p class="p-4 text-sm">Sidebar z nawigacją</p>
-        <p class="p-4 text-sm">Sidebar z nawigacją</p>
-        <p class="p-4 text-sm">Sidebar z nawigacją</p>
-        <p class="p-4 text-sm">Sidebar z nawigacją</p>
-        <p class="p-4 text-sm">Sidebar z nawigacją</p>
-        <p class="p-4 text-sm">Sidebar z nawigacją</p>
-    </aside>
+        
+            <nav class="sidebar-nav">
+            <ul>
+                <li class="sidebar-nav__item">
+                <a href="#start" class="block mb-8 flex justify-center">
+                    <img src="{{ theme_url }}/images/brand/full-logotype-vertical.svg"
+                        class="h-auto w-24"
+                        alt="Logo firmy">
+                </a>
+                </li>
+                <li class="sidebar-nav__item  is-active">
+                <a href="#start" class="sidebar-nav__link">Start</a>
+                </li>
+                <li class="sidebar-nav__item">
+                <a href="#produkty" class="sidebar-nav__link">Produkty</a>
+                </li>
+                <li class="sidebar-nav__item">
+                <a href="#uslugi" class="sidebar-nav__link">Usługi</a>
+                </li>
+                <li class="sidebar-nav__item">
+                <a href="#realizacje" class="sidebar-nav__link">Realizacje</a>
+                </li>
+                <li class="sidebar-nav__item">
+                <a href="#about" class="sidebar-nav__link">O firmie</a>
+                </li>
+                <li class="sidebar-nav__item">
+                <a href="#" class="sidebar-nav__link">Blank</a>
+                </li>
+                <li class="sidebar-nav__item sidebar-nav__item--cta">
+                <a href="#kontakt" class="sidebar-nav__link sidebar-nav__link--cta">Kontakt</a>
+                </li>
+                </ul>
+            </nav>
+        
+        </aside>
     <main class="grid-container__main-content">
     {# <video autoplay loop muted playsinline class="mt-8 w-full rounded-lg">
         <source src="{{ theme_url }}/images/video/wip-hero.webm" type="video/webm">

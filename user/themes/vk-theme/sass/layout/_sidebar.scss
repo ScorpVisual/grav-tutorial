@@ -1,0 +1,67 @@
+@use '../mixins/mixins' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../abstracts/breakpoints' as *;
+
+
+
+.sidebar-nav {
+    position: sticky !important;
+    top: 1rem;
+    display: flex;
+    flex-direction: column;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.sidebar-nav__item {
+  position: relative; 
+
+  &:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: $light-grey;
+  }
+}
+
+.sidebar-nav__link {
+  display: block;
+  padding: 1.5rem 1rem;
+  border-radius: $border-radius;
+  color: $ink;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: $transition;
+  
+  &:hover {
+    background-color: $pink;
+    color: $slate;
+  }
+  
+  &.is-active {
+    background-color: $marble;
+    color: $slate;
+    font-weight: 700;
+  }
+
+  &--cta {
+    background-color: $cherry;
+    color: $white;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    &:hover {
+      background-color: $white;
+      color: $cherry;
+    }
+  }
+}
