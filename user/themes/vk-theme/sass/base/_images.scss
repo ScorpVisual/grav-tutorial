@@ -2,6 +2,7 @@
 @use '../abstracts/colors' as *;
 @use '../base/backgrounds' as *;
 @use '../mixins/mixins-divs' as *;
+@use '../mixins/mixins' as *;
 @use 'sass:color';
 
 .gallery {
@@ -97,20 +98,52 @@
 
 
 
-.dark-img-border {
-    @include dark-img-border;
-}
-.cherry-img-border {
-    @include cherry-img-border;
-}
 .golden-img-border {
-    @include golden-img-border;
+  @include create-gradient-border(
+      $background: linear-gradient(45deg,
+        rgba(213, 168, 72, 0.5) 0%,
+        rgba(243, 198, 102, 0.7) 50%,
+        rgba(213, 168, 72, 0.5) 100%
+        ),
+      $shadow-alpha: 0.2
+  )
 }
-.white-img-border {
-    @include white-img-border;
+
+.cherry-img-border {
+  @include create-gradient-border(
+      $background: linear-gradient(45deg, 
+        rgba(128, 0, 32, 0.5) 0%, 
+        rgba(128, 0, 32, 0.7) 50%, 
+        rgba(128, 0, 32, 0.5) 100%),
+      $shadow-alpha: 0.2
+  )
 }
 .pale-img-border {
-    @include white-img-border;
+  @include create-gradient-border(
+      $background: linear-gradient(45deg, 
+      rgba(255, 255, 255, 0.5) 0%, 
+      rgba(255, 255, 255, 0.9) 50%, 
+      rgba(255, 255, 255, 0.5) 100%),
+      $shadow-alpha: 0.2
+  )
+}
+.dark-img-border {
+  @include create-gradient-border(
+      $background: linear-gradient(45deg, 
+      rgba(40, 40, 40, 0.8) 0%, 
+      rgba(60, 60, 60, 0.9) 50%, 
+      rgba(40, 40, 40, 0.8) 100%),
+      $shadow-alpha: 0.2
+  )
+}
+.dark-img-border {
+  @include create-gradient-border(
+      $background: linear-gradient(45deg, 
+      rgba(40, 40, 40, 0.8) 0%, 
+      rgba(60, 60, 60, 0.9) 50%, 
+      rgba(40, 40, 40, 0.8) 100%),
+      $shadow-alpha: 0.2
+  )
 }
 .hard-shadow {
     filter: drop-shadow(0 12px 6px rgba($black, 0.75));

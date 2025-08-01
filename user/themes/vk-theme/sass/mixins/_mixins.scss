@@ -81,6 +81,30 @@
     }
 }
 
+
+
+// gradient img borders
+@mixin create-gradient-border($background, $shadow-alpha: 0.2) {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba($black, $shadow-alpha));
+  padding: 2px;
+  background: $background;
+
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    border-radius: inherit;
+    z-index: -1;
+  }
+}
+
+
 // @mixin base-btn-secondary (
 //   $background: $ink,
 //   $background-focus: $teal,

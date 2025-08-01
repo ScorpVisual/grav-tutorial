@@ -28,7 +28,9 @@
     rgba(255,255,255,.25) 0px -1px 1px;
 }
 
-
+.set-border-radius {
+    border-radius: $border-radius;
+}
 
 
 .underline {
@@ -58,3 +60,10 @@
 .border-cherry {
     border: 2px solid $cherry;
 }
+.border-bot-marble { @include bottom-border ($border-color: $marble); }
+.border-bot-sand { @include bottom-border ($border-color: $sand); }
+.border-bot-cherry { @include bottom-border ($border-color: $cherry); }
+.border-bot-pink { @include bottom-border ($border-color: $pink); }
+.border-bot-slate { @include bottom-border ($border-color: $slate); }
+.border-bot-carnelian { @include bottom-border ($border-color: $carnelian); }
+.border-bot-pyrite { @include bottom-border ($border-color: $pyrite); }

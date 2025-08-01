@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background: $pink;
+    background: $white;
     color: $ink;
     padding: 2rem;
     border: $border-thickness solid $cherry;
@@ -29,6 +29,7 @@
     label {
         font-weight: 600;
         margin-bottom: -0.5rem;
+        color: inherit;
     }
 
     input[type='text'],
@@ -38,26 +39,31 @@
         width: 100%;
         padding: 0.8rem 1rem;
         border-radius: $border-radius;
-        border: $border-thickness solid $ink;
-        background-color: color.adjust($pink, $lightness: 5%);
+        border: $border-thickness solid $light-grey;
+        background-color: rgba($marble, .3);
         color: $ink;
         font-size: 1rem;
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
         &:focus {
             outline: none;
-            border-color: $gold;
-            box-shadow: 0 0 0 3px $gold;
+            border-color: $pink;
+            box-shadow: 0 0 0 3px $pink;
         }
     }
 
     textarea {
         min-height: 12rem;
         resize: vertical;
+        &:focus {
+            outline: none;
+            border-color: $pink;
+            box-shadow: 0 0 0 3px $pink;
+        }
     }
 
     .submit-btn {
-        background-color: $cherry;
+        background-color: $carnelian;
         color: $white;
         border: none;
         padding: 0.8rem 1.5rem;
@@ -74,16 +80,6 @@
 .select-wrapper {
     position: relative;
 
-    &::after {
-        content: '▼';
-        position: absolute;
-        top: 50%;
-        right: 1rem;
-        transform: translateY(-50%);
-        color: $ink;
-        font-size: 0.8rem;
-        pointer-events: none;
-    }
 }
 
 select {
@@ -93,7 +89,7 @@ select {
 
     width: 100%;
     padding: 0.8rem 1rem;
-    border-radius: $border-radius;
+    border-radius: $border-radius !important;
     border: $border-thickness solid $ink;
     background-color: color.adjust($pink, $lightness: 5%);
     color: $ink;
@@ -103,15 +99,15 @@ select {
 
     padding-right: 2.5rem;
 
-    &:focus {
-        outline: none;
-        border-color: $gold;
-        box-shadow: 0 0 0 3px $gold;
-    }
+        &:focus {
+            outline: none;
+            border-color: $pink !important;
+            box-shadow: 0 0 0 3px $pink !important;
+        }
 }
 
 option {
-    background: color.adjust($pink, $lightness: 5%);
+    background: $white;
     color: $ink;
 }
 

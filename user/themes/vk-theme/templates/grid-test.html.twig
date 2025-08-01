@@ -663,21 +663,114 @@
                     <input type="email" id="email" name="email" value="invalid-email">
                     <span class="error-message">Please enter a valid email address.</span>
                 </div>
-            <button type="submit" class="btn-primary--orange">Submit</button>
+            <button type="submit" class="btn-secondary">Submit</button>
         </form>
 
-        <h3>Cards</h3>
-        <div class="card">
-            <img src="https://placehold.co/400x200/EEE/31343C" alt="Placeholder Image">
-            <div>
-                <h4>Card Title</h4>
-                <p>This is some example text for the card body, giving a brief description.</p>
-                <a href="#" class="btn-primary--orange submit-btn">Read More</a>
+
+            {# card white #}
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center white-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center h-32 w-32 card-icon-bg">
+                        <img class="" src="{{ theme_url }}/images/icons/tombstone.svg" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-cherry">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
             </div>
+
+        <h3>Cards</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+            {# card white #}
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center white-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center cherry-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-cherry">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>
+                {# card sand #} 
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center sand-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center cherry-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-cherry">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>             
+                {# card black #} 
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center black-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center golden-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-cherry">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>              
         </div>
-    </div>
-
-
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {# card red #}
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center red-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center golden-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-pyrite">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>
+                {# card gold #} 
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center gold-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center dark-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-pyrite">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>             
+                {# card marbleTest #} 
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center marbleTest-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center golden-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-cherry">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>              
+        </div>  
     <div class="card" tabindex="0">
   <div class="card__header">
     <h3>Card Title</h3>
@@ -739,7 +832,7 @@
             <form>
                 <label for="comment-field">Leave a comment</label>
                 <textarea id="comment-field" rows="4"></textarea>
-                <button type="submit" class="btn-primary--orange">Submit</button>
+                <button type="submit" class="btn-primary">Submit</button>
             </form>
         </div>
     </div>
