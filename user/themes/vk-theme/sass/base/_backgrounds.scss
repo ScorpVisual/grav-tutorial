@@ -36,6 +36,9 @@ html {
 .bg-graph {
     background-image: url('../../images/textures/graphy.png');
 }
+.bg-animate-slide {
+    animation: bg-slide 80s linear infinite;
+}
 // Usage example:
 .bg-clip-texture-white-marble {
     @include bg-clip-texture(

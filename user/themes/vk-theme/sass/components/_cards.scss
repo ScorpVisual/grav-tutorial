@@ -3,6 +3,7 @@
 @use '../abstracts/breakpoints' as *;
 @use '../mixins/mixins' as *;
 @use '../mixins/mixins-divs.scss' as *;
+@use '../mixins/mixins-backgrounds.scss' as *;
 @use 'sass:color';
 
 
@@ -67,58 +68,6 @@
   color: $marble;
 }
 
-.white-gradient-down {
-  position: relative;
-  z-index: 1;
-  color: $ink;
-  overflow: hidden;
-  border-radius: 0.4rem;
-  box-shadow: 
-    inset -2px -2px 6px rgba($white, 0.6),
-    inset 2px 2px 6px rgba($grey, 0.3),
-    0 8px 8px rgba($ink, 0.3);
-  padding: 1rem;
-  isolation: isolate;
-  border: 1px solid rgba($white, 0.4);
-  transition: border 0.3s ease, box-shadow 0.3s ease;
-  
-  &:hover {
-    border: 1px solid rgba($white, 0.8);
-    box-shadow: 
-      inset -2px -2px 6px rgba($white, 0.7),
-      inset 2px 2px 6px rgba($grey, 0.4),
-      0 10px 12px rgba($ink, 0.4);
-  }
-  
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      0deg,
-      rgba($white, .97) 0%,   // Increased opacity
-      rgba($white, 0.6) 80%,  // Increased opacity
-      rgba($white, .1) 100%
-    );
-    z-index: -1;
-  }
-  
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('../../images/textures/marble-white-2.jpg') center/cover no-repeat;
-    z-index: -2;
-    opacity: 1;
-  }
-}
-
 .card-icon-bg {
   position: relative;
   z-index: 1;
@@ -172,96 +121,180 @@
     mix-blend-mode: multiply; // Added blend mode
   } 
 }
+
+
+.pick-a-card {
+  width: auto;
+  padding: 1rem;
+  border: 1px solid $light-grey;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background-color 200ms, border-color 200ms, box-shadow 200ms;
+
+  &:hover {
+    border-color: $cherry;
+    background-color: $white;
+  }
+
+  &.is-active {
+    border-color: $cherry;
+    box-shadow: 0 0 0 1px $cherry;
+    background-color: rgba($white, .5);
+    
+    &:hover {
+      border-color: $cherry;
+      box-shadow: 0 0 0 1px $cherry;
+      background-color: $white;
+    }
+  }
+}
+
+// CARDS
+.white-gradient-down {
+  @include create-card-gradient(
+    $text-color: $ink,
+    $border-color: $white,
+    $gradient-color: $white,
+    $texture-url: '../../images/textures/marble-white-2.jpg'
+  );
+}
+
+.black-gradient-down {
+  @include create-card-gradient(
+    $text-color: $sand,
+    $border-color: $ink,
+    $gradient-color: $ink,
+    $texture-url: '../../images/textures/marble-black-5.jpg'
+  );
+}
+
+.sand-gradient-down {
+  @include create-card-gradient(
+    $text-color: $ink,
+    $border-color: $sand,
+    $gradient-color: $sand,
+    $texture-url: '../../images/textures/limestone-1.jpg'
+  );
+}
+.sand-gradient-down {
+  @include create-card-gradient(
+    $text-color: $ink,
+    $border-color: $sand,
+    $gradient-color: $sand,
+    $texture-url: '../../images/textures/limestone-1.jpg'
+  );
+}
+.red-gradient-down {
+  @include create-card-gradient(
+    $text-color: $slate,
+    $border-color: $white,
+    $gradient-color: $marble,
+    $texture-url: '../../images/textures/texture-2-grey.jpg'
+  );
+}
+.gold-gradient-down {
+  @include create-card-gradient(
+    $text-color: $marble,
+    $border-color: $marble,
+    $gradient-color: $granite,
+    $texture-url: '../../images/textures/granite-1.jpg'
+  );
+}
+.marbleTest-gradient-down {
+  @include create-card-gradient(
+    $text-color: $marble,
+    $border-color: $granite,
+    $gradient-color: $ink,
+    $texture-url: '../../images/textures/texture-4-black.jpg'
+  );
+}
+
 // .card {
 //     @include base-card;
 // }
 
 // big article card
+// Nowy, przebudowany komponent karty artykułu
+.article-card {
+  display: flex;
+  flex-direction: column;
+  background-color: $trans;
+  border: 2px solid $light-grey;
+  border-radius: $border-radius;
+  overflow: hidden;
+  max-width: 24rem;
+  transition: all 400ms ease-in-out;
+  cursor: pointer;
+  background-color: rgba($white, .3);
 
-// .articleCard {
-//     display: flex;
-//     flex-direction: column;
-//     flex-grow: 1;
-//     width: 100%;
-//     height: 100%;
-//     border-radius: $border-radius;
-//     position: relative;
-//     isolation: isolate;
-//     z-index: 1;
-//     overflow: hidden;
-//     border: 1px solid $trans;
 
-//     &:hover {
-//         border: 1px solid color.adjust($paper, $alpha: -0.3);
-//         box-shadow: 0 0 12px color.adjust($paper, $alpha: -0.4);
-        
-//     }
-//     &:focus {
-//         border: 1px solid color.adjust($orange, $alpha: -0.3);
-//         box-shadow: 0 0 12px color.adjust($orange, $alpha: -0.4);
-        
-//     }
-//     &--big {
-//     max-width: 37.5rem; //600px
-//     // max-height: 22.5rem; //360px
-//     }
-//     &__img {
-//         position: absolute;
-//         width: 100%;
-//         height: 100%;
-//         top: 0;
-//         left: 0;
-//         z-index: 2;
-//     }
-//     &__header {
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: end;
-//         align-items: end;
-//         position: absolute;
-//         width: 100%;
-//         height: auto;
-//         bottom: 0;
-//         right: 0;
-//         border-bottom-left-radius: 0;
-//         border-bottom-right-radius: 0;
-//         background: $ink-gradient-up;
-//         z-index: 3;
-//         text-shadow: 1px 1px 1px $ink;
-//         padding-inline: 1.2rem;
-//         padding-top: 2.4rem;
-//         &--title {
-//             margin-bottom: .2rem;
-//             border-bottom: none;
-//             &::after {
-//                 content: '.';
-//                 color: $red;
-//             }
-//         }
-//         &--desc {
-//             color: $orange;
-//             text-shadow: 1px 1px 1px $ink;
-//             font-size: 1rem;
-//         }
-//     }
-//     &__info {
-//         display: flex;
-//         flex-direction: row;
-//         height: auto;
-//         width: 100%;
-//         justify-content: end;
-//         gap: 2.4rem;
-//         padding-block: .6rem;
-//         &--row {
-//             display: flex;
-//             width: fit-content;
-//             flex-direction: row;
-//             gap: .4rem;
-//             align-items: center;
-//             white-space: nowrap;
-//         }
-//     }
-// }
+  &:hover {
+    border: 2px solid $cherry;
+    box-shadow: 0 4px 12px rgba($ink, 0.1);
+    transform: translateY(-4px);
+    background-color: rgba($white, .6);
+    img {
+      border-color: $cherry;
+    }
+    .article-card__description {
+    color: $granite; 
+  }
+  }
+
+  &:focus {
+    border-color: $pink;
+    box-shadow: 0 4px 12px rgba($ink, 0.2);
+    img {
+      border-color: $pink;
+    }
+  }
+
+  &__image {
+    aspect-ratio: 16 / 9; 
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-bottom: 2px solid $light-grey;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1.25rem;
+    gap: 0.75rem; 
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  &__description {
+    color: rgba($granite, .65); 
+    line-height: 1.5;
+  }
+
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: $grey;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid $light-grey;
+  }
+  
+  &__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
 
 // vertical article card
 

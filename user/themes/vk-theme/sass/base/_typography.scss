@@ -117,23 +117,8 @@ h1, h2, h3, h4, h5, h6 {
 // =========================================
 // 5. Custom design of Headings
 // =========================================
-.border-bot-cherry {
-  border-bottom: 2px solid $cherry;
-  padding-bottom: 0.5rem;
-}
-.border-bot-pink {
-  border-bottom: 2px solid $pink;
-  padding-bottom: 0.5rem;
-}
-.border-bot-slate {
-  border-bottom: 2px solid $slate;
-  padding-bottom: 0.5rem;
-}
-.border-bot-carnelian {
-  border-bottom: 2px solid $carnelian;
-  padding-bottom: 0.5rem;
-}
-.border-bot-gold {
-  border-bottom: 2px solid $gold;
-  padding-bottom: 0.5rem;
-}
+.border-bot-cherry { @include bottom-border ($border-color: $cherry); }
+.border-bot-pink { @include bottom-border ($border-color: $pink); }
+.border-bot-slate { @include bottom-border ($border-color: $slate); }
+.border-bot-carnelian { @include bottom-border ($border-color: $carnelian); }
+.border-bot-gold { @include bottom-border ($border-color: $gold); }

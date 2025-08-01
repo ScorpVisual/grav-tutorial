@@ -1,8 +1,11 @@
+@use '../abstracts/variables' as *;
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
-  padding: 1rem;
+  padding-inline: 1rem;
+  padding-block: 2rem;
   min-height: 100vh;
 
   &__navbar {
@@ -10,13 +13,22 @@
   }
 
   &__sidebar {
-    grid-column: span 1;
+    display: none;
+
+    @media (min-width: $breakpoint-md) {
+      display: block;
+      grid-column: span 1;
+    }
   }
 
   &__main-content {
     display: grid;
-    grid-column: span 10;
     gap: 2rem;
+    grid-column: span 12;
+
+    @media (min-width: $breakpoint-md) {
+      grid-column: span 11;
+    }
   }
   
   &__footer {

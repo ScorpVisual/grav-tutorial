@@ -1,0 +1,28 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+@use '../base/backgrounds' as *;
+@use 'sass:color';
+
+
+
+
+.svg-part {
+  fill: #e1dfdd;
+    // fill: purple !important;
+  transition: fill 400ms ease-in-out;
+}
+
+.svg-part.highlighted {
+  fill: $light-cherry; 
+}
+
+.svg-part.pulsate {
+  animation: pulsate-effect 1.5s ease-in-out infinite alternate;
+}
+
+.tombstone__tomb--outline {
+    fill: $sketch;
+}
+.tomb-desc {
+    animation: $fadeInUp;
+}

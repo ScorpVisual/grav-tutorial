@@ -33,7 +33,10 @@ main {
   max-width: $breakpoint-xxl;
   margin: auto;
   overflow-x: hidden;
+}
 
+main div {
+    animation: $fadeInUp;
 }
 
 // =========================================

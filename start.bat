@@ -1,1 +1,1 @@
-php -S localhost:8000 system/router.php
+php -S 127.0.0.1:8000 system/router.php
