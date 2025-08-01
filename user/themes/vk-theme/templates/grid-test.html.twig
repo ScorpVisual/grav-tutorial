@@ -784,22 +784,27 @@
   </div>
 </div>
 
-<div class="articleCard articleCard--big mb-5">
-    <img src="https://placehold.co/600x360" alt="" class="articleCard-big__img">
-    <div class="articleCard__header">
-        <h2 class="articleCard__header--title">This is title</h2>
-        <p class="articleCard__header--desc">This is description of the article featured by this card.</p>
-    <div class="articleCard__info">
-        <div class="articleCard__info--row">
+<div class="article-card">
+  <div class="article-card__image">
+    <img src="https://placehold.co/600x360" alt="Przykładowy obrazek artykułu">
+  </div>
+
+  <div class="article-card__content">
+    <h3 class="article-card__title underline--light-grey">To jest tytuł artykułu</h3>
+    <p class="article-card__description">
+      Krótki opis lub zajawka treści, która zachęci użytkownika do kliknięcia i przeczytania całości.
+    </p>
+    
+    <div class="article-card__meta">
+      <div class="article-card__meta-item">
         <img src="{{ url('theme://images/svg/articleCard--calendar.svg') }}" alt="" class="icon-svg">
-        <p class="articleCard__header--desc">20.02.2025</p>
-        </div>
-        <div class="articleCard__info--row">
-        <img src="{{ url('theme://images/svg/articleCard--watch.svg') }}" alt="" class="icon-svg">
-        <p class="articleCard__header--desc">5 minut/y</p>
-        </div>
+        <span>20.08.2025</span>
+      </div>
+      <div class="article-card__meta-item">
+        <span>Kategoria</span>
+      </div>
     </div>
-    </div>
+  </div>
 </div>
 
     {# =================================================================== #}
