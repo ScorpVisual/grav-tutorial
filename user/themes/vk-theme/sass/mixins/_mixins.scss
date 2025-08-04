@@ -1,7 +1,6 @@
 @use 'sass:color';
 @use '../abstracts/colors' as *;
 @use '../abstracts/variables' as *;
-@use '../abstracts/breakpoints' as *;
 @use '../abstracts/animations' as *;
 
 // =================================================================== 
@@ -55,7 +54,6 @@
 
     &:hover,
   &:focus {
-    transform: translateY(-3px);
     background-color: $background-focus;
     color: $btn-text-focus;
     filter: drop-shadow(0 10px 4px rgba($shadow-color, .35));

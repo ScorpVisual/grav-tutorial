@@ -1,6 +1,13 @@
 @use '../abstracts/colors' as *;
 @use '../abstracts/variables' as *;
-@use '../abstracts/breakpoints' as *;
+
+
+
+// BUTTONS
+
+.btn-hoverUp {
+    transform: translateY(-2px);
+}
 
 //GLOBAL
 @keyframes fadeInUp {
@@ -73,3 +80,39 @@
 }
 
 
+@mixin link-hover-fill(
+  $fill-color: $cherry,
+  $text-color-hover: $white,
+  $transition-duration: .2s
+) {
+  position: relative;
+  display: inline-block;
+  padding: 0.2rem 0.4rem;
+  text-decoration: none;
+  transition: color $transition-duration ease-in-out;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, $fill-color 0%, $fill-color 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform $transition-duration ease-in-out;
+    z-index: -1;
+    border-radius: 2px;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+
+  &:hover {
+    color: $text-color-hover;
+  }
+}
+
+.link-hover-fill {
+  @include link-hover-fill
+}

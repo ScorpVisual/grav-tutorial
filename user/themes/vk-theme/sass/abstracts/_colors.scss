@@ -42,6 +42,7 @@ $gold: linear-gradient(
     rgba(243, 198, 102, 0.9) 50%,
     rgba(213, 168, 72, 0.8) 100%
 );
+$aluminium: #9fadc5cc;
 $silver: linear-gradient(
     45deg,
     rgba(162, 199, 212, 0.8) 0%,
@@ -79,6 +80,8 @@ $img-gradient: linear-gradient(180deg, $trans 20%, $ink 100%);
 .c-carnelian { color: $carnelian; }
 .c-red-marble { color: $red-marble; }
 .c-gold { color: $gold; }
+.c-pyrite { color: $pyrite; }
+.c-aluminium { color: $aluminium; }
 
 .color-box {
     height: 5rem;
@@ -110,6 +113,8 @@ $img-gradient: linear-gradient(180deg, $trans 20%, $ink 100%);
     &.c-sand { background-color: $sand; }
     &.c-carnelian { background-color: $carnelian; }
     &.c-red-marble { background-color: $red-marble; }
+    &.c-pyrite { background-color: $pyrite; }
+    &.c-aluminium { background-color: $aluminium; }
 }
 
 
@@ -117,3 +122,22 @@ $img-gradient: linear-gradient(180deg, $trans 20%, $ink 100%);
 $fadeInUp: fadeInUp .6s ease-out forwards;
 
 
+    .bg-white { background-color: $white; }
+    .bg-black { background-color: $black; }
+    .bg-grey { background-color: $grey; }
+    .bg-marble { background-color: $marble; }
+    .bg-ink { background-color: $ink; }
+    .bg-cherry { background-color: $cherry; }
+    .bg-trans { background-color: $trans; }
+    .bg-light-cherry { background-color: $light-cherry; }
+    .bg-pink { background-color: $pink; }
+    .bg-slate { background-color: $slate; }
+    .bg-dark-slate { background-color: $dark-slate; }
+    .bg-granite { background-color: $granite; }
+    .bg-sand { background-color: $sand; }
+    .bg-carnelian { background-color: $carnelian; }
+    .bg-red-marble { background-color: $red-marble; }
+    .bg-pyrite { background-color: $pyrite; }
+    .bg-aluminium { background-color: $aluminium; }
+    .bg-gold { background: $gold; }
+    .bg-silver { background: $silver; }

@@ -766,8 +766,8 @@
                     Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
                 </p>
             </div>
-                {# card gold #} 
-            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center gold-gradient-down">
+                {# card granite #} 
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center granite-gradient-down">
                 <div class="flex-shrink-0 mb-8">
                     <div class="flex items-center justify-center dark-img-border">
                         <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
@@ -838,14 +838,46 @@
         <h2>IV. Content-Specific Elements</h2>
 
         <h3>Social Sharing Buttons</h3>
-        <div>
-            <a href="#">Share on X</a>
-            <a href="#">Share on Facebook</a>
-        </div>
+<div class="flex flex-col sm:flex-row gap-4">
+  <!-- Share on X -->
+  <a href="https://x.com/share?url=https://yourwebsite.com" target="_blank"
+     class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-black text-white hover:bg-gray-800 transition-colors duration-300 hover:text-white">
+    <!-- X Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M20.9 3H17l-4.3 5.6L7.3 3H3l6.8 8.8L3 21h3.9l4.6-6 4.9 6H21l-7.3-9.4L20.9 3z"/>
+    </svg>
+    Share on X
+  </a>
+
+  <!-- Share on Facebook -->
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://yourwebsite.com" target="_blank"
+     class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300 hover:text-white">
+    <!-- Facebook Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/>
+    </svg>
+    Share on Facebook
+  </a>
+</div>
+
+
+<div class="flex flex-col sm:flex-row items-start gap-4 p-6 bg-white  max-w-xl mx-auto white-gradient-down">
+  <!-- Author Headshot -->
+  <img src="https://placehold.co/100x100" alt="Jane Doe headshot"
+       class="w-24 h-24 rounded-full object-cover shadow-sm">
+
+  <!-- Author Info -->
+  <div class="text-left">
+    <h3 class="text-xl font-semibold text-gray-800  border-bot-cherry">About Jane Doe</h3>
+    <p class="mt-2 text-gray-600">
+      Jane is a web developer and writer who loves creating useful tools for the community.
+    </p>
+  </div>
+</div>
 
         <h3>Author Box</h3>
         <div class="author-box">
-            <img src="https://via.placeholder.com/100" alt="Author Headshot">
+            <img src="https://placehold.co/100x100" alt="Author Headshot">
             <div>
                 <h4>About Jane Doe</h4>
                 <p>Jane is a web developer and writer who loves creating useful tools for the community.</p>
@@ -865,6 +897,62 @@
             </form>
         </div>
     </div>
+    
+    <!-- Główny kontener sekcji kontaktowej -->
+<section class="contact shadow-lg">
+  <!-- Nagłówek sekcji -->
+  <div class="contact__header border-bot-cherry">
+    <h2 class="contact__title ">Kontakt</h2>
+    <p class="contact__description">Masz pytania? Skontaktuj się z nami — jesteśmy tu, by pomóc.</p>
+  </div>
+
+  <!-- Siatka z treścią -->
+  <div class="contact__grid">
+    <!-- Lewa kolumna -->
+    <div class="contact__column">
+      <!-- Karta: Opcje kontaktowe (z modyfikatorem --active dla przykładu) -->
+      <div class="contact__card">
+        <h3 class="contact__card-title">Opcje kontaktowe</h3>
+        <ul class="contact__card-list">
+          {# <li class="contact__card-item"><strong>Telefon:</strong> +48 123 456 789</li> #}
+          <li class="contact__card-item">
+          <img src="{{ theme_url }}/images/icons/telephone-fill.svg" class="contact__card-item--svg">
+           +48 123 456 789</li>
+          <li class="contact__card-item">
+          <img src="{{ theme_url }}/images/icons/email.svg" class="contact__card-item--svg"> kontakt@example.com</li>
+          <li class="contact__card-item">
+          <img src="{{ theme_url }}/images/icons/location.svg" class="contact__card-item--svg"> ul. Przykładowa 1, 41-922 Radzionków</li>
+        </ul>
+      </div>
+
+      <!-- Karta: Godziny otwarcia -->
+      <div class="contact__card">
+        <h3 class="contact__card-title">Godziny otwarcia</h3>
+        <ul class="contact__card-list">
+          <li class="contact__card-item"><strong>Dni robocze:</strong> 08:00 – 18:00</li>
+          <li class="contact__card-item"><strong>Sobota:</strong> 10:00 – 14:00</li>
+          <li class="contact__card-item"><strong>Niedziela:</strong> Nieczynne</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Prawa kolumna -->
+    <div class="contact__column">
+      <!-- Karta: Adres -->
+      <div class="contact__card">
+        <h3 class="contact__card-title">Adres</h3>
+        <p class="contact__card-text">
+
+          <span class="c-cherry font-cormorant text-3xl font-bold underline--light-cherry">Kamieniarstwo Wiśniewski</span>
+          ul. Przykładowa 1<br>
+          41-300 Dąbrowa Górnicza<br>
+          Woj. Śląskie
+        </p>
+        <p class="text-gray-500">Dojeżdżamy do 100km od miejsca stałej siedziby! Szczegóły do ustalenia indywidualnego z klientem.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
     {# =================================================================== #}
     {# V. MARKETING & CONVERSION ELEMENTS                                #}
@@ -873,17 +961,54 @@
         <h2>V. Marketing & Conversion Elements</h2>
 
         <h3>Pricing Tables</h3>
-        <div class="pricing-table">
-            <div class="plan">
-                <h4>Basic Plan</h4>
-                <span>$10/mo</span>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                </ul>
-                <button class="btn-secondary">Choose Plan</button>
-            </div>
-        </div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 py-8 max-w-7xl mx-auto">
+  <!-- Card 1 -->
+  <div class="max-w-sm mx-auto white-gradient-down overflow-hidden">
+    <div class="p-6 text-center">
+      <h2 class="text-2xl font-bold border-bot-cherry">Basic Plan</h2>
+      <p class="mt-2 text-3xl font-extrabold c-cherry">$10<span class="text-base font-medium c-ink">/mo</span></p>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li>✔️ Feature 1</li>
+        <li>✔️ Feature 2</li>
+      </ul>
+      <button class="btn-card">
+        Choose Plan
+      </button>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="max-w-sm mx-auto black-gradient-down overflow-hidden">
+    <div class="p-6 text-center">
+      <h2 class="text-2xl font-bold border-bot-aluminium">Basic Plan</h2>
+      <p class="mt-2 text-3xl font-extrabold c-aluminium">$10<span class="text-base font-medium c-pink">/mo</span></p>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li>✔️ Feature 1</li>
+        <li>✔️ Feature 2</li>
+      </ul>
+      <button class="btn-card bg-silver text-black">
+        Choose Plan
+      </button>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="max-w-sm mx-auto red-gradient-down overflow-hidden">
+    <div class="p-6 text-center">
+      <h2 class="text-2xl font-bold border-bot-pyrite">Basic Plan</h2>
+      <p class="mt-2 text-3xl font-extrabold c-pyrite">$10<span class="text-base font-medium c-pink">/mo</span></p>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li>✔️ Feature 1</li>
+        <li>✔️ Feature 2</li>
+      </ul>
+      <button class="btn-card bg-gold  text-black">
+        Choose Plan
+      </button>
+    </div>
+  </div>
+</div>
+
+
 
         <h3>Testimonials</h3>
         <div class="testimonial">
@@ -894,14 +1019,77 @@
 
     </main>
 
-    <footer class="grid-container__footer bg-gray-800 text-gray-400 p-6 flex justify-between items-center marble-slab">
-        <div>
-            <p class="text-sm">&copy; 2025 Kamieniarstwo Wiśniewski. Wszelkie prawa zastrzeżone.</p>
+<footer class="grid-container__footer white-marble-slab">
+  <div class="max-w-7xl mx-auto px-6 pt-16 pb-8">
+    
+    <!-- Grid główny -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+      <!-- Logo + opis -->
+      <div class="sm:col-span-2 lg:col-span-1">
+        <div class="mb-6 flex justify-center">
+          <img src="{{ theme_url }}/images/brand/full-logotype-vertical.svg" class="h-auto w-32">
         </div>
-        <div class="text-sm">
-            <a href="#" class="hover:text-white transition-colors">Polityka Prywatności</a>
-        </div>
-    </footer>
+        <p class="text-md  leading-relaxed mb-4 text-left">
+          30 lat tradycji w wykonawstwie nagrobków dla klientów z&nbsp;Dąbrowy Górniczej i&nbsp;całego Śląska.
+        </p>
+      </div>
+
+      <!-- Nawigacja: Nagrobki -->
+      <div>
+        <h4 class="text-lg font-medium c-ink border-bot-cherry mb-4">Nagrobki</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#produkt2" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Nagrobek pełnowymiarowy</a></li>
+          <li><a href="#produkt1" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Nagrobek na urnę</a></li>
+        </ul>
+      </div>
+
+      <!-- Nawigacja: Usługi -->
+      <div>
+        <h4 class="text-lg font-medium c-ink border-bot-cherry mb-4">Usługi</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#uslugi" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Renowacje pomników</a></li>
+          <li><a href="#uslugi" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Czyszczenie nagrobków</a></li>
+          <li><a href="#uslugi" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Sprzątanie</a></li>
+        </ul>
+      </div>
+
+      <!-- Kontakt -->
+      <div>
+        <h4 class="text-lg font-medium c-ink border-bot-cherry mb-4">Informacje</h4>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="tel:+4892182400684" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">
+              Telefon: <span class="ltr:inline rtl:hidden">+48 921 824 006 84</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:kontakt@kamieniarstwowisniewski.pl" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">
+              Email: kontakt@kamieniarstwowisniewski.pl
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Separator -->
+    <hr class="border-gray-700 my-8">
+
+    <!-- Dolna część -->
+    <div class="flex flex-col sm:flex-row justify-between items-center text-sm c-ink">
+      <p class="mb-4 sm:mb-0">
+        &copy; <span id="currentYear"></span> Kamieniarstwo Wiśniewski. Wszelkie prawa zastrzeżone.
+      </p>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-red transition-colors">Polityka Prywatności</a>
+        <a href="#" class="hover:text-red transition-colors">Mapa strony</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
 </div>
 
   {% block javascripts %}
