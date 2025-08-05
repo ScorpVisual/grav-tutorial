@@ -1,6 +1,5 @@
 
 @use 'abstracts/functions';
-@use 'abstracts/breakpoints';
 @use 'abstracts/colors';
 @use 'abstracts/variables';
 @use 'abstracts/utilities';
@@ -25,9 +24,10 @@
 @use 'components/article';
 @use 'components/hero';
 
-@use 'layout/header';
-@use 'layout/footer';
 @use 'layout/grid';
+@use 'layout/header';
+@use 'layout/sidebar';
+@use 'layout/footer';
 
 @use 'pages/home';
 @use 'pages/contact';

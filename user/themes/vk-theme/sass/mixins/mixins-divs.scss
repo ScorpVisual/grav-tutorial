@@ -1,7 +1,6 @@
 @use 'sass:color';
 @use '../abstracts/colors' as *;
 @use '../abstracts/variables' as *;
-@use '../abstracts/breakpoints' as *;
 @use '../abstracts/animations' as *;
 // divs
 
@@ -323,6 +322,59 @@
 
     pointer-events: none;
     z-index: -1;
+  }
+}
+
+// KARTY
+@mixin create-card-gradient(
+  $text-color,
+  $border-color,
+  $gradient,
+  $blend-mode,
+  $texture-url
+) {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  color: $text-color;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba($border-color, 0.4);
+  box-shadow: 
+    inset -2px -2px 6px rgba($white, 0.6),
+    inset 2px 2px 6px rgba($grey, 0.3),
+    0 8px 8px rgba($ink, 0.3);
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    border: 1px solid rgba($white, 0.8);
+    box-shadow: 
+      inset -2px -2px 6px rgba($white, 0.7),
+      inset 2px 2px 6px rgba($grey, 0.4),
+      0 10px 12px rgba($ink, 0.4);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0; 
+    width: 100%;
+    height: 100%;
+    background: $gradient;
+    mix-blend-mode: $blend-mode;
+    z-index: -1;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: url($texture-url) center/cover no-repeat;
+    z-index: -2;
+    opacity: 1;
   }
 }
 

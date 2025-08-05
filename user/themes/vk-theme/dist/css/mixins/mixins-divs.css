@@ -62,6 +62,14 @@
   color: linear-gradient(45deg, rgba(213, 168, 72, 0.8) 0%, rgba(243, 198, 102, 0.9) 50%, rgba(213, 168, 72, 0.8) 100%);
 }
 
+.c-pyrite {
+  color: #ac9f58;
+}
+
+.c-aluminium {
+  color: rgba(159, 173, 197, 0.8);
+}
+
 .color-box {
   height: 5rem;
   width: 5rem;
@@ -121,6 +129,92 @@
 .color-box.c-red-marble {
   background-color: #572015;
 }
+.color-box.c-pyrite {
+  background-color: #ac9f58;
+}
+.color-box.c-aluminium {
+  background-color: rgba(159, 173, 197, 0.8);
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+.bg-grey {
+  background-color: rgb(150, 150, 150);
+}
+
+.bg-marble {
+  background-color: #e1dfdd;
+}
+
+.bg-ink {
+  background-color: #030208;
+}
+
+.bg-cherry {
+  background-color: #800020;
+}
+
+.bg-trans {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.bg-light-cherry {
+  background-color: #d12852;
+}
+
+.bg-pink {
+  background-color: #FCD3C1;
+}
+
+.bg-slate {
+  background-color: #393c45;
+}
+
+.bg-dark-slate {
+  background-color: #1e2939;
+}
+
+.bg-granite {
+  background-color: #2f2f2f;
+}
+
+.bg-sand {
+  background-color: #edd7cb;
+}
+
+.bg-carnelian {
+  background-color: #6b2525;
+}
+
+.bg-red-marble {
+  background-color: #572015;
+}
+
+.bg-pyrite {
+  background-color: #ac9f58;
+}
+
+.bg-aluminium {
+  background-color: rgba(159, 173, 197, 0.8);
+}
+
+.bg-gold {
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.8) 0%, rgba(243, 198, 102, 0.9) 50%, rgba(213, 168, 72, 0.8) 100%);
+}
+
+.bg-silver {
+  background: linear-gradient(45deg, rgba(162, 199, 212, 0.8) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(159, 173, 197, 0.8) 100%);
+}
+
+.btn-hoverUp {
+  transform: translateY(-2px);
+}
 
 @keyframes fadeInUp {
   from {
@@ -147,6 +241,31 @@
   to {
     background-position: 466px 349px;
   }
+}
+.link-hover-fill {
+  position: relative;
+  display: inline-block;
+  padding: 0.2rem 0.4rem;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+  z-index: 0;
+}
+.link-hover-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #800020 0%, #800020 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease-in-out;
+  z-index: -1;
+  border-radius: 2px;
+}
+.link-hover-fill:hover::before {
+  transform: scaleX(1);
+}
+.link-hover-fill:hover {
+  color: #fff;
 }
 
 /*# sourceMappingURL=mixins-divs.css.map */

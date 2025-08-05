@@ -1,7 +1,6 @@
 @use 'sass:color';
 @use '../abstracts/colors' as *;
 @use '../abstracts/variables' as *;
-@use '../abstracts/breakpoints' as *;
 @use '../abstracts/animations' as *;
 // backgrounds
 
@@ -110,59 +109,4 @@
     &::after {
         mix-blend-mode: multiply;
     }
-}
-// KARTY
-@mixin create-card-gradient(
-  $text-color,
-  $border-color,
-  $gradient-color,
-  $texture-url
-) {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: $text-color;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba($border-color, 0.4);
-  box-shadow: 
-    inset -2px -2px 6px rgba($white, 0.6),
-    inset 2px 2px 6px rgba($grey, 0.3),
-    0 8px 8px rgba($ink, 0.3);
-  transition: all .2s ease-in-out;
-
-  &:hover {
-    border: 1px solid rgba($white, 0.8);
-    box-shadow: 
-      inset -2px -2px 6px rgba($white, 0.7),
-      inset 2px 2px 6px rgba($grey, 0.4),
-      0 10px 12px rgba($ink, 0.4);
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0; 
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      0deg,
-      rgba($gradient-color, .97) 0%,
-      rgba($gradient-color, 0.6) 80%,
-      rgba($white, .1) 100%
-    );
-    z-index: -1;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: url($texture-url) center/cover no-repeat;
-    z-index: -2;
-    opacity: 1;
-  }
 }
