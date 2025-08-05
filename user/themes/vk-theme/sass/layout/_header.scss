@@ -158,17 +158,26 @@
       gap: 2rem;
     }
 
-    a {
+    &--a {
       font-size: 1.6rem;
       font-weight: 500;
       text-decoration: none;
+        @media (max-width: $breakpoint-lg) {
+      color: $ink;
+              @include animated-underline(
+        $initial-color: $ink,
+        $hover-color: $carnelian,
+        $underline-color: $cherry
+        );
+        }
+      @media (min-width: $breakpoint-lg) {
       color: $marble;
-
-      @include animated-underline(
+        @include animated-underline(
         $initial-color: $marble,
         $hover-color: $pink,
         $underline-color: $cherry
-      );
+        );
+      }
     }
   }
 
