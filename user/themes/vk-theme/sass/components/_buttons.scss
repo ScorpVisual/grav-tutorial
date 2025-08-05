@@ -101,6 +101,11 @@
   margin-top: 1rem;
 }
 
+
+.btn-tertiary  {
+    @include other-btn ();
+}
+
 // .btn-primary--red {
 //     @include base-btn(
 //     $background: $red,

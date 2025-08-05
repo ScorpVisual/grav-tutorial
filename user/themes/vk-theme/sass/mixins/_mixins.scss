@@ -60,6 +60,39 @@
   }
 }
 
+
+@mixin other-btn (
+    $background: $trans, 
+    $btn-text-color: $granite, 
+    $background-focus: $marble, 
+    $btn-text-focus: $slate,
+    $border-color: $light-grey,
+    $border-color-focus: $cherry, 
+    $shadow-color: $ink) {
+    display: inline-block;
+    padding: .6rem .8rem;
+    margin: .2rem .6rem;
+    border: 2px solid $border-color;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: $border-radius;
+    background-color: $background;
+    color: $btn-text-color;
+    transition: all 0.3s ease-in-out;    
+    position: relative;
+    isolation: isolate;
+    z-index: 1;
+      transform: translateZ(0);
+
+    &:hover,
+  &:focus {
+    border: 2px solid $border-color-focus;
+    background-color: $background-focus;
+    color: $btn-text-focus;
+  }
+}
+
 @mixin bottom-border ($border-color: $cherry) {
   border-bottom: 3px solid $border-color;
   border-start-end-radius: 3rem;

@@ -1364,6 +1364,29 @@ hr {
   filter: drop-shadow(0 10px 4px rgba(3, 2, 8, 0.35));
 }
 
+.btn-tertiary {
+  display: inline-block;
+  padding: 0.6rem 0.8rem;
+  margin: 0.2rem 0.6rem;
+  border: 2px solid #cbcdd1;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #2f2f2f;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  isolation: isolate;
+  z-index: 1;
+  transform: translateZ(0);
+}
+.btn-tertiary:hover, .btn-tertiary:focus {
+  border: 2px solid #800020;
+  background-color: #e1dfdd;
+  color: #393c45;
+}
+
 .vkCard__white {
   position: relative;
   border-radius: 8px;
