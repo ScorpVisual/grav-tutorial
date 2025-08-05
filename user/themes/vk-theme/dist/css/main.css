@@ -716,18 +716,14 @@ html {
   background-color: rgba(3, 2, 8, 0.55);
 }
 
-* {
-  transition: all 0.2s ease-in-out;
-}
-
-html {
+html, body {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 body {
   color: #030208;
-  overflow-x: hidden;
 }
 
 main {
@@ -735,7 +731,6 @@ main {
   flex-direction: column;
   max-width: 1440px;
   margin: auto;
-  overflow-x: hidden;
 }
 
 main div {
@@ -1398,8 +1393,8 @@ hr {
   text-decoration: none;
   font-weight: 600;
   border-radius: 4px;
-  background-color: #393c45;
-  color: #e1dfdd;
+  background-color: #edd7cb;
+  color: #393c45;
   transition: box-shadow 0.2s ease-in, transform 0.4s ease-in-out, background-color 0.3s ease-in-out;
   position: relative;
   isolation: isolate;
@@ -1416,8 +1411,8 @@ hr {
   margin-top: 1rem;
 }
 .btn-card--carnelian:hover, .btn-card--carnelian:focus {
-  background-color: #FCD3C1;
-  color: #393c45;
+  background-color: #393c45;
+  color: #fff;
   filter: drop-shadow(0 10px 4px rgba(3, 2, 8, 0.35));
 }
 
@@ -2319,6 +2314,7 @@ option {
   padding-inline: 1rem;
   padding-block: 2rem;
   min-height: 100vh;
+  overflow: visible;
 }
 .grid-container__navbar {
   grid-column: 1/-1;
@@ -2328,16 +2324,21 @@ option {
 }
 @media (min-width: 768px) {
   .grid-container__sidebar {
-    min-height: 200vh;
+    height: fit-content;
     display: block;
     grid-column: span 1;
-    padding-inline: 2px;
+    position: sticky;
+    top: 2rem;
+    padding-inline: 0 1rem;
+    border-right: 1px solid #cbcdd1;
+    z-index: 99;
   }
 }
 .grid-container__main-content {
   display: grid;
   gap: 2rem;
   grid-column: span 12;
+  min-height: 200vh;
 }
 @media (min-width: 768px) {
   .grid-container__main-content {
@@ -2511,6 +2512,9 @@ option {
   display: flex;
   flex-direction: column;
 }
+.sidebar-nav:hover .sidebar-nav__item:not(:first-child, :last-child) .sidebar-nav__link:not(:hover) {
+  background-color: rgba(255, 255, 255, 0.4);
+}
 .sidebar-nav ul {
   list-style: none;
   margin: 0;
@@ -2541,8 +2545,8 @@ option {
   transition: all 0.3s ease-in-out;
 }
 .sidebar-nav__link:hover {
-  background-color: #FCD3C1;
-  color: #393c45;
+  background-color: #fff;
+  color: #030208;
 }
 .sidebar-nav__link.is-active {
   background-color: #e1dfdd;

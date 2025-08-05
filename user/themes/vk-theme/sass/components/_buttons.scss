@@ -102,7 +102,12 @@
 }
 
 .btn-card--carnelian {
-  @include base-btn();
+  @include base-btn(
+        $background: $sand, 
+        $btn-text-color: $slate, 
+        $background-focus: $slate, 
+        $btn-text-focus: $white, 
+        $shadow-color: $ink);
 
   display: flex;
   justify-content: center;

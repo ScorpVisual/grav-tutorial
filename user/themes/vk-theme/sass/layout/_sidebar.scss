@@ -10,6 +10,13 @@
     display: flex;
     flex-direction: column;
 
+ &:hover {
+    .sidebar-nav__item:not(:first-child, :last-child) {
+      .sidebar-nav__link:not(:hover) { 
+        background-color: rgba($white, 0.4);
+      }
+    }
+  }
   ul {
     list-style: none;
     margin: 0;
@@ -42,8 +49,8 @@
   transition: $transition;
   
   &:hover {
-    background-color: $pink;
-    color: $slate;
+    background-color: $white;
+    color: $ink;
   }
   
   &.is-active {

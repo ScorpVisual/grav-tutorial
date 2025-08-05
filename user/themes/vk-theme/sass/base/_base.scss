@@ -14,25 +14,20 @@
 // Body & HTML Defaults
 // =========================================
 
-* {
-  transition: all 0.2s ease-in-out;
-}
-html {
+html, body {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 body {
   // Apply the theme's background and text colors.
   color: $text-color;
-  overflow-x: hidden;
-
 }
 main {
   display: flex;
   flex-direction: column;
   max-width: $breakpoint-xxl;
   margin: auto;
-  overflow-x: hidden;
 }
 
 main div {

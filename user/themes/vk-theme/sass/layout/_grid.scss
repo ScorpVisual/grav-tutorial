@@ -1,4 +1,6 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
+
 
 .grid-container {
   display: grid;
@@ -7,19 +9,24 @@
   padding-inline: 1rem;
   padding-block: 2rem;
   min-height: 100vh;
+  overflow: visible;
 
   &__navbar {
     grid-column: 1 / -1;
   }
 
-  &__sidebar {
+   &__sidebar {
     display: none;
 
     @media (min-width: $breakpoint-md) {
-      min-height: 200vh;
+      height: fit-content;
       display: block;
       grid-column: span 1;
-      padding-inline: 2px;
+      position: sticky;
+      top: 2rem;
+      padding-inline: 0 1rem;
+      border-right: 1px solid $light-grey;
+      z-index: 99;
     }
   }
 
@@ -27,9 +34,10 @@
     display: grid;
     gap: 2rem;
     grid-column: span 12;
-
+    min-height: 200vh;
     @media (min-width: $breakpoint-md) {
       grid-column: span 11;
+
     }
   }
 
