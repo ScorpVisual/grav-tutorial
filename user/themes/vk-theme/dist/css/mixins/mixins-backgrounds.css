@@ -226,6 +226,31 @@
     transform: translateY(0);
   }
 }
+.animated-underline {
+  position: relative;
+  color: #FCD3C1;
+  transition: color 0.2s ease-in-out;
+  padding-bottom: 0.2rem;
+  width: 100%;
+}
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0.12rem;
+  width: 0;
+  background: #393c45;
+  border-radius: 1rem;
+  transition: width 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+}
+.animated-underline:hover, .animated-underline:focus {
+  color: #800020;
+}
+.animated-underline:hover::after, .animated-underline:focus::after {
+  width: 100%;
+}
+
 @keyframes pulsate-effect {
   from {
     opacity: 1;

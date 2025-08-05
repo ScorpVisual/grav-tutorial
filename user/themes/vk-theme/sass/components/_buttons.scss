@@ -101,6 +101,19 @@
   margin-top: 1rem;
 }
 
+.btn-card--carnelian {
+  @include base-btn();
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
 
 .btn-tertiary  {
     @include other-btn ();

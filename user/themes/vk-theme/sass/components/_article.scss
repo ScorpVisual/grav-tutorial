@@ -5,8 +5,12 @@
 
 .table-of-contents {
     // @include base-div($background: $ink, $color: $text-color);
-    width: 90%;
+    padding: .5rem 1rem;
+    width: 40%;
+    min-width: 24rem;
     border-radius: $border-radius;
+    border: 2px solid $light-grey;
+    background-color: rgba($white, .3);
 
     > h3 {
         color: $cherry;
@@ -14,4 +18,11 @@
         margin-bottom: 1.2rem;
         border-bottom: solid 0.2rem $cherry;
     }
+
+        &__list>*:not(:last-child) {
+                padding-bottom: .2rem;
+                animation: animated-underline 0.5s ease-in-out;
+                @include underline($light-grey, 1px);
+        }
+    
 }
