@@ -724,6 +724,14 @@ html, body {
 
 body {
   color: #030208;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 main {
