@@ -72,8 +72,13 @@
 
 
 .switcher {
+  display: flex;
     border: 2px solid $cherry;
     transition: background-color 0.2s, box-shadow 0.2s;
+
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+  }
     &:hover {
         background-color: $sand;
         color: $slate;
@@ -86,6 +91,7 @@
     outline: 2px solid $sand;
     outline-offset: 2px;
   }
+
 }
 
 .btn-card {
