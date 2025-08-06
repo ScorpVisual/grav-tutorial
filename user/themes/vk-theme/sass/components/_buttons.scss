@@ -104,8 +104,8 @@
 .btn-card--carnelian {
   @include base-btn(
         $background: $sand, 
-        $btn-text-color: $slate, 
-        $background-focus: $slate, 
+        $btn-text-color: $carnelian, 
+        $background-focus: $carnelian, 
         $btn-text-focus: $white, 
         $shadow-color: $ink);
 

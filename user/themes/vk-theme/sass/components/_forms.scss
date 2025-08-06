@@ -29,29 +29,28 @@ main > textarea {
   }
 }
 
+.form-container-standalone-style {
+    background: $white;
+    border: $border-thickness solid $cherry;
+    box-shadow: $base-shadow;
+}
+
 .form-container {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background: $white;
     color: $ink;
-    padding: 2rem;
-    border: $border-thickness solid $cherry;
-    box-shadow: $base-shadow;
     border-radius: $border-radius;
     max-width: 60rem;
     margin: $base-margin auto;
 
     label {
         font-weight: 600;
-        margin-bottom: -0.5rem;
         color: inherit;
     }
 
-    input[type='text'],
-    input[type='email'],
-    input[type='password'],
-    textarea {
+    .form-input,
+    .form-textarea {
         width: 100%;
         padding: 0.8rem 1rem;
         border-radius: $border-radius;
@@ -68,14 +67,9 @@ main > textarea {
         }
     }
 
-    textarea {
+    .form-textarea {
         min-height: 12rem;
         resize: vertical;
-        &:focus {
-            outline: none;
-            border-color: $pink;
-            box-shadow: 0 0 0 3px $pink;
-        }
     }
 
     .submit-btn {
@@ -95,14 +89,12 @@ main > textarea {
 
 .select-wrapper {
     position: relative;
-
 }
 
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-
     width: 100%;
     padding: 0.8rem 1rem;
     border-radius: $border-radius !important;
@@ -112,14 +104,13 @@ select {
     font-size: 1rem;
     cursor: pointer;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
     padding-right: 2.5rem;
 
-        &:focus {
-            outline: none;
-            border-color: $pink !important;
-            box-shadow: 0 0 0 3px $pink !important;
-        }
+    &:focus {
+        outline: none;
+        border-color: $pink !important;
+        box-shadow: 0 0 0 3px $pink !important;
+    }
 }
 
 option {

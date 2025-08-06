@@ -1,17 +1,1007 @@
-<div class="articleCard articleCard--big">
-    <img src="https://placehold.co/600x360" alt="" class="articleCard-big__img">
-    <div class="articleCard__header">
-        <h2 class="articleCard__header--title">This is title</h2>
-        <p class="articleCard__header--desc">This is description of the article featured by this card.</p>
-    </div>
-    <div class="articleCard__info">
-        <div class="articleCard__info--date">
-        <img src="../images/svg/articleCard--calendar.svg" alt="" class="icon-svg">
-        <p>20.02.2025</p>
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: 'en' }}">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+
+    {# Tutaj dodajemy wszystkie potrzebne pliki CSS do kolejki
+    {% do assets.addCss('theme://dist/css/tailwind-output.css', 80) %}
+    {% do assets.addCss('theme://dist/css/site.css', 90) %}
+    {% do assets.addCss('theme://dist/css/main.css', 100) %} #}
+    {# This loads your Tailwind CSS #}
+{# Add this line to load your compiled SASS styles #}
+{# This prints all the CSS links #}
+    {# Ta linia "drukuje" tagi <link> w HTML-u #}
+    {% do assets.addCss('theme://dist/css/site.css', 30) %}
+    {% do assets.addCss('theme://dist/css/tailwind-output.css', 50) %}
+    {% do assets.addCss('theme://dist/css/main.css', 100) %}
+    {{ assets.css()|raw }}
+</head>
+<body>
+
+{% block content %}
+    {# 1. HEADER JEST TERAZ POZA GŁÓWNYM GRIDEM I MA 'position: relative', ABY POZYCJONOWAĆ NAVBAR #}
+    <header class="relative">
+        {#
+           2. NAVBAR JEST POZYCJONOWANY ABSOLUTNIE WZGLĘDEM HEADERA.
+           Dzięki temu "pływa" nad sekcją hero. Dodałem klasy pozycjonujące i z-index.
+        #}
+        <nav class="absolute top-0 left-0 w-full z-20 px-4 py-2 navbar">
+            <div class="grid-container__navbar navbar__container px-6">
+                <div class="navbar__logotype">
+                    <a href="{{ base_url_absolute }}/" class=" transition-colors">
+                                        {# <img 
+                                            src="{{ theme_url }}/images/brand/wisniewski-kamieniarstwo-logotyp.svg"
+                                            alt="Kamieniarstwo Wiśniewski Logotyp"
+                                            class="h-auto w-full max-w-sm"> #}
+                                    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                                    <svg>
+                                    </svg>
+
+                    </a>
+                </div>
+                <div class="navbar__menu" id="nav-menu">
+                    <ul class="navbar__links">
+                        <li><a href="/uslugi">Usługi</a></li>
+                        <li><a href="/realizacje">Realizacje</a></li>
+                        <li><a href="/o-firmie">O firmie</a></li>
+                    </ul>
+                </div>
+                    <a href="/kontakt" class="btn-cta--big navbar__cta">Kontakt</a>
+                <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        {# Sekcja Hero pozostaje bez zmian, ale teraz jest częścią pełnoekranowego headera #}
+        <section class="hero-video relative flex items-center justify-center w-full min-h-[70vh] text-center overflow-hidden">
+            <div class="bg-overlay"></div>
+            <video
+                playsinline
+                autoplay
+                muted
+                loop
+                poster="sciezka/do/plakatu.jpg"
+                class="hero-video__video"
+            >
+                {# Użyj theme_url dla ścieżki do wideo w motywie #}
+                <source src="{{ theme_url }}/images/video/wip-hero.webm" type="video/webm" />
+                Twoja przeglądarka nie obsługuje tagu wideo.
+            </video>
+            <div class="relative z-10 px-4">
+                <h1 class="md:text-6xl font-bold c-white drop-shadow-lg font-cormorant underline-cherry">
+                     JAKOŚĆ NA WIEKI 
+                </h1>
+                <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto c-white drop-shadow-md">
+                    Trwałe pomniki na solidnym fundamencie.
+                    <br>
+                </p>
+                <a href="#main-content" class="btn-primary mt-8">
+                    Dowiedz się więcej
+                </a>
+                <a href="#main-content" class="btn-cta mt-8">
+                    Kontakt
+                </a>
+            </div>
+        </section>
+    </header>
+    {# 3. NOWY KONTENER GRIDOWY ZACZYNA SIĘ TUTAJ, JUŻ PO HEADERZE #}
+    <div id="main-content" class="grid-container typography">
+        <aside class="grid-container__sidebar ">
+        
+            <nav class="sidebar-nav">
+            <ul>
+                <li class="sidebar-nav__item">
+                <a href="#start" class="block mb-8 flex justify-center">
+                    <img src="{{ theme_url }}/images/brand/full-logotype-vertical.svg"
+                        class="h-auto w-24"
+                        alt="Logo firmy">
+                </a>
+                </li>
+                <li class="sidebar-nav__item  is-active">
+                <a href="#start" class="sidebar-nav__link">Start</a>
+                </li>
+                <li class="sidebar-nav__item">
+                <a href="#produkty" class="sidebar-nav__link">Produkty</a>
+                </li>
+                <li class="sidebar-nav__item">
+                <a href="#uslugi" class="sidebar-nav__link">Usługi</a>
+                </li>
+                <li class="sidebar-nav__item">
+                <a href="#realizacje" class="sidebar-nav__link">Realizacje</a>
+                </li>
+                <li class="sidebar-nav__item">
+                <a href="#about" class="sidebar-nav__link">O firmie</a>
+                </li>
+                <li class="sidebar-nav__item">
+                <a href="#" class="sidebar-nav__link">Blank</a>
+                </li>
+                <li class="sidebar-nav__item sidebar-nav__item--cta">
+                <a href="#kontakt" class="sidebar-nav__link sidebar-nav__link--cta">Kontakt</a>
+                </li>
+                </ul>
+            </nav>
+        
+        </aside>
+    <main class="grid-container__main-content">
+    {# <video autoplay loop muted playsinline class="mt-8 w-full rounded-lg">
+        <source src="{{ theme_url }}/images/video/wip-hero.webm" type="video/webm">
+            Twoja przeglądarka nie obsługuje tagu wideo.
+    </video> #}
+    <section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    
+        <!-- Kolumna tekstowa -->
+        <div>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Jak budujemy nasze nagrobki?</h1>
+        <div id="controls-container" role="group" class="flex rounded-md shadow-sm my-4">
+            <button
+                type="button"
+                data-target="tomb-head"
+                class="switch-button flex-1 px-4 py-2 text-sm font-semibold c-marble bg-cherry rounded-l-md switcher">
+                Liternictwo
+            </button>
+            <button
+                type="button"
+                data-target="tomb-body"
+                class="switch-button flex-1 px-4 py-2 text-sm font-semibold c-marble bg-cherry switcher">
+                Płyta
+            </button>
+            <button
+                type="button"
+                data-target="tomb-base"
+                class="switch-button flex-1 px-4 py-2 text-sm font-semibold c-marble bg-cherry rounded-r-md switcher">
+                Fundament
+            </button>
         </div>
-        <div class="articleCard__info--time">
-        <img src="articleCard__info--calendar" alt="" class="icon-svg">
-        <p>5</p>
+        <p class="text-lg text-gray-700">
+             <b>Nasze usługi obejmują cały proces:</b> od selekcji odpowiedniego kamienia, po precyzyjne i terminowe wykonawstwo z zastosowaniem najlepszych praktyk branżowych. 
+        </p>
+        <div class="min-h-32 mb-4">
+        <p id="desc-tomb-head" class="text-lg text-gray-700 tomb-desc">
+            Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.
+            Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień.
+        </p>
+        <p id="desc-tomb-body" class="text-lg text-gray-700 tomb-desc">
+            Oferujemy płyty z kamienia: taki, taki, owaki i jeszcze jakiśtam.
+            Wszystkie kamienie przechodzą profesjonalną obróbkę, która zapewnia najwyższą elegancję.
+        </p>
+        <p id="desc-tomb-base" class="text-lg text-gray-700 tomb-desc">
+             Każdy nagrobek osadzamy na profesjonalnie przygotowanej wylewce betonowej.
+             Klamrowanie i zbrojona wylewka - więcej informacji nt. tego ficzera.
+        </p>
+        </div>
+        <div class="flex gap-3">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Nasze produkty
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+
+    <!-- Kolumna graficzna -->
+    <div class="bg-graph w-full p-8 rounded-lg shadow-lg bg-center bg-animate-slide">
+      <div class="svg-container">
+                <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+            <svg></svg>
+                </div>
+    </div>
+  </div>
+</section>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <div>
+        <img src="{{ theme_url }}/images/photos/stone-master.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            <span class="c-cherry">Kamieniarstwo Wiśniewski:</span><br>
+            Zaufany zakład kamieniarski na Śląsku
+        </h1>
+        <p class="text-lg text-gray-700">
+              Od ponad 30 lat dostarczamy wysokiej jakości usługi kamieniarskie, specjalizując się w projektowaniu i wykonawstwie nagrobków dla klientów z Dąbrowy Górniczej i całego Śląska.
+        </p>
+        <p class="text-lg text-gray-700">
+              Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
+        </p>
+                <div class="flex gap-3 mt-8">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Nasze usługi
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
+            Co możemy dla Ciebie zrobić?
+        </h1>
+        <p>
+            Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
+            Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, ale jesteśmy dostępni telefonicznie i mailowo. 
+        </p>
+    </div>
+</section>
+
+<section class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="md:col-span-1">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 underline--cherry">Nasze Usługi</h2>
+            <div class="flex flex-col gap-3">
+
+                <div class="pick-a-card is-active">
+                    <h3 class="font-bold text-lg text-gray-900 underline--light-grey">Usługa Numer 1</h3>
+                    <p class="text-sm text-gray-600">Krótki opis lub zajawka usługi.</p>
+                </div>
+
+                <div class="pick-a-card">
+                    <h3 class="font-bold text-lg text-gray-900 underline--light-grey">Usługa Numer 2</h3>
+                    <p class="text-sm text-gray-600">Krótki opis lub zajawka usługi.</p>
+                </div>
+
+                <div class="pick-a-card">
+                    <h3 class="font-bold text-lg text-gray-900 underline--light-grey">Usługa Numer 3</h3>
+                    <p class="text-sm text-gray-600">Krótki opis lub zajawka usługi.</p>
+                </div>
+
+                <div class="pick-a-card">
+                    <h3 class="font-bold text-lg text-gray-900 underline--light-grey">Usługa Numer 4</h3>
+                    <p class="text-sm text-gray-600">Krótki opis lub zajawka usługi.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="md:col-span-2">
+    <div class="white-marble-slab overflow-hidden h-full flex flex-col">
+        
+        <img src="https://placehold.co/800x400" alt="Obrazek dla Usługi Numer 1" class="w-full h-64 object-cover cherry-img-border">
+        
+        <div class="p-6 flex flex-col flex-grow gap-4">
+            <h2 class="text-3xl font-bold text-gray-800 underline--cherry">Usługa Numer 1 - Nagłówek</h2>
+            <div class="text-2xl font-bold text-gray-900 mt-2">
+                Cena: <span class="c-cherry">od 499 PLN</span>
+            </div>
+
+            <p class="text-gray-700 text-lg">
+                Tutaj znajduje się szczegółowy opis wybranego produktu. Możesz tu umieścić wszystkie niezbędne informacje, które pomogą klientowi podjąć decyzję. Opis może być dłuższy i zawierać kilka akapitów.
+            </p>
+            <div class="flex gap-3 mt-auto pt-4">
+                <a href="#szczegoly" class="btn-primary flex-grow text-center">
+                    Zobacz realizacje
+                </a>
+                <a href="#kontakt" class="btn-cta flex-grow text-center">
+                    Zamów usługę
+                </a>
+            </div>
         </div>
     </div>
 </div>
+
+    </div>
+</section>
+<section class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="md:col-span-2">
+    <div class="white-marble-slab overflow-hidden h-full flex flex-col">
+        
+        <img src="https://placehold.co/800x400" alt="Obrazek dla Usługi Numer 1" class="w-full h-64 object-cover cherry-img-border">
+        
+        <div class="p-6 flex flex-col flex-grow gap-4">
+            <h2 class="text-3xl font-bold text-gray-800 underline--cherry">Produkt Numer 1 - Nagłówek</h2>
+            <div class="text-2xl font-bold text-gray-900 mt-2">
+                Cena: <span class="c-cherry">od 5499 PLN</span>
+            </div>
+
+            <p class="text-gray-700 text-lg">
+                Tutaj znajduje się szczegółowy opis wybranego produktu. Możesz tu umieścić wszystkie niezbędne informacje, które pomogą klientowi podjąć decyzję. Opis może być dłuższy i zawierać kilka akapitów.
+            </p>
+            <div class="flex gap-3 mt-auto pt-4">
+                <a href="#szczegoly" class="btn-primary flex-grow text-center">
+                    Zobacz realizacje
+                </a>
+                <a href="#kontakt" class="btn-cta flex-grow text-center">
+                    Zamów produkt
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="md:col-span-1">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 underline--cherry">Nasze produkty</h2>
+            <div class="flex flex-col gap-5">
+                    {# product 1 #}
+                    <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img is-active">
+                        <img src="https://placehold.co/300x250" alt="Obrazek dla produktu 1" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4  text-white">
+                            <span class="product-img__mini--check text-lg font-bold tracking-widest">
+                                OBEJRZYJ
+                            </span>
+                            <div class="product-img__mini--title mt-2 text-xl font-semibold">
+                                PRODUCT #1
+                            </div>
+                        </div>
+                    </div>
+                    {# end product #}
+                    {# product 2 #}
+                    <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img">
+                        <img src="https://placehold.co/300x250" alt="Obrazek dla produktu 1" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4  text-white">
+                            <span class="product-img__mini--check text-lg font-bold tracking-widest">
+                                OBEJRZYJ
+                            </span>
+                            <div class="product-img__mini--title mt-2 text-xl font-semibold">
+                                PRODUCT #2
+                            </div>
+                        </div>
+                    </div>
+                    {# end product #}
+                    {# product 3 #}
+                    <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img">
+                        <img src="https://placehold.co/300x250" alt="Obrazek dla produktu 1" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4  text-white">
+                            <span class="product-img__mini--check text-lg font-bold tracking-widest">
+                                OBEJRZYJ
+                            </span>
+                            <div class="product-img__mini--title mt-2 text-xl font-semibold">
+                                PRODUCT #3
+                            </div>
+                        </div>
+                    </div>
+                    {# end product #}
+            </div>
+        </div>
+    </div>
+</section>
+        <div class="rounded-lg ">
+            <h1 class="test-lg">Główna treść strony</h1>
+            <p class="mt-4">Ta sekcja znajduje się wewnątrz głównej kolumny siatki.</p>
+            <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
+            <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
+            <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
+            <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
+        </div>
+        <div class="rounded-lg test-div">
+            <h2 class="">Główna treść strony</h2>
+            <p class="mt-4">Ta sekcja znajduje się wewnątrz głównej kolumny siatki.</p>
+            <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
+            <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
+            <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
+            <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
+
+        </div>
+        <div class="marble-slab test-div"></div>
+         <section id="uslugi" class="">
+            <div class="text-center mb-16 md:mb-20 lg:mb-24 marble-slab">
+                <div class="flex justify-center col ">
+                </div>
+                <h2 class="text-4xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-ink">
+                    Nasze usługi
+                </h2>
+                <p class="text-lg md:text-xl text-text-near-black max-w-xl lg:max-w-2xl mx-auto leading-relaxed">
+                    Kamieniarstwo Wiśniewski oferuje kompleksowe usługi kamieniarskie:&nbsp;budowę&nbsp;i&nbsp;renowację nagrobków, liternictwo nagrobkowe oraz&nbsp;profesjonalne czyszczenie kamienia. Pomagamy w realizacji nawet&nbsp;najbardziej wymagających pomysłów.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 ">
+                <div class="bg-white p-6 rounded-lg shadow-md vkCard__white flex flex-col">
+                    <div class="vk_gold">
+                        <img src="{{ theme_url }}/images/placeholders/renowacja-pomnika.jpg" alt="Renowacja pomnika nagrobnego" class="w-full h-64 object-cover rounded-md">
+                    </div>
+                    <h3 class="text-2xl font-semibold mt-4 underline--cherry">RENOWACJA POMNIKÓW</h3>
+                    <p class="text-elegant text-2xl font-semibold mt-2">Cena: od 1000 - 1500zł</p>
+                    <p class="mt-4 text-lg flex-grow">Oferujemy usługę renowacji pomników wymagających naprawy. Nasze działania rozpoczynamy od demontażu nagrobka, a następnie wykonujemy zbrojoną betonową wylewkę pod jego ramę. Dzięki temu konstrukcja zyskuje stabilność i odporność na działanie sił natury.
+                    <br><br>Po zakończeniu prac przygotowawczych składamy pomnik ponownie, dodatkowo montując specjalne klamry, które zapewniają trwałe utrzymanie wszystkich elementów na miejscu. Na koniec, powierzchnię nagrobka wykańczamy powłoką zabezpieczającą. W ten sposób przedłużamy żywotność pomnika i ułatwiamy jego późniejszą pielęgnację.
+                    </p>
+                    <a href="#kontakt" class="mt-auto">
+                        <button class="w-full mt-4 bg-red-900 text-white py-2 px-4 rounded hover:bg-red-800 transition-colors">
+                            Kontakt
+                        </button>
+                    </a>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md vkCard__red flex flex-col">
+                    <div class="vk_gold">
+                        <img src="{{ theme_url }}/images/placeholders/liternictwo.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full h-64 object-cover rounded-md">
+                    </div>
+                    <h3 class="text-2xl font-semibold mt-4 underline--gold fill-letters-gold">LITERNICTWO NAGROBKOWE</h3>
+                    <p class="text-elegant text-2xl font-semibold mt-2">Cena: od 300zł</p>
+                    <p class="mt-4 text-lg flex-grow">Wykonujemy nowe inskrypcje oraz odnawiamy istniejące napisy na nagrobkach z wykorzystaniem technik kucia, piaskowania i malowania.<br><br> Stosujemy złocenia oraz wyraziste farby, które dodatkowo chronią kamień. Cena jest zależna od zastosowanej techniki i materiałów - prosimy o kontakt w celu omówienia szczegółów.</p>
+                    <a href="#kontakt" class="mt-auto">
+                        <button class="w-full mt-4 bg-red-900 text-white py-2 px-4 rounded hover:bg-red-800 transition-colors">
+                            Kontakt
+                        </button>
+                    </a>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md vkCard__black flex flex-col">
+                    <div class="vk_gold">
+                        <img src="{{ theme_url }}/images/placeholders/czyszczenie-pomnika.jpg" alt="Liternictwo nagrobkowe na pomniku z czarnego granitu" class="w-full h-64 object-cover rounded-md">
+                    </div>
+                    <h3 class="text-2xl font-semibold mt-4 underline--gold whitespace-nowrap">CZYSZCZENIE POMNIKA</h3>
+                    <p class="text-elegant text-2xl font-semibold mt-2">Cena: od 800zł</p>
+                    <p class="mt-4 text-lg flex-grow">Zajmujemy się profesjonalnym czyszczeniem lastryko, przywracając pomnikom ich dawny blask. Wygładzamy powierzchnię, usuwając wszelkie zanieczyszczenia i nadając kamieniowi idealną gładkość. Następnie impregnujemy nagrobek, aby wydobyć delikatny połysk i skutecznie zabezpieczyć powierzchnię przed czynnikami zewnętrznymi.
+                        <br><br>W przypadku granitowych pomników, czyścimy je specjalistyczną myjką, a potem zabezpieczamy krystalizatorem, który zapewnia długotrwałą ochronę i piękny wygląd. Wypełnia on pory w strukturze kamienia, zapewniając mu trwałość – zgodnie z naszą dewizą – na wieki!
+                        </p>
+                    <a href="#kontakt" class="mt-auto">
+                        <button class="w-full mt-4 bg-red-900 text-white py-2 px-4 rounded hover:bg-red-800 transition-colors">
+                            Kontakt
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <div class="marble-slab test-div"></div>
+    {# The inline <style> block has been removed from here. #}
+
+    {# =================================================================== #}
+    {# I. FOUNDATIONAL & GLOBAL ELEMENTS                                 #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>I. Foundational & Global Elements</h2>
+        <p><em>VK THEMES</em></p>
+        
+        <h3>Typography</h3>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+        <p>This is a standard paragraph of body text. It contains a <strong>strong (bold)</strong> element and an <em>emphasized (italic)</em> element. It also includes <a href="#">an inline link</a>.</p>
+        <blockquote>This is a blockquote, useful for highlighting a key passage or quote.</blockquote>
+        <ul>
+            <li>Unordered List Item 1</li>
+            <li>Unordered List Item 2</li>
+        </ul>
+        <ol>
+            <li>Ordered List Item 1</li>
+            <li>Ordered List Item 2</li>
+        </ol>
+
+        <h3>Color Palette</h3>
+        <div class="p-6 rounded-lg shadow-inner">
+            <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
+                
+                <div class="color-box c-ink aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-paper aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-orange aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-red aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-teal aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-green aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-gold aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-gray aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-plum aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                
+                <div class="color-box c-stone aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-nature aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-white aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-black aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+                <div class="color-box c-trans aspect-square rounded-lg shadow-md cursor-pointer transition-transform duration-200 ease-in-out hover:scale-105 border border-gray-300"></div>
+            </div>
+        </div>
+    </div>
+
+    {# =================================================================== #}
+    {# II. NAVIGATION & STRUCTURE                                        #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>II. Navigation & Structure</h2>
+        <p><em>Styling for these components will be handled by your SASS files.</em></p>
+        <div class="table-of-contents">
+            <h3>Breadcrumbs</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="table-of-contents__list">
+                    <li class="table-of-contents__list--el"><a href="#">Home</a></li>
+                    <li class="table-of-contents__list--el"><a href="#">Blog</a></li>
+                    <li class="table-of-contents__list--el"><span aria-current="page">Article Title</span></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    {# =================================================================== #}
+    {# III. INTERACTIVE & COMMON UI ELEMENTS                             #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>III. Interactive & Common UI Elements</h2>
+
+        <h3>Buttons</h3>
+        <div class="col">
+            <button class="btn-primary">Primary Button</button>
+            <button class="btn-cta">CONTACT Button</button>
+            <button class="btn-primary">Secondary Button</button>
+            <button class="btn-primary">Tertiary Button</button>
+            <button class="btn-primary">Tertiary Button</button>
+            <br/><br/>
+            <button class="btn-primary" disabled>Disabled Button</button>
+            <button class="btn-primary" >unDisabled Button</button>
+        </div>
+
+      <div class="col">
+            <button class="btn-secondary">Primary Button</button>
+            <button class="btn-secondary">RED Button</button>
+            <button class="btn-secondary">Secondary Button</button>
+            <button class="btn-secondary">Tertiary Button</button>
+            <button class="btn-secondary">Tertiary Button</button>
+            <br/><br/>
+            <button class="btn-secondary" disabled>Disabled Button</button>
+            <button class="btn-secondary" >unDisabled Button</button>
+        </div>
+
+        <h3>Forms</h3>
+        <form class="form-container">
+            <div>
+                <label for="text-input">Text Input</label>
+                <input type="text" id="text-input" placeholder="e.g., John Doe">
+            </div>
+            <div>
+                <label for="text-area">Text Area</label>
+                <textarea id="text-area" rows="4" placeholder="Your message..."></textarea>
+            </div>
+            <div>
+                <label for="select-menu">Select Menu</label>
+            <div class="select-wrapper">
+                <select id="select-menu" name="category">
+                <option value="tech">Technology</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+                </select>
+            </div>
+            </div>
+          <div>
+                <label class="custom-checkbox m-2" for="newsletter">
+                    Sign up for newsletter
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p>Choose an option:</p>
+                <label class="custom-radio m-2" for="option1">
+                    Option One
+                    <input type="radio" id="option1" name="options">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="custom-radio m-2" for="option2">
+                    Option Two
+                    <input type="radio" id="option2" name="options">
+                    <span class="checkmark"></span>
+                </label>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username">
+                </div>
+
+                <div class="form-group has-error">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="invalid-email">
+                    <span class="error-message">Please enter a valid email address.</span>
+                </div>
+            <button type="submit" class="btn-secondary">Submit</button>
+        </form>
+
+
+            {# card white #}
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center white-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center h-32 w-32 card-icon-bg">
+                        <img class="" src="{{ theme_url }}/images/icons/tombstone.svg" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-cherry">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>
+
+        <h3>Cards</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+            {# card white #}
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center white-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center cherry-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-cherry">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>
+                {# card sand #} 
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center sand-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center cherry-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-cherry">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>             
+                {# card black #} 
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center black-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center golden-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-cherry">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>              
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {# card red #}
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center red-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center golden-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-pyrite">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>
+                {# card granite #} 
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center granite-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center dark-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-pyrite">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+                <button class="btn-card">
+                    <a href="#kontakt">Kontakt</a></button>
+            </div>             
+                {# card marbleTest #} 
+            <div class="max-w-xs p-8 rounded-xl flex flex-col items-center text-center marbleTest-gradient-down">
+                <div class="flex-shrink-0 mb-8">
+                    <div class="flex items-center justify-center golden-img-border">
+                        <img class="set-border-radius" src="https://placehold.co/360x240" alt="Ikona pomnika nagrobnego">
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 border-bot-cherry">
+                    Budowa pomnika
+                </h3>
+                <p class="text-text-brown leading-relaxed">
+                    Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
+                </p>
+            </div>              
+        </div>  
+    <div class="card" tabindex="0">
+  <div class="card__header">
+    <h3>Card Title</h3>
+  </div>
+  <img class="card__image" src="https://placehold.co/400x200/EEE/31343C" alt="Placeholder Image">
+  <div class="card__body">
+    <p>This is the main content of the card. It can contain text, lists, or other elements.</p>
+  </div>
+  <div class="card__footer">
+    <a href="#" class="btn-secondary">Read More</a>
+  </div>
+</div>
+
+<div class="article-card">
+  <div class="article-card__image">
+    <img src="https://placehold.co/600x360" alt="Przykładowy obrazek artykułu">
+  </div>
+
+  <div class="article-card__content">
+    <h3 class="article-card__title underline--light-grey">To jest tytuł artykułu</h3>
+    <p class="article-card__description">
+      Krótki opis lub zajawka treści, która zachęci użytkownika do kliknięcia i przeczytania całości.
+    </p>
+    <button class="btn-tertiary">Czytaj więcej</button>
+    
+    <div class="article-card__meta">
+      <div class="article-card__meta-item">
+        <img src="{{ url('theme://images/svg/articleCard--calendar.svg') }}" alt="" class="icon-svg">
+        <span>20.08.2025</span>
+      </div>
+      <div class="article-card__meta-item">
+        <span>Kategoria</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+    {# =================================================================== #}
+    {# IV. CONTENT-SPECIFIC ELEMENTS                                     #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>IV. Content-Specific Elements</h2>
+
+        <h3>Social Sharing Buttons</h3>
+<div class="flex flex-col sm:flex-row gap-4">
+  <!-- Share on X -->
+  <a href="https://x.com/share?url=https://yourwebsite.com" target="_blank"
+     class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-black text-white hover:bg-gray-800 transition-colors duration-300 hover:text-white">
+    <!-- X Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    </svg>
+    Share on X
+  </a>
+
+  <!-- Share on Facebook -->
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://yourwebsite.com" target="_blank"
+     class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300 hover:text-white">
+    <!-- Facebook Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    </svg>
+    Share on Facebook
+  </a>
+</div>
+
+
+<div class="flex flex-col sm:flex-row items-start gap-4 p-6 bg-white  max-w-xl mx-auto white-gradient-down">
+  <!-- Author Headshot -->
+  <img src="https://placehold.co/100x100" alt="Jane Doe headshot"
+       class="w-24 h-24 rounded-full object-cover shadow-sm">
+
+  <!-- Author Info -->
+  <div class="text-left">
+    <h3 class="text-xl font-semibold text-gray-800  border-bot-cherry">About Jane Doe</h3>
+    <p class="mt-2 text-gray-600">
+      Jane is a web developer and writer who loves creating useful tools for the community.
+    </p>
+  </div>
+</div>
+
+        <h3>Author Box</h3>
+        <div class="author-box">
+            <img src="https://placehold.co/100x100" alt="Author Headshot">
+            <div>
+                <h4>About Jane Doe</h4>
+                <p>Jane is a web developer and writer who loves creating useful tools for the community.</p>
+            </div>
+        </div>
+
+        <h3>Comments Section</h3>
+        <div class="comments-section">
+            <h4>2 Comments</h4>
+            <div class="comment">
+                <p><strong>User1:</strong> This is a great resource!</p>
+            </div>
+            <form>
+                <label for="comment-field">Leave a comment</label>
+                <textarea id="comment-field" rows="4"></textarea>
+                <button type="submit" class="btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Główny kontener sekcji kontaktowej -->
+<section class="contact shadow-lg">
+  <!-- Nagłówek sekcji -->
+  <div class="contact__header border-bot-cherry">
+    <h2 class="contact__title">Kontakt</h2>
+    <p class="contact__description">Masz pytania? Skontaktuj się z nami — jesteśmy tu, by pomóc.</p>
+  </div>
+
+  <!-- Siatka z treścią -->
+  <div class="contact__grid">
+    <!-- Lewa kolumna -->
+    <div class="contact__column">
+      <!-- Karta: Opcje kontaktowe (z modyfikatorem --active dla przykładu) -->
+      <div class="contact__card">
+        <h3 class="contact__card-title">Opcje kontaktowe</h3>
+        <ul class="contact__card-list">
+          {# <li class="contact__card-item"><strong>Telefon:</strong> +48 123 456 789</li> #}
+          <li class="contact__card-item">
+          <img src="{{ theme_url }}/images/icons/telephone-fill.svg" class="contact__card-item--svg">
+           +48 123 456 789</li>
+          <li class="contact__card-item">
+          <img src="{{ theme_url }}/images/icons/email.svg" class="contact__card-item--svg"> kontakt@example.com</li>
+          <li class="contact__card-item">
+          <img src="{{ theme_url }}/images/icons/location.svg" class="contact__card-item--svg"> ul. Przykładowa 1, 41-922 Radzionków</li>
+        </ul>
+      </div>
+
+      <!-- Karta: Godziny otwarcia -->
+      <div class="contact__card">
+        <h3 class="contact__card-title">Godziny otwarcia</h3>
+        <ul class="contact__card-list">
+          <li class="contact__card-item"><strong>Dni robocze:</strong> 08:00 – 18:00</li>
+          <li class="contact__card-item"><strong>Sobota:</strong> 10:00 – 14:00</li>
+          <li class="contact__card-item"><strong>Niedziela:</strong> Nieczynne</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Prawa kolumna -->
+    <div class="contact__column">
+      <!-- Karta: Adres -->
+      <div class="contact__card">
+        <h3 class="contact__card-title">Adres</h3>
+        <p class="contact__card-text">
+
+          <span class="c-cherry font-cormorant text-3xl font-bold underline--light-cherry">Kamieniarstwo Wiśniewski</span>
+          ul. Przykładowa 1<br>
+          41-300 Dąbrowa Górnicza<br>
+          Woj. Śląskie
+        </p>
+        <p class="text-gray-500">Dojeżdżamy do 100km od miejsca stałej siedziby! Szczegóły do ustalenia indywidualnego z klientem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+    {# =================================================================== #}
+    {# V. MARKETING & CONVERSION ELEMENTS                                #}
+    {# =================================================================== #}
+    <div class="element-section">
+        <h2>V. Marketing & Conversion Elements</h2>
+
+        <h3>Pricing Tables</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 py-8 max-w-7xl mx-auto">
+  <!-- Card 1 -->
+  <div class="max-w-sm mx-auto white-gradient-down overflow-hidden">
+    <div class="p-6 text-center">
+      <h2 class="text-2xl font-bold border-bot-cherry">Basic Plan</h2>
+      <p class="mt-2 text-3xl font-extrabold c-cherry">$10<span class="text-base font-medium c-ink">/mo</span></p>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li>✔️ Feature 1</li>
+        <li>✔️ Feature 2</li>
+      </ul>
+      <button class="btn-card">
+        Choose Plan
+      </button>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="max-w-sm mx-auto black-gradient-down overflow-hidden">
+    <div class="p-6 text-center">
+      <h2 class="text-2xl font-bold border-bot-aluminium">Basic Plan</h2>
+      <p class="mt-2 text-3xl font-extrabold c-aluminium">$10<span class="text-base font-medium c-pink">/mo</span></p>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li>✔️ Feature 1</li>
+        <li>✔️ Feature 2</li>
+      </ul>
+      <button class="btn-card bg-silver text-black">
+        Choose Plan
+      </button>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="max-w-sm mx-auto red-gradient-down overflow-hidden">
+    <div class="p-6 text-center">
+      <h2 class="text-2xl font-bold border-bot-pyrite">Basic Plan</h2>
+      <p class="mt-2 text-3xl font-extrabold c-pyrite">$10<span class="text-base font-medium c-pink">/mo</span></p>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li>✔️ Feature 1</li>
+        <li>✔️ Feature 2</li>
+      </ul>
+      <button class="btn-card bg-gold  text-black">
+        Choose Plan
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+        <h3>Testimonials</h3>
+        <div class="testimonial">
+            <blockquote>"This product changed my life!"</blockquote>
+            <cite>- Happy Customer</cite>
+        </div>
+    </div>
+
+    </main>
+
+<footer class="grid-container__footer white-marble-slab">
+  <div class="max-w-7xl mx-auto px-6 pt-16 pb-8">
+    
+    <!-- Grid główny -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+      <!-- Logo + opis -->
+      <div class="sm:col-span-2 lg:col-span-1">
+        <div class="mb-6 flex justify-center">
+          <img src="{{ theme_url }}/images/brand/full-logotype-vertical.svg" class="h-auto w-32">
+        </div>
+        <p class="text-md  leading-relaxed mb-4 text-left">
+          30 lat tradycji w wykonawstwie nagrobków dla klientów z&nbsp;Dąbrowy Górniczej i&nbsp;całego Śląska.
+        </p>
+      </div>
+
+      <!-- Nawigacja: Nagrobki -->
+      <div>
+        <h4 class="text-lg font-medium c-ink border-bot-cherry mb-4">Nagrobki</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#produkt2" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Nagrobek pełnowymiarowy</a></li>
+          <li><a href="#produkt1" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Nagrobek na urnę</a></li>
+        </ul>
+      </div>
+
+      <!-- Nawigacja: Usługi -->
+      <div>
+        <h4 class="text-lg font-medium c-ink border-bot-cherry mb-4">Usługi</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#uslugi" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Renowacje pomników</a></li>
+          <li><a href="#uslugi" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Czyszczenie nagrobków</a></li>
+          <li><a href="#uslugi" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Sprzątanie</a></li>
+        </ul>
+      </div>
+
+      <!-- Kontakt -->
+      <div>
+        <h4 class="text-lg font-medium c-ink border-bot-cherry mb-4">Informacje</h4>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="tel:+4892182400684" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">
+              Telefon: <span class="ltr:inline rtl:hidden">+48 921 824 006 84</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:kontakt@kamieniarstwowisniewski.pl" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">
+              Email: kontakt@kamieniarstwowisniewski.pl
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Separator -->
+    <hr class="border-gray-700 my-8">
+
+    <!-- Dolna część -->
+    <div class="flex flex-col sm:flex-row justify-between items-center text-sm c-ink">
+      <p class="mb-4 sm:mb-0">
+        &copy; <span id="currentYear"></span> Kamieniarstwo Wiśniewski. Wszelkie prawa zastrzeżone.
+      </p>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-red transition-colors">Polityka Prywatności</a>
+        <a href="#" class="hover:text-red transition-colors">Mapa strony</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+</div>
+
+  {% block javascripts %}
+    {% do assets.addJs('theme://js/main.js', {'group': 'bottom', 'attributes': {'type': 'module'}}) %}    
+    {% endblock %}
+
+    {# Krok 2: Wyrenderuj wszystkie skrypty dodane do grupy 'bottom' #}
+    {{ assets.js('bottom')|raw }}
+</body>
+</html>
+{% endblock %}
