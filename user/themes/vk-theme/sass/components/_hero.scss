@@ -20,10 +20,13 @@
 
   &__video {
     position: absolute;
-    top: 50%; left: 50%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    min-width: 100%; min-height: 100%;
-    width: auto; height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
     z-index: 1;
 
     @media (max-width: $breakpoint-lg) {
@@ -32,15 +35,45 @@
   }
 }
 
-// Kluczowe klatki animacji
 @keyframes switch-poster {
-  0%, 33.333% {
+  0% {
     background-image: url('../../images/video/main-hero-poster.jpg');
   }
-  33.334%, 66.666% {
+
+  33.33% {
     background-image: url('../../images/video/main-hero-poster-alt-1.jpg');
   }
-  66.667%, 100% {
+
+  66.66% {
     background-image: url('../../images/video/main-hero-poster-alt-2.jpg');
+  }
+}
+
+@keyframes blend-fade {
+  0%, 33.33%, 66.66%, 100% {
+    background-color: rgba($ink, 1);
+  }
+
+  6%, 30%, 36%, 63%, 69%, 94% {
+    background-color: rgba($ink, .6);
+  }
+}
+.hero-overlay-animated {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba($ink, .6);
+
+  // background: linear-gradient(
+  //   to bottom,
+  //   rgba(0, 0, 0, 0.3),
+  //   rgba(0, 0, 0, 0.2) 40%,
+  //   rgba(255, 255, 255, 0) 100%
+  // );
+  z-index: 2;
+  pointer-events: none;
+  
+  @media (max-width: $breakpoint-lg) {
+    animation: blend-fade 15s infinite ease-in-out;
   }
 }

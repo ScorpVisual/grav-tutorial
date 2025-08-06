@@ -1,22 +1,33 @@
-<ul>
-    {# This loop creates a menu item for each top-level visible page #}
+<ul class="navbar__links">
+    {# Pętla tworząca linki do widocznych podstron #}
     {% for page in pages.children.visible %}
         {% set current_page = (page.active or page.activeChild) ? 'selected' : '' %}
         <li class="{{ current_page }}">
-            <a href="{{ page.url|e }}">
+            {# Każdy link musi mieć klasę navbar__links--a #}
+            <a class="navbar__links--a" href="{{ page.url|e }}">
                 {% if page.header.icon %}<i class="fa fa-{{ page.header.icon|e }}"></i>{% endif %}
                 {{ page.menu|e }}
             </a>
         </li>
     {% endfor %}
 
-    {# This loop adds the custom menu items from your site.yaml #}
+    {# Pętla dodająca niestandardowe linki z pliku site.yaml #}
     {% for mitem in site.menu %}
         <li>
-            <a href="{{ mitem.url|e }}">
+            {# Każdy link musi mieć klasę navbar__links--a #}
+            <a class="navbar__links--a" href="{{ mitem.url|e }}">
                 {% if mitem.icon %}<i class="fa fa-{{ mitem.icon|e }}"></i>{% endif %}
                 {{ mitem.text|e }}
             </a>
         </li>
     {% endfor %}
 </ul>
+
+
+
+
+
+
+
+
+      

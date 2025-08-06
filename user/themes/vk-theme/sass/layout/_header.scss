@@ -7,6 +7,7 @@
 
 
 
+// Pełny, scalony kod SCSS dla komponentu navbar
 
 .navbar {
   width: 100%;
@@ -21,7 +22,7 @@
 
     @media (min-width: $breakpoint-lg) {
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: auto 1fr auto; // logo | menu | akcje
       align-items: center;
       gap: 2rem;
       padding-block: 0.8rem;
@@ -31,24 +32,23 @@
   // ––––––––––––––––––––––––––––––––––––––––––––––
   // LOGOTYPE
   // ––––––––––––––––––––––––––––––––––––––––––––––
-
   &__logotype {
     &--mobile {
       display: block;
       justify-self: start;
       height: $mobile-icon-size;
 
-      @media (min-width: $breakpoint-lg) {
+      @media (min-width: $breakpoint-xl) {
         display: none;
       }
     }
     &--mobile-svg {
-        fill: #fff !important;
+      fill: #fff !important;
     }
     &--desktop {
       display: none;
 
-      @media (min-width: $breakpoint-lg) {
+      @media (min-width: $breakpoint-xl) {
         display: block;
         justify-self: start;
         position: relative;
@@ -62,29 +62,29 @@
         &::before {
           content: '';
           position: absolute;
-          top: 0; left: 0;
-          width: 0; height: 100%;
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 100%;
           background-image: url('../../images/textures/marble-white-1.jpg');
           border-radius: 2px;
           z-index: -1;
           pointer-events: none !important;
-          transition: width 0.4s cubic-bezier(0.25,0.8,0.25,1);
+          transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         &:hover::before {
           width: 100%;
           border: 1px solid $white;
-          box-shadow:
-            inset 2px 2px 6px $white,
-            inset 2px 2px 6px rgba($grey,0.3),
-            0 8px 8px rgba($ink,0.3);
+          box-shadow: inset 2px 2px 6px $white,
+            inset 2px 2px 6px rgba($grey, 0.3),
+            0 8px 8px rgba($ink, 0.3);
         }
       }
     }
-
     &--svg {
       cursor: pointer;
-      transition: transform 0.4s cubic-bezier(0.25,0.8,0.25,1);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 
       .logotype-symbol,
       .logotype-text {
@@ -109,38 +109,27 @@
   }
 
   // ––––––––––––––––––––––––––––––––––––––––––––––
+  // AKCJE (KONTAKT + HAMBURGER)
+  // ––––––––––––––––––––––––––––––––––––––––––––––
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @media (min-width: $breakpoint-lg) {
+      justify-self: end;
+    }
+  }
+
+  // ––––––––––––––––––––––––––––––––––––––––––––––
   // MENU & LINKS
   // ––––––––––––––––––––––––––––––––––––––––––––––
-
   &__menu {
-    // Mobile: kolumna, rozwijane
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    position: absolute;
-    top: 100%; left: 0;
-    width: 100%;
-    background-color: $marble;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-
-    &.is-active {
-      max-height: 500px;
-      padding: 2rem 0;
-    }
+    display: none;
 
     @media (min-width: $breakpoint-lg) {
       display: flex;
-      position: static;
-      flex-direction: row;
-      gap: 2rem;
-      background: none;
-      max-height: none;
-      overflow: visible;
-      padding: 0;
-      justify-self: center;
+      justify-self: center; 
     }
   }
 
@@ -149,8 +138,8 @@
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
     gap: 1.5rem;
+    flex-direction: column; 
     text-align: center;
 
     @media (min-width: $breakpoint-lg) {
@@ -162,41 +151,83 @@
       font-size: 1.6rem;
       font-weight: 500;
       text-decoration: none;
-        @media (max-width: $breakpoint-lg) {
-      color: $ink;
-              @include animated-underline(
-        $initial-color: $ink,
-        $hover-color: $carnelian,
-        $underline-color: $cherry
-        );
-        }
+
+      // Style dla linków w menu desktopowym
       @media (min-width: $breakpoint-lg) {
-      color: $marble;
+        color: $marble;
         @include animated-underline(
-        $initial-color: $marble,
-        $hover-color: $pink,
-        $underline-color: $cherry
+          $initial-color: $marble,
+          $hover-color: $pink,
+          $underline-color: $cherry
+        );
+      }
+      @media (min-width: $breakpoint-xl) {
+        font-size: 1.6rem;
+        color: $marble;
+        @include animated-underline(
+          $initial-color: $marble,
+          $hover-color: $pink,
+          $underline-color: $cherry
         );
       }
     }
   }
 
   // ––––––––––––––––––––––––––––––––––––––––––––––
-  // CTA
+  // PEŁNOEKRANOWE MENU MOBILNE
   // ––––––––––––––––––––––––––––––––––––––––––––––
+  &__full {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($ink, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
 
-  &__cta {
-    display: none;
+    padding: 6rem 10%; 
+    overflow-y: auto;   
 
-    @media (min-width: $breakpoint-lg) {
-      display: block;
-      justify-self: end;
+    &.is-active {
+      opacity: 1;
+      pointer-events: auto;
     }
+
+    .navbar__links {
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem; 
+      width: 100%; 
+      align-content: start; 
+    }
+
+    // Style samych linków pozostają bez zmian
+    .navbar__links--a {
+        font-size: 1.8rem; // Możesz lekko zmniejszyć font dla lepszego dopasowania
+        color: $marble;
+        @include animated-underline(
+          $initial-color: $marble,
+          $hover-color: $pink,
+          $underline-color: $cherry
+        );
+      }
   }
 
   // ––––––––––––––––––––––––––––––––––––––––––––––
-  // TOGGLE (hamburger)
+  // CTA & TOGGLE
   // ––––––––––––––––––––––––––––––––––––––––––––––
+&__cta {
+  display: none; 
+
+  @media (min-width: $breakpoint-lg) {
+    display: block; 
+  }
+}
 
   &__toggle {
     display: block;
@@ -204,25 +235,33 @@
     border: none;
     height: $mobile-icon-size;
     cursor: pointer;
-    z-index: 50;
+    z-index: 50; // NAD pełnoekranowym menu
     padding: 0;
+    transition: transform 0.4s ease-out;
+    will-change: transform;
+
     &:hover {
-        .navbar__toggle--icon{fill: $cherry;}
-        transform: rotate(-15deg);
-        transition: transform 0.4s ease-out, fill 0.3s ease-in-out;
-        }
-
-
-    @media (min-width: $breakpoint-lg) {
-      display: none;
+      transform: rotate(-15deg);
     }
 
     &.is-active {
-        transform: rotate(-90deg);
+      transform: rotate(-90deg);
+      .navbar__toggle--icon {
+        fill: $cherry; // Kolor ikony po aktywacji
+      }
     }
-    &--icon {
-        fill: $marble;
-        transition: transform 0.4s ease-out, fill 0.3s ease-in-out;
+
+    // @media (min-width: $breakpoint-lg) {
+    //   display: none; // Ukryty na desktopie
+    // }
+  }
+
+  &__toggle--icon {
+    fill: $marble;
+    transition: fill 0.3s ease-in-out;
+
+    .navbar__toggle:hover & {
+      fill: $cherry;
     }
   }
 }

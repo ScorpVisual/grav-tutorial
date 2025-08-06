@@ -729,6 +729,10 @@ body {
   word-break: break-word;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -2325,16 +2329,40 @@ option {
 }
 
 @keyframes switch-poster {
-  0%, 33.333% {
+  0% {
     background-image: url("../../images/video/main-hero-poster.jpg");
   }
-  33.334%, 66.666% {
+  33.33% {
     background-image: url("../../images/video/main-hero-poster-alt-1.jpg");
   }
-  66.667%, 100% {
+  66.66% {
     background-image: url("../../images/video/main-hero-poster-alt-2.jpg");
   }
 }
+@keyframes blend-fade {
+  0%, 33.33%, 66.66%, 100% {
+    background-color: #030208;
+  }
+  6%, 30%, 36%, 63%, 69%, 94% {
+    background-color: rgba(3, 2, 8, 0.6);
+  }
+}
+.hero-overlay-animated {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(3, 2, 8, 0.6);
+  z-index: 2;
+  pointer-events: none;
+}
+@media (max-width: 1024px) {
+  .hero-overlay-animated {
+    animation: blend-fade 15s infinite ease-in-out;
+  }
+}
+
 .grid-container {
   display: flex;
   flex-direction: column;
@@ -2406,7 +2434,7 @@ option {
 @media (min-width: 1024px) {
   .navbar__container {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 2rem;
     padding-block: 0.8rem;
@@ -2417,7 +2445,7 @@ option {
   justify-self: start;
   height: 4rem;
 }
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .navbar__logotype--mobile {
     display: none;
   }
@@ -2428,7 +2456,7 @@ option {
 .navbar__logotype--desktop {
   display: none;
 }
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .navbar__logotype--desktop {
     display: block;
     justify-self: start;
@@ -2479,34 +2507,22 @@ option {
 .navbar__logotype--desktop:hover .navbar__logotype--svg .logotype-text {
   fill: #800020;
 }
-.navbar__menu {
+.navbar__actions {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: #e1dfdd;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+  gap: 1rem;
 }
-.navbar__menu.is-active {
-  max-height: 500px;
-  padding: 2rem 0;
+@media (min-width: 1024px) {
+  .navbar__actions {
+    justify-self: end;
+  }
+}
+.navbar__menu {
+  display: none;
 }
 @media (min-width: 1024px) {
   .navbar__menu {
     display: flex;
-    position: static;
-    flex-direction: row;
-    gap: 2rem;
-    background: none;
-    max-height: none;
-    overflow: visible;
-    padding: 0;
     justify-self: center;
   }
 }
@@ -2515,8 +2531,8 @@ option {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
   gap: 1.5rem;
+  flex-direction: column;
   text-align: center;
 }
 @media (min-width: 1024px) {
@@ -2529,33 +2545,6 @@ option {
   font-size: 1.6rem;
   font-weight: 500;
   text-decoration: none;
-}
-@media (max-width: 1024px) {
-  .navbar__links--a {
-    color: #030208;
-    position: relative;
-    color: #030208;
-    transition: color 0.2s ease-in-out;
-    padding-bottom: 0.2rem;
-    width: 100%;
-  }
-  .navbar__links--a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 0.12rem;
-    width: 0;
-    background: #800020;
-    border-radius: 1rem;
-    transition: width 0.5s cubic-bezier(0.77, 0, 0.18, 1);
-  }
-  .navbar__links--a:hover, .navbar__links--a:focus {
-    color: #6b2525;
-  }
-  .navbar__links--a:hover::after, .navbar__links--a:focus::after {
-    width: 100%;
-  }
 }
 @media (min-width: 1024px) {
   .navbar__links--a {
@@ -2584,13 +2573,92 @@ option {
     width: 100%;
   }
 }
+@media (min-width: 1280px) {
+  .navbar__links--a {
+    font-size: 1.6rem;
+    color: #e1dfdd;
+    position: relative;
+    color: #e1dfdd;
+    transition: color 0.2s ease-in-out;
+    padding-bottom: 0.2rem;
+    width: 100%;
+  }
+  .navbar__links--a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0.12rem;
+    width: 0;
+    background: #800020;
+    border-radius: 1rem;
+    transition: width 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+  }
+  .navbar__links--a:hover, .navbar__links--a:focus {
+    color: #FCD3C1;
+  }
+  .navbar__links--a:hover::after, .navbar__links--a:focus::after {
+    width: 100%;
+  }
+}
+.navbar__full {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(3, 2, 8, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-in-out;
+  padding: 6rem 10%;
+  overflow-y: auto;
+}
+.navbar__full.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.navbar__full .navbar__links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  align-content: start;
+}
+.navbar__full .navbar__links--a {
+  font-size: 1.8rem;
+  color: #e1dfdd;
+  position: relative;
+  color: #e1dfdd;
+  transition: color 0.2s ease-in-out;
+  padding-bottom: 0.2rem;
+  width: 100%;
+}
+.navbar__full .navbar__links--a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0.12rem;
+  width: 0;
+  background: #800020;
+  border-radius: 1rem;
+  transition: width 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+}
+.navbar__full .navbar__links--a:hover, .navbar__full .navbar__links--a:focus {
+  color: #FCD3C1;
+}
+.navbar__full .navbar__links--a:hover::after, .navbar__full .navbar__links--a:focus::after {
+  width: 100%;
+}
 .navbar__cta {
   display: none;
 }
 @media (min-width: 1024px) {
   .navbar__cta {
     display: block;
-    justify-self: end;
   }
 }
 .navbar__toggle {
@@ -2601,25 +2669,24 @@ option {
   cursor: pointer;
   z-index: 50;
   padding: 0;
+  transition: transform 0.4s ease-out;
+  will-change: transform;
 }
 .navbar__toggle:hover {
   transform: rotate(-15deg);
-  transition: transform 0.4s ease-out, fill 0.3s ease-in-out;
-}
-.navbar__toggle:hover .navbar__toggle--icon {
-  fill: #800020;
-}
-@media (min-width: 1024px) {
-  .navbar__toggle {
-    display: none;
-  }
 }
 .navbar__toggle.is-active {
   transform: rotate(-90deg);
 }
+.navbar__toggle.is-active .navbar__toggle--icon {
+  fill: #800020;
+}
 .navbar__toggle--icon {
   fill: #e1dfdd;
-  transition: transform 0.4s ease-out, fill 0.3s ease-in-out;
+  transition: fill 0.3s ease-in-out;
+}
+.navbar__toggle:hover .navbar__toggle--icon {
+  fill: #800020;
 }
 
 .sidebar-nav {
