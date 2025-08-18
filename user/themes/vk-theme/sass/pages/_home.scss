@@ -27,20 +27,20 @@
     animation: $fadeInUp;
 }
 
-.landing-tombstone {
-  &--desktop {
-    display: none;
-    padding: 0;
-  }
-  &--mobile {
-    display: block;
-  }
-  @media (min-width: $breakpoint-lg) {
-    &--desktop {
-      display: block;
-    }
-    &--mobile {
-      display: none;
-    }
-  }
-}
+// .landing-tombstone {
+//   &--desktop {
+//     display: none;
+//     padding: 0;
+//   }
+//   &--mobile {
+//     display: block;
+//   }
+//   @media (min-width: $breakpoint-lg) {
+//     &--desktop {
+//       display: block;
+//     }
+//     &--mobile {
+//       display: none;
+//     }
+//   }
+// }

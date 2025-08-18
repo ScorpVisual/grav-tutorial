@@ -3,7 +3,10 @@
 @use '../abstracts/variables' as *;
 @use '../mixins/mixins' as *;
 
-.hidden {
+.schowaj {
+    display: none;
+}
+.schowaj-mocno {
     display: none !important;
 }
 .is-hidden {

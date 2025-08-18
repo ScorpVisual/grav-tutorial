@@ -1,65 +1,55 @@
-// user/themes/vk-theme/js/components/_home--tombstone.js
+console.log('Loading tombstone controls! 🚀');
 
-console.log('Loading tombstone controls!');
+document.querySelectorAll('.js-controls-container').forEach(controlsContainer => {
+    const parentSection = controlsContainer.closest('section');
+    if (!parentSection) {
+        console.error('Critical Error: Could not find parent <section> for tombstone component!');
+        return;
+    }
 
-const controlsContainer = document.getElementById('controls-container');
+    const svgContainer = parentSection.querySelector('.js-svg-container');
+    const descContainer = parentSection.querySelector('.js-desc-container');
 
-// Sprawdzamy, czy kontener istnieje na tej stronie
-if (controlsContainer) {
+    if (!svgContainer || !descContainer) {
+        console.error('Critical Error: Missing .js-svg-container or .js-desc-container within the section!');
+        return;
+    }
 
-    // --- FUNKCJE POMOCNICZE ---
-
-    const highlightSvgPart = (targetId) => {
-        const oldSvgPart = document.querySelector('.svg-part.highlighted');
-        if (oldSvgPart) {
-            oldSvgPart.classList.remove('highlighted', 'pulsate');
-        }
-        const newSvgPart = document.getElementById(targetId);
+    const highlightSvgPart = (partName) => {
+        svgContainer.querySelector('.svg-part.highlighted')?.classList.remove('highlighted', 'pulsate');
+        const newSvgPart = svgContainer.querySelector(`.svg-part[data-part="${partName}"]`);
         if (newSvgPart) {
             newSvgPart.classList.add('highlighted', 'pulsate');
         }
     };
 
-    const showDescription = (targetId) => {
-        const allDescriptions = document.querySelectorAll('.tomb-desc');
-        allDescriptions.forEach(desc => {
+    const showDescription = (partName) => {
+        descContainer.querySelectorAll('.tomb-desc').forEach(desc => {
             desc.classList.add('is-hidden');
         });
-
-        const targetDescId = `desc-${targetId}`;
-        const targetDesc = document.getElementById(targetDescId);
+        const targetDesc = descContainer.querySelector(`.tomb-desc[data-part="${partName}"]`);
         if (targetDesc) {
             targetDesc.classList.remove('is-hidden');
         }
     };
 
-    // --- GŁÓWNY EVENT LISTENER ---
-    // POPRAWKA 1: Usunięto zbędny, zewnętrzny listener. Został tylko jeden.
     controlsContainer.addEventListener('click', (event) => {
         const clickedButton = event.target.closest('.switch-button');
         if (!clickedButton) return;
 
-        // Przełączanie klasy aktywnej dla przycisków
-        const oldActiveButton = controlsContainer.querySelector('.is-active');
-        if (oldActiveButton) {
-            oldActiveButton.classList.remove('is-active');
-        }
+        controlsContainer.querySelector('.is-active')?.classList.remove('is-active');
         clickedButton.classList.add('is-active');
 
-        const targetId = clickedButton.dataset.target;
-
-        // Wywołaj obie funkcje
-        highlightSvgPart(targetId);
-        showDescription(targetId);
+        const partName = clickedButton.dataset.part;
+        if (partName) {
+            highlightSvgPart(partName);
+            showDescription(partName);
+        }
     });
 
-    // --- USTAWIENIE STANU POCZĄTKOWEGO ---
-    // POPRAWKA 2: Ten blok został przeniesiony do środka warunku 'if'.
+    // Ustawienie stanu początkowego
     const initialButton = controlsContainer.querySelector('.switch-button');
     if (initialButton) {
-        initialButton.classList.add('is-active');
-        const initialTargetId = initialButton.dataset.target;
-        highlightSvgPart(initialTargetId);
-        showDescription(initialTargetId);
+        initialButton.click();
     }
-}
+});

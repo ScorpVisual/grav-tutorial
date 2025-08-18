@@ -1,20 +1,14 @@
 <!DOCTYPE html>
-<html lang="{{ grav.language.getActive ?: 'en' }}">
+<html lang="pl">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
-
-    {% do assets.addCss('theme://dist/css/site.css', 30) %}
-    {% do assets.addCss('theme://dist/css/tailwind-output.css', 50) %}
-    {% do assets.addCss('theme://dist/css/main.css', 100) %}
-    {{ assets.css()|raw }}
+    <title>Proste demo dla klienta</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-{% block content %}
     <header class="relative">
         <nav class="absolute top-0 left-0 w-full z-20 px-4 py-2 navbar">
             <div class="grid-container__navbar navbar__container px-6">
@@ -655,11 +649,7 @@
             </div>
         </section>
         <div class="marble-slab test-div"></div>
-    {# The inline <style> block has been removed from here. #}
 
-    {# =================================================================== #}
-    {# I. FOUNDATIONAL & GLOBAL ELEMENTS                                 #}
-    {# =================================================================== #}
     <div class="element-section">
         <h2>I. Foundational & Global Elements</h2>
         <p><em>VK THEMES</em></p>
@@ -705,9 +695,7 @@
         </div>
     </div>
 
-    {# =================================================================== #}
-    {# II. NAVIGATION & STRUCTURE                                        #}
-    {# =================================================================== #}
+
     <div class="element-section">
         <h2>II. Navigation & Structure</h2>
         <p><em>Styling for these components will be handled by your SASS files.</em></p>
@@ -723,9 +711,6 @@
         </div>
     </div>
 
-    {# =================================================================== #}
-    {# III. INTERACTIVE & COMMON UI ELEMENTS                             #}
-    {# =================================================================== #}
     <div class="element-section">
         <h2>III. Interactive & Common UI Elements</h2>
 
@@ -805,7 +790,7 @@
         </form>
 
 
-            {# card white #}
+            
             <div class=" p-8 rounded-xl flex flex-col items-center text-center white-gradient-down">
                 <div class="flex-shrink-0 mb-8">
                     <div class="flex items-center justify-center h-32 w-32 card-icon-bg">
@@ -822,7 +807,7 @@
 
         <h3>Cards</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-            {# card white #}
+            
             <div class=" p-8 rounded-xl flex flex-col items-center text-center white-gradient-down">
                 <div class="flex-shrink-0 mb-8">
                     <div class="flex items-center justify-center cherry-img-border">
@@ -836,7 +821,7 @@
                     Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
                 </p>
             </div>
-                {# card sand #} 
+                 
             <div class=" p-8 rounded-xl flex flex-col items-center text-center sand-gradient-down">
                 <div class="flex-shrink-0 mb-8">
                     <div class="flex items-center justify-center cherry-img-border">
@@ -850,7 +835,7 @@
                     Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
                 </p>
             </div>             
-                {# card black #} 
+                
             <div class=" p-8 rounded-xl flex flex-col items-center text-center black-gradient-down">
                 <div class="flex-shrink-0 mb-8">
                     <div class="flex items-center justify-center golden-img-border">
@@ -866,7 +851,7 @@
             </div>              
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {# card red #}
+            
             <div class=" p-8 rounded-xl flex flex-col items-center text-center red-gradient-down">
                 <div class="flex-shrink-0 mb-8">
                     <div class="flex items-center justify-center golden-img-border">
@@ -880,7 +865,7 @@
                     Oferujemy kompleksowe usługi budowy pomników, od projektu po realizację. Pomagamy w wyborze odpowiednich materiałów i wzorów, a także doradzamy w&nbsp;procesie&nbsp;pochówku.
                 </p>
             </div>
-                {# card granite #} 
+                
             <div class=" p-8 rounded-xl flex flex-col items-center text-center granite-gradient-down">
                 <div class="flex-shrink-0 mb-8">
                     <div class="flex items-center justify-center dark-img-border">
@@ -896,7 +881,7 @@
                 <button class="btn-card">
                     <a href="#kontakt">Kontakt</a></button>
             </div>             
-                {# card marbleTest #} 
+                 
             <div class=" p-8 rounded-xl flex flex-col items-center text-center marbleTest-gradient-down">
                 <div class="flex-shrink-0 mb-8">
                     <div class="flex items-center justify-center golden-img-border">
@@ -938,7 +923,7 @@
     
     <div class="article-card__meta">
       <div class="article-card__meta-item">
-        <img src="{{ url('theme://images/svg/articleCard--calendar.svg') }}" alt="" class="icon-svg">
+        <img src="src/images/svg/articleCard--calendar.svg" alt="" class="icon-svg">
         <span>20.08.2025</span>
       </div>
       <div class="article-card__meta-item">
@@ -947,10 +932,6 @@
     </div>
   </div>
 </div>
-
-    {# =================================================================== #}
-    {# IV. CONTENT-SPECIFIC ELEMENTS                                     #}
-    {# =================================================================== #}
     <div class="element-section">
         <h2>IV. Content-Specific Elements</h2>
 
@@ -1071,9 +1052,7 @@
   </div>
 </section>
 
-    {# =================================================================== #}
-    {# V. MARKETING & CONVERSION ELEMENTS                                #}
-    {# =================================================================== #}
+
     <div class="element-section">
         <h2>V. Marketing & Conversion Elements</h2>
 
@@ -1206,15 +1185,7 @@
 
   </div>
 </footer>
-
 </div>
-
-  {% block javascripts %}
-    {% do assets.addJs('theme://js/main.js', {'group': 'bottom', 'attributes': {'type': 'module'}}) %}    
-    {% endblock %}
-
-    {# Krok 2: Wyrenderuj wszystkie skrypty dodane do grupy 'bottom' #}
-    {{ assets.js('bottom')|raw }}
+ <script src="main.js"></script>
 </body>
 </html>
-{% endblock %}

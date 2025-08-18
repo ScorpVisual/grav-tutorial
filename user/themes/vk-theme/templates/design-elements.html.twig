@@ -1,37 +1,6 @@
 {% extends 'partials/base.html.twig' %}
-
 {% block content %}
-    {# This pulls the title and content from your .md file #}
-    {# <h1>{{ page.title }}</h1>
-    {{ page.content|raw }} #}
-    {% include 'partials/landing-tombstone.html.twig' with {'title': page.title, 'content': page.content} %}
-
-<section class="px-4 py-16 max-w-screen-xl mx-auto">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-      <div>
-        <img src="{{ theme_url }}/images/photos/stone-master.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
-    </div>
-    <div>
-        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
-            <span class="c-cherry">Kamieniarstwo Wiśniewski:</span><br>
-            Zaufany zakład kamieniarski na Śląsku
-        </h1>
-        <p class="text-lg text-gray-700">
-              Od ponad 30 lat dostarczamy wysokiej jakości usługi kamieniarskie, specjalizując się w projektowaniu i wykonawstwie nagrobków dla klientów z Dąbrowy Górniczej i całego Śląska.
-        </p>
-        <p class="text-lg text-gray-700">
-              Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
-        </p>
-                <div class="flex gap-3 mt-8">
-                <a href="#main-content" class="btn-primary flex-grow text-center">
-                    Nasze usługi
-                </a>
-                <a href="#main-content" class="btn-cta flex-grow text-center">
-                    Skontaktuj się
-                </a>
-        </div>
-    </div>
-</section>
+{% include 'partials/landing-tombstone.html.twig'%}
 <section>
     <div class="max-w-4xl mx-auto">
         <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">

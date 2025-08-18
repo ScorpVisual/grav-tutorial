@@ -295,7 +295,11 @@
   color: #fff;
 }
 
-.hidden {
+.schowaj {
+  display: none;
+}
+
+.schowaj-mocno {
   display: none !important;
 }
 
@@ -1148,6 +1152,9 @@ hr {
   z-index: 10;
 }
 
+.product-img {
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
 .product-img:hover {
   box-shadow: 0 0 12px #fff;
 }
@@ -2764,22 +2771,6 @@ option {
 
 .tomb-desc {
   animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.landing-tombstone--desktop {
-  display: none;
-  padding: 0;
-}
-.landing-tombstone--mobile {
-  display: block;
-}
-@media (min-width: 1024px) {
-  .landing-tombstone--desktop {
-    display: block;
-  }
-  .landing-tombstone--mobile {
-    display: none;
-  }
 }
 
 .contact {

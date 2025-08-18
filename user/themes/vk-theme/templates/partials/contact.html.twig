@@ -1,0 +1,77 @@
+<section class="contact shadow-lg" id="kontakt">
+    <div class="contact__header border-bot-cherry">
+        <h2 class="contact__title">Kontakt</h2>
+        <p class="contact__description">Masz pytania? Skontaktuj się z nami — jesteśmy tu, by pomóc.</p>
+    </div>
+
+    <div class="contact__grid">
+        <div class="contact__column">
+            <div class="contact__card">
+                <h3 class="contact__card-title">Adres</h3>
+                <ul class="contact__card-list">
+                    <li class="contact__card-item">
+                        <img src="{{ theme_url }}/images/icons/telephone-fill.svg" class="contact__card-item--svg" alt="Ikona telefonu">
+                        <a href="tel:+48600428129" class="text-lg text-text-near-black group-hover:text-secondary transition-colors duration-300 block">
+                            <span style="unicode-bidi:bidi-override; direction: rtl;">
+                                921 824 006 84+
+                            </span>
+                        </a>
+                    </li>
+                    <li class="contact__card-item">
+                        <img src="{{ theme_url }}/images/icons/email.svg" class="contact__card-item--svg" alt="Ikona email">
+                        <a href="mailto:kontakt@kamieniarstwowisniewski.pl">kontakt@kamieniarstwowisniewski.pl</a>
+                    </li>
+                    <li class="contact__card-item">
+                        <img src="{{ theme_url }}/images/icons/location.svg" class="contact__card-item--svg" alt="Ikona lokalizacji">
+                        <p>41-300 Dąbrowa Górnicza</p>
+                    </li>
+                </ul>
+                <div class="mt-6 pt-4 border-t border-gray-200">
+                    <p class="contact__card-text">
+                        <span class="c-cherry font-cormorant text-3xl font-bold underline--light-cherry">Kamieniarstwo Wiśniewski</span><br>
+                        41-300 Dąbrowa Górnicza<br>
+                        Woj. Śląskie
+                    </p>
+                    <p class="text-gray-500 pt-4">Dojeżdżamy do 100km od miejsca stałej siedziby! Szczegóły do ustalenia indywidualnego z klientem.</p>
+                </div>
+            </div>
+
+            <div class="contact__card">
+                <h3 class="contact__card-title">Godziny otwarcia</h3>
+                <ul class="contact__card-list">
+                    <li class="contact__card-item"><strong>Dni robocze:</strong> 08:00 – 18:00</li>
+                    <li class="contact__card-item"><strong>Sobota:</strong> 10:00 – 14:00</li>
+                    <li class="contact__card-item"><strong>Niedziela:</strong> Nieczynne</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contact__column">
+            <h2 class="contact__column--title text-4xl underline--light-grey">Napisz do nas!</h2>
+            <form action="send_email.php" method="POST" class="form-container">
+                <div>
+                    <label for="contact-name" class="block text-sm font-medium text-text-near-black mb-1">Imię i Nazwisko</label>
+                    <input type="text" name="name" id="contact-name" autocomplete="name" required class="form-input" placeholder="Np. Jan Kowalski">
+                </div>
+                <div>
+                    <label for="contact-email" class="block text-sm font-medium text-text-near-black mb-1">Adres Email</label>
+                    <input type="email" name="email" id="contact-email" autocomplete="email" required class="form-input" placeholder="Np. jan.kowalski@example.com">
+                </div>
+                <div>
+                    <label for="contact-subject" class="block text-sm font-medium text-text-near-black mb-1">Temat</label>
+                    <input type="text" name="subject" id="contact-subject" class="form-input" placeholder="Np. Zapytanie ofertowe, Współpraca">
+                </div>
+                <div>
+                    <label for="contact-message" class="block text-sm font-medium text-text-near-black mb-1">Wiadomość</label>
+                    <textarea id="contact-message" name="message" rows="5" required class="form-textarea" placeholder="Twoja wiadomość..."></textarea>
+                </div>
+                <div>
+                    <p class="text-sm text-slate mb-6">Wysyłając wiadomość zgadzasz się na przetwarzanie swoich danych osobowych przez właściciela domeny: Kamieniarstwo Wiśniewski.</p>
+                    <button type="submit" class="btn-card--carnelian">
+                        Wyślij wiadomość
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
