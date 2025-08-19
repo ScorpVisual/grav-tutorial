@@ -436,6 +436,10 @@
   padding-bottom: 0.5rem;
 }
 
+.hp1 {
+  border: 2px solid green !important;
+}
+
 .gradient-up-ink {
   position: relative;
   isolation: isolate;

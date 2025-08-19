@@ -1,6 +1,33 @@
 {% extends 'partials/base.html.twig' %}
 {% block content %}
 {% include 'partials/landing-tombstone.html.twig'%}
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <div>
+        <img src="{{ theme_url }}/images/photos/stone-master.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            <span class="c-cherry">Kamieniarstwo Wiśniewski:</span><br>
+            Zaufany zakład kamieniarski na Śląsku
+        </h1>
+        <p class="text-lg text-gray-700">
+              Od ponad 30 lat dostarczamy wysokiej jakości usługi kamieniarskie, specjalizując się w projektowaniu i wykonawstwie nagrobków dla klientów z Dąbrowy Górniczej i całego Śląska.
+        </p>
+        <p class="text-lg text-gray-700">
+              Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
+        </p>
+                <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Nasze usługi
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
 <section>
     <div class="max-w-4xl mx-auto">
         <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
@@ -57,7 +84,7 @@
             <p class="text-gray-700 text-lg">
                 Tutaj znajduje się szczegółowy opis wybranego produktu. Możesz tu umieścić wszystkie niezbędne informacje, które pomogą klientowi podjąć decyzję. Opis może być dłuższy i zawierać kilka akapitów.
             </p>
-            <div class="flex gap-3 mt-auto pt-4">
+            <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4 mt-auto">
                 <a href="#szczegoly" class="btn-primary flex-grow text-center">
                     Zobacz realizacje
                 </a>
@@ -83,11 +110,11 @@
             <div class="text-xl md:text-2xl font-bold text-gray-900 mt-2">
                 Cena: <span class="c-cherry">od 5499 PLN</span>
             </div>
-
             <p class="text-gray-700 text-lg">
                 Tutaj znajduje się szczegółowy opis wybranego produktu. Możesz tu umieścić wszystkie niezbędne informacje, które pomogą klientowi podjąć decyzję. Opis może być dłuższy i zawierać kilka akapitów.
             </p>
-            <div class="flex gap-3 mt-auto pt-4">
+
+            <div class="flex flex-col lg:flex-row gap-3 mt-auto">
                 <a href="#szczegoly" class="btn-primary flex-grow text-center">
                     Zobacz realizacje
                 </a>
@@ -95,6 +122,7 @@
                     Zamów produkt
                 </a>
             </div>
+
         </div>
     </div>
 </div>
