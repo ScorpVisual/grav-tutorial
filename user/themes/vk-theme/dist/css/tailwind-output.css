@@ -987,6 +987,10 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.bg-cover {
+  background-size: cover;
+}
+
 .bg-center {
   background-position: center;
 }
@@ -994,6 +998,10 @@ video {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .p-4 {
@@ -1006,10 +1014,6 @@ video {
 
 .p-8 {
   padding: 2rem;
-}
-
-.p-0 {
-  padding: 0px;
 }
 
 .px-2 {
@@ -1183,6 +1187,10 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.opacity-40 {
+  opacity: 0.4;
+}
+
 .shadow-inner {
   --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
@@ -1311,20 +1319,12 @@ video {
     border-top-right-radius: 0px;
   }
 
-  .sm\:p-6 {
-    padding: 1.5rem;
-  }
-
-  .sm\:p-0 {
-    padding: 0px;
-  }
-
-  .sm\:p-2 {
-    padding: 0.5rem;
-  }
-
   .sm\:p-4 {
     padding: 1rem;
+  }
+
+  .sm\:p-6 {
+    padding: 1.5rem;
   }
 
   .sm\:px-4 {
@@ -1363,12 +1363,12 @@ video {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
-  .md\:p-8 {
-    padding: 2rem;
-  }
-
   .md\:p-6 {
     padding: 1.5rem;
+  }
+
+  .md\:p-8 {
+    padding: 2rem;
   }
 
   .md\:text-2xl {

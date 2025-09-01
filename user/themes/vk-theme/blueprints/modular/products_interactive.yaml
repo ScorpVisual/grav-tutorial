@@ -1,0 +1,59 @@
+title: 'Sekcja: Interaktywne Produkty'
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Treść
+          fields:
+            header.sidebar_title:
+              type: text
+              label: Tytuł listy produktów
+              default: 'Nasze produkty'
+
+            header.products:
+              type: list
+              label: Lista Produktów
+              fields:
+                .tab_image:
+                  type: pagemedia
+                  label: 'Miniaturka produktu (prawa kolumna)'
+                .tab_title:
+                  type: text
+                  label: 'Tytuł na miniaturce'
+                .main_image:
+                  type: pagemedia
+                  label: 'Główny obrazek produktu (lewa kolumna)'
+                .main_title:
+                  type: text
+                  label: 'Główny tytuł produktu (lewa kolumna)'
+                .price:
+                  type: text
+                  label: 'Cena (np. od 5499 PLN)'
+                .description:
+                  type: textarea
+                  label: 'Szczegółowy opis produktu'
+                .buttons:
+                  type: list
+                  label: 'Przyciski dla produktu'
+                  fields:
+                    .text:
+                      type: text
+                      label: Tekst przycisku
+                    .url:
+                      type: text
+                      label: Link (URL)
+                    .class:
+                      type: select
+                      label: Styl przycisku
+                      default: 'btn-primary'
+                      options:
+                        'btn-primary flex-grow text-center': 'Podstawowy'
+                        'btn-cta flex-grow text-center': 'CTA'

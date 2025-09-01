@@ -1,0 +1,31 @@
+{% set image = page.media[page.header.image] %}
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div>
+            {% if image %}
+            <img src="{{ image.url }}" alt="{{ page.header.main_title }}" class="w-full object-cover golden-img-border hard-shadow">
+            {% endif %}
+        </div>
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+                {% if page.header.pre_title %}
+                <span class="c-cherry">{{ page.header.pre_title }}</span><br>
+                {% endif %}
+                {{ page.header.main_title }}
+            </h1>
+            
+            {{ page.content }}
+
+            {% if page.header.buttons %}
+            <div class="flex flex-col lg:flex-row gap-3 mt-6">
+                {% for button in page.header.buttons %}
+                <a href="{{ button.url }}" class="{{ button.class }}">
+                    {{ button.text }}
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

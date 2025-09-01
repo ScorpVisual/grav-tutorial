@@ -1,0 +1,59 @@
+title: 'Sekcja: Interaktywne Usługi'
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Treść
+          fields:
+            header.sidebar_title:
+              type: text
+              label: Tytuł listy usług
+              default: 'Nasze Usługi'
+
+            header.services:
+              type: list
+              label: Lista Usług
+              fields:
+                .tab_title:
+                  type: text
+                  label: 'Tytuł w karcie (lewa kolumna)'
+                .tab_subtitle:
+                  type: text
+                  label: 'Podtytuł w karcie (lewa kolumna)'
+                .main_image:
+                  type: pagemedia
+                  label: 'Główny obrazek usługi (prawa kolumna)'
+                .main_title:
+                  type: text
+                  label: 'Główny tytuł usługi (prawa kolumna)'
+                .price:
+                  type: text
+                  label: 'Cena (np. od 499 PLN)'
+                .description:
+                  type: textarea
+                  label: 'Szczegółowy opis usługi'
+                .buttons:
+                  type: list
+                  label: 'Przyciski dla usługi'
+                  fields:
+                    .text:
+                      type: text
+                      label: Tekst przycisku
+                    .url:
+                      type: text
+                      label: Link (URL)
+                    .class:
+                      type: select
+                      label: Styl przycisku
+                      default: 'btn-primary'
+                      options:
+                        'btn-primary flex-grow text-center': 'Podstawowy'
+                        'btn-cta flex-grow text-center': 'CTA'

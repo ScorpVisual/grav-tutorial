@@ -1,0 +1,59 @@
+<section class="max-w-7xl mx-auto p-0 sm:p-4 md:p-6 lg:p-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        {# Lewa kolumna - szczegóły (domyślnie pierwszego) produktu #}
+        {% set first_product = page.header.products|first %}
+        <div class="md:col-span-2">
+            <div class="white-marble-slab overflow-hidden h-full flex flex-col">
+                {% set image = page.media[first_product.main_image] %}
+                {% if image %}
+                <img src="{{ image.url }}" alt="{{ first_product.main_title }}" class="w-full h-64 object-cover cherry-img-border mb-2">
+                {% endif %}
+                
+                <div class="p-0 flex flex-col flex-grow gap-4 md:p-6">
+                    <h2 class="text-3xl font-bold text-gray-800 underline--cherry">{{ first_product.main_title }}</h2>
+                    <div class="text-xl md:text-2xl font-bold text-gray-900 mt-2">
+                        Cena: <span class="c-cherry">{{ first_product.price }}</span>
+                    </div>
+
+                    <p class="text-gray-700 text-lg">
+                        {{ first_product.description|nl2br }}
+                    </p>
+
+                    {% if first_product.buttons %}
+                    <div class="flex flex-col lg:flex-row gap-3 mt-auto">
+                        {% for button in first_product.buttons %}
+                        <a href="{{ button.url }}" class="{{ button.class }}">
+                            {{ button.text }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {# Prawa kolumna - lista produktów #}
+        <div class="md:col-span-1">
+            <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-8 underline--cherry">{{ page.header.sidebar_title }}</h2>
+            <div class="flex flex-col gap-5">
+                {% for product in page.header.products %}
+                <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img {% if loop.first %}is-active{% endif %}">
+                    {% set thumb = page.media[product.tab_image] %}
+                    {% if thumb %}
+                    <img src="{{ thumb.url }}" alt="{{ product.tab_title }}" class="w-full h-full object-cover">
+                    {% endif %}
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white">
+                        <span class="product-img__mini--check text-lg font-bold tracking-widest">
+                            OBEJRZYJ
+                        </span>
+                        <div class="product-img__mini--title mt-2 text-xl font-semibold">
+                            {{ product.tab_title }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

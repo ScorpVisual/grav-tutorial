@@ -265,3 +265,22 @@
     }
   }
 }
+
+.navbar-gradient-down {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px; 
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba($ink, .9) 0%,    
+      rgba($ink, 0.5) 50%,   
+      rgba($ink, 0) 100%     
+    );
+  }
+}
