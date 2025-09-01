@@ -810,6 +810,11 @@ hr {
   background-color: #e1dfdd;
   opacity: 1;
 }
+@media (max-width: 640px) {
+  .marble-slab {
+    padding-inline: 0.6rem;
+  }
+}
 
 .dark-marble-slab {
   position: relative;
@@ -845,6 +850,11 @@ hr {
   background: url("../../images/textures/marble-black.jpg") center/cover no-repeat;
   background-color: #030208;
   opacity: 1;
+}
+@media (max-width: 640px) {
+  .dark-marble-slab {
+    padding-inline: 0.6rem;
+  }
 }
 
 .white-marble-slab {
@@ -882,6 +892,11 @@ hr {
   background-color: #e1dfdd;
   opacity: 1;
 }
+@media (max-width: 640px) {
+  .white-marble-slab {
+    padding-inline: 0.6rem;
+  }
+}
 
 .dark-textured-marble-slab {
   position: relative;
@@ -917,6 +932,11 @@ hr {
   background: url("../../images/textures/marble-black-1.jpg") center/cover no-repeat;
   background-color: #030208;
   opacity: 1;
+}
+@media (max-width: 640px) {
+  .dark-textured-marble-slab {
+    padding-inline: 0.6rem;
+  }
 }
 
 .test-div {
@@ -1206,7 +1226,8 @@ hr {
 .btn-primary {
   display: inline-block;
   padding: 0.6rem 0.8rem;
-  margin: 0.2rem 0.6rem;
+  margin-inline: auto;
+  margin-block: 0.2rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -1233,7 +1254,8 @@ hr {
   box-shadow: none;
   display: inline-block;
   padding: 0.6rem 0.8rem;
-  margin: 0.2rem 0.6rem;
+  margin-inline: auto;
+  margin-block: 0.2rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -1257,7 +1279,8 @@ hr {
 .btn-cta {
   display: inline-block;
   padding: 0.6rem 0.8rem;
-  margin: 0.2rem 0.6rem;
+  margin-inline: auto;
+  margin-block: 0.2rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -1283,7 +1306,8 @@ hr {
 .btn-cta--big {
   display: inline-block;
   padding: 0.6rem 0.8rem;
-  margin: 0.2rem 0.6rem;
+  margin-inline: auto;
+  margin-block: 0.2rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -1310,7 +1334,8 @@ hr {
 .btn-secondary {
   display: inline-block;
   padding: 0.6rem 0.8rem;
-  margin: 0.2rem 0.6rem;
+  margin-inline: auto;
+  margin-block: 0.2rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -1337,7 +1362,8 @@ hr {
   box-shadow: none;
   display: inline-block;
   padding: 0.6rem 0.8rem;
-  margin: 0.2rem 0.6rem;
+  margin-inline: auto;
+  margin-block: 0.2rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -1384,7 +1410,8 @@ hr {
 .btn-card {
   display: inline-block;
   padding: 0.6rem 0.8rem;
-  margin: 0.2rem 0.6rem;
+  margin-inline: auto;
+  margin-block: 0.2rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -1416,7 +1443,8 @@ hr {
 .btn-card--carnelian {
   display: inline-block;
   padding: 0.6rem 0.8rem;
-  margin: 0.2rem 0.6rem;
+  margin-inline: auto;
+  margin-block: 0.2rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -1759,6 +1787,11 @@ hr {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 200ms, border-color 200ms, box-shadow 200ms;
+}
+@media (max-width: 640px) {
+  .pick-a-card {
+    padding-inline: 0.6rem;
+  }
 }
 .pick-a-card:hover {
   border-color: #800020;
@@ -2376,7 +2409,7 @@ option {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding-inline: 1rem;
+  padding-inline: 0.6rem;
   padding-block: 2rem;
   min-height: 100vh;
   overflow: hidden;
@@ -2784,7 +2817,13 @@ option {
   border-radius: 4px;
   max-width: 60rem;
   margin: 2rem auto;
-  padding: 1.5rem;
+  padding-block: 1.5rem;
+  padding-inline: 1.5rem;
+}
+@media (max-width: 640px) {
+  .contact {
+    padding-inline: 0.6rem;
+  }
 }
 .contact__header {
   text-align: center;

@@ -10,7 +10,12 @@
   border-radius: $border-radius;
   max-width: 60rem;
   margin: 2rem auto;
-  padding: 1.5rem;
+  padding-block: 1.5rem;
+  padding-inline: 1.5rem;;
+
+    @media (max-width: $breakpoint-sm) {
+    padding-inline: $minimal-padding;
+  }
 
   &__header {
     text-align: center;
