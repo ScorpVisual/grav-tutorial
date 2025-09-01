@@ -72,8 +72,13 @@
 
 
 .switcher {
+  display: flex;
     border: 2px solid $cherry;
     transition: background-color 0.2s, box-shadow 0.2s;
+
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+  }
     &:hover {
         background-color: $sand;
         color: $slate;
@@ -86,10 +91,29 @@
     outline: 2px solid $sand;
     outline-offset: 2px;
   }
+
 }
 
 .btn-card {
   @include base-btn();
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-card--carnelian {
+  @include base-btn(
+        $background: $sand, 
+        $btn-text-color: $carnelian, 
+        $background-focus: $carnelian, 
+        $btn-text-focus: $white, 
+        $shadow-color: $ink);
 
   display: flex;
   justify-content: center;

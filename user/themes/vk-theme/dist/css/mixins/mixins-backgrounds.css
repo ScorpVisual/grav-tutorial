@@ -1,73 +1,73 @@
 .c-white {
-  color: #fff;
+  color: #fff !important;
 }
 
 .c-black {
-  color: #000;
+  color: #000 !important;
 }
 
 .c-grey {
-  color: rgb(150, 150, 150);
+  color: rgb(150, 150, 150) !important;
 }
 
 .c-marble {
-  color: #e1dfdd;
+  color: #e1dfdd !important;
 }
 
 .c-ink {
-  color: #030208;
+  color: #030208 !important;
 }
 
 .c-cherry {
-  color: #800020;
+  color: #800020 !important;
 }
 
 .c-trans {
-  color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0) !important;
 }
 
 .c-light-cherry {
-  color: #d12852;
+  color: #d12852 !important;
 }
 
 .c-pink {
-  color: #FCD3C1;
+  color: #FCD3C1 !important;
 }
 
 .c-slate {
-  color: #393c45;
+  color: #393c45 !important;
 }
 
 .c-dark-slate {
-  color: #1e2939;
+  color: #1e2939 !important;
 }
 
 .c-granite {
-  color: #2f2f2f;
+  color: #2f2f2f !important;
 }
 
 .c-sand {
-  color: #edd7cb;
+  color: #edd7cb !important;
 }
 
 .c-carnelian {
-  color: #6b2525;
+  color: #6b2525 !important;
 }
 
 .c-red-marble {
-  color: #572015;
+  color: #572015 !important;
 }
 
 .c-gold {
-  color: linear-gradient(45deg, rgba(213, 168, 72, 0.8) 0%, rgba(243, 198, 102, 0.9) 50%, rgba(213, 168, 72, 0.8) 100%);
+  color: linear-gradient(45deg, rgba(213, 168, 72, 0.8) 0%, rgba(243, 198, 102, 0.9) 50%, rgba(213, 168, 72, 0.8) 100%) !important;
 }
 
 .c-pyrite {
-  color: #ac9f58;
+  color: #ac9f58 !important;
 }
 
 .c-aluminium {
-  color: rgba(159, 173, 197, 0.8);
+  color: rgba(159, 173, 197, 0.8) !important;
 }
 
 .color-box {
@@ -226,6 +226,31 @@
     transform: translateY(0);
   }
 }
+.animated-underline {
+  position: relative;
+  color: #FCD3C1;
+  transition: color 0.2s ease-in-out;
+  padding-bottom: 0.2rem;
+  width: 100%;
+}
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0.12rem;
+  width: 0;
+  background: #393c45;
+  border-radius: 1rem;
+  transition: width 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+}
+.animated-underline:hover, .animated-underline:focus {
+  color: #800020;
+}
+.animated-underline:hover::after, .animated-underline:focus::after {
+  width: 100%;
+}
+
 @keyframes pulsate-effect {
   from {
     opacity: 1;

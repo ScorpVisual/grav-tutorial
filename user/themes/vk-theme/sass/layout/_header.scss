@@ -5,170 +5,263 @@
 @use '../mixins/mixins-divs.scss' as *;
 @use 'sass:color';
 
+
+
+// Pełny, scalony kod SCSS dla komponentu navbar
+
 .navbar {
+  width: 100%;
+  position: relative;
+
+  &__container {
     width: 100%;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    &__container {
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
-        align-items: center;
-        width: 100%;
-        gap: 2rem;
-        padding-block: .8rem;
-        
+    @media (min-width: $breakpoint-lg) {
+      display: grid;
+      grid-template-columns: auto 1fr auto; // logo | menu | akcje
+      align-items: center;
+      gap: 2rem;
+      padding-block: 0.8rem;
     }
+  }
 
-    &__logotype {
-    justify-self: start;
-    position: relative;
-    padding: 0.8rem 1.2rem;
-    isolation: isolate; 
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: inherit;
-    text-decoration: none;    
-    &::before {
-        content: '';
-        position: absolute;
-        pointer-events: none !important;
-        top: 0;
-        left: 0;
-        width: 0; 
-        height: 100%;
-        background-image: url('../../images/textures/marble-white-1.jpg');
-        border-radius: 2px; 
-        z-index: -1; 
-        transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  // ––––––––––––––––––––––––––––––––––––––––––––––
+  // LOGOTYPE
+  // ––––––––––––––––––––––––––––––––––––––––––––––
+  &__logotype {
+    &--mobile {
+      display: block;
+      justify-self: start;
+      height: $mobile-icon-size;
+
+      @media (min-width: $breakpoint-xl) {
+        display: none;
+      }
     }
+    &--mobile-svg {
+      fill: #fff !important;
+    }
+    &--desktop {
+      display: none;
 
-    &:hover {
+      @media (min-width: $breakpoint-xl) {
+        display: block;
+        justify-self: start;
+        position: relative;
+        padding: 0.8rem 1.2rem;
+        isolation: isolate;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: inherit;
+        text-decoration: none;
+
         &::before {
-        width: 100%;
-        border: 1px solid $white;
-         box-shadow: 
-            inset 2px 2px 6px $white,
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 100%;
+          background-image: url('../../images/textures/marble-white-1.jpg');
+          border-radius: 2px;
+          z-index: -1;
+          pointer-events: none !important;
+          transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        &:hover::before {
+          width: 100%;
+          border: 1px solid $white;
+          box-shadow: inset 2px 2px 6px $white,
             inset 2px 2px 6px rgba($grey, 0.3),
             0 8px 8px rgba($ink, 0.3);
-            
+        }
+      }
     }
-    }
+    &--svg {
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-
-&--svg {
-    cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    
-    .logotype-symbol,
-    .logotype-text {
+      .logotype-symbol,
+      .logotype-text {
         fill: $marble;
         transition: fill 0.3s ease-out;
-    }
-    
-    .logotype-text {
-        transition-delay: 0.1s;
-    }
+      }
 
-    &:hover,
-    .navbar__logotype:hover & {
+      .logotype-text {
+        transition-delay: 0.1s;
+      }
+
+      &:hover,
+      .navbar__logotype--desktop:hover & {
         transform: translateX(-5px);
+
         .logotype-symbol,
         .logotype-text {
-            fill: $cherry;
+          fill: $cherry;
         }
+      }
     }
-}
-}
+  }
 
-    &__menu {
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-        
+  // ––––––––––––––––––––––––––––––––––––––––––––––
+  // AKCJE (KONTAKT + HAMBURGER)
+  // ––––––––––––––––––––––––––––––––––––––––––––––
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @media (min-width: $breakpoint-lg) {
+      justify-self: end;
+    }
+  }
+
+  // ––––––––––––––––––––––––––––––––––––––––––––––
+  // MENU & LINKS
+  // ––––––––––––––––––––––––––––––––––––––––––––––
+  &__menu {
+    display: none;
+
+    @media (min-width: $breakpoint-lg) {
+      display: flex;
+      justify-self: center; 
+    }
+  }
+
+  &__links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column; 
+    text-align: center;
+
+    @media (min-width: $breakpoint-lg) {
+      flex-direction: row;
+      gap: 2rem;
     }
 
-    &__links {
-        font-size: 1.6rem;
-        display: flex;
-        gap: 2.5rem;
-        margin: 0;
-        padding: 0;
-        list-style: none;
+    &--a {
+      font-size: 1.6rem;
+      font-weight: 500;
+      text-decoration: none;
+
+      // Style dla linków w menu desktopowym
+      @media (min-width: $breakpoint-lg) {
         color: $marble;
-        
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            font-weight: 500;
-            @include animated-underline(
-                    $initial-color: $marble,
-                    $hover-color: $pink,
-                    $underline-color: $cherry
-                    )
-        }
+        @include animated-underline(
+          $initial-color: $marble,
+          $hover-color: $pink,
+          $underline-color: $cherry
+        );
+      }
+      @media (min-width: $breakpoint-xl) {
+        font-size: 1.6rem;
+        color: $marble;
+        @include animated-underline(
+          $initial-color: $marble,
+          $hover-color: $pink,
+          $underline-color: $cherry
+        );
+      }
     }
-    &__cta {
-        justify-self: end;
+  }
+
+  // ––––––––––––––––––––––––––––––––––––––––––––––
+  // PEŁNOEKRANOWE MENU MOBILNE
+  // ––––––––––––––––––––––––––––––––––––––––––––––
+  &__full {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($ink, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
+
+    padding: 6rem 10%; 
+    overflow-y: auto;   
+
+    &.is-active {
+      opacity: 1;
+      pointer-events: auto;
     }
-    &__toggle {
-        display: none;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        z-index: 100;
 
-        span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: $ink;
-            margin: 5px 0;
-            transition: all 0.3s ease-in-out;
-        }
+    .navbar__links {
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem; 
+      width: 100%; 
+      align-content: start; 
     }
 
-    @media (max-width: 768px) {
-        &__toggle {
-            display: block;
-        }
+    // Style samych linków pozostają bez zmian
+    .navbar__links--a {
+        font-size: 1.8rem; // Możesz lekko zmniejszyć font dla lepszego dopasowania
+        color: $marble;
+        @include animated-underline(
+          $initial-color: $marble,
+          $hover-color: $pink,
+          $underline-color: $cherry
+        );
+      }
+  }
 
-        &__menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: $marble;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-        }
+  // ––––––––––––––––––––––––––––––––––––––––––––––
+  // CTA & TOGGLE
+  // ––––––––––––––––––––––––––––––––––––––––––––––
+&__cta {
+  display: none; 
 
-        &__menu.is-active {
-            max-height: 500px;
-            padding: 2rem 0;
-        }
+  @media (min-width: $breakpoint-lg) {
+    display: block; 
+  }
+}
 
-        &__links {
-            flex-direction: column;
-            text-align: center;
-            gap: 1.5rem;
-        }
+  &__toggle {
+    display: block;
+    background: transparent;
+    border: none;
+    height: $mobile-icon-size;
+    cursor: pointer;
+    z-index: 50; // NAD pełnoekranowym menu
+    padding: 0;
+    transition: transform 0.4s ease-out;
+    will-change: transform;
 
-        &__toggle.is-active {
-            span:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-            span:nth-child(2) {
-                opacity: 0;
-            }
-            span:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-        }
+    &:hover {
+      transform: rotate(-15deg);
     }
+
+    &.is-active {
+      transform: rotate(-90deg);
+      .navbar__toggle--icon {
+        fill: $cherry; // Kolor ikony po aktywacji
+      }
+    }
+
+    // @media (min-width: $breakpoint-lg) {
+    //   display: none; // Ukryty na desktopie
+    // }
+  }
+
+  &__toggle--icon {
+    fill: $marble;
+    transition: fill 0.3s ease-in-out;
+
+    .navbar__toggle:hover & {
+      fill: $cherry;
+    }
+  }
 }

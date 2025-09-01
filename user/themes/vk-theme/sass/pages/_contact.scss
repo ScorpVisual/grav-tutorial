@@ -78,6 +78,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid $trans;
+    transition: border-bottom 0.2s ease;
 
     &:hover {
     border-bottom: 1px solid $light-grey;
@@ -85,6 +86,9 @@
     &--svg {
         height: 24px;
         width: auto;
+        @media (max-width: $breakpoint-sm) {
+          display: none;
+        }
         &:hover {
         fill: $cherry !important;
         }

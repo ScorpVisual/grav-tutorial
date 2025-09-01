@@ -57,6 +57,10 @@
   }
 }
 
+.animated-underline {
+  @include animated-underline;
+}
+
 @keyframes pulsate-effect {
   from {
     opacity: 1;

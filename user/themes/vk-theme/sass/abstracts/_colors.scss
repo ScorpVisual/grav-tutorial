@@ -64,25 +64,24 @@ $img-gradient: linear-gradient(180deg, $trans 20%, $ink 100%);
 // $dark-nature-bg: color.adjust($nature, $alpha: -0.9);
 
 
-.c-white { color: $white; }
-.c-black { color: $black; }
-.c-grey { color: $grey; }
-.c-marble { color: $marble; }
-.c-ink { color: $ink; }
-.c-cherry { color: $cherry; }
-.c-trans { color: $trans; }
-.c-light-cherry { color: $light-cherry; }
-.c-pink { color: $pink; }
-.c-slate { color: $slate; }
-.c-dark-slate { color: $dark-slate; }
-.c-granite { color: $granite; }
-.c-sand { color: $sand; }
-.c-carnelian { color: $carnelian; }
-.c-red-marble { color: $red-marble; }
-.c-gold { color: $gold; }
-.c-pyrite { color: $pyrite; }
-.c-aluminium { color: $aluminium; }
-
+.c-white { color: $white !important; }
+.c-black { color: $black !important; }
+.c-grey { color: $grey !important; }
+.c-marble { color: $marble !important; }
+.c-ink { color: $ink !important; }
+.c-cherry { color: $cherry !important; }
+.c-trans { color: $trans !important; }
+.c-light-cherry { color: $light-cherry !important; }
+.c-pink { color: $pink !important; }
+.c-slate { color: $slate !important; }
+.c-dark-slate { color: $dark-slate !important; }
+.c-granite { color: $granite !important; }
+.c-sand { color: $sand !important; }
+.c-carnelian { color: $carnelian !important; }
+.c-red-marble { color: $red-marble !important; }
+.c-gold { color: $gold !important; }
+.c-pyrite { color: $pyrite !important; }
+.c-aluminium { color: $aluminium !important; }
 .color-box {
     height: 5rem;
     width: 5rem;

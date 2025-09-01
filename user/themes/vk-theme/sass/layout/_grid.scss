@@ -1,39 +1,61 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/colors' as *;
 
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   padding-inline: 1rem;
   padding-block: 2rem;
   min-height: 100vh;
+  overflow: hidden;
+
+  @media (min-width: $breakpoint-md) {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+    padding-inline: 2rem;
+    overflow: visible;
+  }
+
 
   &__navbar {
-    grid-column: 1 / -1;
+    @media (min-width: $breakpoint-md) {
+      grid-column: 1 / -1;
+    }
   }
 
   &__sidebar {
     display: none;
 
     @media (min-width: $breakpoint-md) {
-      min-height: 200vh;
+      min-width: 9rem;
       display: block;
       grid-column: span 1;
-      padding-inline: 2px;
+      position: sticky;
+      top: 2rem;
+      align-self: start;
+      height: calc(100vh - 4rem);
+      overflow-y: auto;
+      padding-inline: 0 1rem;
+      border-right: 1px solid $light-grey;
+      z-index: 10;
     }
   }
 
   &__main-content {
-    display: grid;
-    gap: 2rem;
-    grid-column: span 12;
+    min-height: 100vh;
+    padding-inline: 0;
 
     @media (min-width: $breakpoint-md) {
       grid-column: span 11;
+      min-height: 200vh;
     }
   }
 
   &__footer {
-    grid-column: 1 / -1;
+    @media (min-width: $breakpoint-md) {
+      grid-column: 1 / -1;
+    }
   }
 }

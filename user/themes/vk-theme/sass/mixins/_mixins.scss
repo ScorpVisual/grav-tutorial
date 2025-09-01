@@ -56,7 +56,7 @@
   &:focus {
     background-color: $background-focus;
     color: $btn-text-focus;
-    filter: drop-shadow(0 10px 4px rgba($shadow-color, .35));
+    filter: drop-shadow(0 8px 4px rgba($shadow-color, .35));
   }
 }
 

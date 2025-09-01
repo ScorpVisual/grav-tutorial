@@ -1,61 +1,55 @@
-console.log('Loading tombstone controls!');
+console.log('Loading tombstone controls! 🚀');
 
-const controlsContainer = document.getElementById('controls-container');
-
-// Funkcja do podświetlania części SVG (bez zmian)
-const highlightSvgPart = (targetId) => {
-    const oldSvgPart = document.querySelector('.svg-part.highlighted');
-    if (oldSvgPart) {
-        oldSvgPart.classList.remove('highlighted', 'pulsate');
+document.querySelectorAll('.js-controls-container').forEach(controlsContainer => {
+    const parentSection = controlsContainer.closest('section');
+    if (!parentSection) {
+        console.error('Critical Error: Could not find parent <section> for tombstone component!');
+        return;
     }
-    const newSvgPart = document.getElementById(targetId);
-    if (newSvgPart) {
-        newSvgPart.classList.add('highlighted', 'pulsate');
-    }
-};
 
-const showDescription = (targetId) => {
-    // 1. Ukryj wszystkie opisy
-    const allDescriptions = document.querySelectorAll('.tomb-desc');
-    allDescriptions.forEach(desc => {
-        desc.classList.add('is-hidden');
+    const svgContainer = parentSection.querySelector('.js-svg-container');
+    const descContainer = parentSection.querySelector('.js-desc-container');
+
+    if (!svgContainer || !descContainer) {
+        console.error('Critical Error: Missing .js-svg-container or .js-desc-container within the section!');
+        return;
+    }
+
+    const highlightSvgPart = (partName) => {
+        svgContainer.querySelector('.svg-part.highlighted')?.classList.remove('highlighted', 'pulsate');
+        const newSvgPart = svgContainer.querySelector(`.svg-part[data-part="${partName}"]`);
+        if (newSvgPart) {
+            newSvgPart.classList.add('highlighted', 'pulsate');
+        }
+    };
+
+    const showDescription = (partName) => {
+        descContainer.querySelectorAll('.tomb-desc').forEach(desc => {
+            desc.classList.add('is-hidden');
+        });
+        const targetDesc = descContainer.querySelector(`.tomb-desc[data-part="${partName}"]`);
+        if (targetDesc) {
+            targetDesc.classList.remove('is-hidden');
+        }
+    };
+
+    controlsContainer.addEventListener('click', (event) => {
+        const clickedButton = event.target.closest('.switch-button');
+        if (!clickedButton) return;
+
+        controlsContainer.querySelector('.is-active')?.classList.remove('is-active');
+        clickedButton.classList.add('is-active');
+
+        const partName = clickedButton.dataset.part;
+        if (partName) {
+            highlightSvgPart(partName);
+            showDescription(partName);
+        }
     });
 
-    // 2. Pokaż właściwy opis (ZAKTUALIZOWANA LOGIKA)
-    // Budujemy poprawne ID: 'desc-' + wartość z data-target
-    const targetDescId = `desc-${targetId}`; 
-    const targetDesc = document.getElementById(targetDescId);
-    
-    // Teraz ten warunek zostanie spełniony!
-    if (targetDesc) {
-        targetDesc.classList.remove('is-hidden');
+    // Ustawienie stanu początkowego
+    const initialButton = controlsContainer.querySelector('.switch-button');
+    if (initialButton) {
+        initialButton.click();
     }
-};
-
-// GŁÓWNY EVENT LISTENER
-controlsContainer.addEventListener('click', (event) => {
-    const clickedButton = event.target.closest('.switch-button');
-    if (!clickedButton) return;
-
-    // Przełączanie klasy aktywnej dla przycisków
-    const oldActiveButton = controlsContainer.querySelector('.is-active');
-    if (oldActiveButton) {
-        oldActiveButton.classList.remove('is-active');
-    }
-    clickedButton.classList.add('is-active');
-
-    const targetId = clickedButton.dataset.target;
-
-    // Wywołaj obie funkcje
-    highlightSvgPart(targetId);
-    showDescription(targetId); // <- DODANA LINIA
 });
-
-// Ustaw stan początkowy
-const initialButton = controlsContainer.querySelector('.switch-button');
-if (initialButton) {
-    initialButton.classList.add('is-active');
-    const initialTargetId = initialButton.dataset.target;
-    highlightSvgPart(initialTargetId);
-    showDescription(initialTargetId); // <- DODANA LINIA
-}
