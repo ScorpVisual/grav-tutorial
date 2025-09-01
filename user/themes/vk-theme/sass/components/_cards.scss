@@ -130,6 +130,10 @@
   cursor: pointer;
   transition: background-color 200ms, border-color 200ms, box-shadow 200ms;
 
+    @media (max-width: $breakpoint-sm) {
+    padding-inline: $minimal-padding;
+  }
+  
   &:hover {
     border-color: $cherry;
     background-color: $white;
