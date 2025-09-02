@@ -1,0 +1,31 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    {# Wyświetlamy treść ze strony "Produkty" (np. "Nasza oferta...") #}
+    {{ page.content|raw }}
+
+    <div class="product-grid">
+        {# Pętla po kolekcji zdefiniowanej w product_listing.md #}
+        {% for product in page.collection() %}
+            <div class="product-card">
+                {# Pobieramy miniaturkę #}
+                {% set small_image = product.media[product.header.small_image[0].name] %}
+                {% if small_image %}
+                    <a href="{{ product.url }}">
+                        {{ small_image.cropResize(400, 300).html(product.title)|raw }}
+                    </a>
+                {% endif %}
+
+                <h3>
+                    <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+
+                {# Cena i zajawka #}
+                <div class="price">{{ product.header.price }}</div>
+                <p>{{ product.header.excerpt }}</p>
+
+                <a href="{{ product.url }}" class="button">Zobacz więcej</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

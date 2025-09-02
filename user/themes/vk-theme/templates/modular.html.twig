@@ -4,11 +4,11 @@
     {% include 'partials/head.html.twig' %}
 </head>
 <body class="typography">
-    <header class="relative">
-        {# Dołączamy Twój unikalny hero-content dla strony głównej #}
-        {% include 'partials/header.html.twig' %}
-        {% include 'partials/main-hero.html.twig' %}
-    </header>
+<header class="relative">
+    {% include 'partials/header.html.twig' %}
+    {% set hero_template = page.header.hero_type|default('main-hero') %}
+    {% include 'partials/' ~ hero_template ~ '.html.twig' %}
+</header>
 
     <div id="main-content" class="grid-container">
         <aside class="grid-container__sidebar">
@@ -16,13 +16,9 @@
         </aside>
 
         <main class="grid-container__main-content">
-            {# ======================================================= #}
-            {# KLUCZOWA ZMIANA: TUTAJ WSTAWIAMY PĘTLĘ Z MODUŁAMI       #}
-            {# ======================================================= #}
             {% for module in page.collection() %}
                 {{ module.content|raw }}
             {% endfor %}
-            {# ======================================================= #}
 
             {% include 'partials/contact.html.twig' %}
         </main>

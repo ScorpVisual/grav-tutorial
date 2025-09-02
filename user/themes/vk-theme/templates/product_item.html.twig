@@ -1,0 +1,40 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    <article class="product-details">
+        {# Wyświetlenie tytułu z nagłówka strony #}
+        <h1>{{ page.title }}</h1>
+
+        {# Wyświetlenie ceny z naszego niestandardowego pola #}
+        {% if page.header.price %}
+            <div class="price">{{ page.header.price }}</div>
+        {% endif %}
+
+        {# Wyświetlenie dużego opisu (renderujemy go jako Markdown) #}
+        <div class="description">
+            {{ page.header.main_description|markdown }}
+        </div>
+
+        {# Wyświetlenie galerii zdjęć #}
+        {% if page.header.gallery %}
+            <div class="gallery">
+                <h2>Galeria</h2>
+                {% for image in page.media.images(page.header.gallery) %}
+                    <a href="{{ image.url }}" target="_blank">
+                        {{ image.cropResize(300, 200).html('Zdjęcie z galerii')|raw }}
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </article>
+    {% if page.header.buttons %}
+    <div class="product-buttons">
+        {# Robimy pętlę po każdym przycisku z listy #}
+        {% for button in page.header.buttons %}
+            <a href="{{ button.url }}" class="{{ button.class }}">
+                {{ button.text }}
+            </a>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

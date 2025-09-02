@@ -1,0 +1,36 @@
+# user/themes/twoj-motyw/blueprints/landing.yaml
+
+title: Strona Landingowa
+description: Główny szablon strony startowej.
+
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        # Dodajemy nową zakładkę specjalnie dla opcji strony głównej
+        landing_options:
+          type: tab
+          title: Opcje Strony Głównej
+
+          fields:
+            header.featured_product_main:
+              type: pages
+              label: Wyróżniony produkt
+              help: Wybierz jeden produkt, który będzie wyświetlony w dużej sekcji na stronie.
+              destination: 'page@:/produkty'
+
+        # Zachowujemy standardową zakładkę "Treść"
+        content:
+          type: tab
+          title: Treść
+          fields:
+            content:
+              type: editor
+              label: Główna treść strony
+              markdown: true
