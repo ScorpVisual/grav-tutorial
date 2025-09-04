@@ -307,6 +307,17 @@
   display: none !important;
 }
 
+.reset-fadeIn {
+  animation: none !important;
+}
+
+.price-highlighted {
+  color: #edd7cb;
+  background-color: #800020;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+}
+
 .fill-letters-gold {
   background-color: #c0a258; /* Kolor awaryjny */
   background-image: linear-gradient(145deg, #feec81 10%, #e2c16d 30%, #ac9202 50%, #6e5718 85%);
@@ -707,6 +718,20 @@ html {
   width: 100%;
   height: 100%;
   background-color: rgba(3, 2, 8, 0.65);
+  z-index: 2;
+}
+
+.bg-overlay-custom {
+  position: inherit;
+}
+.bg-overlay-custom::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(3, 2, 8, 0.6);
   z-index: 2;
 }
 
@@ -1199,7 +1224,7 @@ hr {
   z-index: 2;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 6px;
   border-bottom-right-radius: 8px;
   font-weight: 500;

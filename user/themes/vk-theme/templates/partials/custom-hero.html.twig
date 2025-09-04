@@ -3,7 +3,7 @@
 {% set hero_image = page.media[page.header.hero_image] %}
 
 <section 
-    class="hero-section relative flex items-center justify-center w-full min-h-[780px] text-center overflow-hidden bg-cover bg-center navbar-gradient-down" 
+    class="hero-section relative flex items-center justify-center w-full min-h-[780px] text-center overflow-hidden bg-cover bg-overlay-custom bg-center navbar-gradient-down" 
     style="{% if hero_image %}background-image: url('{{ hero_image.url }}');{% else %}background-color: #333;{% endif %}"
 >
     <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
