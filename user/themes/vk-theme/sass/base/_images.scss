@@ -254,7 +254,7 @@
             justify-content: end;
             align-items: end;
             z-index: 2;
-            bottom: 0;
+            bottom: -1px;
             right: 0;
             padding: 6px;
             width: 100%;
@@ -264,6 +264,10 @@
             font-weight: 500;
             color: $white;
             background: $img-gradient;
+            @media (max-width: $breakpoint-sm) {
+                background: $img-gradient-mobile;
+                font-size: 1.2rem;
+            }
         }
     }
 }

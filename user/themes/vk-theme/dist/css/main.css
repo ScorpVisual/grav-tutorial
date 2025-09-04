@@ -800,6 +800,15 @@ hr {
   margin-bottom: 2.4rem;
 }
 
+.scroll-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
 .marble-slab {
   position: relative;
   z-index: 1;
@@ -1236,7 +1245,7 @@ hr {
   justify-content: end;
   align-items: end;
   z-index: 2;
-  bottom: 0;
+  bottom: -1px;
   right: 0;
   padding: 6px;
   width: 100%;
@@ -1246,6 +1255,12 @@ hr {
   font-weight: 500;
   color: #fff;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, #030208 100%);
+}
+@media (max-width: 640px) {
+  .product-img__mini--title {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 5%, #030208 80%);
+    font-size: 1.2rem;
+  }
 }
 
 .btn-primary {
