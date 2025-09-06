@@ -69,6 +69,11 @@
     }
 }
 
+.hr-underline {
+    border: none;
+    height: 0.1rem;
+    border-radius: 16rem;
+}
 .border-cherry {
     border: 2px solid $cherry;
 }

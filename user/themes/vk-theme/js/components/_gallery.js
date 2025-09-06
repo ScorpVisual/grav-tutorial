@@ -81,4 +81,84 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+
+
+
+
+    // wybór materiału
+
+   const carouselContainer = document.getElementById('carousel-container');
+    if (!carouselContainer) return; // Zabezpieczenie, jeśli karuzela nie istnieje na stronie
+
+    const items = carouselContainer.querySelectorAll('.carousel-item');
+    const nameEl = document.getElementById('materialName');
+    const descEl = document.getElementById('materialDesc');
+    const prevBtn = document.querySelector('.carousel-btn[data-dir="prev"]');
+    const nextBtn = document.querySelector('.carousel-btn[data-dir="next"]');
+
+    if (items.length < 3) {
+        console.warn("Karuzela wymaga przynajmniej 3 elementów.");
+        return;
+    }
+    
+    let currentIndex = 0;
+    let isAnimating = false;
+    const totalItems = items.length;
+
+    function updateCarousel() {
+        isAnimating = true;
+
+        // Aktualizacja tekstu z efektem fade
+        nameEl.style.opacity = '0';
+        descEl.style.opacity = '0';
+
+        setTimeout(() => {
+            const centerItem = items[currentIndex];
+            nameEl.textContent = centerItem.dataset.name;
+            descEl.textContent = centerItem.dataset.desc;
+            nameEl.style.opacity = '1';
+            descEl.style.opacity = '1';
+        }, 250); // Opóźnienie, aby tekst zmienił się w połowie animacji slajdów
+
+        // Obliczanie indeksów dla lewego, środkowego i prawego slajdu
+        const leftIndex = (currentIndex - 1 + totalItems) % totalItems;
+        const rightIndex = (currentIndex + 1) % totalItems;
+
+        // Aktualizacja klas dla wszystkich elementów
+        items.forEach((item, index) => {
+            item.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
+
+            if (index === currentIndex) {
+                item.classList.add('carousel-center');
+                item.classList.add('golden-img-border');
+            } else if (index === leftIndex) {
+                item.classList.add('carousel-left');
+            } else if (index === rightIndex) {
+                item.classList.add('carousel-right');
+            } else {
+                item.classList.add('carousel-hidden'); // Ukryj pozostałe slajdy
+            }
+        });
+
+        // Zwalniamy blokadę po zakończeniu animacji
+        setTimeout(() => {
+            isAnimating = false;
+        }, 500); // Czas musi odpowiadać transition-duration w CSS
+    }
+
+    nextBtn.addEventListener('click', () => {
+        if (isAnimating) return;
+        currentIndex = (currentIndex + 1) % totalItems;
+        updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (isAnimating) return;
+        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+        updateCarousel();
+    });
+    
+    // Inicjalizacja karuzeli
+    updateCarousel();
 });

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 .c-white {
@@ -393,6 +394,12 @@
   background: #cbcdd1;
   margin-top: 0.4rem;
   border-radius: 2px;
+}
+
+.hr-underline {
+  border: none;
+  height: 0.1rem;
+  border-radius: 16rem;
 }
 
 .border-cherry {
@@ -2443,6 +2450,44 @@ option {
   .hero-overlay-animated {
     animation: blend-fade 15s infinite ease-in-out;
   }
+}
+
+#carousel-container {
+  perspective: 1000px;
+}
+
+.carousel-item {
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+  backface-visibility: hidden; /* Poprawia wydajność animacji */
+  width: 16rem; /* 256px */
+  height: 16rem; /* 256px */
+}
+
+.carousel-center {
+  transform: translateX(0) scale(1) rotateY(0);
+  opacity: 1;
+  z-index: 20;
+  box-shadow: 0 24px 24px rgba(0, 0, 0, 0.7);
+}
+
+.carousel-left {
+  transform: translateX(-14rem) scale(0.85) rotateY(30deg);
+  z-index: 10;
+  box-shadow: -20px 16px 8px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-right {
+  transform: translateX(14rem) scale(0.85) rotateY(-30deg);
+  z-index: 10;
+  box-shadow: 20px 16px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Stan dla slajdów, które są poza widokiem */
+.carousel-hidden {
+  transform: scale(0.5);
+  opacity: 0;
+  z-index: 5;
 }
 
 .grid-container {

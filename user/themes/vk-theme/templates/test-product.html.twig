@@ -60,6 +60,15 @@
     </div>
 </section>
 <section>
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
+            Galeria 
+        </h1>
+        <p>
+            Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
+            Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, ale jesteśmy dostępni telefonicznie i mailowo. 
+        </p>
+    </div>
     <div class=" lg:p-6">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
@@ -154,10 +163,159 @@
         </div>
     </div>
 </section>
+<section class="py-8 lg:py-16">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 ">
+    
+    {# --- Nagłówek sekcji --- #}
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
+            Galeria 
+        </h1>
+        <p>
+            Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
+            Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, ale jesteśmy dostępni telefonicznie i mailowo. 
+        </p>
+    </div>
+    
+    {# --- Siatka z cechami --- #}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-8 py-8 lg:py-16">
+      
+      {% set features = [
+        {
+          icon: 'tombstone.svg',
+          title: 'Jakość materiału',
+          text: 'Używamy tylko starannie wyselekcjonowanego granitu, gwarantującego niezrównaną trwałość i odporność na warunki atmosferyczne.',
+          alt: 'Ikona jakości materiału'
+        },
+        {
+          icon: 'tombstone.svg',
+          title: 'Precyzja wykonania',
+          text: 'Każdy element jest rzeźbiony i polerowany z rzemieślniczą precyzją, co zapewnia perfekcyjne wykończenie i estetykę.',
+          alt: 'Ikona precyzji wykonania'
+        },
+        {
+          icon: 'tombstone.svg',
+          title: 'Indywidualny projekt',
+          text: 'Oferujemy pełną personalizację – od kształtu płyty po grawerowane napisy, tworząc unikalne i osobiste upamiętnienie.',
+          alt: 'Ikona indywidualnego projektu'
+        },
+        {
+          icon: 'tombstone.svg',
+          title: 'Odporność na lata',
+          text: 'Nasze produkty są odporne na mróz, wilgoć i promieniowanie UV, zachowując swój wygląd przez dziesięciolecia.',
+          alt: 'Ikona trwałości'
+        },
+        {
+          icon: 'tombstone.svg',
+          title: 'Profesjonalny montaż',
+          text: 'Zapewniamy fachowy montaż z dbałością o każdy szczegół, gwarantując stabilność i bezpieczeństwo konstrukcji.',
+          alt: 'Ikona profesjonalnego montażu'
+        },
+        {
+          icon: 'tombstone.svg',
+          title: 'Gwarancja satysfakcji',
+          text: 'Twoje zadowolenie jest naszym priorytetem. Służymy wsparciem na każdym etapie realizacji zamówienia.',
+          alt: 'Ikona gwarancji satysfakcji'
+        }
+      ] %}
+      
+      {% for feature in features %}
+
+        <div class="p-4 flex flex-col items-center text-center h-full article-card">
+            <div class="flex-shrink-0 my-auto">
+                <div class="flex items-start justify-center h-16 w-16">
+                    <img src="{{ theme_url }}/images/icons/{{ feature.icon }}" alt="{{ feature.alt }}">
+                </div>
+            </div>
+            <h3 class="text-xl font-semibold text-ink mb-3 grow min-h-[3.5rem] flex items-center justify-center text-center">
+                {{ feature.title }}
+            </h3>
+            <hr class="w-full hr-underline bg-cherry mb-3">
+            <p class="text-text-brown leading-relaxed">
+                {{ feature.text }}   
+            </p>
+        </div>
+
+      {% endfor %}
+      
+    </div>
+  </div>
+</section>
+
+
+{% set materials = [
+    {
+        name: "Biały granit",
+        desc: "Elegancki i ponadczasowy, biały granit nadaje pomnikowi lekkości i klasy.",
+        img: theme_url ~ "/images/textures/marble-white-1.jpg"
+    },
+    {
+        name: "Czerwony granit",
+        desc: "Wyrazisty i pełen charakteru, czerwony granit wyróżnia się na tle innych.",
+        img: theme_url ~ "/images/textures/marble-red-1.jpg"
+    },
+    {
+        name: "Czarny granit",
+        desc: "Klasyczny i dostojny, czarny granit symbolizuje trwałość i elegancję.",
+        img: theme_url ~ "/images/textures/marble-black-1.jpg"
+    },
+    {
+        name: "Piaskowiec",
+        desc: "Unikalny i szlachetny, piaskowiec dodaje kompozycji głębi i oryginalności.",
+        img: theme_url ~ "/images/textures/limestone-1.jpg"
+    }
+] %}
+
+<section class="py-4 lg:py-8">
+    {# --- Nagłówek sekcji --- #}
+    <div class="max-w-4xl mx-auto mb-16">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
+            Dostępne kamienie
+        </h1>
+        <p>
+            Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
+            Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, ale jesteśmy dostępni telefonicznie i mailowo. 
+        </p>
+        <p>
+            Uwaga! Ceny kamieni są zależne od aktualnych cen rynkowych. Dostępność i koszty mogą się różnić w zależności od dostawcy i regionu. 
+            Prosimy o kontakt w celu uzyskania dokładnych informacji na temat cen i dostępności kamieni. 
+        </p>
+    </div>
+    <div class="max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
+
+        <div class="relative flex items-center justify-center h-[350px]">
+            <button data-dir="prev" class="carousel-btn absolute left-0 z-30 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+
+            <div id="carousel-container" class="w-full h-full flex items-center justify-center">
+                {% for material in materials %}
+                    <img src="{{ material.img }}"
+                         alt="{{ material.name }}"
+                         data-name="{{ material.name }}"
+                         data-desc="{{ material.desc }}"
+                         class="carousel-item rounded-lg  object-cover cursor-pointer">
+                {% endfor %}
+            </div>
+
+            <button data-dir="next" class="carousel-btn absolute right-0 z-30 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+        </div>
+
+    <div id="materialInfo" class="p-2 lg:p-6 lg:ml-12">
+        <h3 id="materialName" class="text-3xl font-bold mb-3 text-gray-800 transition-opacity duration-300 underline--cherry"></h3>
+        <p id="materialDesc" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300"></p>
+    </div>
+
+
+    </div>
+</section>
 
 
 
-<section>
+
+<section class="py-4 lg:py-8">
     <div class="max-w-4xl mx-auto">
         <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
             Warianty produktu
