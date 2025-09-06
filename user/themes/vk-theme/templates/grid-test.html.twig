@@ -752,6 +752,66 @@
             <button class="btn-secondary" >unDisabled Button</button>
         </div>
 
+    {# =================================================================== #}
+    {# FAQ                                                                  #}
+    {# =================================================================== #}
+{% set faq_items = [
+    {
+        question: "Jak mogę zamówić usługę?",
+        answer: "Wystarczy skontaktować się z nami przez formularz kontaktowy lub telefonicznie, a nasz zespół poprowadzi Cię krok po kroku przez cały proces, od wyboru materiału po finalizację zamówienia."
+    },
+    {
+        question: "Ile trwa realizacja zamówienia?",
+        answer: "Standardowy czas realizacji to od 2 do 4 tygodni, w zależności od złożoności projektu i dostępności wybranych materiałów. Zawsze informujemy o przewidywanym terminie na etapie składania zamówienia."
+    },
+    {
+        question: "Czy mogę liczyć na wsparcie po wykonaniu usługi?",
+        answer: "Oczywiście. Oferujemy pełne wsparcie posprzedażowe, w tym porady dotyczące konserwacji i pielęgnacji. Jesteśmy do Twojej dyspozycji w razie jakichkolwiek pytań."
+    },
+    {
+        question: "Czy oferujecie gwarancję na swoje produkty?",
+        answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
+    }
+] %}
+
+<section class="py-16 lg:py-24">
+    <div class="max-w-screen-lg mx-auto px-4">
+        <h2 class="text-3xl text-center font-bold text-gray-900 mb-12 underline--cherry">
+            Najczęściej zadawane pytania
+        </h2>
+
+        <div class="space-y-4 pt-8">
+            {% for item in faq_items %}
+                {# Ustawiamy pierwszą pozycję jako domyślnie otwartą #}
+                <div class="faq-item pick-a-card rounded-lg shadow-sm transition-all duration-300 {% if loop.first %}is-active{% endif %}">
+                    
+                    {# Nagłówek pytania (teraz jest klikalny w całości) #}
+                    <div class="faq-question flex justify-between items-center p-5 cursor-pointer">
+                        <h3 class="font-bold text-lg text-gray-800">
+                            {{ item.question }}
+                        </h3>
+                        {# Ikona strzałki, która będzie się obracać #}
+                        <svg class="faq-icon w-5 h-5 text-gray-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+
+                    {# Kontener na odpowiedź, który będzie animowany #}
+                    <div class="faq-answer-content">
+                        <p class="text-gray-600 p-5 pt-0">
+                            {{ item.answer }}
+                        </p>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+    {# =================================================================== #}
+    {# forms                                                               #}
+    {# =================================================================== #}
         <h3>Forms</h3>
         <form class="form-container form-container-standalone-style">
             <div>

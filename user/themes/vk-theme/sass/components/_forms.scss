@@ -240,3 +240,27 @@ option {
         color: $cherry;
     }
 }
+
+
+// FAQ
+.faq-answer-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.7s ease-in-out;
+}
+
+
+.faq-item.is-active .faq-answer-content {
+    max-height: 500px;
+}
+
+/* ...a ikona strzałki obraca się o 90 stopni */
+.faq-item.is-active .faq-icon {
+    transform: rotate(90deg);
+}
+
+/* ...i tło całego elementu może się zmienić, aby go wyróżnić */
+.faq-item.is-active {
+    background-color: $white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}

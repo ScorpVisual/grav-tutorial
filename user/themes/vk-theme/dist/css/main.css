@@ -2357,6 +2357,27 @@ option {
   color: #800020;
 }
 
+.faq-answer-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.7s ease-in-out;
+}
+
+.faq-item.is-active .faq-answer-content {
+  max-height: 500px;
+}
+
+/* ...a ikona strzałki obraca się o 90 stopni */
+.faq-item.is-active .faq-icon {
+  transform: rotate(90deg);
+}
+
+/* ...i tło całego elementu może się zmienić, aby go wyróżnić */
+.faq-item.is-active {
+  background-color: #fff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
 .table-of-contents {
   padding: 0.5rem 1rem;
   width: 40%;
@@ -2450,6 +2471,36 @@ option {
   .hero-overlay-animated {
     animation: blend-fade 15s infinite ease-in-out;
   }
+}
+
+.product-variant__card.--is-active {
+  box-shadow: 0 0 0 2px var(--cherry-color, #A22C2C);
+}
+.product-variant__display {
+  transition: opacity 300ms ease-in-out;
+}
+.product-variant__display.--is-fading {
+  opacity: 0;
+}
+.product-variant__display.--is-fading .product-variant__fade-in {
+  opacity: 0;
+  transition-delay: 0ms !important;
+}
+.product-variant__fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+.product-variant__image {
+  transition-delay: 50ms;
+}
+.product-variant__title {
+  transition-delay: 70ms;
+}
+.product-variant__price-wrapper {
+  transition-delay: 70ms;
+}
+.product-variant__description {
+  transition-delay: 120ms;
 }
 
 #carousel-container {
