@@ -5,4 +5,103 @@
         <h1>{{ 'THEME_TAILWIND.ERROR'|t }}</h1>
         {{ page.content|raw }}
     </div>
+    {% set products = [
+    {
+        name: "Nagrobek Nowoczesny N-01",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-120.jpg",
+        alt_text: "Nagrobek nowoczesny z białego granitu",
+        title: "Nagrobek Nowoczesny N-01",
+        price: "od 6 499 PLN",
+        link: "#link-do-n01",
+        full_desc: "Model N-01 to kwintesencja nowoczesnego designu. Charakteryzuje się prostą bryłą, wysokiej jakości polerowanym granitem i minimalistycznymi akcentami."
+    },
+    {
+        name: "Nagrobek Klasyczny K-08",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-124.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        title: "Nagrobek Klasyczny K-08",
+        price: "od 5 999 PLN",
+        link: "#link-do-k08",
+        full_desc: "Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
+    },
+    {
+        name: "Nagrobek Artystyczny A-12",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-129.jpg",
+        alt_text: "Nagrobek artystyczny z rzeźbą",
+        title: "Nagrobek Artystyczny A-12",
+        price: "od 14 999 PLN",
+        link: "#link-do-a12",
+        full_desc: "Ten model to prawdziwe dzieło sztuki kamieniarskiej. Łączy w sobie różne rodzaje granitu i zawiera ręcznie wykonaną rzeźbę, co czyni go unikalnym projektem."
+    }
+] %}
+
+<section class="product-carousel-module">
+    <div class="carousel-intro">
+        <h2>Odkryj nasze realizacje</h2>
+        <p>Przejrzyj wybrane przez nas projekty i znajdź inspirację dla siebie.</p>
+    </div>
+
+    <div class="relative">
+        {# ZMIANA 1: Dodajemy ID 'carousel-container', którego szuka JS #}
+        <div class="product-carousel__viewport" id="carousel-container">
+            <div class="product-carousel__track">
+                {% for product in products %}
+                    {# ZMIANA 2: Dodajemy klasę 'carousel-item' oraz atrybuty 'data-name' i 'data-desc' #}
+                    <div 
+                        class="product-carousel__slide carousel-item" 
+                        data-name="{{ product.title }}" 
+                        data-desc="{{ product.full_desc }}"
+                    >
+                        <div class="slide-content">
+                            <img src="{{ product.image }}" alt="{{ product.alt_text }}" loading="lazy">
+                            <div class="overlay"><h3>{{ product.name }}</h3></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        {# ZMIANA 3: Dodajemy klasę 'carousel-btn' i atrybuty 'data-dir' do przycisków #}
+        <button class="product-carousel__nav--prev carousel-btn" data-dir="prev" aria-label="Poprzedni produkt">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button class="product-carousel__nav--next carousel-btn" data-dir="next" aria-label="Następny produkt">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </button>
+    </div>
+
+    <div class="product-carousel__info-card">
+        <div class="card-content">
+            {# ZMIANA 4: Dodajemy ID 'materialName' i 'materialDesc' do elementów tekstowych #}
+            <h3 class="product-carousel__title" id="materialName"></h3>
+            <p class="product-carousel__description" id="materialDesc"></p>
+            <div class="actions">
+                <a href="#kontakt" class="btn-cta">Zapytaj o ten model</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+  {# <div class="product-carousel__info-card white-marble-slab mt-8 rounded-lg p-6">
+    <div class="flex flex-col items-center gap-4 text-center text-gray-800">
+      <h3 class="product-carousel__title text-3xl font-bold underline--cherry"></h3>
+
+      <div class="text-xl font-bold md:text-2xl">
+        <span class="product-carousel__price c-cherry"></span>
+      </div>
+
+      <p class="product-carousel__description text-lg max-w-xl"></p>
+
+      <div class="mt-auto flex w-full flex-col gap-3 lg:flex-row">
+        <a href="#" class="btn-primary product-carousel__link flex-grow text-center">
+          Zobacz realizacje
+        </a>
+        <a href="#kontakt" class="btn-cta flex-grow text-center">
+          Zamów Wariant
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section> #}
 {% endblock %}

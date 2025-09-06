@@ -2473,33 +2473,33 @@ option {
   }
 }
 
-.product-variant__card.--is-active {
-  box-shadow: 0 0 0 2px var(--cherry-color, #A22C2C);
+.content-switcher__card.--is-active {
+  box-shadow: 0 0 0 2px #800020;
 }
-.product-variant__display {
+.content-switcher__display {
   transition: opacity 300ms ease-in-out;
 }
-.product-variant__display.--is-fading {
+.content-switcher__display.--is-fading {
   opacity: 0;
 }
-.product-variant__display.--is-fading .product-variant__fade-in {
+.content-switcher__display.--is-fading .content-switcher__fade-in {
   opacity: 0;
   transition-delay: 0ms !important;
 }
-.product-variant__fade-in {
+.content-switcher__fade-in {
   opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 400ms ease-in-out;
 }
-.product-variant__image {
+.content-switcher__image {
   transition-delay: 50ms;
 }
-.product-variant__title {
+.content-switcher__title {
   transition-delay: 70ms;
 }
-.product-variant__price-wrapper {
+.content-switcher__price-wrapper {
   transition-delay: 70ms;
 }
-.product-variant__description {
+.content-switcher__description {
   transition-delay: 120ms;
 }
 

@@ -1,164 +1,134 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // --- ZUNIFIKOWANY MANAGER BLOKOWANIA PRZEWIJANIA ---
+  
+  //gallery JS
+  const scrollLockManager = {
+    lockCount: 0,
+    body: document.body,
+    lock() {
+      this.lockCount++;
+      if (!this.body.classList.contains('no-scroll')) {
+        this.body.classList.add('no-scroll');
+      }
+    },
+    unlock() {
+      this.lockCount--;
+      if (this.lockCount <= 0) {
+        this.body.classList.remove('no-scroll');
+        this.lockCount = 0;
+      }
+    }
+  };
 
-    // --- ZUNIFIKOWANY MANAGER BLOKOWANIA PRZEWIJANIA (BEZ ZMIAN) ---
-    const scrollLockManager = {
-        lockCount: 0,
-        body: document.body,
-        lock() {
-            this.lockCount++;
-            if (!this.body.classList.contains('no-scroll')) {
-                this.body.classList.add('no-scroll');
-            }
-        },
-        unlock() {
-            this.lockCount--;
-            if (this.lockCount <= 0) {
-                this.body.classList.remove('no-scroll');
-                this.lockCount = 0;
-            }
-        }
-    };
-
-    // --- LOGIKA GALERII (ZAKTUALIZOWANA) ---
-    const imageContainers = document.querySelectorAll('.product-img');
+  // --- LOGIKA GALERII (MODAL) ---
+  function initGalleryModal() {
     const modal = document.getElementById('fullscreen-modal');
     const modalImage = document.getElementById('fullscreen-image');
     const closeModalBtn = document.getElementById('close-modal-btn');
-    
-    // --- NOWOŚĆ: Pobieramy element, w którym wyświetlimy podpis ---
     const modalAltText = document.getElementById('fullscreen-alt-text');
+    if (!modal || !modalImage || !closeModalBtn || !modalAltText) return;
 
-    if (modal && modalImage && closeModalBtn && modalAltText) {
-        
-        // --- ZMIANA: Funkcja openModal przyjmuje teraz dwa argumenty: źródło i tekst alternatywny ---
-        const openModal = (imgSrc, imgAlt) => {
-            modalImage.src = imgSrc;
-            
-            // --- NOWOŚĆ: Ustawiamy treść podpisu i aktualizujemy atrybut alt w modalu ---
-            modalAltText.textContent = imgAlt;
-            modalImage.alt = imgAlt; // Dobra praktyka dla dostępności
+    const openModal = (src, alt) => {
+      modalImage.src = src;
+      modalImage.alt = alt;
+      modalAltText.textContent = alt;
+      modal.classList.remove('is-hidden');
+      scrollLockManager.lock();
+      requestAnimationFrame(() => modal.classList.remove('opacity-0'));
+    };
 
-            modal.classList.remove('is-hidden');
-            scrollLockManager.lock();
-            requestAnimationFrame(() => {
-                modal.classList.remove('opacity-0');
-            });
-        };
+    const closeModal = () => {
+      modal.classList.add('opacity-0');
+      setTimeout(() => {
+        modal.classList.add('is-hidden');
+        scrollLockManager.unlock();
+        modalAltText.textContent = '';
+      }, 300);
+    };
 
-        const closeModal = () => {
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('is-hidden');
-                scrollLockManager.unlock();
-                
-                // --- NOWOŚĆ (opcjonalnie): Czyścimy podpis po zamknięciu modala ---
-                modalAltText.textContent = '';
+    document.body.addEventListener('click', e => {
+      const container = e.target.closest('.product-img');
+      if (!container) return;
+      const img = container.querySelector('img');
+      if (img) openModal(img.src, img.alt);
+    });
 
-            }, 300);
-        };
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !modal.classList.contains('is-hidden')) {
+        closeModal();
+      }
+    });
+  }
 
-        imageContainers.forEach(container => {
-            container.addEventListener('click', () => {
-                const imageElement = container.querySelector('img');
-                if (imageElement) {
-                    // --- ZMIANA: Przekazujemy do funkcji openModal zarówno .src jak i .alt ---
-                    openModal(imageElement.src, imageElement.alt);
-                }
-            });
-        });
+  // --- LOGIKA KARUZELI "WYBÓR MATERIAŁU" ---
+  function initMaterialCarousel() {
+    const container = document.getElementById('carousel-container');
+    if (!container) return;
 
-        closeModalBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            // Zamyka modal tylko jeśli kliknięto tło (a nie obrazek)
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !modal.classList.contains('is-hidden')) {
-                closeModal();
-            }
-        });
-    }
-
-
-
-
-
-
-    // wybór materiału
-
-   const carouselContainer = document.getElementById('carousel-container');
-    if (!carouselContainer) return; // Zabezpieczenie, jeśli karuzela nie istnieje na stronie
-
-    const items = carouselContainer.querySelectorAll('.carousel-item');
+    const items = container.querySelectorAll('.carousel-item');
     const nameEl = document.getElementById('materialName');
     const descEl = document.getElementById('materialDesc');
-    const prevBtn = document.querySelector('.carousel-btn[data-dir="prev"]');
-    const nextBtn = document.querySelector('.carousel-btn[data-dir="next"]');
-
+    const prevBtn = container.parentElement.querySelector('.carousel-btn[data-dir="prev"]');
+    const nextBtn = container.parentElement.querySelector('.carousel-btn[data-dir="next"]');
+    if (!items.length || !nameEl || !descEl || !prevBtn || !nextBtn) return;
     if (items.length < 3) {
-        console.warn("Karuzela wymaga przynajmniej 3 elementów.");
-        return;
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+      return;
     }
-    
+
     let currentIndex = 0;
     let isAnimating = false;
-    const totalItems = items.length;
+    const total = items.length;
 
-    function updateCarousel() {
-        isAnimating = true;
+    function update() {
+      isAnimating = true;
+      nameEl.style.opacity = 0;
+      descEl.style.opacity = 0;
 
-        // Aktualizacja tekstu z efektem fade
-        nameEl.style.opacity = '0';
-        descEl.style.opacity = '0';
+      setTimeout(() => {
+        const center = items[currentIndex];
+        nameEl.textContent = center.dataset.name;
+        descEl.textContent = center.dataset.desc;
+        nameEl.style.opacity = 1;
+        descEl.style.opacity = 1;
+      }, 250);
 
-        setTimeout(() => {
-            const centerItem = items[currentIndex];
-            nameEl.textContent = centerItem.dataset.name;
-            descEl.textContent = centerItem.dataset.desc;
-            nameEl.style.opacity = '1';
-            descEl.style.opacity = '1';
-        }, 250); // Opóźnienie, aby tekst zmienił się w połowie animacji slajdów
+      const leftIdx = (currentIndex - 1 + total) % total;
+      const rightIdx = (currentIndex + 1) % total;
 
-        // Obliczanie indeksów dla lewego, środkowego i prawego slajdu
-        const leftIndex = (currentIndex - 1 + totalItems) % totalItems;
-        const rightIndex = (currentIndex + 1) % totalItems;
+      items.forEach((it, idx) => {
+        it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
+        if (idx === currentIndex) it.classList.add('carousel-center', 'golden-img-border');
+        else if (idx === leftIdx) it.classList.add('carousel-left');
+        else if (idx === rightIdx) it.classList.add('carousel-right');
+        else it.classList.add('carousel-hidden');
+      });
 
-        // Aktualizacja klas dla wszystkich elementów
-        items.forEach((item, index) => {
-            item.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
-
-            if (index === currentIndex) {
-                item.classList.add('carousel-center');
-                item.classList.add('golden-img-border');
-            } else if (index === leftIndex) {
-                item.classList.add('carousel-left');
-            } else if (index === rightIndex) {
-                item.classList.add('carousel-right');
-            } else {
-                item.classList.add('carousel-hidden'); // Ukryj pozostałe slajdy
-            }
-        });
-
-        // Zwalniamy blokadę po zakończeniu animacji
-        setTimeout(() => {
-            isAnimating = false;
-        }, 500); // Czas musi odpowiadać transition-duration w CSS
+      setTimeout(() => (isAnimating = false), 500);
     }
 
     nextBtn.addEventListener('click', () => {
-        if (isAnimating) return;
-        currentIndex = (currentIndex + 1) % totalItems;
-        updateCarousel();
+      if (isAnimating) return;
+      currentIndex = (currentIndex + 1) % total;
+      update();
+    });
+    prevBtn.addEventListener('click', () => {
+      if (isAnimating) return;
+      currentIndex = (currentIndex - 1 + total) % total;
+      update();
     });
 
-    prevBtn.addEventListener('click', () => {
-        if (isAnimating) return;
-        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-        updateCarousel();
-    });
-    
-    // Inicjalizacja karuzeli
-    updateCarousel();
+    update();
+  }
+
+  // --- NOWA LOGIKA KARUZELI "WYBÓR PRODUKTU" ---
+
+  // --- INICJALIZACJA WSZYSTKICH KOMPONENTÓW ---
+  initGalleryModal();
+  initMaterialCarousel();
 });

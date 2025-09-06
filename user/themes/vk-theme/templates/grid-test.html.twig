@@ -408,6 +408,216 @@
   </div>
 </section>
 
+
+{% set products = [
+    {
+        name: "Nagrobek Nowoczesny N-01",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-120.jpg",
+        alt_text: "Nagrobek nowoczesny z białego granitu",
+        title: "Nagrobek Nowoczesny N-01",
+        price: "od 6 499 PLN",
+        link: "#link-do-n01",
+        full_desc: "Model N-01 to kwintesencja nowoczesnego designu. Charakteryzuje się prostą bryłą, wysokiej jakości polerowanym granitem i minimalistycznymi akcentami."
+    },
+    {
+        name: "Nagrobek Klasyczny K-08",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-124.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        title: "Nagrobek Klasyczny K-08",
+        price: "od 5 999 PLN",
+        link: "#link-do-k08",
+        full_desc: "Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
+    },
+    {
+        name: "Nagrobek Klasyczny K-08",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-130.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        title: "Nagrobek Klasyczny K-08",
+        price: "od 5 999 PLN",
+        link: "#link-do-k08",
+        full_desc: "Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
+    },
+    {
+        name: "Nagrobek Klasyczny K-08",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-131.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        title: "Nagrobek Klasyczny K-08",
+        price: "od 5 999 PLN",
+        link: "#link-do-k08",
+        full_desc: "Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
+    },
+    {
+        name: "Nagrobek Artystyczny A-12",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-129.jpg",
+        alt_text: "Nagrobek artystyczny z rzeźbą",
+        title: "Nagrobek Artystyczny A-12",
+        price: "od 14 999 PLN",
+        link: "#link-do-a12",
+        full_desc: "Ten model to prawdziwe dzieło sztuki kamieniarskiej. Łączy w sobie różne rodzaje granitu i zawiera ręcznie wykonaną rzeźbę, co czyni go unikalnym projektem."
+    }
+] %}
+
+<section
+    class="js-product-carousel-module product-carousel-module overflow-visible max-w-3xl mx-auto p-4"
+    data-products='{{ products|json_encode|raw }}'
+>
+  <div class="flex flex-col gap-8">
+
+    <div class="relative w-full">
+      {# usunięty `overflow-hidden`, teraz pozwala bocznym slajdom wystawać #}
+      <div class="product-carousel__viewport rounded-lg shadow-lg">
+        <div class="product-carousel__track">
+          {% for product in products %}
+            <div class="product-carousel__slide w-full flex-shrink-0 product-carousel__slide--hidden">
+              <div class="product-img relative w-full h-80 md:h-96 rounded-lg overflow-hidden pale-img-border cursor-pointer">
+                <img src="{{ product.image }}"
+                     alt="{{ product.alt_text }}"
+                     class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white text-center">
+                  <span class="product-img__mini--check text-lg font-bold tracking-widest opacity-75">
+                    OBEJRZYJ
+                  </span>
+                  <div class="product-img__mini--title mt-2 text-xl font-semibold">
+                    {{ product.name }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <button
+        class="product-carousel__nav--prev absolute top-1/2 -left-3 md:-left-5 transform -translate-y-1/2 z-10 p-2 bg-white/80 text-gray-800 rounded-full shadow-md hover:bg-white transition"
+        aria-label="Poprzedni produkt"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button
+        class="product-carousel__nav--next absolute top-1/2 -right-3 md:-right-5 transform -translate-y-1/2 z-10 p-2 bg-white/80 text-gray-800 rounded-full shadow-md hover:bg-white transition"
+        aria-label="Następny produkt"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="product-carousel__info-card white-marble-slab rounded-lg p-6 h-full flex">
+      <div class="flex flex-col flex-grow gap-4 text-gray-800 text-center items-center">
+        <h2 class="product-carousel__title text-3xl font-bold underline--cherry"></h2>
+
+        <div class="text-xl md:text-2xl font-bold">
+          <span class="product-carousel__price c-cherry"></span>
+        </div>
+
+        <p class="product-carousel__description text-lg max-w-xl"></p>
+
+        <div class="flex flex-col lg:flex-row gap-3 mt-auto w-full">
+          {# dodaliśmy klasę product-carousel__link, JS nadpisze href #}
+          <a href="#" class="btn-primary product-carousel__link flex-grow text-center">
+            Zobacz realizacje
+          </a>
+          <a href="#kontakt" class="btn-cta flex-grow text-center">
+            Zamów Wariant
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+{# USŁUGI #}
+{% set services = [
+    {
+        name: "Renowacja pomników",
+        short_desc: "Przywracamy blask starym nagrobkom.",
+        image: "https://placehold.co/800x400/CD853F/FFFFFF?text=Renowacja",
+        alt_text: "Odnowiony pomnik z piaskowca",
+        title: "Profesjonalna Renowacja Pomników",
+        price: "od 499 PLN",
+        link: "#",
+        full_desc: "Specjalizujemy się w renowacji starych i zniszczonych nagrobków. Czyścimy, impregnujemy, uzupełniamy ubytki i odnawiamy litery, przywracając pomnikom ich dawną świetność i szacunek."
+    },
+    {
+        name: "Układanie kostki",
+        short_desc: "Estetyczne i trwałe otoczenie grobu.",
+        image: "https://placehold.co/800x400/696969/FFFFFF?text=Kostka",
+        alt_text: "Otoczenie grobu wyłożone kostką brukową",
+        title: "Układanie Kostki Wokół Grobu",
+        price: "od 899 PLN",
+        link: "#",
+        full_desc: "Zapewniamy estetyczne i praktyczne zagospodarowanie terenu wokół grobu. Układamy kostkę brukową, granitową oraz tworzymy opaski, co zapobiega wzrostowi chwastów i ułatwia utrzymanie porządku."
+    },
+    {
+        name: "Grawerowanie i liternictwo",
+        short_desc: "Dodawanie i odnawianie napisów.",
+        image: "https://placehold.co/800x400/BDB76B/FFFFFF?text=Litery",
+        alt_text: "Zbliżenie na grawerowane litery na płycie nagrobnej",
+        title: "Precyzyjne Usługi Liternicze",
+        price: "od 299 PLN",
+        link: "#",
+        full_desc: "Wykonujemy grawerowanie napisów na nowych tablicach oraz odnawiamy istniejące inskrypcje. Oferujemy szeroki wybór czcionek i technik, w tym piaskowanie i malowanie, aby zapewnić czytelność i trwałość."
+    }
+] %}
+
+
+
+<section
+    class="content-switcher js-content-switcher max-w-7xl mx-auto p-4 md:p-6 lg:p-8"
+    data-content-items='{{ services|json_encode|raw }}'
+>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-1">
+            <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-8 underline--cherry">Nasze Warianty</h2>
+            <div class="flex flex-col gap-3">
+                {% for variant in services %}
+                    <div
+                        class="content-switcher__card pick-a-card p-4 rounded-lg cursor-pointer transition-all duration-300 {% if loop.first %}--is-active{% endif %}"
+                        data-index="{{ loop.index0 }}"
+                        role="button" aria-pressed="{{ loop.first ? 'true' : 'false' }}" tabindex="0"
+                    >
+                        <h3 class="font-bold text-lg text-gray-900 underline--light-grey">{{ variant.name }}</h3>
+                        <p class="text-sm text-gray-600">{{ variant.short_desc }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="md:col-span-2">
+            <div class="content-switcher__display white-marble-slab rounded-lg overflow-hidden h-full flex flex-col p-6">
+                <img
+                    src="{{ services[0].image }}" alt="{{ services[0].alt_text }}"
+                    class="content-switcher__image content-switcher__fade-in w-full h-64 object-cover cherry-img-border mb-4 rounded-md"
+                >
+                <div class="flex flex-col flex-grow gap-4 text-gray-800">
+                    <h2 class="content-switcher__title content-switcher__fade-in text-3xl font-bold underline--cherry">{{ services[0].title }}</h2>
+                    
+                    <div class="content-switcher__price-wrapper text-xl md:text-2xl font-bold mt-2">
+                       <span class="content-switcher__fade-in"> Cena: <span class="content-switcher__price c-cherry">{{ services[0].price }}</span></span>
+                    </div>
+
+                    <p class="content-switcher__description content-switcher__fade-in text-lg">{{ services[0].full_desc }}</p>
+                    <div class="flex flex-col lg:flex-row gap-3 mt-auto">
+                        <a href="{{ variant.link }}" class="btn-primary flex-grow text-center">Zobacz realizacje</a>
+                        <a href="#kontakt" class="btn-cta flex-grow text-center">Zamów Wariant</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
 <section class="px-4 py-16 max-w-screen-xl mx-auto">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
       <div>
@@ -446,7 +656,112 @@
     </div>
 </section>
 
-<section class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+
+{# PRODUKTY 
+
+
+{% set related_products = [
+    {
+        card_image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-120.jpg",
+        card_title: "Produkt #1",
+        display_image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-120.jpg",
+        alt_text: "Nagrobek nowoczesny z białego granitu",
+        title: "Nagrobek Nowoczesny N-01",
+        price: "od 6 499 PLN",
+        full_desc: "Model N-01 to kwintesencja nowoczesnego designu. Charakteryzuje się prostą bryłą, wysokiej jakości polerowanym granitem i minimalistycznymi akcentami, które podkreślają jego elegancki charakter."
+    },
+    {
+        card_image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-124.jpg",
+        card_title: "Produkt #2",
+        display_image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-124.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        title: "Nagrobek Klasyczny K-08",
+        price: "od 5 999 PLN",
+        full_desc: "Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu Szwed, będzie godnym upamiętnieniem na dziesięciolecia."
+    },
+    {
+        card_image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-126.jpg",
+        card_title: "Produkt #3",
+        display_image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-126.jpg",
+        alt_text: "Nagrobek podwójny, familijny",
+        title: "Nagrobek Familijny F-03",
+        price: "od 11 999 PLN",
+        full_desc: "Model F-03 to przestronny nagrobek podwójny, zaprojektowany z myślą o grobach rodzinnych. Oferuje dużo miejsca na inskrypcje i dodatkowe elementy, takie jak wazony czy lampiony, tworząc spójną i harmonijną całość."
+    }
+] %}
+
+<section
+    class="content-switcher js-content-switcher max-w-7xl mx-auto p-4 sm:p-6 lg:p-8"
+    data-content-items='{{ related_products|json_encode|raw }}'
+>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="md:col-span-2">
+
+            <div class="content-switcher__display white-marble-slab overflow-hidden h-full flex flex-col">
+                
+                <img
+                    src="{{ related_products[0].display_image }}"
+                    alt="{{ related_products[0].alt_text }}"
+                    class="content-switcher__image content-switcher__fade-in w-full h-64 object-cover cherry-img-border"
+                >
+                
+                <div class="p-6 flex flex-col flex-grow gap-4">
+                    <h2 class="content-switcher__title content-switcher__fade-in text-3xl font-bold text-gray-800 underline--cherry">
+                        {{ related_products[0].title }}
+                    </h2>
+                    <div class="content-switcher__price-wrapper content-switcher__fade-in text-xl md:text-2xl font-bold text-gray-900 mt-2">
+                        Cena: <span class="content-switcher__price c-cherry">{{ related_products[0].price }}</span>
+                    </div>
+                    <p class="content-switcher__description content-switcher__fade-in text-gray-700 text-lg">
+                        {{ related_products[0].full_desc }}
+                    </p>
+                    <div class="flex gap-3 mt-auto pt-4">
+                        <a href="#szczegoly" class="btn-primary flex-grow text-center">Zobacz realizacje</a>
+                        <a href="#kontakt" class="btn-cta flex-grow text-center">Zamów produkt</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:col-span-1">
+            <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-8 underline--cherry">Nasze produkty</h2>
+            <div class="flex flex-col gap-5">
+                
+                {% for item in related_products %}
+
+                    <div
+                        class="content-switcher__card product-img relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border cursor-pointer {% if loop.first %}--is-active{% endif %}"
+                        data-index="{{ loop.index0 }}"
+                        role="button"
+                        aria-pressed="{{ loop.first ? 'true' : 'false' }}"
+                        tabindex="0"
+                    >
+                        <img src="{{ item.card_image }}" alt="{{ item.alt_text }}" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white bg-black bg-opacity-25">
+                            <span class="product-img__mini--check text-lg font-bold tracking-widest">
+                                OBEJRZYJ
+                            </span>
+                            <div class="product-img__mini--title mt-2 text-xl font-semibold">
+                                {{ item.card_title }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+#}
+
+
+<hr>
+
+
+{# <section class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
         <div class="md:col-span-1">
@@ -500,10 +815,10 @@
             </div>
         </div>
     </div>
-</div>
-
+</div> 
     </div>
-</section>
+</section>#}
+
 <section class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 <div class="md:col-span-2">

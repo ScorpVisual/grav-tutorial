@@ -4,15 +4,15 @@
 @use '../mixins/mixins-divs.scss' as *;
 @use '../mixins/mixins-backgrounds.scss' as *;
 @use 'sass:color';
-// Plik: _product-variant.scss
+
 
 // Główny blok komponentu
-.product-variant {
+.content-switcher {
     
-    // Karta wariantu (bez zmian)
+    // Karta w lewej kolumnie
     &__card {
         &.--is-active {
-            box-shadow: 0 0 0 2px var(--cherry-color, #A22C2C);
+            box-shadow: 0 0 0 2px $cherry;
         }
     }
     
@@ -20,29 +20,26 @@
     &__display {
         transition: opacity 300ms ease-in-out;
         
-        // Modyfikator stanu --is-fading
         &.--is-fading {
             opacity: 0;
-
-            // Podczas zanikania, WSZYSTKIE elementy z klasą __fade-in
-            // natychmiast stają się przezroczyste.
-            .product-variant__fade-in {
+            .content-switcher__fade-in {
                 opacity: 0;
                 transition-delay: 0ms !important;
             }
         }
     }
     
-    // --- NOWE, LEPSZE PODEJŚCIE ---
-    // 1. Definiujemy bazowe właściwości dla wszystkich animowanych elementów
+    // Uniwersalna klasa do animacji kaskadowej
     &__fade-in {
         opacity: 1;
-        transition: opacity .3s ease-in-out;
+        transition: opacity 400ms ease-in-out;
     }
     
-    // 2. Nadal używamy unikalnych klas do zdefiniowania kaskadowego OPÓŹNIENIA
+    // Kaskadowe opóźnienie dla poszczególnych elementów
     &__image { transition-delay: 50ms; }
     &__title { transition-delay: 70ms; }
     &__price-wrapper { transition-delay: 70ms; } // Teraz to na pewno zadziała
     &__description { transition-delay: 120ms; }
 }
+
+
