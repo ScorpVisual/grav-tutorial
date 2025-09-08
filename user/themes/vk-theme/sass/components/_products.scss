@@ -1,0 +1,261 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/variables' as *;
+@use '../mixins/mixins' as *;
+@use '../mixins/mixins-divs.scss' as *;
+@use '../mixins/mixins-backgrounds.scss' as *;
+@use 'sass:color';
+
+
+// Główny blok komponentu
+.content-switcher {
+    
+    // Karta w lewej kolumnie
+    &__card {
+        &.--is-active {
+            box-shadow: 0 0 0 2px $cherry;
+        }
+    }
+    
+    // Kontener wyświetlacza po prawej stronie
+    &__display {
+        transition: opacity 300ms ease-in-out;
+        
+        &.--is-fading {
+            opacity: 0;
+            .content-switcher__fade-in {
+                opacity: 0;
+                transition-delay: 0ms !important;
+            }
+        }
+    }
+    
+    // Uniwersalna klasa do animacji kaskadowej
+    &__fade-in {
+        opacity: 1;
+        transition: opacity 400ms ease-in-out;
+    }
+    
+    // Kaskadowe opóźnienie dla poszczególnych elementów
+    &__image { transition-delay: 50ms; }
+    &__title { transition-delay: 70ms; }
+    &__price-wrapper { transition-delay: 70ms; } // Teraz to na pewno zadziała
+    &__description { transition-delay: 120ms; }
+}
+
+
+// NEW PRODUCT CARD
+// Plik: _product-card-overlay.scss
+// Plik: _twoja-karuzela.scss
+
+.shuffle-carousel {
+    position: relative;
+    width: 100%;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+
+    &__track {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    &__slide {
+        width: 320px;
+        height: 480px;
+        flex-shrink: 0;
+        transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s, box-shadow 0.6s;
+        transform: scale(0.85);
+        opacity: 0.8;
+        box-shadow: 0 8px 12px rgba($ink,.45);
+
+
+        &.is-active {
+            transform: scale(1);
+            opacity: 1;
+            box-shadow: 0 26px 8px rgba($ink,.45);
+        }
+    }
+
+    // &__btn {
+    //     position: absolute;
+    //     top: 50%;
+    //     transform: translateY(-50%);
+    //     z-index: 10;
+    //     width: 50px;
+    //     height: 50px;
+    //     background: white;
+    //     border-radius: 50%;
+    //     border: none;
+    //     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    //     cursor: pointer;
+    //     transition: all 0.3s ease;
+
+    //     &:hover {
+    //         transform: translateY(-50%) scale(1.1);
+    //     }
+        
+    //     &--prev { left: 20px; }
+    //     &--next { right: 20px; }
+    // }
+
+    @media (max-width: 768px) {
+        mask-image: none;
+
+        &__slide {
+            width: 280px;
+            height: 420px;
+        }
+
+        &__btn {
+            top: auto;
+            bottom: 10px;
+            transform: none;
+
+            &--prev { left: calc(50% - 60px); }
+            &--next { right: calc(50% - 60px); }
+        }
+    }
+}
+
+.product-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    border-radius: $border-radius;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top,
+            rgba($dark-slate, 1) 0%,      
+            rgba($dark-slate, 0.9) 30%,   
+            rgba($dark-slate, 0.4) 50%,       
+            transparent 75%               
+        );
+        z-index: 1;
+    }
+    
+    &.is-active {
+        box-shadow: 0 0 0 2px $cherry;
+    }
+    &__main-content {
+        position: relative;
+        z-index: 2;
+        padding: 1.5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        text-align: left;
+    }
+
+    &__title {
+        font-size: 1.2rem !important;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        font-family: inherit;
+        text-shadow: 0 2px 4px rgba(0,0,0,1);
+    }
+
+    &__price {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: $white;
+        background-color: $cherry;
+        padding: 0.125rem 0.5rem;
+        border-radius: $border-radius;
+        margin-bottom: 1.5rem;
+    }
+
+    @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+        50% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); }
+    }
+
+    &__expand-btn {
+        font-weight: 700;
+        letter-spacing: 2px;
+        padding: 0.5rem 1rem;
+        border: 2px solid rgba(255,255,255,0.8);
+        background: transparent;
+        color: white;
+        border-radius: 50px;
+        text-align: center;
+        align-self: flex-start;
+        animation: pulse 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        cursor: pointer;
+        width: 100%;
+    }
+
+    &__details-overlay {
+        position: absolute;
+        inset: 0;
+        background: $cherry-dark-solid-gradient;
+        z-index: 5;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+
+    &.is-details-open &__details-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    &__desc {
+        flex-grow: 1;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-top: 1rem;
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: auto;
+        width: 100%;
+    }
+}
+
+.details-overlay {
+    &__content {
+        padding: 1.5rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        text-align: left;
+    }
+
+    &__close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        z-index: 6;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 2.5rem;
+        line-height: 1;
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.3s, transform 0.3s;
+        
+        &:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    }
+}

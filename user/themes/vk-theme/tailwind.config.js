@@ -9,7 +9,8 @@ module.exports = {
     './js/**/*.js',
     './templates/**/*.twig',
     './kocietexty.yaml',
-    './kocietexty.php'
+    './kocietexty.php',
+    './user/themes/vk-theme/templates/**/*.twig'
   ],
 
   // You can enable dark mode based on a class ('dark') on the <html> tag.

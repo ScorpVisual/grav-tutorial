@@ -1,0 +1,84 @@
+title: Produkt
+description: Strona pojedynczego produktu
+
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Treść produktu
+
+          fields:
+            content:
+              type: hidden
+
+            header.title:
+              type: text
+              label: Nazwa produktu lub usługi (np. Nagrobek Granitowy)
+
+            header.featured:
+              type: toggle
+              label: Wyróżnij produkt (np. na stronie głównej)
+              highlight: 1
+              default: 0
+              options:
+                1: 'Tak'
+                0: 'Nie'
+              validate:
+                type: bool
+
+            header.price:
+              type: text
+              label: Cena
+              placeholder: 'np. od 3499 PLN'
+
+            header.excerpt:
+              type: textarea
+              label: Zajawka (krótki opis na listę produktów)
+              rows: 5
+
+            header.main_description:
+              type: editor
+              label: Duży opis produktu
+              markdown: true
+
+            header.buttons:
+              type: list
+              label: 'Przyciski dla produktu'
+              fields:
+                .text:
+                  type: text
+                  label: Tekst przycisku
+                .url:
+                  type: text
+                  label: Link (URL)
+                .class:
+                  type: select
+                  label: Styl przycisku
+                  default: 'btn-primary flex-grow text-center'
+                  options:
+                    'btn-primary flex-grow text-center': 'Podstawowy'
+                    'btn-cta flex-grow text-center': 'CTA'
+
+        media:
+          type: tab
+          title: Media
+          fields:
+            header.small_image:
+              type: pagemedia
+              label: Małe zdjęcie (miniaturka)
+              destination: 'self@'
+
+            header.gallery:
+              type: pagemedia
+              label: Galeria zdjęć
+              multiple: true
+              destination: 'self@'
+              preview_images: true

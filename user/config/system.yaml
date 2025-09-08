@@ -53,7 +53,8 @@ pages:
     page: true
     twig: true
   markdown:
-    extra: false
+    extra: true
+    parser: ParsedownExtra
     auto_line_breaks: false
     auto_url_links: false
     escape_markup: false
@@ -97,7 +98,7 @@ pages:
       - form
       - forms
 cache:
-  enabled: true
+  enabled: false 
   check:
     method: file
   driver: auto

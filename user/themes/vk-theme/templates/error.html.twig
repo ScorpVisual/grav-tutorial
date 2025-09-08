@@ -5,4 +5,130 @@
         <h1>{{ 'THEME_TAILWIND.ERROR'|t }}</h1>
         {{ page.content|raw }}
     </div>
+   {# --- Przykładowe dane dla karuzeli produktów --- #}
+{# 
+  Definicja zmiennej 'products'. 
+  W docelowym rozwiązaniu ta zmienna prawdopodobnie będzie przekazywana
+  z kontrolera PHP w Grav CMS, a nie definiowana bezpośrednio w szablonie.
+#}
+{# --- Twoja lista produktów (pozostaje bez zmian) --- #}
+{% set products = [
+    {
+        name: "Nagrobek Nowoczesny N-01",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-120.jpg",
+        alt_text: "Nagrobek nowoczesny z białego granitu",
+        price: "od 6 499 PLN",
+        link: "#link-do-n01",
+        full_desc: "Model N-01 to kwintesencja nowoczesnego designu. Charakteryzuje się prostą bryłą, wysokiej jakości polerowanym granitem i minimalistycznymi akcentami."
+    },
+    {
+        name: "Nagrobek Klasyczny K-08",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-124.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        price: "od 5 999 PLN",
+        link: "#link-do-k08",
+        full_desc: "Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
+    },
+    {
+        name: "Nagrobek Artystyczny A-12",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-129.jpg",
+        alt_text: "Nagrobek artystyczny z rzeźbą",
+        price: "od 14 999 PLN",
+        link: "#link-do-a12",
+        full_desc: "Ten model to prawdziwe dzieło sztuki kamieniarskiej. Łączy w sobie różne rodzaje granitu i zawiera ręcznie wykonaną rzeźbę, co czyni go unikalnym projektem."
+    },
+    {
+        name: "Nagrobek Klasyczny K-09",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-130.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        price: "od 5 999 PLN",
+        link: "#link-do-k09",
+        full_desc: "Klasyczny nagrobek K-09 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
+    },
+    {
+        name: "Nagrobek Klasyczny K-10",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-131.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        price: "od 5 999 PLN",
+        link: "#link-do-k10",
+        full_desc: "Klasyczny nagrobek K-10 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
+    }
+] %}
+
+{% if products is not empty %}
+<section class="py-12 lg:py-20 overflow-hidden">
+    <div class="max-w-screen-xl mx-auto px-4">
+        {# --- Nagłówek sekcji --- #}
+        <div class="max-w-3xl mx-auto mb-16 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+                Nasze realizacje
+            </h2>
+            <p class="text-gray-600">
+                Poniżej prezentujemy wybrane projekty nagrobków, które mieliśmy przyjemność zrealizować dla naszych Klientów.
+            </p>
+        </div>
+    </div>
+
+  {# --- KONTENER GŁÓWNY KARUZELI "SHUFFLE" --- #}
+<div class="shuffle-carousel js-shuffle-carousel">
+    <div class="shuffle-carousel__track">
+        {% for product in products %}
+        <div class="shuffle-carousel__slide">
+            {# Karta produktu .product-card pozostaje taka sama jak w wersji z nakładką #}
+            <div class="product-card" style="background-image: url('{{ product.image }}');">
+                <div class="product-card__main-content">
+                    <h3 class="product-card__title">{{ product.name }}</h3>
+                    <p class="product-card__price"><span class="c-pink">Cena:</span> {{ product.price }}</p>
+                    <button class="product-card__expand-btn">ROZWIŃ</button>
+                </div>
+                <div class="product-card__details-overlay">
+                    <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">&times;</button>
+                    <div class="details-overlay__content">
+                        {# <h3 class="product-card__title">{{ product.name }}</h3>
+                        <p class="product-card__price">{{ product.price }}</p> #}
+                        <p class="product-card__desc">{{ product.full_desc }}</p>
+                        <div class="product-card__buttons">
+                            <a href="{{ product.link }}" class="btn-primary">Zobacz realizacje</a>
+                            <a href="#kontakt" class="btn-cta">Zamów wariant</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {# --- Przyciski nawigacyjne --- #}
+    <button class="shuffle-carousel__btn shuffle-carousel__btn--prev">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+    </button>
+    <button class="shuffle-carousel__btn shuffle-carousel__btn--next">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+    </button>
+</div>
+</section>
+{% endif %}
+
+  {# <div class="product-carousel__info-card white-marble-slab mt-8 rounded-lg p-6">
+    <div class="flex flex-col items-center gap-4 text-center text-gray-800">
+      <h3 class="product-carousel__title text-3xl font-bold underline--cherry"></h3>
+
+      <div class="text-xl font-bold md:text-2xl">
+        <span class="product-carousel__price c-cherry"></span>
+      </div>
+
+      <p class="product-carousel__description text-lg max-w-xl"></p>
+
+      <div class="mt-auto flex w-full flex-col gap-3 lg:flex-row">
+        <a href="#" class="btn-primary product-carousel__link flex-grow text-center">
+          Zobacz realizacje
+        </a>
+        <a href="#kontakt" class="btn-cta flex-grow text-center">
+          Zamów Wariant
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section> #}
 {% endblock %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'partials/head.html.twig' %}
+</head>
+<body class="typography">
+    <header class="relative">
+        {# Dołączamy Twój unikalny hero-content dla strony głównej #}
+        {% include 'partials/header.html.twig' %}
+        {% include 'partials/main-hero.html.twig' %}
+    </header>
+
+    <div id="main-content" class="grid-container">
+        <aside class="grid-container__sidebar">
+            {% include 'partials/aside.html.twig' %}
+        </aside>
+
+        <main class="grid-container__main-content">
+            {# ======================================================= #}
+            {# KLUCZOWA ZMIANA: TUTAJ WSTAWIAMY PĘTLĘ Z MODUŁAMI       #}
+            {# ======================================================= #}
+            {% for module in page.collection() %}
+                {{ module.content|raw }}
+            {% endfor %}
+            {# ======================================================= #}
+
+            {% include 'partials/contact.html.twig' %}
+        </main>
+    </div>
+
+    <footer class="grid-container__footer white-marble-slab">
+        {% include 'partials/footer.html.twig' %}
+    </footer>
+</body>
+</html>

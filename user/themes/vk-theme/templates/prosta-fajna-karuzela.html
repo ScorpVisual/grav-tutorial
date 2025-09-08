@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debugowanie Karuzeli z Nakładką</title>
+    <style>
+        /* --- Style Główne i Zmienne --- */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+        }
+
+        :root {
+            --cherry-gradient: linear-gradient(160deg, rgba(162, 26, 57, 0.98) 0%, rgba(100, 10, 30, 0.98) 100%);
+        }
+        
+        /* --- Style pomocnicze --- */
+        .border-bot-cherry {
+            display: inline-block;
+            border-bottom: 3px solid #A21A39;
+            padding-bottom: 8px;
+        }
+        .btn-primary, .btn-cta { display: block; text-align: center; padding: 0.75rem 1rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
+        .btn-primary { background-color: white; color: #A21A39; }
+        .btn-primary:hover { background-color: #f0f0f0; }
+        .btn-cta { background-color: transparent; border: 2px solid white; color: white; }
+        .btn-cta:hover { background-color: rgba(255, 255, 255, 0.1); }
+
+        /* --- Karuzela "NA ZAKŁADKĘ" --- */
+        .overlap-carousel {
+            position: relative;
+            height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overlap-carousel__track {
+            position: relative;
+            width: 320px;
+            height: 480px;
+        }
+
+        .overlap-carousel__slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease, opacity 0.5s ease, z-index 0s 0.25s;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.7);
+        }
+
+        /* --- Stany pozycjonowania slajdów --- */
+        .is-center { transform: translateX(0) scale(1); opacity: 1; z-index: 4; cursor: default; }
+        .is-left { transform: translateX(-55%) scale(0.85); opacity: 0.6; z-index: 3; }
+        .is-right { transform: translateX(55%) scale(0.85); opacity: 0.6; z-index: 3; }
+        .is-far-left { transform: translateX(-110%) scale(0.7); opacity: 0.3; z-index: 2; }
+        .is-far-right { transform: translateX(110%) scale(0.7); opacity: 0.3; z-index: 2; }
+        .is-hidden { transform: scale(0.5); opacity: 0; z-index: 1; }
+
+        /* --- KARTA PRODUKTU (WERSJA Z NAKŁADKĄ) --- */
+        .product-card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+        }
+        .is-center .product-card {
+             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+            z-index: 1;
+        }
+
+        .product-card__main-content {
+            position: relative;
+            z-index: 2;
+            padding: 1.5rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            text-align: left;
+        }
+        
+        .product-card__title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .product-card__price { font-size: 1.25rem; font-weight: 600; color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; }
+
+        .product-card__expand-btn {
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 0.5rem 1rem;
+            border: 2px solid rgba(255,255,255,0.8);
+            background: transparent;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            align-self: flex-start;
+            animation: pulse 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+            cursor: pointer;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            50% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); }
+        }
+
+        /* --- Nakładka ze szczegółami --- */
+        .product-card__details-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--cherry-gradient);
+            z-index: 5;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .product-card.is-details-open .product-card__details-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .details-overlay__content {
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            text-align: left;
+        }
+
+        .details-overlay__close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            z-index: 6;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            line-height: 1;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .details-overlay__close-btn:hover { opacity: 1; transform: scale(1.1); }
+        .product-card__desc { flex-grow: 1; font-size: 0.95rem; line-height: 1.6; margin-top: 1rem; }
+        .product-card__buttons { display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto; width: 100%; }
+
+        /* --- Przyciski nawigacyjne --- */
+        .overlap-carousel__btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .overlap-carousel__btn:hover { background-color: white; transform: translateY(-50%) scale(1.1); }
+        .overlap-carousel__btn--prev { left: calc(50% - 250px); }
+        .overlap-carousel__btn--next { right: calc(50% - 250px); }
+
+        /* --- Responsywność --- */
+        @media (max-width: 768px) {
+            .overlap-carousel__track { width: 280px; height: 420px; }
+            .is-left { transform: translateX(-45%) scale(0.8); }
+            .is-right { transform: translateX(45%) scale(0.8); }
+            .is-far-left, .is-far-right { opacity: 0; transform: scale(0.7); }
+            .overlap-carousel__btn { top: auto; bottom: -60px; transform: translateY(0); }
+            .overlap-carousel__btn--prev { left: calc(50% - 50px); }
+            .overlap-carousel__btn--next { right: calc(50% - 50px); }
+        }
+    </style>
+</head>
+<body>
+
+<section class="bg-gray-100 py-12 lg:py-20 overflow-hidden">
+    <div class="max-w-screen-xl mx-auto px-4">
+        <div class="max-w-3xl mx-auto mb-16 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">Nasze realizacje</h2>
+            <p class="text-gray-600">Poniżej prezentujemy wybrane projekty nagrobków, które mieliśmy przyjemność zrealizować dla naszych Klientów.</p>
+        </div>
+    </div>
+
+    <div class="overlap-carousel js-overlap-carousel">
+        <div class="overlap-carousel__track">
+            
+            <div class="overlap-carousel__slide">
+                <div class="product-card" style="background-image: url('https://placehold.co/400x600/A21A39/FFFFFF?text=N-01');">
+                    <div class="product-card__main-content">
+                        <h3 class="product-card__title">Nagrobek Nowoczesny N-01</h3>
+                        <p class="product-card__price">od 6 499 PLN</p>
+                        <button class="product-card__expand-btn">ROZWIŃ</button>
+                    </div>
+                    <div class="product-card__details-overlay">
+                        <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">&times;</button>
+                        <div class="details-overlay__content">
+                            <h3 class="product-card__title">Nagrobek Nowoczesny N-01</h3>
+                            <p class="product-card__price">od 6 499 PLN</p>
+                            <p class="product-card__desc">Model N-01 to kwintesencja nowoczesnego designu. Charakteryzuje się prostą bryłą i minimalistycznymi akcentami.</p>
+                            <div class="product-card__buttons">
+                                <a href="#link-do-n01" class="btn-primary">Zobacz realizacje</a>
+                                <a href="#kontakt" class="btn-cta">Zamów wariant</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlap-carousel__slide">
+                <div class="product-card" style="background-image: url('https://placehold.co/400x600/34495E/FFFFFF?text=K-08');">
+                    <div class="product-card__main-content">
+                        <h3 class="product-card__title">Nagrobek Klasyczny K-08</h3>
+                        <p class="product-card__price">od 5 999 PLN</p>
+                        <button class="product-card__expand-btn">ROZWIŃ</button>
+                    </div>
+                    <div class="product-card__details-overlay">
+                        <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">&times;</button>
+                        <div class="details-overlay__content">
+                            <h3 class="product-card__title">Nagrobek Klasyczny K-08</h3>
+                            <p class="product-card__price">od 5 999 PLN</p>
+                            <p class="product-card__desc">Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania.</p>
+                            <div class="product-card__buttons">
+                                <a href="#link-do-k08" class="btn-primary">Zobacz realizacje</a>
+                                <a href="#kontakt" class="btn-cta">Zamów wariant</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="overlap-carousel__slide">
+                <div class="product-card" style="background-image: url('https://placehold.co/400x600/16A085/FFFFFF?text=A-12');">
+                    <div class="product-card__main-content">
+                        <h3 class="product-card__title">Nagrobek Artystyczny A-12</h3>
+                        <p class="product-card__price">od 14 999 PLN</p>
+                        <button class="product-card__expand-btn">ROZWIŃ</button>
+                    </div>
+                    <div class="product-card__details-overlay">
+                        <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">&times;</button>
+                        <div class="details-overlay__content">
+                             <h3 class="product-card__title">Nagrobek Artystyczny A-12</h3>
+                            <p class="product-card__price">od 14 999 PLN</p>
+                            <p class="product-card__desc">Ten model to prawdziwe dzieło sztuki kamieniarskiej. Zawiera ręcznie wykonaną rzeźbę, co czyni go unikalnym projektem.</p>
+                            <div class="product-card__buttons">
+                                <a href="#link-do-a12" class="btn-primary">Zobacz realizacje</a>
+                                <a href="#kontakt" class="btn-cta">Zamów wariant</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlap-carousel__slide">
+                 <div class="product-card" style="background-image: url('https://placehold.co/400x600/8E44AD/FFFFFF?text=K-09');">
+                    <div class="product-card__main-content">
+                        <h3 class="product-card__title">Nagrobek Klasyczny K-09</h3>
+                        <p class="product-card__price">od 5 999 PLN</p>
+                        <button class="product-card__expand-btn">ROZWIŃ</button>
+                    </div>
+                    <div class="product-card__details-overlay">
+                        <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">&times;</button>
+                        <div class="details-overlay__content">
+                            <h3 class="product-card__title">Nagrobek Klasyczny K-09</h3>
+                            <p class="product-card__price">od 5 999 PLN</p>
+                            <p class="product-card__desc">Klasyczny nagrobek K-09 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania.</p>
+                            <div class="product-card__buttons">
+                                <a href="#link-do-k09" class="btn-primary">Zobacz realizacje</a>
+                                <a href="#kontakt" class="btn-cta">Zamów wariant</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlap-carousel__slide">
+                 <div class="product-card" style="background-image: url('https://placehold.co/400x600/F39C12/FFFFFF?text=K-10');">
+                    <div class="product-card__main-content">
+                        <h3 class="product-card__title">Nagrobek Klasyczny K-10</h3>
+                        <p class="product-card__price">od 5 999 PLN</p>
+                        <button class="product-card__expand-btn">ROZWIŃ</button>
+                    </div>
+                    <div class="product-card__details-overlay">
+                        <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">&times;</button>
+                        <div class="details-overlay__content">
+                             <h3 class="product-card__title">Nagrobek Klasyczny K-10</h3>
+                            <p class="product-card__price">od 5 999 PLN</p>
+                            <p class="product-card__desc">Klasyczny nagrobek K-10 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania.</p>
+                            <div class="product-card__buttons">
+                                <a href="#link-do-k10" class="btn-primary">Zobacz realizacje</a>
+                                <a href="#kontakt" class="btn-cta">Zamów wariant</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <button class="overlap-carousel__btn overlap-carousel__btn--prev"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
+        <button class="overlap-carousel__btn overlap-carousel__btn--next"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></button>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Puste funkcje dla zgodności
+    function initGalleryModal() { console.log("initGalleryModal placeholder"); }
+    function initMaterialCarousel() { console.log("initMaterialCarousel placeholder"); }
+
+    // --- LOGIKA KARUZELI "NA ZAKŁADKĘ" Z NAKŁADKĄ ---
+    function initOverlapCarousel() {
+        const carousel = document.querySelector('.js-overlap-carousel');
+        if (!carousel) return;
+
+        const slides = Array.from(carousel.querySelectorAll('.overlap-carousel__slide'));
+        const nextButton = carousel.querySelector('.overlap-carousel__btn--next');
+        const prevButton = carousel.querySelector('.overlap-carousel__btn--prev');
+        const totalSlides = slides.length;
+        let currentIndex = 0;
+
+        if (totalSlides === 0) return;
+
+        function updateCarousel() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('is-center', 'is-left', 'is-right', 'is-far-left', 'is-far-right', 'is-hidden');
+                
+                const card = slide.querySelector('.product-card');
+                if (card) card.classList.remove('is-details-open');
+
+                let diff = (index - currentIndex + totalSlides) % totalSlides;
+                if (diff > totalSlides / 2) diff -= totalSlides;
+
+                switch (diff) {
+                    case 0: slide.classList.add('is-center'); break;
+                    case 1: slide.classList.add('is-right'); break;
+                    case -1: slide.classList.add('is-left'); break;
+                    case 2: slide.classList.add('is-far-right'); break;
+                    case -2: slide.classList.add('is-far-left'); break;
+                    default: slide.classList.add('is-hidden'); break;
+                }
+            });
+        }
+        
+        function setupEventListeners() {
+            slides.forEach((slide, index) => {
+                slide.addEventListener('click', () => {
+                    if (index !== currentIndex) {
+                        currentIndex = index;
+                        updateCarousel();
+                    }
+                });
+
+                const card = slide.querySelector('.product-card');
+                const expandBtn = slide.querySelector('.product-card__expand-btn');
+                const closeBtn = slide.querySelector('.details-overlay__close-btn');
+
+                if (expandBtn && card) {
+                    expandBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (index === currentIndex) {
+                            card.classList.add('is-details-open');
+                        }
+                    });
+                }
+
+                if (closeBtn && card) {
+                    closeBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        card.classList.remove('is-details-open');
+                    });
+                }
+            });
+
+            if(nextButton) {
+                nextButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    updateCarousel();
+                });
+            }
+
+            if(prevButton) {
+                prevButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    updateCarousel();
+                });
+            }
+        }
+        
+        setupEventListeners();
+        updateCarousel();
+    }
+
+    // --- Inicjalizacja komponentów ---
+    initGalleryModal();
+    initMaterialCarousel();
+    initOverlapCarousel();
+});
+</script>
+
+</body>
+</html>

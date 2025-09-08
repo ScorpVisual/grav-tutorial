@@ -90,6 +90,20 @@ html {
     z-index: 2;
     }
 
+.bg-overlay-custom {
+    position: inherit;
+     &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($ink, .6);
+        z-index: 2;
+     }
+    }
+
 
 
 .video-overlay {

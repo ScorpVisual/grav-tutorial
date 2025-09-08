@@ -1,0 +1,62 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/variables' as *;
+@use '../mixins/mixins' as *;
+@use '../mixins/mixins-divs.scss' as *;
+@use '../mixins/mixins-backgrounds.scss' as *;
+@use 'sass:color';
+
+    #carousel-container {
+        perspective: 1000px;
+    }
+    .carousel-item {
+        position: absolute;
+        transition: all .5s ease-in-out;
+        backface-visibility: hidden; /* Poprawia wydajność animacji */
+        width: 16rem; /* 256px */
+        height: 16rem; /* 256px */
+    }
+    .carousel-center {
+        transform: translateX(0) scale(1) rotateY(0);
+        opacity: 1;
+        z-index: 20;
+        box-shadow: 0 24px 24px rgba($black, .7);
+    }
+    .carousel-left {
+        transform: translateX(-14rem) scale(0.85) rotateY(30deg);
+        // opacity: 0.7;
+        z-index: 10;
+        box-shadow: -20px 16px 8px rgba($black, .25);
+    }
+    .carousel-right {
+        transform: translateX(14rem) scale(0.85) rotateY(-30deg);
+        // opacity: 0.7;
+        z-index: 10;
+        box-shadow: 20px 16px 8px rgba($black, .25);
+    }
+    /* Stan dla slajdów, które są poza widokiem */
+    .carousel-hidden {
+        transform: scale(0.5);
+        opacity: 0;
+        z-index: 5;
+    }
+
+    .product-carousel__dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        // Stan aktywny
+        &.is-active {
+            background-color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
+        }
+    }

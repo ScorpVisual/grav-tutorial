@@ -13,6 +13,15 @@
   display: none !important;
 }
 
+.reset-fadeIn {
+    animation: none !important;
+}
+.price-highlighted {
+    color: $sand;
+    background-color: $cherry;
+    border-radius: $border-radius;
+    padding: 0.2rem 0.5rem;
+}
 
 .fill-letters-gold {
     background-color: #c0a258; /* Kolor awaryjny */
@@ -60,6 +69,11 @@
     }
 }
 
+.hr-underline {
+    border: none;
+    height: 0.1rem;
+    border-radius: 16rem;
+}
 .border-cherry {
     border: 2px solid $cherry;
 }

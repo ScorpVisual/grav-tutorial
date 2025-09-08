@@ -1,0 +1,9 @@
+title: Wyróżniony Produkt
+description: Moduł wyświetlający zajawkę jednego, wybranego produktu.
+
+form:
+  fields:
+    header.featured_product_main:
+      type: pages
+      label: Wybierz produkt do wyróżnienia
+      destination: 'page@:/produkty'
