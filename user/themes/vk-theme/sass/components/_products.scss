@@ -47,11 +47,10 @@
 // Plik: _product-card-overlay.scss
 // Plik: _twoja-karuzela.scss
 
-// --- STYL UKŁADU KARUZELI "NA ZAKŁADKĘ" ---
 
 .overlap-carousel {
     position: relative;
-    height: 550px; // Możesz dostosować wysokość
+    height: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,50 +68,21 @@
     left: 0;
     width: 100%;
     height: 100%;
-    transition: transform 0.5s ease, opacity 0.5s ease, z-index 0s 0.25s;
+    transition: transform 0.5s ease, z-index 0s 0.25s;
     cursor: pointer;
-    opacity: 0; 
+    opacity: 1; // POPRAWKA: Slajdy muszą być widoczne
     transform: scale(0.7);
 }
 
 // --- Stany pozycjonowania slajdów ---
+.is-center { transform: translateX(0) scale(1); z-index: 4; cursor: default; }
+.is-left { transform: translateX(-55%) scale(0.85); z-index: 3; }
+.is-right { transform: translateX(55%) scale(0.85); z-index: 3; }
+.is-far-left { transform: translateX(-110%) scale(0.7); z-index: 2; }
+.is-far-right { transform: translateX(110%) scale(0.7); z-index: 2; }
+.is-hidden { transform: scale(0.5); z-index: 1; }
 
-.is-center {
-    transform: translateX(0) scale(1);
-    opacity: 1;
-    z-index: 4;
-    cursor: default;
-}
-
-.is-left {
-    transform: translateX(-55%) scale(0.85);
-    opacity: 0.6;
-    z-index: 3;
-}
-
-.is-right {
-    transform: translateX(55%) scale(0.85);
-    opacity: 0.6;
-    z-index: 3;
-}
-
-.is-far-left {
-    transform: translateX(-110%) scale(0.7);
-    opacity: 0.3;
-    z-index: 2;
-}
-
-.is-far-right {
-    transform: translateX(110%) scale(0.7);
-    opacity: 0.3;
-    z-index: 2;
-}
-
-.is-hidden {
-    transform: scale(0.5);
-    opacity: 0;
-    z-index: 1;
-}
+// --- STYL KARTY PRODUKTU (WERSJA Z NAKŁADKĄ) ---
 
 // --- STYL KARTY PRODUKTU (WERSJA Z NAKŁADKĄ) ---
 
@@ -242,42 +212,37 @@
     margin-top: auto;
     width: 100%;
 }
+// --- NAKŁADKA WYGASZAJĄCA (FADE OVERLAY) ---
 
-
-// --- PRZYCISKI NAWIGACYJNE I RESPONSYWNOŚĆ ---
-
-.overlap-carousel__btn {
+.product-card__fade-overlay {
+    content: '';
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 50px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.3s;
-
-    &:hover {
-        background-color: white;
-        transform: translateY(-50%) scale(1.1);
-    }
-
-    &--prev { left: calc(50% - 250px); }
-    &--next { right: calc(50% - 250px); }
+    inset: 0;
+    background-color: #f3f4f6; // Kolor tła Twojej strony
+    z-index: 3;
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
-@media (max-width: 768px) {
+// Sterowanie przezroczystością NAKŁADKI
+.is-left .product-card__fade-overlay,
+.is-right .product-card__fade-overlay {
+    opacity: 0.4;
+}
+
+.is-far-left .product-card__fade-overlay,
+.is-far-right .product-card__fade-overlay,
+.is-hidden .product-card__fade-overlay {
+    opacity: 0.7;
+}
+
+
+@media (max-width: $breakpoint-md) {
     .overlap-carousel__track { width: 280px; height: 420px; }
     .is-left { transform: translateX(-45%) scale(0.8); }
     .is-right { transform: translateX(45%) scale(0.8); }
-    .is-far-left, .is-far-right { opacity: 0; transform: scale(0.7); }
+    // Usunięto zbędną regułę opacity, aby nakładka działała
     .overlap-carousel__btn {
         top: auto;
         bottom: -60px;
@@ -286,3 +251,78 @@
         &--next { right: calc(50% - 50px); }
     }
 }
+
+// Plik: _shuffle-carousel.scss
+
+.shuffle-carousel {
+    position: relative;
+    width: 100%;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    // Ważne: Zapewnia, że widać tylko centralny obszar
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+.shuffle-carousel__track {
+    display: flex;
+    align-items: center;
+    gap: 2rem; // Odstęp między kartami
+    // Pozycjonowanie jest teraz kontrolowane przez transform w JS
+    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.shuffle-carousel__slide {
+    width: 320px;
+    height: 480px;
+    flex-shrink: 0; // Zapobiega kurczeniu się kart
+    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s;
+
+    // Domyślnie karty są mniejsze
+    transform: scale(0.85);
+    opacity: 0.8;
+}
+
+.shuffle-carousel__slide.is-active {
+    // Aktywna karta w centrum jest większa i w pełni widoczna
+    transform: scale(1);
+    opacity: 1;
+}
+
+// Przyciski nawigacyjne
+.shuffle-carousel__btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-50%) scale(1.1);
+    }
+    
+    &--prev { left: 20px; }
+    &--next { right: 20px; }
+}
+
+@media (max-width: 768px) {
+    .shuffle-carousel { mask-image: none; } // Wyłącz maskowanie na mobilce
+    .shuffle-carousel__slide { width: 280px; height: 420px; }
+    .shuffle-carousel__btn {
+        top: auto;
+        bottom: 10px;
+        transform: none;
+        &--prev { left: calc(50% - 60px); }
+        &--next { right: calc(50% - 60px); }
+    }
+}
+
+// Style dla .product-card i nakładki pozostają takie same jak w poprzedniej wersji!

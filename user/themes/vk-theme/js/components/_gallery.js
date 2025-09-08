@@ -128,63 +128,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- NOWA, ZAAWANSOWANA LOGIKA KARUZELI 3D "WYBÓR PRODUKTU" ---
     // --- NOWA LOGIKA KARUZELI "NA ZAKŁADKĘ" ---
-    function initOverlapCarousel() {
-    const carousel = document.querySelector('.js-overlap-carousel');
+   // Zastąp initOverlapCarousel tą nową funkcją
+
+function initShuffleCarousel() {
+    const carousel = document.querySelector('.js-shuffle-carousel');
     if (!carousel) return;
 
-    const slides = Array.from(carousel.querySelectorAll('.overlap-carousel__slide'));
+    const track = carousel.querySelector('.shuffle-carousel__track');
+    const slides = Array.from(track.children);
     const nextButton = carousel.querySelector('.overlap-carousel__btn--next');
     const prevButton = carousel.querySelector('.overlap-carousel__btn--prev');
-    const totalSlides = slides.length;
-    let currentIndex = 0;
-
-    if (totalSlides === 0) return;
-
+    
+    if (slides.length === 0) return;
+    
+    let currentIndex = Math.floor(slides.length / 2); // Zacznij od środkowej karty
+    
     function updateCarousel() {
+        const carouselWidth = carousel.offsetWidth;
+        const slideWidth = slides[0].offsetWidth;
+        const gap = parseInt(window.getComputedStyle(track).gap) || 32; // 32px to 2rem
+
+        // Oblicz przesunięcie, aby wycentrować aktywny slajd
+        const offset = (carouselWidth / 2) - (slideWidth / 2) - (currentIndex * (slideWidth + gap));
+        track.style.transform = `translateX(${offset}px)`;
+
+        // Zaktualizuj klasę 'is-active'
         slides.forEach((slide, index) => {
-            slide.classList.remove('is-center', 'is-left', 'is-right', 'is-far-left', 'is-far-right', 'is-hidden');
+            slide.classList.toggle('is-active', index === currentIndex);
             
-            // AUTOMATYCZNE ZAMYKANIE NAKŁADKI przy zmianie slajdu
-            const card = slide.querySelector('.product-card');
-            if (card) card.classList.remove('is-details-open');
-
-            let diff = (index - currentIndex + totalSlides) % totalSlides;
-            if (diff > totalSlides / 2) diff -= totalSlides;
-
-            switch (diff) {
-                case 0: slide.classList.add('is-center'); break;
-                case 1: slide.classList.add('is-right'); break;
-                case -1: slide.classList.add('is-left'); break;
-                case 2: slide.classList.add('is-far-right'); break;
-                case -2: slide.classList.add('is-far-left'); break;
-                default: slide.classList.add('is-hidden'); break;
+            // Zamknij nakładkę, jeśli karta nie jest aktywna
+            if (index !== currentIndex) {
+                 const card = slide.querySelector('.product-card');
+                 if (card) card.classList.remove('is-details-open');
             }
         });
     }
     
     function setupEventListeners() {
+        // Klikanie na karty, aby je wycentrować
         slides.forEach((slide, index) => {
-            // Przesuń karuzelę, klikając na boczny slajd
-            slide.addEventListener('click', () => {
+             slide.addEventListener('click', () => {
                 if (index !== currentIndex) {
                     currentIndex = index;
                     updateCarousel();
                 }
             });
 
+            // Logika otwierania/zamykania nakładki (pozostaje taka sama)
             const card = slide.querySelector('.product-card');
             const expandBtn = slide.querySelector('.product-card__expand-btn');
             const closeBtn = slide.querySelector('.details-overlay__close-btn');
 
-            // Otwórz nakładkę
             if (expandBtn && card) {
                 expandBtn.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Zapobiegaj przesunięciu karuzeli
-                    card.classList.add('is-details-open');
+                    e.stopPropagation();
+                    if (slide.classList.contains('is-active')) {
+                        card.classList.add('is-details-open');
+                    }
                 });
             }
-
-            // Zamknij nakładkę
             if (closeBtn && card) {
                 closeBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -193,23 +195,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Przyciski nawigacyjne
         nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalSlides;
+            currentIndex = (currentIndex + 1) % slides.length;
             updateCarousel();
         });
-
         prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
             updateCarousel();
         });
     }
     
+    // Inicjalizacja
     setupEventListeners();
-    updateCarousel();
+    updateCarousel(); // Ustaw pozycję początkową
+    
+    // Przelicz pozycje przy zmianie rozmiaru okna
+    window.addEventListener('resize', updateCarousel);
 }
 
     // --- INICJALIZACJA WSZYSTKICH KOMPONENTÓW ---
     initGalleryModal();
     initMaterialCarousel();
-    initOverlapCarousel();
+    initShuffleCarousel();
 });

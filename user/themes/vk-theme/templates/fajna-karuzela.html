@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debugowanie Karuzeli 3D (Poprawiona Wersja)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- Style Główne --- */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        :root {
+            --cherry-color: #A21A39;
+            --cherry-gradient: linear-gradient(160deg, rgba(162, 26, 57, 0.95) 0%, rgba(100, 10, 30, 0.98) 100%);
+        }
+
+        .border-bot-cherry {
+            display: inline-block;
+            border-bottom: 3px solid var(--cherry-color);
+            padding-bottom: 8px;
+        }
+
+        /* --- Karuzela (POPRAWIONE) --- */
+        .product-carousel {
+            position: relative;
+            height: 550px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .product-carousel__track-container {
+            position: relative;
+            width: 320px;   /* Szerokość sceny = szerokość slajdu */
+            height: 480px;  /* Wysokość sceny = wysokość slajdu */
+            perspective: 1800px;
+        }
+
+        .product-carousel__track {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .product-carousel__slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s;
+            cursor: pointer;
+            opacity: 0.7;
+            transform: scale(0.9);
+        }
+
+        .product-carousel__slide.is-active {
+            cursor: default;
+            opacity: 1;
+            /* Usunięto !important, transformacja pozycji jest teraz w innym miejscu */
+        }
+        
+        /* --- Karta Produktu --- */
+        .product-card { width: 100%; height: 100%; perspective: 1000px; }
+        .product-card__inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s cubic-bezier(0.5, 0, 0.2, 1); transform-style: preserve-3d; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); border-radius: 12px; }
+        .product-card:hover .product-card__inner, .product-card.is-flipped .product-card__inner { transform: rotateY(180deg); }
+        .product-card__front, .product-card__back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 12px; overflow: hidden; }
+        .product-card__front { background-size: cover; background-position: center; color: white; }
+        .product-card__back { background: var(--cherry-gradient); color: white; transform: rotateY(180deg); }
+        .product-card__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%); }
+        .product-card__content { position: relative; z-index: 2; padding: 1.5rem; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; text-align: left; }
+        .product-card__title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .product-card__price { font-size: 1.25rem; font-weight: 600; color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; text-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+        .product-card__desc { flex-grow: 1; font-size: 0.95rem; line-height: 1.6; margin-top: 1rem; }
+        .product-card__expand-btn { font-weight: 700; letter-spacing: 2px; padding: 0.5rem 1rem; border: 2px solid rgba(255, 255, 255, 0.8); border-radius: 50px; text-align: center; align-self: flex-start; animation: pulse 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1); transition: background-color 0.3s; }
+        .product-card:hover .product-card__expand-btn { animation: none; }
+        .product-card__buttons { display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto; width: 100%; }
+
+        /* --- Animacja pulsowania --- */
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            50% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); }
+        }
+
+        /* --- Przyciski nawigacyjne --- */
+        .product-carousel__btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 50px; height: 50px; background-color: rgba(255, 255, 255, 0.9); border: none; border-radius: 50%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); display: flex; align-items: center; justify-content: center; color: #333; cursor: pointer; transition: all 0.3s; }
+        .product-carousel__btn:hover { background-color: white; transform: translateY(-50%) scale(1.1); }
+        .product-carousel__btn--prev { left: -70px; }
+        .product-carousel__btn--next { right: -70px; }
+
+        /* --- Style dla przykładowych buttonów --- */
+        .btn-primary, .btn-cta { display: block; text-align: center; padding: 0.75rem 1rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
+        .btn-primary { background-color: white; color: var(--cherry-color); }
+        .btn-primary:hover { background-color: #f0f0f0; }
+        .btn-cta { background-color: transparent; border: 2px solid white; color: white; }
+        .btn-cta:hover { background-color: rgba(255, 255, 255, 0.1); }
+        
+        /* --- Responsywność --- */
+        @media (max-width: 768px) {
+            .product-carousel__track-container { width: 280px; height: 420px; }
+            .product-carousel__btn { width: 40px; height: 40px; }
+            .product-carousel__btn--prev { left: 20px; }
+            .product-carousel__btn--next { right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="bg-gray-100 py-12 lg:py-20 overflow-x-hidden">
+        <div class="max-w-screen-xl mx-auto px-4">
+            <div class="max-w-3xl mx-auto mb-12 text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">Nasze realizacje</h2>
+                <p class="text-gray-600">Poniżej prezentujemy wybrane projekty nagrobków, które mieliśmy przyjemność zrealizować dla naszych Klientów.</p>
+            </div>
+        </div>
+
+        <div class="product-carousel js-product-carousel">
+            <div class="product-carousel__track-container">
+                <div class="product-carousel__track">
+                    <div class="product-carousel__slide" data-link="#link-do-n01"><div class="product-card"><div class="product-card__inner"><div class="product-card__front" style="background-image: url('https://placehold.co/400x600/A21A39/FFFFFF?text=N-01');"><div class="product-card__overlay"></div><div class="product-card__content"><h3 class="product-card__title">Nagrobek Nowoczesny N-01</h3><p class="product-card__price">od 6 499 PLN</p><div class="product-card__expand-btn">ROZWIŃ</div></div></div><div class="product-card__back"><div class="product-card__content"><h3 class="product-card__title">Nagrobek Nowoczesny N-01</h3><p class="product-card__price">od 6 499 PLN</p><p class="product-card__desc">Model N-01 to kwintesencja nowoczesnego designu. Charakteryzuje się prostą bryłą i minimalistycznymi akcentami.</p><div class="product-card__buttons"><a href="#link-do-n01" class="btn-primary">Zobacz realizacje</a><a href="#kontakt" class="btn-cta">Zamów wariant</a></div></div></div></div></div></div>
+                    <div class="product-carousel__slide" data-link="#link-do-k08"><div class="product-card"><div class="product-card__inner"><div class="product-card__front" style="background-image: url('https://placehold.co/400x600/34495E/FFFFFF?text=K-08');"><div class="product-card__overlay"></div><div class="product-card__content"><h3 class="product-card__title">Nagrobek Klasyczny K-08</h3><p class="product-card__price">od 5 999 PLN</p><div class="product-card__expand-btn">ROZWIŃ</div></div></div><div class="product-card__back"><div class="product-card__content"><h3 class="product-card__title">Nagrobek Klasyczny K-08</h3><p class="product-card__price">od 5 999 PLN</p><p class="product-card__desc">Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania.</p><div class="product-card__buttons"><a href="#link-do-k08" class="btn-primary">Zobacz realizacje</a><a href="#kontakt" class="btn-cta">Zamów wariant</a></div></div></div></div></div></div>
+                    <div class="product-carousel__slide" data-link="#link-do-a12"><div class="product-card"><div class="product-card__inner"><div class="product-card__front" style="background-image: url('https://placehold.co/400x600/16A085/FFFFFF?text=A-12');"><div class="product-card__overlay"></div><div class="product-card__content"><h3 class="product-card__title">Nagrobek Artystyczny A-12</h3><p class="product-card__price">od 14 999 PLN</p><div class="product-card__expand-btn">ROZWIŃ</div></div></div><div class="product-card__back"><div class="product-card__content"><h3 class="product-card__title">Nagrobek Artystyczny A-12</h3><p class="product-card__price">od 14 999 PLN</p><p class="product-card__desc">Ten model to prawdziwe dzieło sztuki kamieniarskiej. Zawiera ręcznie wykonaną rzeźbę, co czyni go unikalnym projektem.</p><div class="product-card__buttons"><a href="#link-do-a12" class="btn-primary">Zobacz realizacje</a><a href="#kontakt" class="btn-cta">Zamów wariant</a></div></div></div></div></div></div>
+                    <div class="product-carousel__slide" data-link="#link-do-k09"><div class="product-card"><div class="product-card__inner"><div class="product-card__front" style="background-image: url('https://placehold.co/400x600/8E44AD/FFFFFF?text=K-09');"><div class="product-card__overlay"></div><div class="product-card__content"><h3 class="product-card__title">Nagrobek Klasyczny K-09</h3><p class="product-card__price">od 5 999 PLN</p><div class="product-card__expand-btn">ROZWIŃ</div></div></div><div class="product-card__back"><div class="product-card__content"><h3 class="product-card__title">Nagrobek Klasyczny K-09</h3><p class="product-card__price">od 5 999 PLN</p><p class="product-card__desc">Klasyczny nagrobek K-09 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania.</p><div class="product-card__buttons"><a href="#link-do-k09" class="btn-primary">Zobacz realizacje</a><a href="#kontakt" class="btn-cta">Zamów wariant</a></div></div></div></div></div></div>
+                    <div class="product-carousel__slide" data-link="#link-do-k10"><div class="product-card"><div class="product-card__inner"><div class="product-card__front" style="background-image: url('https://placehold.co/400x600/F39C12/FFFFFF?text=K-10');"><div class="product-card__overlay"></div><div class="product-card__content"><h3 class="product-card__title">Nagrobek Klasyczny K-10</h3><p class="product-card__price">od 5 999 PLN</p><div class="product-card__expand-btn">ROZWIŃ</div></div></div><div class="product-card__back"><div class="product-card__content"><h3 class="product-card__title">Nagrobek Klasyczny K-10</h3><p class="product-card__price">od 5 999 PLN</p><p class="product-card__desc">Klasyczny nagrobek K-10 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania.</p><div class="product-card__buttons"><a href="#link-do-k10" class="btn-primary">Zobacz realizacje</a><a href="#kontakt" class="btn-cta">Zamów wariant</a></div></div></div></div></div></div>
+                </div>
+            </div>
+            <button class="product-carousel__btn product-carousel__btn--prev"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></button>
+            <button class="product-carousel__btn product-carousel__btn--next"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></button>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Puste funkcje placeholderowe
+            function initGalleryModal() { console.log("initGalleryModal placeholder"); }
+            function initMaterialCarousel() { console.log("initMaterialCarousel placeholder"); }
+
+            // --- POPRAWIONA LOGIKA KARUZELI 3D ---
+            function initAdvancedCarousel() {
+                const carousel = document.querySelector('.js-product-carousel');
+                if (!carousel) return;
+
+                const track = carousel.querySelector('.product-carousel__track');
+                const slides = Array.from(track.children);
+                const nextButton = carousel.querySelector('.product-carousel__btn--next');
+                const prevButton = carousel.querySelector('.product-carousel__btn--prev');
+                
+                if (slides.length === 0) return;
+
+                let currentIndex = 0;
+
+                function updateCarousel() {
+                    const slideCount = slides.length;
+                    const theta = 360 / slideCount;
+                    const slideWidth = slides[0].offsetWidth;
+                    if (slideWidth === 0) return;
+                    
+                    const radius = Math.round((slideWidth / 2) / Math.tan(Math.PI / slideCount));
+                    const angle = -theta * (currentIndex || 0);
+
+                    track.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`;
+
+                    slides.forEach((slide, index) => {
+                        const isActive = (index === (currentIndex % slideCount + slideCount) % slideCount);
+                        slide.classList.toggle('is-active', isActive);
+
+                        const slideAngle = theta * index;
+                        slide.style.transform = `rotateY(${slideAngle}deg) translateZ(${radius}px)`;
+
+                        if (!isActive) {
+                            const card = slide.querySelector('.product-card');
+                            if (card) card.classList.remove('is-flipped');
+                        }
+                    });
+                }
+
+                function setupEventListeners() {
+                    slides.forEach((slide, index) => {
+                        slide.addEventListener('click', (e) => {
+                            if (!slide.classList.contains('is-active')) {
+                                e.stopPropagation();
+                                currentIndex = index;
+                                updateCarousel();
+                            }
+                        });
+                        
+                        const card = slide.querySelector('.product-card');
+                        if (card) {
+                            card.addEventListener('click', () => {
+                                if (slide.classList.contains('is-active')) {
+                                   card.classList.toggle('is-flipped');
+                                }
+                            });
+                        }
+                    });
+
+                    if(nextButton) {
+                        nextButton.addEventListener('click', () => {
+                            currentIndex++;
+                            updateCarousel();
+                        });
+                    }
+
+                    if(prevButton) {
+                        prevButton.addEventListener('click', () => {
+                            currentIndex--;
+                            updateCarousel();
+                        });
+                    }
+
+                    window.addEventListener('resize', updateCarousel);
+                }
+                
+                // Inicjalizacja
+                setupEventListeners();
+                setTimeout(updateCarousel, 100);
+            }
+
+            // --- INICJALIZACJA WSZYSTKICH KOMPONENTÓW ---
+            initGalleryModal();
+            initMaterialCarousel();
+            initAdvancedCarousel();
+        });
+    </script>
+</body>
+</html>

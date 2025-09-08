@@ -283,7 +283,7 @@
     <div class="max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
 
         <div class="relative flex items-center justify-center h-[350px]">
-            <button data-dir="prev" class="carousel-btn absolute left-0 z-30 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+            <button data-dir="prev" class="carousel-btn overlap-carousel__btn overlap-carousel__btn--prev">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
             </button>
 
@@ -297,7 +297,7 @@
                 {% endfor %}
             </div>
 
-            <button data-dir="next" class="carousel-btn absolute right-0 z-30 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+            <button data-dir="next" class="carousel-btn overlap-carousel__btn overlap-carousel__btn--next">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
             </button>
         </div>
