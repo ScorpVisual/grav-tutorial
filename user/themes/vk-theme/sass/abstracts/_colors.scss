@@ -55,6 +55,11 @@ $cherry-dark-gradient: linear-gradient(135deg,
     rgba($dark-slate, 0.08) 45%,
     rgba($ink, 0.15) 100%
 );
+$cherry-dark-solid-gradient: linear-gradient(135deg, 
+    rgba($cherry, 0.98) 0%,
+    rgba($dark-slate, 0.98) 45%,
+    rgba($ink, 0.98) 100%
+);
 $img-gradient: linear-gradient(180deg, $trans 20%, $ink 100%);
 $img-gradient-mobile: linear-gradient(180deg, $trans 5%, $ink 80%);
 // --- Kolory modyfikowane ---

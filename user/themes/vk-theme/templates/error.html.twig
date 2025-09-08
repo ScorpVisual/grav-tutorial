@@ -5,12 +5,18 @@
         <h1>{{ 'THEME_TAILWIND.ERROR'|t }}</h1>
         {{ page.content|raw }}
     </div>
-    {% set products = [
+   {# --- Przykładowe dane dla karuzeli produktów --- #}
+{# 
+  Definicja zmiennej 'products'. 
+  W docelowym rozwiązaniu ta zmienna prawdopodobnie będzie przekazywana
+  z kontrolera PHP w Grav CMS, a nie definiowana bezpośrednio w szablonie.
+#}
+{# --- Twoja lista produktów (pozostaje bez zmian) --- #}
+{% set products = [
     {
         name: "Nagrobek Nowoczesny N-01",
         image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-120.jpg",
         alt_text: "Nagrobek nowoczesny z białego granitu",
-        title: "Nagrobek Nowoczesny N-01",
         price: "od 6 499 PLN",
         link: "#link-do-n01",
         full_desc: "Model N-01 to kwintesencja nowoczesnego designu. Charakteryzuje się prostą bryłą, wysokiej jakości polerowanym granitem i minimalistycznymi akcentami."
@@ -19,7 +25,6 @@
         name: "Nagrobek Klasyczny K-08",
         image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-124.jpg",
         alt_text: "Nagrobek klasyczny z czarnego granitu",
-        title: "Nagrobek Klasyczny K-08",
         price: "od 5 999 PLN",
         link: "#link-do-k08",
         full_desc: "Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
@@ -28,59 +33,88 @@
         name: "Nagrobek Artystyczny A-12",
         image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-129.jpg",
         alt_text: "Nagrobek artystyczny z rzeźbą",
-        title: "Nagrobek Artystyczny A-12",
         price: "od 14 999 PLN",
         link: "#link-do-a12",
         full_desc: "Ten model to prawdziwe dzieło sztuki kamieniarskiej. Łączy w sobie różne rodzaje granitu i zawiera ręcznie wykonaną rzeźbę, co czyni go unikalnym projektem."
+    },
+    {
+        name: "Nagrobek Klasyczny K-09",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-130.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        price: "od 5 999 PLN",
+        link: "#link-do-k09",
+        full_desc: "Klasyczny nagrobek K-09 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
+    },
+    {
+        name: "Nagrobek Klasyczny K-10",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-131.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        price: "od 5 999 PLN",
+        link: "#link-do-k10",
+        full_desc: "Klasyczny nagrobek K-10 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
     }
 ] %}
 
-<section class="product-carousel-module">
-    <div class="carousel-intro">
-        <h2>Odkryj nasze realizacje</h2>
-        <p>Przejrzyj wybrane przez nas projekty i znajdź inspirację dla siebie.</p>
+{% if products is not empty %}
+<section class="bg-gray-100 py-12 lg:py-20 overflow-hidden">
+    <div class="max-w-screen-xl mx-auto px-4">
+        {# --- Nagłówek sekcji --- #}
+        <div class="max-w-3xl mx-auto mb-16 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+                Nasze realizacje
+            </h2>
+            <p class="text-gray-600">
+                Poniżej prezentujemy wybrane projekty nagrobków, które mieliśmy przyjemność zrealizować dla naszych Klientów.
+            </p>
+        </div>
     </div>
 
-    <div class="relative">
-        {# ZMIANA 1: Dodajemy ID 'carousel-container', którego szuka JS #}
-        <div class="product-carousel__viewport" id="carousel-container">
-            <div class="product-carousel__track">
-                {% for product in products %}
-                    {# ZMIANA 2: Dodajemy klasę 'carousel-item' oraz atrybuty 'data-name' i 'data-desc' #}
-                    <div 
-                        class="product-carousel__slide carousel-item" 
-                        data-name="{{ product.title }}" 
-                        data-desc="{{ product.full_desc }}"
-                    >
-                        <div class="slide-content">
-                            <img src="{{ product.image }}" alt="{{ product.alt_text }}" loading="lazy">
-                            <div class="overlay"><h3>{{ product.name }}</h3></div>
+    {# --- KONTENER GŁÓWNY NOWEJ KARUZELI --- #}
+   {# --- KONTENER GŁÓWNY NOWEJ KARUZELI --- #}
+<div class="overlap-carousel js-overlap-carousel">
+    <div class="overlap-carousel__track">
+        {% for product in products %}
+        <div class="overlap-carousel__slide">
+            <div class="product-card" style="background-image: url('{{ product.image }}');">
+                
+                {# --- GŁÓWNA ZAWARTOŚĆ KARTY (zawsze widoczna) --- #}
+                <div class="product-card__main-content">
+                    <h3 class="product-card__title">{{ product.name }}</h3>
+                    <p class="product-card__price">{{ product.price }}</p>
+                    <button class="product-card__expand-btn">ROZWIŃ</button>
+                </div>
+
+                {# --- NAKŁADKA ZE SZCZEGÓŁAMI (domyślnie ukryta) --- #}
+                <div class="product-card__details-overlay">
+                    <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">
+                        &times;
+                    </button>
+                    <div class="details-overlay__content">
+                        <h3 class="product-card__title">{{ product.name }}</h3>
+                        <p class="product-card__price">{{ product.price }}</p>
+                        <p class="product-card__desc">{{ product.full_desc }}</p>
+                        <div class="product-card__buttons">
+                            <a href="{{ product.link }}" class="btn-primary">Zobacz realizacje</a>
+                            <a href="#kontakt" class="btn-cta">Zamów wariant</a>
                         </div>
                     </div>
-                {% endfor %}
+                </div>
+
             </div>
         </div>
-
-        {# ZMIANA 3: Dodajemy klasę 'carousel-btn' i atrybuty 'data-dir' do przycisków #}
-        <button class="product-carousel__nav--prev carousel-btn" data-dir="prev" aria-label="Poprzedni produkt">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-        </button>
-        <button class="product-carousel__nav--next carousel-btn" data-dir="next" aria-label="Następny produkt">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-        </button>
+        {% endfor %}
     </div>
 
-    <div class="product-carousel__info-card">
-        <div class="card-content">
-            {# ZMIANA 4: Dodajemy ID 'materialName' i 'materialDesc' do elementów tekstowych #}
-            <h3 class="product-carousel__title" id="materialName"></h3>
-            <p class="product-carousel__description" id="materialDesc"></p>
-            <div class="actions">
-                <a href="#kontakt" class="btn-cta">Zapytaj o ten model</a>
-            </div>
-        </div>
-    </div>
+    {# --- Przyciski nawigacyjne --- #}
+    <button class="overlap-carousel__btn overlap-carousel__btn--prev">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+    </button>
+    <button class="overlap-carousel__btn overlap-carousel__btn--next">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+    </button>
+</div>
 </section>
+{% endif %}
 
   {# <div class="product-carousel__info-card white-marble-slab mt-8 rounded-lg p-6">
     <div class="flex flex-col items-center gap-4 text-center text-gray-800">

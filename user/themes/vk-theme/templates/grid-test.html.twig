@@ -407,14 +407,12 @@
     </div>
   </div>
 </section>
-
-
+{# --- Twoja lista produktów --- #}
 {% set products = [
     {
         name: "Nagrobek Nowoczesny N-01",
         image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-120.jpg",
         alt_text: "Nagrobek nowoczesny z białego granitu",
-        title: "Nagrobek Nowoczesny N-01",
         price: "od 6 499 PLN",
         link: "#link-do-n01",
         full_desc: "Model N-01 to kwintesencja nowoczesnego designu. Charakteryzuje się prostą bryłą, wysokiej jakości polerowanym granitem i minimalistycznymi akcentami."
@@ -423,25 +421,6 @@
         name: "Nagrobek Klasyczny K-08",
         image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-124.jpg",
         alt_text: "Nagrobek klasyczny z czarnego granitu",
-        title: "Nagrobek Klasyczny K-08",
-        price: "od 5 999 PLN",
-        link: "#link-do-k08",
-        full_desc: "Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
-    },
-    {
-        name: "Nagrobek Klasyczny K-08",
-        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-130.jpg",
-        alt_text: "Nagrobek klasyczny z czarnego granitu",
-        title: "Nagrobek Klasyczny K-08",
-        price: "od 5 999 PLN",
-        link: "#link-do-k08",
-        full_desc: "Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
-    },
-    {
-        name: "Nagrobek Klasyczny K-08",
-        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-131.jpg",
-        alt_text: "Nagrobek klasyczny z czarnego granitu",
-        title: "Nagrobek Klasyczny K-08",
         price: "od 5 999 PLN",
         link: "#link-do-k08",
         full_desc: "Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
@@ -450,90 +429,94 @@
         name: "Nagrobek Artystyczny A-12",
         image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-129.jpg",
         alt_text: "Nagrobek artystyczny z rzeźbą",
-        title: "Nagrobek Artystyczny A-12",
         price: "od 14 999 PLN",
         link: "#link-do-a12",
         full_desc: "Ten model to prawdziwe dzieło sztuki kamieniarskiej. Łączy w sobie różne rodzaje granitu i zawiera ręcznie wykonaną rzeźbę, co czyni go unikalnym projektem."
+    },
+    {
+        name: "Nagrobek Klasyczny K-09",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-130.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        price: "od 5 999 PLN",
+        link: "#link-do-k09",
+        full_desc: "Klasyczny nagrobek K-09 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
+    },
+    {
+        name: "Nagrobek Klasyczny K-10",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-131.jpg",
+        alt_text: "Nagrobek klasyczny z czarnego granitu",
+        price: "od 5 999 PLN",
+        link: "#link-do-k10",
+        full_desc: "Klasyczny nagrobek K-10 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
     }
 ] %}
 
-<section
-    class="js-product-carousel-module product-carousel-module overflow-visible max-w-3xl mx-auto p-4"
-    data-products='{{ products|json_encode|raw }}'
->
-  <div class="flex flex-col gap-8">
+{% if products is not empty %}
+<section class="bg-gray-100 py-12 lg:py-20 overflow-hidden">
+    <div class="max-w-screen-xl mx-auto px-4">
+        {# --- Nagłówek sekcji --- #}
+        <div class="max-w-3xl mx-auto mb-12 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+                Nasze realizacje
+            </h2>
+            <p class="text-gray-600">
+                Poniżej prezentujemy wybrane projekty nagrobków, które mieliśmy przyjemność zrealizować dla naszych Klientów.
+            </p>
+        </div>
+    </div>
 
-    <div class="relative w-full">
-      {# usunięty `overflow-hidden`, teraz pozwala bocznym slajdom wystawać #}
-      <div class="product-carousel__viewport rounded-lg shadow-lg">
-        <div class="product-carousel__track">
-          {% for product in products %}
-            <div class="product-carousel__slide w-full flex-shrink-0 product-carousel__slide--hidden">
-              <div class="product-img relative w-full h-80 md:h-96 rounded-lg overflow-hidden pale-img-border cursor-pointer">
-                <img src="{{ product.image }}"
-                     alt="{{ product.alt_text }}"
-                     class="w-full h-full object-cover">
-                <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white text-center">
-                  <span class="product-img__mini--check text-lg font-bold tracking-widest opacity-75">
-                    OBEJRZYJ
-                  </span>
-                  <div class="product-img__mini--title mt-2 text-xl font-semibold">
-                    {{ product.name }}
-                  </div>
+    {# --- Kontener główny karuzeli --- #}
+    <div class="product-carousel js-product-carousel">
+        <div class="product-carousel__track-container">
+            <div class="product-carousel__track">
+                {% for product in products %}
+                <div class="product-carousel__slide" data-link="{{ product.link }}">
+                    <div class="product-card">
+                        <div class="product-card__inner">
+                            {# --- PRZÓD KARTY (WIDOK DOMYŚLNY) --- #}
+                            <div class="product-card__front" style="background-image: url('{{ product.image }}');">
+                                <div class="product-card__overlay"></div>
+                                <div class="product-card__content">
+                                    <h3 class="product-card__title">{{ product.name }}</h3>
+                                    <p class="product-card__price">{{ product.price }}</p>
+                                    <div class="product-card__expand-btn">
+                                        ROZWIŃ
+                                    </div>
+                                </div>
+                            </div>
+                            {# --- TYŁ KARTY (WIDOK PO NAJECHANIU) --- #}
+                            <div class="product-card__back">
+                                <div class="product-card__content">
+                                    <h3 class="product-card__title">{{ product.name }}</h3>
+                                    <p class="product-card__price">{{ product.price }}</p>
+                                    <p class="product-card__desc">{{ product.full_desc }}</p>
+                                    <div class="product-card__buttons">
+                                        <a href="{{ product.link }}" class="btn-primary">
+                                            Zobacz realizacje
+                                        </a>
+                                        <a href="#kontakt" class="btn-cta">
+                                            Zamów wariant
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                {% endfor %}
             </div>
-          {% endfor %}
         </div>
-      </div>
 
-      <button
-        class="product-carousel__nav--prev absolute top-1/2 -left-3 md:-left-5 transform -translate-y-1/2 z-10 p-2 bg-white/80 text-gray-800 rounded-full shadow-md hover:bg-white transition"
-        aria-label="Poprzedni produkt"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-
-      <button
-        class="product-carousel__nav--next absolute top-1/2 -right-3 md:-right-5 transform -translate-y-1/2 z-10 p-2 bg-white/80 text-gray-800 rounded-full shadow-md hover:bg-white transition"
-        aria-label="Następny produkt"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
+        {# --- Przyciski nawigacyjne --- #}
+        <button class="product-carousel__btn product-carousel__btn--prev">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button class="product-carousel__btn product-carousel__btn--next">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </button>
     </div>
-
-    <div class="product-carousel__info-card white-marble-slab rounded-lg p-6 h-full flex">
-      <div class="flex flex-col flex-grow gap-4 text-gray-800 text-center items-center">
-        <h2 class="product-carousel__title text-3xl font-bold underline--cherry"></h2>
-
-        <div class="text-xl md:text-2xl font-bold">
-          <span class="product-carousel__price c-cherry"></span>
-        </div>
-
-        <p class="product-carousel__description text-lg max-w-xl"></p>
-
-        <div class="flex flex-col lg:flex-row gap-3 mt-auto w-full">
-          {# dodaliśmy klasę product-carousel__link, JS nadpisze href #}
-          <a href="#" class="btn-primary product-carousel__link flex-grow text-center">
-            Zobacz realizacje
-          </a>
-          <a href="#kontakt" class="btn-cta flex-grow text-center">
-            Zamów Wariant
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </section>
+{% endif %}
 {# USŁUGI #}
 {% set services = [
     {
