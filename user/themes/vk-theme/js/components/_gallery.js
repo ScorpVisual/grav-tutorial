@@ -136,8 +136,8 @@ function initShuffleCarousel() {
 
     const track = carousel.querySelector('.shuffle-carousel__track');
     const slides = Array.from(track.children);
-    const nextButton = carousel.querySelector('.overlap-carousel__btn--next');
-    const prevButton = carousel.querySelector('.overlap-carousel__btn--prev');
+    const nextButton = carousel.querySelector('.shuffle-carousel__btn--next');
+    const prevButton = carousel.querySelector('.shuffle-carousel__btn--prev');
     
     if (slides.length === 0) return;
     
@@ -155,6 +155,7 @@ function initShuffleCarousel() {
         // Zaktualizuj klasę 'is-active'
         slides.forEach((slide, index) => {
             slide.classList.toggle('is-active', index === currentIndex);
+            slide.classList.toggle('golden-img-border', index === currentIndex);
             
             // Zamknij nakładkę, jeśli karta nie jest aktywna
             if (index !== currentIndex) {
@@ -165,46 +166,58 @@ function initShuffleCarousel() {
     }
     
     function setupEventListeners() {
-        // Klikanie na karty, aby je wycentrować
-        slides.forEach((slide, index) => {
-             slide.addEventListener('click', () => {
-                if (index !== currentIndex) {
-                    currentIndex = index;
-                    updateCarousel();
-                }
-            });
+    slides.forEach((slide, index) => {
 
-            // Logika otwierania/zamykania nakładki (pozostaje taka sama)
-            const card = slide.querySelector('.product-card');
-            const expandBtn = slide.querySelector('.product-card__expand-btn');
-            const closeBtn = slide.querySelector('.details-overlay__close-btn');
-
-            if (expandBtn && card) {
-                expandBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (slide.classList.contains('is-active')) {
-                        card.classList.add('is-details-open');
-                    }
-                });
+        // JEDEN GŁÓWNY LISTENER DLA KAŻDEGO SLAJDU
+        slide.addEventListener('click', (e) => {
+            
+            // PRZYPADEK 1: Kliknięto na slajd, który NIE JEST w centrum.
+            // Wtedy chcemy go wycentrować.
+            if (index !== currentIndex) {
+                currentIndex = index;
+                updateCarousel();
+                return; // Zakończ działanie, nie rób nic więcej.
             }
-            if (closeBtn && card) {
-                closeBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
+
+            // PRZYPADEK 2: Kliknięto na slajd, który JEST w centrum.
+            // Teraz obsługujemy otwieranie/zamykanie nakładki.
+            const card = slide.querySelector('.product-card');
+            if (!card) return;
+
+            const isDetailsOpen = card.classList.contains('is-details-open');
+
+            // Jeśli nakładka jest OTWARTA...
+            if (isDetailsOpen) {
+                // ...to zamykamy ją, CHYBA ŻE kliknięto w link lub przycisk akcji.
+                if (!e.target.closest('a, .btn-primary, .btn-cta')) {
                     card.classList.remove('is-details-open');
-                });
+                }
+            } 
+            // Jeśli nakładka jest ZAMKNIĘTA...
+            else {
+                // ...to otwieramy ją po kliknięciu w główną treść.
+                if (e.target.closest('.product-card__main-content')) {
+                    card.classList.add('is-details-open');
+                }
             }
         });
+    });
 
-        // Przyciski nawigacyjne
+    // Przyciski nawigacyjne karuzeli (bez zmian)
+    if(nextButton) {
         nextButton.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % slides.length;
             updateCarousel();
         });
+    }
+
+    if(prevButton) {
         prevButton.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
             updateCarousel();
         });
     }
+}
     
     // Inicjalizacja
     setupEventListeners();

@@ -452,10 +452,10 @@
 ] %}
 
 {% if products is not empty %}
-<section class="bg-gray-100 py-12 lg:py-20 overflow-hidden">
+<section class="py-12 lg:py-20 overflow-hidden">
     <div class="max-w-screen-xl mx-auto px-4">
         {# --- Nagłówek sekcji --- #}
-        <div class="max-w-3xl mx-auto mb-12 text-center">
+        <div class="max-w-3xl mx-auto mb-16 text-center">
             <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
                 Nasze realizacje
             </h2>
@@ -465,56 +465,43 @@
         </div>
     </div>
 
-    {# --- Kontener główny karuzeli --- #}
-    <div class="product-carousel js-product-carousel">
-        <div class="product-carousel__track-container">
-            <div class="product-carousel__track">
-                {% for product in products %}
-                <div class="product-carousel__slide" data-link="{{ product.link }}">
-                    <div class="product-card">
-                        <div class="product-card__inner">
-                            {# --- PRZÓD KARTY (WIDOK DOMYŚLNY) --- #}
-                            <div class="product-card__front" style="background-image: url('{{ product.image }}');">
-                                <div class="product-card__overlay"></div>
-                                <div class="product-card__content">
-                                    <h3 class="product-card__title">{{ product.name }}</h3>
-                                    <p class="product-card__price">{{ product.price }}</p>
-                                    <div class="product-card__expand-btn">
-                                        ROZWIŃ
-                                    </div>
-                                </div>
-                            </div>
-                            {# --- TYŁ KARTY (WIDOK PO NAJECHANIU) --- #}
-                            <div class="product-card__back">
-                                <div class="product-card__content">
-                                    <h3 class="product-card__title">{{ product.name }}</h3>
-                                    <p class="product-card__price">{{ product.price }}</p>
-                                    <p class="product-card__desc">{{ product.full_desc }}</p>
-                                    <div class="product-card__buttons">
-                                        <a href="{{ product.link }}" class="btn-primary">
-                                            Zobacz realizacje
-                                        </a>
-                                        <a href="#kontakt" class="btn-cta">
-                                            Zamów wariant
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+  {# --- KONTENER GŁÓWNY KARUZELI "SHUFFLE" --- #}
+<div class="shuffle-carousel js-shuffle-carousel">
+    <div class="shuffle-carousel__track">
+        {% for product in products %}
+        <div class="shuffle-carousel__slide">
+            {# Karta produktu .product-card pozostaje taka sama jak w wersji z nakładką #}
+            <div class="product-card" style="background-image: url('{{ product.image }}');">
+                <div class="product-card__main-content">
+                    <h3 class="product-card__title">{{ product.name }}</h3>
+                    <p class="product-card__price"><span class="c-pink">Cena:</span> {{ product.price }}</p>
+                    <button class="product-card__expand-btn">ROZWIŃ</button>
+                </div>
+                <div class="product-card__details-overlay">
+                    <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">&times;</button>
+                    <div class="details-overlay__content">
+                        {# <h3 class="product-card__title">{{ product.name }}</h3>
+                        <p class="product-card__price">{{ product.price }}</p> #}
+                        <p class="product-card__desc">{{ product.full_desc }}</p>
+                        <div class="product-card__buttons">
+                            <a href="{{ product.link }}" class="btn-primary">Zobacz realizacje</a>
+                            <a href="#kontakt" class="btn-cta">Zamów wariant</a>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
             </div>
         </div>
-
-        {# --- Przyciski nawigacyjne --- #}
-        <button class="product-carousel__btn product-carousel__btn--prev">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-        </button>
-        <button class="product-carousel__btn product-carousel__btn--next">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-        </button>
+        {% endfor %}
     </div>
+
+    {# --- Przyciski nawigacyjne --- #}
+    <button class="shuffle-carousel__btn shuffle-carousel__btn--prev">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+    </button>
+    <button class="shuffle-carousel__btn shuffle-carousel__btn--next">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+    </button>
+</div>
 </section>
 {% endif %}
 {# USŁUGI #}

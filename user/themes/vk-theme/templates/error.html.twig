@@ -56,7 +56,7 @@
 ] %}
 
 {% if products is not empty %}
-<section class="bg-gray-100 py-12 lg:py-20 overflow-hidden">
+<section class="py-12 lg:py-20 overflow-hidden">
     <div class="max-w-screen-xl mx-auto px-4">
         {# --- Nagłówek sekcji --- #}
         <div class="max-w-3xl mx-auto mb-16 text-center">
@@ -78,14 +78,14 @@
             <div class="product-card" style="background-image: url('{{ product.image }}');">
                 <div class="product-card__main-content">
                     <h3 class="product-card__title">{{ product.name }}</h3>
-                    <p class="product-card__price">{{ product.price }}</p>
+                    <p class="product-card__price"><span class="c-pink">Cena:</span> {{ product.price }}</p>
                     <button class="product-card__expand-btn">ROZWIŃ</button>
                 </div>
                 <div class="product-card__details-overlay">
                     <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">&times;</button>
                     <div class="details-overlay__content">
-                        <h3 class="product-card__title">{{ product.name }}</h3>
-                        <p class="product-card__price">{{ product.price }}</p>
+                        {# <h3 class="product-card__title">{{ product.name }}</h3>
+                        <p class="product-card__price">{{ product.price }}</p> #}
                         <p class="product-card__desc">{{ product.full_desc }}</p>
                         <div class="product-card__buttons">
                             <a href="{{ product.link }}" class="btn-primary">Zobacz realizacje</a>
@@ -99,10 +99,10 @@
     </div>
 
     {# --- Przyciski nawigacyjne --- #}
-    <button class="overlap-carousel__btn overlap-carousel__btn--prev">
+    <button class="shuffle-carousel__btn shuffle-carousel__btn--prev">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
     </button>
-    <button class="overlap-carousel__btn overlap-carousel__btn--next">
+    <button class="shuffle-carousel__btn shuffle-carousel__btn--next">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
     </button>
 </div>
