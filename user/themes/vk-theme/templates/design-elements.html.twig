@@ -5,7 +5,7 @@
 <section class="px-4 py-16 max-w-screen-xl mx-auto">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
       <div>
-        <img src="{{ theme_url }}/images/photos/stone-master.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
+        <img src="{{ theme_url }}/images/photos/kamieniarstwo-wisniewski-wlasciciel.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
     </div>
     <div>
         <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
@@ -29,11 +29,12 @@
     </div>
 </section>
 
-    <div class="flex section-header mx-auto my-8 ">
+    <div class="flex section-header mx-auto lg:mt-8 ">
         <div class="section-header__content section-header__bg--golden-alt">
             <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">PRODUKTY</h3>
         </div>
     </div>
+
 {# --- PRODUKTY --- #}
 {% set products = [
     {
@@ -79,18 +80,7 @@
 ] %}
 
 {% if products is not empty %}
-<section class="py-12 lg:py-20 overflow-hidden">
-    <div class="max-w-screen-xl mx-auto px-4">
-        {# --- Nagłówek sekcji --- #}
-        <div class="max-w-3xl mx-auto mb-16 text-center">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
-                Nasze produkty
-            </h2>
-            <p class="text-gray-600">
-                Poniżej prezentujemy wybrane projekty nagrobków, które mieliśmy przyjemność zrealizować dla naszych Klientów.
-            </p>
-        </div>
-    </div>
+<section class="py-12 lg:py-16 overflow-hidden">
   {# --- KONTENER GŁÓWNY KARUZELI "SHUFFLE" --- #}
 <div class="shuffle-carousel js-shuffle-carousel">
     <div class="shuffle-carousel__track">
@@ -119,7 +109,6 @@
         </div>
         {% endfor %}
     </div>
-
     {# --- Przyciski nawigacyjne --- #}
     <button class="shuffle-carousel__btn shuffle-carousel__btn--prev">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
@@ -128,10 +117,30 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
     </button>
 </div>
+    <div class="max-w-screen-xl mx-auto px-4">
+        {# --- Nagłówek sekcji --- #}
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold my-8 text-gray-800 border-bot-cherry">
+                Nasze produkty
+            </h2>
+            <p class="text-gray-600">
+                Powyżej prezentujemy wybrane projekty nagrobków, które mieliśmy przyjemność zrealizować dla naszych Klientów.
+            </p>
+        </div>
+            <button class="btn-cta w-full max-w-xs mx-auto flex" >
+        Zobacz wszystkie dostępne produkty
+    </button>
+    </div>
 </section>
 {% endif %}
+
+   <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--black">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Usługi</h3>
+        </div>
+    </div>
 <section>
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-4xl mx-auto my-8 lg:py-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
             Co możemy dla Ciebie zrobić?
         </h1>
@@ -142,137 +151,88 @@
     </div>
 </section>
 
-<section class="max-w-7xl mx-auto p-0 sm:p-4 md:p-6 lg:p-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+{% set services = [
+    {
+        name: "Nagrobki na Zamówienie",
+        short_desc: "Projektujemy i wykonujemy nagrobki z granitu i marmuru.",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-120.jpg",
+        alt_text: "Nagrobek pojedynczy wykonany z jasnego granitu",
+        title: "Indywidualne Projekty Nagrobków",
+        price: "Wycena indywidualna",
+        full_desc: "Specjalizujemy się w tworzeniu unikalnych nagrobków dopasowanych do Państwa oczekiwań. Oferujemy szeroki wybór kamieni, od klasycznych granitów po ekskluzywne marmury, oraz pomagamy w stworzeniu projektu, który godnie upamiętni bliską osobę."
+    },
+    {
+        name: "Renowacja Pomników",
+        short_desc: "Przywracamy blask starym i zniszczonym nagrobkom.",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-124.jpg",
+        alt_text: "Odnowiony nagrobek podwójny z ciemnego kamienia",
+        title: "Kompleksowa Renowacja i Konserwacja",
+        price: "od 800 PLN",
+        full_desc: "Z biegiem lat kamień traci swój pierwotny wygląd. Oferujemy profesjonalne usługi renowacji, w tym czyszczenie, impregnację, naprawę pęknięć oraz polerowanie. Zabezpieczamy pomniki przed działaniem czynników atmosferycznych, przywracając im dawną świetność."
+    },
+    {
+        name: "Liternictwo i Galanteria",
+        short_desc: "Dodawanie napisów, portretów oraz akcesoriów.",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-126.jpg",
+        alt_text: "Nagrobek z ozdobnymi akcesoriami kamiennymi",
+        title: "Dodatki, Które Tworzą Całość",
+        price: "Wycena indywidualna",
+        full_desc: "Oferujemy precyzyjne kucie i odnawianie liter, a także montaż galanterii nagrobkowej, takiej jak wazony, lampiony, krzyże czy podstawki. Wykonujemy również grawerowane portrety i sentencje, nadając pomnikom osobisty i unikalny charakter."
+    },
+    {
+        name: "Otoczenie Grobu",
+        short_desc: "Układanie kostki brukowej i montaż ławeczek.",
+        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-129.jpg",
+        alt_text: "Nagrobek z estetycznie zagospodarowanym otoczeniem",
+        title: "Estetyczne Zagospodarowanie Otoczenia",
+        price: "od 1500 PLN",
+        full_desc: "Dbamy nie tylko o sam pomnik, ale również o jego otoczenie. Oferujemy profesjonalne układanie kostki brukowej lub płyt granitowych wokół grobu, co ułatwia utrzymanie czystości i podnosi estetykę miejsca. Montujemy również trwałe i eleganckie ławeczki."
+    }
+] %}
 
+<section
+    class="content-switcher js-content-switcher max-w-7xl mx-auto p-4 md:p-6 lg:p-8 white-gradient-down lg:mb-16"
+    data-content-items='{{ services|json_encode|raw }}'
+>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="md:col-span-1">
-            <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-8 underline--cherry">Nasze Usługi</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-8 underline--cherry">Nasze usługi</h2>
             <div class="flex flex-col gap-3">
-
-                <div class="pick-a-card is-active">
-                    <h3 class="font-bold text-lg text-gray-900 underline--light-grey">Usługa Numer 1</h3>
-                    <p class="text-sm text-gray-600">Krótki opis lub zajawka usługi.</p>
-                </div>
-
-                <div class="pick-a-card">
-                    <h3 class="font-bold text-lg text-gray-900 underline--light-grey">Usługa Numer 2</h3>
-                    <p class="text-sm text-gray-600">Krótki opis lub zajawka usługi.</p>
-                </div>
-
-                <div class="pick-a-card">
-                    <h3 class="font-bold text-lg text-gray-900 underline--light-grey">Usługa Numer 3</h3>
-                    <p class="text-sm text-gray-600">Krótki opis lub zajawka usługi.</p>
-                </div>
-
-                <div class="pick-a-card">
-                    <h3 class="font-bold text-lg text-gray-900 underline--light-grey">Usługa Numer 4</h3>
-                    <p class="text-sm text-gray-600">Krótki opis lub zajawka usługi.</p>
-                </div>
-
+                {% for service in services %}
+                    <div
+                        class="content-switcher__card pick-a-card p-4 rounded-lg cursor-pointer transition-all duration-300 {% if loop.first %}--is-active{% endif %}"
+                        data-index="{{ loop.index0 }}"
+                        role="button" aria-pressed="{{ loop.first ? 'true' : 'false' }}" tabindex="0"
+                    >
+                        <h3 class="font-bold text-lg underline--light-grey">{{ service.name }}</h3>
+                        <p class="text-sm ">{{ service.short_desc }}</p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-
         <div class="md:col-span-2">
-    <div class="white-marble-slab overflow-hidden h-full flex flex-col">
-        
-        <img src="https://placehold.co/800x400" alt="Obrazek dla Usługi Numer 1" class="w-full h-64 object-cover cherry-img-border mb-2">
-        
-        <div class="p-0 flex flex-col flex-grow gap-4 md:p-6">
-            <h2 class="text-3xl font-bold text-gray-800 underline--cherry">Usługa Numer 1 - Nagłówek</h2>
-            <div class="text-xl md:text-2xl font-bold text-gray-900 mt-2">
-                Cena: <span class="c-cherry">od 499 PLN</span>
-            </div>
-
-            <p class="text-gray-700 text-lg">
-                Tutaj znajduje się szczegółowy opis wybranego produktu. Możesz tu umieścić wszystkie niezbędne informacje, które pomogą klientowi podjąć decyzję. Opis może być dłuższy i zawierać kilka akapitów.
-            </p>
-            <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4 mt-auto">
-                <a href="#szczegoly" class="btn-primary flex-grow text-center">
-                    Zobacz realizacje
-                </a>
-                <a href="#kontakt" class="btn-cta flex-grow text-center">
-                    Zamów usługę
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-    </div>
-</section>
-<section class="max-w-7xl mx-auto p-0 sm:p-4 md:p-6 lg:p-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="md:col-span-2">
-    <div class="white-marble-slab overflow-hidden h-full flex flex-col">
-        
-        <img src="https://placehold.co/800x400" alt="Obrazek dla Usługi Numer 1" class="w-full h-64 object-cover cherry-img-border mb-2">
-        
-        <div class="p-0 flex flex-col flex-grow gap-4 md:p-6">
-            <h2 class="text-3xl font-bold text-gray-800 underline--cherry">Produkt Numer 1 - Nagłówek</h2>
-            <div class="text-xl md:text-2xl font-bold text-gray-900 mt-2">
-                Cena: <span class="c-cherry">od 5499 PLN</span>
-            </div>
-            <p class="text-gray-700 text-lg">
-                Tutaj znajduje się szczegółowy opis wybranego produktu. Możesz tu umieścić wszystkie niezbędne informacje, które pomogą klientowi podjąć decyzję. Opis może być dłuższy i zawierać kilka akapitów.
-            </p>
-
-            <div class="flex flex-col lg:flex-row gap-3 mt-auto">
-                <a href="#szczegoly" class="btn-primary flex-grow text-center">
-                    Zobacz realizacje
-                </a>
-                <a href="#kontakt" class="btn-cta flex-grow text-center">
-                    Zamów produkt
-                </a>
-            </div>
-
-        </div>
-    </div>
-</div>
-        <div class="md:col-span-1">
-            <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-8 underline--cherry">Nasze produkty</h2>
-            <div class="flex flex-col gap-5">
-                    {# product 1 #}
-                    <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img is-active">
-                        <img src="https://placehold.co/300x250" alt="Obrazek dla produktu 1" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4  text-white">
-                            <span class="product-img__mini--check text-lg font-bold tracking-widest">
-                                OBEJRZYJ
-                            </span>
-                            <div class="product-img__mini--title mt-2 text-xl font-semibold">
-                                PRODUCT #1
-                            </div>
-                        </div>
+            <div class="content-switcher__display rounded-lg overflow-hidden h-full flex flex-col lg:p-6 text-grey-600">
+                <img
+                    src="{{ services[0].image }}" alt="{{ services[0].alt_text }}"
+                    class="content-switcher__image content-switcher__fade-in w-full h-64 object-cover cherry-img-border mb-4 rounded-md"
+                >
+                <div class="flex flex-col flex-grow gap-4 ">
+                    <h2 class="content-switcher__title content-switcher__fade-in text-3xl font-bold underline--cherry">{{ services[0].title }}</h2>
+                    
+                    <div class="content-switcher__price-wrapper text-xl md:text-2xl font-bold mt-2">
+                       <span class="content-switcher__fade-in"> Cena: <span class="content-switcher__price c-cherry">{{ services[0].price }}</span>
                     </div>
-                    {# end product #}
-                    {# product 2 #}
-                    <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img">
-                        <img src="https://placehold.co/300x250" alt="Obrazek dla produktu 1" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4  text-white">
-                            <span class="product-img__mini--check text-lg font-bold tracking-widest">
-                                OBEJRZYJ
-                            </span>
-                            <div class="product-img__mini--title mt-2 text-xl font-semibold">
-                                PRODUCT #2
-                            </div>
-                        </div>
+
+                    <p class="content-switcher__description content-switcher__fade-in text-lg">{{ services[0].full_desc }}</p>
+                    <div class="flex flex-col lg:flex-row gap-3 mt-auto">
+                        <a href="#szczegoly" class="btn-primary flex-grow text-center">Zobacz realizacje</a>
+                        <a href="#kontakt" class="btn-cta flex-grow text-center">Zamów Usługę</a>
                     </div>
-                    {# end product #}
-                    {# product 3 #}
-                    <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img">
-                        <img src="https://placehold.co/300x250" alt="Obrazek dla produktu 1" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4  text-white">
-                            <span class="product-img__mini--check text-lg font-bold tracking-widest">
-                                OBEJRZYJ
-                            </span>
-                            <div class="product-img__mini--title mt-2 text-xl font-semibold">
-                                PRODUCT #3
-                            </div>
-                        </div>
-                    </div>
-                    {# end product #}
+                </div>
             </div>
         </div>
     </div>
 </section>
+
 
 {% endblock %}
