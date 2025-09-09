@@ -18,51 +18,97 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- LOGIKA GALERII (MODAL) ---
     function initGalleryModal() {
-        // ... (cała, oryginalna logika modala galerii bez zmian) ...
-        const modal = document.getElementById('fullscreen-modal');
-        const modalImage = document.getElementById('fullscreen-image');
-        const closeModalBtn = document.getElementById('close-modal-btn');
-        const modalAltText = document.getElementById('fullscreen-alt-text');
-        if (!modal || !modalImage || !closeModalBtn || !modalAltText) return;
+    // --- Pobieranie elementów DOM ---
+    const modal = document.getElementById('fullscreen-modal');
+    const modalImage = document.getElementById('fullscreen-image');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const modalAltText = document.getElementById('fullscreen-alt-text');
+    const prevBtn = document.getElementById('prev-btn'); // Nowy przycisk
+    const nextBtn = document.getElementById('next-btn'); // Nowy przycisk
 
-        const openModal = (src, alt) => {
-            modalImage.src = src;
-            modalImage.alt = alt;
-            modalAltText.textContent = alt;
-            modal.classList.remove('is-hidden');
-            scrollLockManager.lock();
-            requestAnimationFrame(() => modal.classList.remove('opacity-0'));
-        };
+    if (!modal || !modalImage || !closeModalBtn || !modalAltText || !prevBtn || !nextBtn) return;
 
-        const closeModal = () => {
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('is-hidden');
-                scrollLockManager.unlock();
-                modalAltText.textContent = '';
-            }, 300);
-        };
+    // --- Stan galerii ---
+    const galleryImages = document.querySelectorAll('.product-img img'); // Pobieramy wszystkie obrazki
+    let currentIndex = 0; // Indeks aktualnie wyświetlanego obrazka
 
-        document.body.addEventListener('click', e => {
-            const container = e.target.closest('.product-img');
-            if (!container) return;
-            const img = container.querySelector('img');
-            if (img) openModal(img.src, img.alt);
-        });
+    // --- Funkcja do wyświetlania obrazka na podstawie indeksu ---
+    const showImage = (index) => {
+        if (index < 0 || index >= galleryImages.length) return;
 
-        if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-        if(modal) modal.addEventListener('click', e => {
-            if (e.target === modal) closeModal();
-        });
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && modal && !modal.classList.contains('is-hidden')) {
-                closeModal();
+        const img = galleryImages[index];
+        currentIndex = index; // Aktualizujemy bieżący indeks
+
+        // Ustawiamy źródło i tekst alternatywny
+        modalImage.src = img.src;
+        modalImage.alt = img.alt;
+        modalAltText.textContent = img.alt;
+
+        // Pokazujemy/ukrywamy przyciski nawigacji na krańcach galerii
+        prevBtn.style.display = (currentIndex === 0) ? 'none' : 'block';
+        nextBtn.style.display = (currentIndex === galleryImages.length - 1) ? 'none' : 'block';
+    };
+
+    // --- Funkcje otwierania/zamykania modala ---
+    const openModal = (startIndex) => {
+        showImage(startIndex); // Wyświetlamy obrazek o podanym indeksie
+        modal.classList.remove('is-hidden');
+        // scrollLockManager.lock(); // Odkomentuj, jeśli używasz
+        requestAnimationFrame(() => modal.classList.remove('opacity-0'));
+    };
+
+    const closeModal = () => {
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+            modal.classList.add('is-hidden');
+            // scrollLockManager.unlock(); // Odkomentuj, jeśli używasz
+            modalImage.src = ""; // Czyścimy src, by uniknąć mignięcia starego obrazka
+            modalAltText.textContent = '';
+        }, 300);
+    };
+    
+    // --- Nawigacja ---
+    const showPrev = () => showImage(currentIndex - 1);
+    const showNext = () => showImage(currentIndex + 1);
+
+    // --- Listenery zdarzeń ---
+
+    // Otwieranie modala po kliknięciu na obrazek
+    document.body.addEventListener('click', e => {
+        const container = e.target.closest('.product-img');
+        if (!container) return;
+
+        const img = container.querySelector('img');
+        if (img) {
+            // Znajdujemy indeks klikniętego obrazka w naszej liście
+            const clickedIndex = Array.from(galleryImages).findIndex(item => item.src === img.src);
+            if (clickedIndex !== -1) {
+                openModal(clickedIndex);
             }
-        });
-    }
+        }
+    });
 
+    // Zamykanie
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (modal) modal.addEventListener('click', e => {
+        // Zamykaj tylko, gdy kliknięto tło (a nie przyciski nawigacji)
+        if (e.target === modal) closeModal();
+    });
+
+    // Nawigacja przyciskami
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+    
+    // Nawigacja klawiaturą (strzałki i Escape)
+    document.addEventListener('keydown', e => {
+        if (modal.classList.contains('is-hidden')) return; // Nie rób nic, jeśli modal jest ukryty
+
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+    });
+}
     // --- LOGIKA KARUZELI "WYBÓR MATERIAŁU" ---
     function initMaterialCarousel() {
         // ... (cała, oryginalna logika karuzeli materiałów bez zmian) ...

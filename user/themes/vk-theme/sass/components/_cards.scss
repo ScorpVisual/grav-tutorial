@@ -58,6 +58,26 @@
           @include dark-img-border;
          }
   }
+  &__golden {
+      @include vkCard('../../images/textures/marble-white-gold-2.jpg',
+          rgba($white, .3),
+          rgba($grey, 0),
+          rgba($marble, .9),
+          $white,
+          normal
+        );
+      color: $marble;
+      & img {
+          @include golden-img-border;
+         }
+  }
+  &__golden-alt {
+      @include vkCard('../../images/textures/marble-white-gold-1.jpg', rgba($granite, .9));
+      color: $marble;
+      & img {
+          @include golden-img-border;
+         }
+  }
 }
 
 
@@ -148,6 +168,35 @@
       border-color: $cherry;
       box-shadow: 0 0 0 1px $cherry;
       background-color: $white;
+    }
+  }
+}
+.pick-a-card-dark {
+  width: auto;
+  padding: 1rem;
+  border: 1px solid $light-grey;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background-color 200ms, border-color 200ms, box-shadow 200ms;
+
+    @media (max-width: $breakpoint-sm) {
+    padding-inline: $minimal-padding;
+  }
+  
+  &:hover {
+    border-color: $cherry;
+    background-color: $ink;
+  }
+
+  &.is-active {
+    border-color: $cherry;
+    box-shadow: 0 0 0 1px $cherry;
+    background-color: rgba($cherry, .9);
+    
+    &:hover {
+      border-color: $cherry;
+      box-shadow: 0 0 0 1px $cherry;
+      background-color: $cherry;
     }
   }
 }
@@ -277,7 +326,6 @@
   &:hover {
     border: 2px solid $cherry;
     box-shadow: 0 4px 12px rgba($ink, 0.1);
-    transform: translateY(-4px);
     background-color: rgba($white, .6);
     img {
       border-color: $cherry;

@@ -76,10 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
          */
         function activateCard(card) {
             contentCards.forEach(c => {
-                c.classList.remove('--is-active');
+                c.classList.remove('is-active');
                 c.setAttribute('aria-pressed', 'false');
             });
-            card.classList.add('--is-active');
+            card.classList.add('is-active');
             card.setAttribute('aria-pressed', 'true');
             const index = Number(card.dataset.index);
             if (!isNaN(index)) {

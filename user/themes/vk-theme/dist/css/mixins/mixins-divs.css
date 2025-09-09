@@ -259,6 +259,13 @@
     opacity: 0.1;
   }
 }
+.hover-up-4 {
+  transition: transform 0.3s ease;
+}
+.hover-up-4:hover {
+  transform: translateY(-4px);
+}
+
 @keyframes bg-slide {
   from {
     background-position: 0 0;
