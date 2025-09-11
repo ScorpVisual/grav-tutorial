@@ -347,7 +347,7 @@
 
 .fill-letters-gold-section-dark {
   background-color: #c0a258;
-  background-image: linear-gradient(170deg, #ffee90 10%, #e2c16d 30%, #ac9202 50%, #6e5718 85%);
+  background-image: linear-gradient(170deg, #ffee90 10%, #e2c16d 30%, #ac9202 50%, #6e5718 85%) !important;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1566,7 +1566,7 @@ hr {
 }
 .btn-tertiary:hover, .btn-tertiary:focus {
   border: 2px solid #800020;
-  background-color: #e1dfdd;
+  background-color: #fff;
   color: #393c45;
 }
 

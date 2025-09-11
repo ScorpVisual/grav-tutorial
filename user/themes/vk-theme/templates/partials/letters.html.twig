@@ -1,0 +1,66 @@
+
+   <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--black">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Liternictwo</h3>
+        </div>
+    </div>
+
+{% set galleryItems = [
+    { image_filename: 'VK-nagrobki-120.jpg', title: 'Nagrobek Pojedynczy Klasyczny' },
+    { image_filename: 'VK-nagrobki-124.jpg', title: 'Nagrobek Podwójny Nowoczesny' },
+    { image_filename: 'VK-nagrobki-126.jpg', title: 'Grobowiec Rodzinny z Granitu' },
+
+] %}
+
+<section>
+
+    <div class="lg:p-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-screen-xl mx-auto px-4 my-16 black-gradient-down">
+    <div class="flex flex-col space-y-6">
+        <h1 class="text-3xl font-bold fill-letters-gold-section-dark underline--gold">
+            Liternictwo
+        </h1>
+        <p class="text-lg text-gray-700">
+            Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
+            Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
+        </p>
+        <button class="btn-primary w-full flex justify-center">
+            Dowiedz się więcej
+        </button>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/photos/letters-photo.jpg" alt="Renowacja starego nagrobka granitowego"
+        class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            {# 
+              2. PĘTLA FOR W TWIGU
+              Iterujemy po każdym elemencie w tablicy `galleryItems`.
+              Każdy element jest dostępny pod zmienną `item`.
+            #}
+            {% for item in galleryItems %}
+                <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
+                    <img src="{{ theme_url }}/images/placeholders/test-prod/{{ item.image_filename }}" 
+                         alt="{{ item.title }}" 
+                         class="w-full h-full object-cover">
+                    
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white bg-black bg-opacity-20">
+                        <span class="product-img__mini--check text-lg font-bold tracking-widest">
+                            OBEJRZYJ
+                        </span>
+                        <div class="product-img__mini--title mt-2 text-xl font-semibold">
+                            {{ item.title }}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p class="col-span-full text-center text-gray-500">
+                    Obecnie brak zdjęć w galerii.
+                </p>
+            {% endfor %}
+            
+        </div>
+    </div>
+</section>
