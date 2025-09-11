@@ -6,9 +6,9 @@
     </div>
 
 {% set galleryItems = [
-    { image_filename: 'VK-nagrobki-120.jpg', title: 'Nagrobek Pojedynczy Klasyczny' },
-    { image_filename: 'VK-nagrobki-124.jpg', title: 'Nagrobek Podwójny Nowoczesny' },
-    { image_filename: 'VK-nagrobki-126.jpg', title: 'Grobowiec Rodzinny z Granitu' },
+    { image_filename: 'letters-1.jpg', title: 'Litery pokryte platyną' },
+    { image_filename: 'letters-2.jpg', title: 'Litery złocone' },
+    { image_filename: 'letters-3.jpg', title: 'Liternictwo srebrne' },
 
 ] %}
 
@@ -17,10 +17,10 @@
     <div class="lg:p-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-screen-xl mx-auto px-4 my-16 black-gradient-down">
     <div class="flex flex-col space-y-6">
-        <h1 class="text-3xl font-bold fill-letters-gold-section-dark underline--gold">
+        <h1 class="text-3xl font-bold underline--gold">
             Liternictwo
         </h1>
-        <p class="text-lg text-gray-700">
+        <p class="text-lg">
             Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
             Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
         </p>
@@ -42,7 +42,7 @@
             #}
             {% for item in galleryItems %}
                 <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
-                    <img src="{{ theme_url }}/images/placeholders/test-prod/{{ item.image_filename }}" 
+                    <img src="{{ theme_url }}/images/products/letters/{{ item.image_filename }}" 
                          alt="{{ item.title }}" 
                          class="w-full h-full object-cover">
                     

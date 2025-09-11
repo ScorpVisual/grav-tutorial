@@ -6,12 +6,18 @@
     </div>
 
 {% set galleryItems = [
-    { image_filename: 'VK-nagrobki-120.jpg', title: 'Nagrobek Pojedynczy Klasyczny' },
-    { image_filename: 'VK-nagrobki-124.jpg', title: 'Nagrobek Podwójny Nowoczesny' },
-    { image_filename: 'VK-nagrobki-126.jpg', title: 'Grobowiec Rodzinny z Granitu' },
-    { image_filename: 'VK-nagrobki-127.jpg', title: 'Pomnik z Czarnym Krzyżem' },
-    { image_filename: 'VK-nagrobki-129.jpg', title: 'Nagrobek Urnowy Jasny' },
-    { image_filename: 'VK-nagrobki-131.jpg', title: 'Renowacja starego pomnika' }
+    { image_filename: 'tomb-featured-1.jpg', title: 'Nagrobek Podwójny Nowoczesny' },
+    { image_filename: 'tomb-featured-2.jpg', title: 'Nagrobek Pojedynczy Klasyczny' },
+    { image_filename: 'tomb-featured-3.jpg', title: 'Grobowiec Rodzinny z Granitu' },
+    { image_filename: 'tomb-featured-4.jpg', title: 'Pomnik z Czarnym Krzyżem' },
+    { image_filename: 'tomb-featured-5.jpg', title: 'Nagrobek Urnowy Jasny' },
+    { image_filename: 'tomb-featured-6.jpg', title: 'Renowacja starego pomnika' },
+    { image_filename: 'tomb-featured-7.jpg', title: 'Nagrobek Urnowy Jasny' },
+    { image_filename: 'tomb-featured-8.jpg', title: 'Nagrobek Pojedynczy Klasyczny' },
+    { image_filename: 'tomb-featured-9.jpg', title: 'Nagrobek Podwójny Nowoczesny' },
+    { image_filename: 'tomb-featured-10.jpg', title: 'Renowacja starego pomnika' },
+    { image_filename: 'tomb-featured-11.jpg', title: 'Grobowiec Rodzinny z Granitu' },
+    { image_filename: 'tomb-featured-12.jpg', title: 'Pomnik z Czarnym Krzyżem' }
 ] %}
 
 <section>
@@ -34,7 +40,7 @@
             #}
             {% for item in galleryItems %}
                 <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
-                    <img src="{{ theme_url }}/images/placeholders/test-prod/{{ item.image_filename }}" 
+                    <img src="{{ theme_url }}/images/products/tombstones/{{ item.image_filename }}" 
                          alt="{{ item.title }}" 
                          class="w-full h-full object-cover">
                     

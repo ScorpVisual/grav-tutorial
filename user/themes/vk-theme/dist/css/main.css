@@ -347,7 +347,7 @@
 
 .fill-letters-gold-section-dark {
   background-color: #c0a258;
-  background-image: linear-gradient(170deg, #ffee90 10%, #e2c16d 30%, #ac9202 50%, #6e5718 85%) !important;
+  background-image: linear-gradient(170deg, #ffee90 10%, #e2c16d 30%, #ac9202 50%, #6e5718 85%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
