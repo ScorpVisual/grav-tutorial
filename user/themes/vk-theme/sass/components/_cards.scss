@@ -322,17 +322,19 @@
   cursor: pointer;
   background-color: rgba($white, .3);
 
-
   &:hover {
     border: 2px solid $cherry;
     box-shadow: 0 4px 12px rgba($ink, 0.1);
     background-color: rgba($white, .6);
+    transition: all 400ms ease-in-out;
+
     img {
       border-color: $cherry;
+      transition: all 400ms ease-in-out;
     }
     .article-card__description {
-    color: $granite; 
-  }
+      color: $granite;
+    }
   }
 
   &:focus {
@@ -344,13 +346,14 @@
   }
 
   &__image {
-    aspect-ratio: 16 / 9; 
+    aspect-ratio: 16 / 9;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-bottom: 2px solid $light-grey;
+      transition: all 400ms ease-in-out;
     }
   }
 
@@ -359,7 +362,7 @@
     flex-direction: column;
     flex-grow: 1;
     padding: 1.25rem;
-    gap: 0.75rem; 
+    gap: 0.75rem;
   }
 
   &__title {
@@ -368,8 +371,11 @@
   }
 
   &__description {
-    color: rgba($granite, .65); 
+    flex-grow: 1;
+    color: rgba($granite, .65);
     line-height: 1.5;
+    transition: all 400ms ease-in-out;
+
   }
 
   &__meta {
@@ -378,9 +384,9 @@
     align-items: center;
     font-size: 0.875rem;
     color: $grey;
-    margin-top: auto;
     padding-top: 0.75rem;
     border-top: 1px solid $light-grey;
+
   }
   
   &__meta-item {
@@ -389,6 +395,7 @@
     gap: 0.5rem;
   }
 }
+
 
 // vertical article card
 

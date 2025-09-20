@@ -124,3 +124,13 @@
 .hp1 {
     border: 2px solid green !important;
 }
+
+.folder-flag {
+    position: absolute;
+    z-index: -1;
+    display: flex;
+    border-radius: $border-radius $border-radius 0  0;
+    top: -38%; left: 0;
+    width: auto; height: 32px;
+    padding-inline: 1.2rem;
+}

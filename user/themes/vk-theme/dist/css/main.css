@@ -485,6 +485,18 @@
   border: 2px solid green !important;
 }
 
+.folder-flag {
+  position: absolute;
+  z-index: -1;
+  display: flex;
+  border-radius: 4px 4px 0 0;
+  top: -38%;
+  left: 0;
+  width: auto;
+  height: 32px;
+  padding-inline: 1.2rem;
+}
+
 .gradient-up-ink {
   position: relative;
   isolation: isolate;
@@ -1599,6 +1611,22 @@ hr {
   right: calc(50% - 250px);
 }
 
+.shortcut-button {
+  border-radius: 4px;
+  height: 3.2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(225, 223, 221, 0.2);
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  transition: all 0.3s ease-in-out;
+}
+.shortcut-button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  mix-blend-mode: lighten;
+}
+
 .vkCard__white {
   position: relative;
   border-radius: 8px;
@@ -2283,9 +2311,11 @@ hr {
   border: 2px solid #800020;
   box-shadow: 0 4px 12px rgba(3, 2, 8, 0.1);
   background-color: rgba(255, 255, 255, 0.6);
+  transition: all 400ms ease-in-out;
 }
 .article-card:hover img {
   border-color: #800020;
+  transition: all 400ms ease-in-out;
 }
 .article-card:hover .article-card__description {
   color: #2f2f2f;
@@ -2305,6 +2335,7 @@ hr {
   height: 100%;
   object-fit: cover;
   border-bottom: 2px solid #cbcdd1;
+  transition: all 400ms ease-in-out;
 }
 .article-card__content {
   display: flex;
@@ -2318,8 +2349,10 @@ hr {
   font-weight: 600;
 }
 .article-card__description {
+  flex-grow: 1;
   color: rgba(47, 47, 47, 0.65);
   line-height: 1.5;
+  transition: all 400ms ease-in-out;
 }
 .article-card__meta {
   display: flex;
@@ -2327,7 +2360,6 @@ hr {
   align-items: center;
   font-size: 0.875rem;
   color: rgb(150, 150, 150);
-  margin-top: auto;
   padding-top: 0.75rem;
   border-top: 1px solid #cbcdd1;
 }
@@ -2667,7 +2699,7 @@ option {
   width: 90%;
   height: 4rem;
   border-radius: 0.125rem;
-  box-shadow: 0 8px 12px rgba(3, 2, 8, 0.8);
+  box-shadow: 0 16px 4px rgba(3, 2, 8, 0.25);
 }
 .section-header::before {
   content: "";
