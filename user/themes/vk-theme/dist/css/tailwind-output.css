@@ -693,6 +693,11 @@ video {
   margin-right: auto;
 }
 
+.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
 .my-16 {
   margin-top: 4rem;
   margin-bottom: 4rem;
@@ -711,16 +716,6 @@ video {
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
-}
-
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.my-12 {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
 }
 
 .mb-1 {
@@ -859,8 +854,16 @@ video {
   height: 100%;
 }
 
+.h-\[600px\] {
+  height: 600px;
+}
+
 .max-h-\[85vh\] {
   max-height: 85vh;
+}
+
+.max-h-0 {
+  max-height: 0px;
 }
 
 .min-h-32 {
@@ -976,6 +979,11 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.rotate-180 {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -1018,6 +1026,10 @@ video {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
 }
 
 .gap-12 {
@@ -1511,6 +1523,10 @@ video {
   transition-duration: 300ms;
 }
 
+.duration-500 {
+  transition-duration: 500ms;
+}
+
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1656,6 +1672,30 @@ video {
     display: inline-flex;
   }
 
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:max-h-none {
+    max-height: none;
+  }
+
+  .md\:min-h-\[40rem\] {
+    min-height: 40rem;
+  }
+
+  .md\:min-h-\[60rem\] {
+    min-height: 60rem;
+  }
+
+  .md\:min-h-\[50rem\] {
+    min-height: 50rem;
+  }
+
+  .md\:min-h-\[52rem\] {
+    min-height: 52rem;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1680,6 +1720,10 @@ video {
     gap: 1rem;
   }
 
+  .md\:overflow-visible {
+    overflow: visible;
+  }
+
   .md\:p-3 {
     padding: 0.75rem;
   }
@@ -1690,6 +1734,10 @@ video {
 
   .md\:p-8 {
     padding: 2rem;
+  }
+
+  .md\:p-4 {
+    padding: 1rem;
   }
 
   .md\:px-4 {

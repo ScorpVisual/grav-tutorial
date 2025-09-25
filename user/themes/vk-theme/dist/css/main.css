@@ -571,7 +571,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .typography h1 {
   font-size: 2.44140625rem;
-  line-height: 1.2;
+  line-height: 1.5;
   font-family: "Cormorant", serif;
   color: inherit;
 }
@@ -593,21 +593,27 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 768px) {
   .typography h1 {
     font-size: 3.5rem;
+    line-height: 1.2;
   }
   .typography h2 {
     font-size: 2.75rem;
+    line-height: 1.2;
   }
   .typography h3 {
     font-size: 2rem;
+    line-height: 1.2;
   }
   .typography h4 {
     font-size: 1.5rem;
+    line-height: 1.2;
   }
   .typography h5 {
     font-size: 1.25rem;
+    line-height: 1.2;
   }
   .typography h6 {
     font-size: 1rem;
+    line-height: 1.2;
   }
 }
 .typography p {
@@ -1017,6 +1023,265 @@ hr {
   .dark-textured-marble-slab {
     padding-inline: 0.6rem;
   }
+}
+
+.white-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  color: #030208;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.white-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.white-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.97) 0%, rgba(225, 223, 221, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
+  mix-blend-mode: normal;
+  z-index: -1;
+}
+.white-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/marble-white-2.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.black-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  color: #edd7cb;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(3, 2, 8, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.black-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.black-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(3, 2, 8, 0.97) 0%, rgba(3, 2, 8, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+.black-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/marble-black-5.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.dark-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  color: #edd7cb;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(3, 2, 8, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.dark-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.dark-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(3, 2, 8, 0.97) 0%, rgba(3, 2, 8, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+.dark-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/marble-black-gold-3-darkened.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.sand-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  color: #030208;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(237, 215, 203, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.sand-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.sand-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(237, 215, 203, 0.97) 0%, rgba(237, 215, 203, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
+  mix-blend-mode: normal;
+  z-index: -1;
+}
+.sand-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/limestone-1.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.red-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  color: #edd7cb;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(172, 159, 88, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.red-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.red-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(87, 32, 21, 0.2), rgba(87, 32, 21, 0.6), rgba(87, 32, 21, 0.3), rgba(87, 32, 21, 0));
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+.red-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/marble-red-2.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.granite-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  color: #e1dfdd;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(225, 223, 221, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.granite-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.granite-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(47, 47, 47, 0.8), rgba(47, 47, 47, 0.9), rgba(47, 47, 47, 0.4), rgba(255, 255, 255, 0.2));
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+.granite-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/granite-1.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.marbleTest-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  color: #e1dfdd;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(47, 47, 47, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.marbleTest-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.marbleTest-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(3, 2, 8, 0.9), rgba(3, 2, 8, 0.9), rgba(3, 2, 8, 0.7), rgba(255, 255, 255, 0.2));
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+.marbleTest-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/texture-4-black.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
 }
 
 .test-div {
@@ -2039,6 +2304,12 @@ hr {
   box-shadow: 0 0 0 1px #800020;
   background-color: rgba(255, 255, 255, 0.5);
 }
+@media (max-width: 640px) {
+  .pick-a-card.is-active {
+    border-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0);
+  }
+}
 .pick-a-card.is-active:hover {
   border-color: #800020;
   box-shadow: 0 0 0 1px #800020;
@@ -2071,228 +2342,6 @@ hr {
   border-color: #800020;
   box-shadow: 0 0 0 1px #800020;
   background-color: #800020;
-}
-
-.white-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #030208;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
-}
-.white-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
-}
-.white-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.97) 0%, rgba(225, 223, 221, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
-  mix-blend-mode: normal;
-  z-index: -1;
-}
-.white-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/marble-white-2.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
-}
-
-.black-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #edd7cb;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba(3, 2, 8, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
-}
-.black-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
-}
-.black-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(3, 2, 8, 0.97) 0%, rgba(3, 2, 8, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
-  mix-blend-mode: multiply;
-  z-index: -1;
-}
-.black-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/marble-black-5.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
-}
-
-.sand-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #030208;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba(237, 215, 203, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
-}
-.sand-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
-}
-.sand-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(237, 215, 203, 0.97) 0%, rgba(237, 215, 203, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
-  mix-blend-mode: normal;
-  z-index: -1;
-}
-.sand-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/limestone-1.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
-}
-
-.red-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #edd7cb;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba(172, 159, 88, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
-}
-.red-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
-}
-.red-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(87, 32, 21, 0.2), rgba(87, 32, 21, 0.6), rgba(87, 32, 21, 0.3), rgba(87, 32, 21, 0));
-  mix-blend-mode: multiply;
-  z-index: -1;
-}
-.red-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/marble-red-2.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
-}
-
-.granite-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #e1dfdd;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba(225, 223, 221, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
-}
-.granite-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
-}
-.granite-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(47, 47, 47, 0.8), rgba(47, 47, 47, 0.9), rgba(47, 47, 47, 0.4), rgba(255, 255, 255, 0.2));
-  mix-blend-mode: multiply;
-  z-index: -1;
-}
-.granite-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/granite-1.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
-}
-
-.marbleTest-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #e1dfdd;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba(47, 47, 47, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
-}
-.marbleTest-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
-}
-.marbleTest-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(3, 2, 8, 0.9), rgba(3, 2, 8, 0.9), rgba(3, 2, 8, 0.7), rgba(255, 255, 255, 0.2));
-  mix-blend-mode: multiply;
-  z-index: -1;
-}
-.marbleTest-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/texture-4-black.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
 }
 
 .article-card {
