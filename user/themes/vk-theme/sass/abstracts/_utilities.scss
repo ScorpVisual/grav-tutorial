@@ -3,19 +3,7 @@
 @use '../abstracts/variables' as *;
 @use '../mixins/mixins' as *;
 
-.schowaj {
-    display: none;
-}
-.schowaj-mocno {
-    display: none !important;
-}
-.is-hidden {
-  display: none !important;
-}
 
-.reset-fadeIn {
-    animation: none !important;
-}
 .price-highlighted {
     color: $sand;
     background-color: $cherry;

@@ -18,7 +18,7 @@
     
     // Kontener wyświetlacza po prawej stronie
     &__display {
-        transition: opacity 300ms ease-in-out;
+        transition: opacity 100ms ease-in-out;
         
         &.--is-fading {
             opacity: 0;
@@ -32,14 +32,14 @@
     // Uniwersalna klasa do animacji kaskadowej
     &__fade-in {
         opacity: 1;
-        transition: opacity 400ms ease-in-out;
+        transition: opacity 250ms ease-in-out;
     }
     
     // Kaskadowe opóźnienie dla poszczególnych elementów
     &__image { transition-delay: 50ms; }
     &__title { transition-delay: 70ms; }
-    &__price-wrapper { transition-delay: 70ms; } // Teraz to na pewno zadziała
-    &__description { transition-delay: 120ms; }
+    &__price-wrapper { transition-delay: 80ms; } // Teraz to na pewno zadziała
+    &__description { transition-delay: 80ms; }
 }
 
 

@@ -1,0 +1,164 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <div>
+        <img src="{{ theme_url }}/images/services/main-photo.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Konserwacja i renowacja nagrobków
+        </h1>
+        <p class="text-lg text-gray-700">
+            Czas jest największym wyzwaniem dla każdego pomnika. 
+            Nawet najszlachetniejszy kamień z biegiem lat poddaje się działaniu pogody, 
+            a konstrukcja może tracić swoją stabilność. Rozumiemy, że Twoim celem jest zachowanie 
+            miejsca pamięci w nienagannej kondycji. Dlatego stworzyliśmy kompleksową ofertę renowacji nagrobków 
+            i opieki nad grobami, która jest naszą profesjonalną odpowiedzią na upływ czasu.
+        </p>
+        <p class="text-lg text-gray-700">
+            Niezależnie od tego, czy pomnik wymaga głębokiej renowacji strukturalnej, 
+            odnowienia powierzchni, czy regularnej pielęgnacji – jesteśmy tu, by Ci pomóc. 
+            Przywracamy starym grobowcom ich dawną świetność i dbamy o to, by ich historia mogła trwać 
+            w godności przez kolejne pokolenia.
+        </p>
+                <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Usługi remontowe
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Szlifowanie nagrobków z lastryka
+        </h2>
+        <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena: <span class="c-white">od <span class="">700</span> PLN</span>
+        </div>
+        <p class="text-lg text-gray-700 min-h-[240px]">
+            Profesjonalne szlifowanie lastryka przynosi korzyści na wielu poziomach. 
+            Oprócz oczywistej odnowy wizualnej, czyli przywrócenia głębokiego koloru i połysku, 
+            zyskujesz coś znacznie ważniejszego: wzmocnienie samej struktury kamienia. 
+            Usuwając porowatą, osłabioną warstwę, sprawiamy, że powierzchnia staje się zwarta, 
+            gładka i bardziej odporna na przyszłe zabrudzenia oraz warunki atmosferyczne. 
+            To działanie prewencyjne, które ułatwia Ci przyszłą pielęgnację 
+            i realnie przedłuża żywotność pomnika.
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/services/sanding.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+
+<section>
+{% set galleryItems = [
+    { image_filename: 'VK-nagrobki-120.jpg', title: 'Nagrobek Pojedynczy Klasyczny' },
+    { image_filename: 'VK-nagrobki-124.jpg', title: 'Nagrobek Podwójny Nowoczesny' },
+    { image_filename: 'VK-nagrobki-131.jpg', title: 'Renowacja starego pomnika' }
+] %}
+{% include 'partials/_gallery-small.html.twig'%}
+</section>
+<section class="py-8 lg:py-16">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 ">
+    
+    {# --- Nagłówek sekcji --- #}
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
+            Co nas wyróżnia? 
+        </h1>
+        <p>
+            Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
+            Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, ale jesteśmy dostępni telefonicznie i mailowo. 
+        </p>
+    </div>
+    
+{# --- Siatka z cechami (poprawiona) --- #}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-8 py-8 lg:py-16">
+      
+    {% set features = [
+        {
+            icon: 'tombstone.svg',
+            title: 'Wysoka jakość kamieni',
+            text: 'Używamy tylko starannie wyselekcjonowanego granitu, gwarantującego niezrównaną trwałość i odporność na warunki atmosferyczne.',
+            alt: 'Ikona jakości materiału'
+        },
+        {
+            icon: 'tombstone.svg',
+            title: 'Precyzja wykonania',
+            text: 'Każdy element jest rzeźbiony i polerowany z rzemieślniczą precyzją, co zapewnia perfekcyjne wykończenie i estetykę.',
+            alt: 'Ikona precyzji wykonania'
+        },
+        {
+            icon: 'tombstone.svg',
+            title: 'Gwarancja satysfakcji',
+            text: 'Twoje zadowolenie jest naszym priorytetem. Służymy wsparciem na każdym etapie realizacji zamówienia.',
+            alt: 'Ikona gwarancji satysfakcji'
+        }
+    ] %}
+      
+    {% for feature in features %}
+
+        <div class="p-4 flex flex-col items-center text-center h-full article-card hover-up-4">
+            <div class="flex-shrink-0 my-auto">
+                <div class="flex items-start justify-center h-16 w-16">
+                    <img src="{{ theme_url }}/images/icons/{{ feature.icon }}" alt="{{ feature.alt }}">
+                </div>
+            </div>
+            
+            <h3 class="text-xl font-semibold text-ink mb-3 min-h-[3.5rem] flex items-center justify-center text-center">
+                {{ feature.title }}
+            </h3>
+
+            <hr class="w-full hr-underline bg-cherry mb-3">
+            
+            <p class="text-text-brown leading-relaxed grow">
+                {{ feature.text }}
+            </p>
+        </div>
+
+    {% endfor %}
+      
+</div>
+
+</section>
+
+{# FAQ #}
+{% set faq_items = [
+    {
+        question: "Jak mogę zamówić usługę?",
+        answer: "Wystarczy skontaktować się z nami przez formularz kontaktowy lub telefonicznie, a nasz zespół poprowadzi Cię krok po kroku przez cały proces, od wyboru materiału po finalizację zamówienia."
+    },
+    {
+        question: "Ile trwa realizacja zamówienia?",
+        answer: "Standardowy czas realizacji to od 2 do 4 tygodni, w zależności od złożoności projektu i dostępności wybranych materiałów. Zawsze informujemy o przewidywanym terminie na etapie składania zamówienia."
+    },
+    {
+        question: "Czy mogę liczyć na wsparcie po wykonaniu usługi?",
+        answer: "Oczywiście. Oferujemy pełne wsparcie posprzedażowe, w tym porady dotyczące konserwacji i pielęgnacji. Jesteśmy do Twojej dyspozycji w razie jakichkolwiek pytań."
+    },
+    {
+        question: "Czy oferujecie gwarancję na swoje produkty?",
+        answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
+    }
+] %}
+{% include 'partials/_faq.html.twig'%}
+{# END FAQ #}
+
+
+{% include 'partials/gallery_modal.html.twig'%}
+
+
+{% endblock %}

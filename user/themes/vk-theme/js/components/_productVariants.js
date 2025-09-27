@@ -1,15 +1,53 @@
 document.addEventListener('DOMContentLoaded', function () {
     
+// ====================================================================
+    //  SKRYPT 1: Przełączanie wariantów produktu
     // ====================================================================
-    //  SKRYPT 1: (Bez zmian)
-    // ====================================================================
-    const variantButtons = document.querySelectorAll('.variant-button');
+    
+    // Pobranie elementów z DOM
+const variantButtons = document.querySelectorAll('.variant-button');
     const priceElement = document.getElementById('product-price');
     const descriptionElement = document.getElementById('product-description');
 
     if (variantButtons.length > 0 && priceElement && descriptionElement) {
-        // ... cała logika skryptu 1 pozostaje bez zmian ...
+        variantButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Jeśli kliknięty przycisk jest już aktywny, nic nie rób
+                if (this.classList.contains('is-active')) {
+                    return;
+                }
+
+                // Usuń klasę 'is-active' ze wszystkich przycisków
+                variantButtons.forEach(btn => btn.classList.remove('is-active'));
+                
+                // Dodaj klasę 'is-active' do klikniętego przycisku
+                this.classList.add('is-active');
+
+                // --- START ANIMACJI ---
+                
+                // 1. Dodaj klasę, aby rozpocząć zanikanie obecnego tekstu
+                priceElement.classList.add('is-fading');
+                descriptionElement.classList.add('is-fading');
+
+                // 2. Użyj setTimeout, aby poczekać, aż animacja zanikania się zakończy
+                setTimeout(() => {
+                    // 3. Pobierz nowe dane i zaktualizuj treść, gdy jest niewidoczna
+                    const newPrice = this.dataset.price;
+                    const newDescription = this.dataset.desc;
+                    
+                    priceElement.textContent = newPrice;
+                    descriptionElement.textContent = newDescription;
+
+                    // 4. Usuń klasę, aby nowy tekst płynnie się pojawił
+                    priceElement.classList.remove('is-fading');
+                    descriptionElement.classList.remove('is-fading');
+                }, 200); // Czas w milisekundach - musi być taki sam jak w CSS (0.2s = 200ms)
+
+                // --- KONIEC ANIMACJI ---
+            });
+        });
     }
+
 
 
     // ====================================================================

@@ -215,6 +215,30 @@
   background: linear-gradient(45deg, rgba(162, 199, 212, 0.8) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(159, 173, 197, 0.8) 100%);
 }
 
+.schowaj {
+  display: none;
+}
+
+.schowaj-mocno {
+  display: none !important;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.is-fading {
+  opacity: 0;
+}
+
+.animated-opacity {
+  transition: opacity 0.25s ease-in-out;
+}
+
+.reset-fadeIn {
+  animation: none !important;
+}
+
 .btn-hoverUp {
   transform: translateY(-2px);
 }
@@ -301,22 +325,6 @@
 }
 .link-hover-fill:hover {
   color: #fff;
-}
-
-.schowaj {
-  display: none;
-}
-
-.schowaj-mocno {
-  display: none !important;
-}
-
-.is-hidden {
-  display: none !important;
-}
-
-.reset-fadeIn {
-  animation: none !important;
 }
 
 .price-highlighted {
@@ -3080,7 +3088,7 @@ option {
   box-shadow: 0 0 0 2px #800020;
 }
 .content-switcher__display {
-  transition: opacity 300ms ease-in-out;
+  transition: opacity 100ms ease-in-out;
 }
 .content-switcher__display.--is-fading {
   opacity: 0;
@@ -3091,7 +3099,7 @@ option {
 }
 .content-switcher__fade-in {
   opacity: 1;
-  transition: opacity 400ms ease-in-out;
+  transition: opacity 250ms ease-in-out;
 }
 .content-switcher__image {
   transition-delay: 50ms;
@@ -3100,10 +3108,10 @@ option {
   transition-delay: 70ms;
 }
 .content-switcher__price-wrapper {
-  transition-delay: 70ms;
+  transition-delay: 80ms;
 }
 .content-switcher__description {
-  transition-delay: 120ms;
+  transition-delay: 80ms;
 }
 
 .shuffle-carousel {

@@ -2,6 +2,24 @@
 @use '../abstracts/variables' as *;
 
 
+.schowaj {
+    display: none;
+}
+.schowaj-mocno {
+    display: none !important;
+}
+.is-hidden {
+  display: none !important;
+}
+.is-fading {
+    opacity: 0;
+}
+.animated-opacity {
+    transition: opacity 0.25s ease-in-out;
+}
+.reset-fadeIn {
+    animation: none !important;
+}
 
 // BUTTONS
 
