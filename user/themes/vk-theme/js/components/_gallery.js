@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- ZUNIFIKOWANY MANAGER BLOKOWANIA PRZEWIJANIA ---
+    // --- ZUNIFIKOWANY MANAGER BLOKOWANIA PRZEWIJANIA (bez zmian) ---
     const scrollLockManager = {
         lockCount: 0,
         body: document.body,
@@ -18,69 +18,113 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // ====================================================================
+    //  POPRAWIONY SKRYPT MODALA GALERII
+    // ====================================================================
     function initGalleryModal() {
-        // --- Pobieranie elementów DOM ---
         const modal = document.getElementById('fullscreen-modal');
         const modalImage = document.getElementById('fullscreen-image');
         const closeModalBtn = document.getElementById('close-modal-btn');
         const modalAltText = document.getElementById('fullscreen-alt-text');
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
-        if (!modal || !modalImage || !closeModalBtn || !modalAltText || !prevBtn || !nextBtn) return;
-        // --- Stan galerii ---
-        const galleryImages = document.querySelectorAll('.product-img img');
+        
+        // Znajdź WSZYSTKIE klikalne obrazki galerii na stronie
+        const clickableImages = document.querySelectorAll('.product-img');
+
+        if (!modal || !modalImage || !closeModalBtn || !modalAltText || !prevBtn || !nextBtn || clickableImages.length === 0) {
+            return;
+        }
+
+        const galleryImageElements = Array.from(clickableImages).map(container => container.querySelector('img'));
         let currentIndex = 0;
-        // --- Funkcja do wyświetlania obrazka na podstawie indeksu ---
+
         const showImage = (index) => {
-            if (index < 0 || index >= galleryImages.length) return;
-            const img = galleryImages[index];
+            if (index < 0 || index >= galleryImageElements.length) return;
+            const img = galleryImageElements[index];
             currentIndex = index;
             modalImage.src = img.src;
             modalImage.alt = img.alt;
             modalAltText.textContent = img.alt;
             prevBtn.style.display = (currentIndex === 0) ? 'none' : 'block';
-            nextBtn.style.display = (currentIndex === galleryImages.length - 1) ? 'none' : 'block';
+            nextBtn.style.display = (currentIndex === galleryImageElements.length - 1) ? 'none' : 'block';
         };
-        // --- Funkcje otwierania/zamykania modala ---
+
         const openModal = (startIndex) => {
             showImage(startIndex);
             modal.classList.remove('is-hidden');
+            scrollLockManager.lock();
             requestAnimationFrame(() => modal.classList.remove('opacity-0'));
         };
+
         const closeModal = () => {
             modal.classList.add('opacity-0');
             setTimeout(() => {
                 modal.classList.add('is-hidden');
+                scrollLockManager.unlock();
                 modalImage.src = "";
                 modalAltText.textContent = '';
             }, 300);
         };
-        // --- Nawigacja ---
-        const showPrev = () => showImage(currentIndex - 1);
-        const showNext = () => showImage(currentIndex + 1);
-        // --- Listenery zdarzeń ---
-        document.body.addEventListener('click', e => {
-            const container = e.target.closest('.product-img');
-            if (!container) return;
-            const img = container.querySelector('img');
-            if (img) {
-                const clickedIndex = Array.from(galleryImages).findIndex(item => item.src === img.src);
-                if (clickedIndex !== -1) {
-                    openModal(clickedIndex);
-                }
-            }
+        
+        // NOWA, LEPSZA LOGIKA: Listener podpięty bezpośrednio do każdego obrazka
+        clickableImages.forEach((container, index) => {
+            container.addEventListener('click', (event) => {
+                // Zapobiegamy otwieraniu się nakładki karty, jeśli na nią klikamy
+                event.stopPropagation();
+                openModal(index);
+            });
         });
-        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-        if (modal) modal.addEventListener('click', e => {
-            if (e.target === modal) closeModal();
-        });
-        prevBtn.addEventListener('click', showPrev);
-        nextBtn.addEventListener('click', showNext);
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+        prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
+        nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
+
         document.addEventListener('keydown', e => {
             if (modal.classList.contains('is-hidden')) return;
             if (e.key === 'Escape') closeModal();
-            if (e.key === 'ArrowLeft') showPrev();
-            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+            if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+        });
+    }
+
+    // ====================================================================
+    //  POPRAWIONY SKRYPT KART PRODUKTÓW
+    // ====================================================================
+    function initProductCards() {
+        const allProductCards = document.querySelectorAll('.product-card');
+
+        allProductCards.forEach(card => {
+            const expandButton = card.querySelector('.product-card__expand-btn');
+            const closeButton = card.querySelector('.details-overlay__close-btn');
+            const overlay = card.querySelector('.product-card__details-overlay');
+
+            if (!expandButton || !closeButton || !overlay) return;
+
+            expandButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                card.classList.add('is-details-open');
+            });
+
+            closeButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                card.classList.remove('is-details-open');
+            });
+
+            overlay.addEventListener('click', (event) => {
+                if (event.target === overlay) { // Poprawiona logika!
+                    card.classList.remove('is-details-open');
+                }
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.product-card')) {
+                document.querySelectorAll('.product-card.is-details-open').forEach(card => {
+                    card.classList.remove('is-details-open');
+                });
+            }
         });
     }
 

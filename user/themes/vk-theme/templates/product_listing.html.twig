@@ -2,58 +2,88 @@
 
 {% block content %}
 
+{# Debug – możesz usunąć, gdy już niepotrzebne #}
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <div>
+        <img src="{{ theme_url }}/images/products/product-main-1.jpg" alt="Zabytkowy nagrobek na cmentarzu w Dąbrowie Górniczej" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Kamień jest wieczny i cierpliwy.
+        </h1>
+        <p class="text-lg text-gray-700">
+             
+            I taka sama powinna być praca rzemieślnika, 
+            który nadaje mu ostateczny kształt. Tą starą zasadą kierujemy się na co dzień. 
+            W naszą pracę wkładamy całe serce, bo wiemy, że jej efekt w postaci nagrobka 
+            będzie trwał przez pokolenia jako świadectwo pamięci. 
+        </p>
+        <p class="text-lg text-gray-700">
+            To ogromna odpowiedzialność, 
+            którą traktujemy z pokorą, <strong>aby dać Ci pewność i spokój ducha, że to ważne zadanie zostanie 
+            wykonane z należytą starannością i szacunkiem.</strong>
+        </p>
+        <p class="text-lg text-gray-700">
+            Właśnie z tej filozofii powstają 
+            nasze granitowe nagrobki – szlachetne, trwałe i <strong>dopasowane do historii</strong>, którą mają opowiadać.
+        </p>
+                <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Nasze produkty
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
 
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Czym wyróżniają się wszystkie nasze nagrobki?
+        </h2>
+        <p class="text-lg text-gray-700">
+            Budowa pomnika w naszym zakładzie kamieniarskim to proces oparty na zaufaniu i wspólnych wartościach. 
+            Od ponad trzydziestu lat kierujemy się czterema zasadami, które są fundamentem naszej pracy.
+        </p>
+        <p class="text-lg text-gray-700">
+            Kamień nie wybacza błędów. Dlatego w naszym warsztacie każde cięcie, 
+            każdy szlif, każda polerowana krawędź i każda rzeźbiona litera są dowodem naszej pasji 
+            i szacunku do materiału. Ta dbałość o detale sprawia, że nasze nagrobki są dopracowanym 
+            w każdym calu dziełem kamieniarskiego rzemiosła.
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Galeria realizacji
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/products/product-photo-2.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+<div class="flex section-header mx-auto lg:mt-8 ">
+  <div class="section-header__content section-header__bg--golden-alt">
+    <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+      PRODUKTY
+    </h3>
+  </div>
+</div>
 {# ALL PRODUCTS GRID #}
-{% set products = [
-    {
-        name: "Nagrobek Nowoczesny N-01",
-        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-120.jpg",
-        alt_text: "Nagrobek nowoczesny z białego granitu",
-        price: "od 6 499 PLN",
-        link: "#link-do-n01",
-        full_desc: "Model N-01 to kwintesencja nowoczesnego designu. Charakteryzuje się prostą bryłą, wysokiej jakości polerowanym granitem i minimalistycznymi akcentami."
-    },
-    {
-        name: "Nagrobek Klasyczny K-08",
-        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-124.jpg",
-        alt_text: "Nagrobek klasyczny z czarnego granitu",
-        price: "od 5 999 PLN",
-        link: "#link-do-k08",
-        full_desc: "Klasyczny nagrobek K-08 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
-    },
-    {
-        name: "Nagrobek Artystyczny A-12",
-        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-129.jpg",
-        alt_text: "Nagrobek artystyczny z rzeźbą",
-        price: "od 14 999 PLN",
-        link: "#link-do-a12",
-        full_desc: "Ten model to prawdziwe dzieło sztuki kamieniarskiej. Łączy w sobie różne rodzaje granitu i zawiera ręcznie wykonaną rzeźbę, co czyni go unikalnym projektem."
-    },
-    {
-        name: "Nagrobek Klasyczny K-09",
-        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-130.jpg",
-        alt_text: "Nagrobek klasyczny z czarnego granitu",
-        price: "od 5 999 PLN",
-        link: "#link-do-k09",
-        full_desc: "Klasyczny nagrobek K-09 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
-    },
-    {
-        name: "Nagrobek Klasyczny K-10",
-        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-131.jpg",
-        alt_text: "Nagrobek klasyczny z czarnego granitu",
-        price: "od 5 999 PLN",
-        link: "#link-do-k10",
-        full_desc: "Klasyczny nagrobek K-10 to ponadczasowy wybór, który łączy w sobie tradycyjną formę z doskonałą jakością wykonania. Wykonany z trwałego, czarnego granitu."
-    }
-] %}
-
-{% if products is not empty %}
+{% if all_products is not empty %}
 <section class="py-12 lg:py-20">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
-            {% for product in products %}
-            <div class=" golden-img-border">
-                <div class="product-card aspect-[3/4]" style="background-image: url('{{ product.image }}');">
+            {% for product in all_products %}
+            <div class="golden-img-border">
+                <div class="product-card aspect-[3/4]" style="background-image: url('{{ theme_url }}{{ product.image }}');">
                     <div class="product-card__main-content">
                         <h3 class="product-card__title">{{ product.name }}</h3>
                         <p class="product-card__price"><span class="c-pink">Cena:</span> {{ product.price }}</p>
@@ -64,7 +94,7 @@
                         <div class="details-overlay__content">
                             <p class="product-card__desc">{{ product.full_desc }}</p>
                             <div class="product-card__buttons">
-                                <a href="{{ product.link }}" class="btn-primary">Zobacz realizacje</a>
+                                <a href="{{ product.link }}" class="btn-primary">Sprawdź produkt</a>
                                 <a href="#kontakt" class="btn-cta">Zamów wariant</a>
                             </div>
                         </div>
@@ -75,7 +105,49 @@
         </div>
     </div>
 </section>
+{% else %}
+  <p>Brak produktów do wyświetlenia.</p>
 {% endif %}
+{# end product grid #}
+
+{% include 'partials/landing-tombstone.html.twig'%}
+{% include 'partials/recommended-stones.html.twig'%}
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Indywidualny projekt nagrobka
+        </h2>
+        <p class="text-lg text-gray-700">
+            Pomnik powinien być tak unikalny, jak osoba, którą upamiętnia. 
+           <strong> Dlatego oferujemy Ci szeroką paletę materiałów, z których wspólnie stworzymy projekt 
+            odzwierciedlający Twoje oczekiwania.</strong> Każdy projekt zaczynamy od rozmowy z Tobą, 
+            słuchając Twojej wizji i przekuwając ją w jedyny w swoim rodzaju projekt nagrobka.
+        </p>
+        <p class="text-lg text-gray-700">
+           Oprócz kamienia i dodatków, oferujemy również <strong>usługę stworzenia indywidualnego projektu.</strong>
+           Dzięki temu, najlepiej wyrazisz swoje głębokie uczucia dla bliskiej osoby,
+           tworząc niezwykły pomnik wyrażający tęsknotę i pamięć.
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Galeria realizacji
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/products/product-design.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+
+
+{# galeria #}
+{% include 'partials/gallery.html.twig'%}
+{% include 'modular/_gallery_modal.html.twig'%}
 
 
 {% endblock %}
