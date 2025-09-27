@@ -1,10 +1,10 @@
 ---
 title: Produkty
 content:
-  items: '@self.children'
-  order:
-    by: date
-    dir: desc
+    items: '@self.children'
+    order:
+        by: date
+        dir: desc
 ---
 
 # Nasza oferta produktowa

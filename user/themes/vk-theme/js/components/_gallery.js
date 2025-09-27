@@ -254,12 +254,64 @@ document.addEventListener('DOMContentLoaded', () => {
         updateNavButtons();
     }
 
+// ====================================================================
+    //  SKRYPT 3: obsługa kart produktów (otwieranie i zamykanie nakładki)
+    // ====================================================================
+    
+    /**
+ * Inicjalizuje interaktywność dla wszystkich kart produktów (.product-card).
+ * Umożliwia otwieranie i zamykanie nakładki ze szczegółami.
+ */
+function initProductCards() {
+  const allProductCards = document.querySelectorAll('.product-card');
+
+  allProductCards.forEach(card => {
+    const expandButton = card.querySelector('.product-card__expand-btn');
+    const closeButton = card.querySelector('.details-overlay__close-btn');
+    const overlay = card.querySelector('.product-card__details-overlay');
+
+    if (!expandButton || !closeButton || !overlay) return;
+
+    // Otwieranie karty
+    expandButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      card.classList.add('is-details-open');
+    });
+
+    // Zamykanie przez przycisk "X"
+    closeButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      card.classList.remove('is-details-open');
+    });
+
+    // Zamykanie przez kliknięcie w overlay (dowolne miejsce)
+    overlay.addEventListener('click', () => {
+      card.classList.remove('is-details-open');
+    });
+  });
+
+  // Zamykanie przez kliknięcie poza otwartą kartą
+  document.addEventListener('click', (event) => {
+    const openCards = document.querySelectorAll('.product-card.is-details-open');
+
+    openCards.forEach(card => {
+      if (!card.contains(event.target)) {
+        card.classList.remove('is-details-open');
+      }
+    });
+  });
+}
+
+
+
+  
 
     // --- INICJALIZACJA WSZYSTKICH KOMPONENTÓW ---
     initGalleryModal();
     initMaterialCarousel();
     initShuffleCarousel();
     initShortcutCarousel();
+    initProductCards(); 
 });
 
 // document.addEventListener('DOMContentLoaded', () => {

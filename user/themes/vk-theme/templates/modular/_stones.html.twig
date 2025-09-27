@@ -1,0 +1,29 @@
+
+   
+
+    <div class="max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
+
+        <div class="relative flex items-center justify-center h-[350px]">
+            <button data-dir="prev" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--prev">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+
+            <div id="carousel-container" class="w-full h-full flex items-center justify-center">
+                {% for material in materials %}
+                    <img src="{{ material.img }}"
+                         alt="{{ material.name }}"
+                         data-name="{{ material.name }}"
+                         data-desc="{{ material.desc }}"
+                         class="carousel-item rounded-lg  object-cover cursor-pointer">
+                {% endfor %}
+            </div>
+
+            <button data-dir="next" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--next">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+        </div>
+
+    <div id="materialInfo" class="p-2 lg:p-6 lg:ml-12">
+        <h3 id="materialName" class="text-3xl font-bold mb-3 text-gray-800 transition-opacity duration-300 underline--cherry"></h3>
+        <p id="materialDesc" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300"></p>
+    </div>

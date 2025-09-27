@@ -113,4 +113,5 @@ const variantButtons = document.querySelectorAll('.variant-button');
             });
         }
     }
+
 });

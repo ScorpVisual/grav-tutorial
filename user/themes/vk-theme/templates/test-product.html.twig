@@ -234,7 +234,7 @@
         </p>
     </div>
     
-{% include 'partials/_stones.html.twig'%}
+{% include 'modular/_stones.html.twig'%}
 
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-screen-xl mx-auto px-4 my-16">
@@ -324,7 +324,7 @@
                     został wykonany z mistrzowską precyzją i stał się integralną częścią pomnika."
     }
 ] %}
-{% include 'partials/_content-switcher.html.twig'%}
+{% include 'modular/_content-switcher.html.twig'%}
 
 
 
@@ -411,10 +411,10 @@
         answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
     }
 ] %}
-{% include 'partials/_faq.html.twig'%}
+{% include 'modular/_faq.html.twig'%}
 {# END FAQ #}
 
-{# GALLERY MODAL WITH NAVIGATION: #}
+{# GALLERY MODAL WITH NAVIGATION:
 <div id="fullscreen-modal" class="is-hidden fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ease-in-out opacity-0 reset-fadeIn">
     
     <button id="close-modal-btn" class="absolute top-5 right-5 text-white text-5xl font-bold z-[52] hover:text-gray-300 transition-colors">&times;</button>
@@ -437,6 +437,9 @@
             </div>
     </div>
 </div>
+ #}
+
+ {% include 'modular/_gallery_modal.html.twig'%}
 
 
 {% endblock %}

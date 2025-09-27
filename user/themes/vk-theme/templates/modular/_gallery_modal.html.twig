@@ -1,0 +1,26 @@
+
+
+
+{# GALLERY MODAL WITH NAVIGATION: #}
+<div id="fullscreen-modal" class="is-hidden fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ease-in-out opacity-0 reset-fadeIn">
+    
+    <button id="close-modal-btn" class="absolute top-5 right-5 text-white text-5xl font-bold z-[52] hover:text-gray-300 transition-colors">&times;</button>
+    
+    <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl font-bold z-[52] p-4 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    
+    <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl font-bold z-[52] p-4 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+
+    <div class="relative flex flex-col items-center justify-center">
+        <img id="fullscreen-image" src="" alt="Fullscreen product image" class="max-w-[85vw] max-h-[85vh] rounded-lg shadow-2xl">
+        <div id="fullscreen-alt-text" class="product-img__mini--title mt-4 text-xl font-semibold text-white text-center">
+            </div>
+    </div>
+</div>

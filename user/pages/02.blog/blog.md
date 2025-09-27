@@ -5,7 +5,6 @@ hide_git_sync_repo_link: false
 sitemap:
     changefreq: monthly
 body_classes: 'header-dark header-transparent'
-# ... the rest of your settings ...
 ---
 
 # My **Open Publishing** Space
