@@ -129,20 +129,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- LOGIKA KARUZELI "WYBÓR MATERIAŁU" ---
-    function initMaterialCarousel() {
-        const container = document.getElementById('carousel-container');
+   // --- LOGIKA KARUZELI "WYBÓR MATERIAŁU" (WERSJA DZIAŁAJĄCA DLA WIELU INSTANCJI) ---
+function initMaterialCarousel() {
+    // 1. Znajdź WSZYSTKIE kontenery karuzel na stronie
+    document.querySelectorAll('.js-material-carousel').forEach(carouselWrapper => {
+        // 2. Dla każdej karuzeli z osobna, znajdź jej elementy wewnętrzne
+        const container = carouselWrapper.querySelector('.carousel-main-container');
         if (!container) return;
+
+        // Wyciągamy unikalne ID, żeby znaleźć powiązane elementy info
+        const uniqueId = container.id.split('-').pop();
+        if (!uniqueId) return;
+        
         const items = container.querySelectorAll('.carousel-item');
-        const nameEl = document.getElementById('materialName');
-        const descEl = document.getElementById('materialDesc');
-        const prevBtn = container.parentElement.querySelector('.carousel-btn[data-dir="prev"]');
-        const nextBtn = container.parentElement.querySelector('.carousel-btn[data-dir="next"]');
+        const nameEl = document.getElementById(`materialName-${uniqueId}`);
+        const descEl = document.getElementById(`materialDesc-${uniqueId}`);
+        const prevBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="prev"]');
+        const nextBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="next"]');
+
+        // Sprawdzamy, czy ta konkretna instancja ma wszystko, czego potrzebuje
         if (!items.length || !nameEl || !descEl || !prevBtn || !nextBtn) return;
+
+        // Ukryj przyciski, jeśli nie ma wystarczająco slajdów
         if (items.length < 3) {
             prevBtn.style.display = 'none';
             nextBtn.style.display = 'none';
+            // Ale nadal zainicjuj stan początkowy dla jednego elementu
+            if (items.length > 0) {
+                 const center = items[0];
+                 nameEl.textContent = center.dataset.name;
+                 descEl.textContent = center.dataset.desc;
+                 items[0].classList.add('carousel-center', 'golden-img-border');
+            }
             return;
         }
+
+        // 3. Cała logika (stan, funkcje, listenery) jest "zamknięta" w tej pętli
+        //    i dotyczy tylko jednej karuzeli. Dzięki temu nie ma konfliktów.
         let currentIndex = 0;
         let isAnimating = false;
         const total = items.length;
@@ -151,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isAnimating = true;
             nameEl.style.opacity = 0;
             descEl.style.opacity = 0;
+
             setTimeout(() => {
                 const center = items[currentIndex];
                 nameEl.textContent = center.dataset.name;
@@ -158,8 +182,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 nameEl.style.opacity = 1;
                 descEl.style.opacity = 1;
             }, 250);
+
             const leftIdx = (currentIndex - 1 + total) % total;
             const rightIdx = (currentIndex + 1) % total;
+
             items.forEach((it, idx) => {
                 it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
                 if (idx === currentIndex) it.classList.add('carousel-center', 'golden-img-border');
@@ -167,20 +193,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (idx === rightIdx) it.classList.add('carousel-right');
                 else it.classList.add('carousel-hidden');
             });
+
             setTimeout(() => (isAnimating = false), 500);
         }
+
         nextBtn.addEventListener('click', () => {
             if (isAnimating) return;
             currentIndex = (currentIndex + 1) % total;
             update();
         });
+
         prevBtn.addEventListener('click', () => {
             if (isAnimating) return;
             currentIndex = (currentIndex - 1 + total) % total;
             update();
         });
+
+        // Zainicjuj stan początkowy dla tej karuzeli
         update();
-    }
+    });
+}
 
     // --- LOGIKA KARUZELI "NA ZAKŁADKĘ" ---
     function initShuffleCarousel() {

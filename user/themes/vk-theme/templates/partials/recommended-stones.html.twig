@@ -1,6 +1,4 @@
-
-    
-{% set materials = [
+{% set granites = [
     {
         name: "Biały granit",
         desc: "Elegancki i ponadczasowy, biały granit nadaje pomnikowi lekkości i klasy.",
@@ -15,14 +13,11 @@
         name: "Czarny granit",
         desc: "Klasyczny i dostojny, czarny granit symbolizuje trwałość i elegancję.",
         img: theme_url ~ "/images/textures/marble-black-1.jpg"
-    },
-    {
-        name: "Piaskowiec",
-        desc: "Unikalny i szlachetny, piaskowiec dodaje kompozycji głębi i oryginalności.",
-        img: theme_url ~ "/images/textures/limestone-1.jpg"
     }
 ] %}
+
 <section class="py-4 lg:py-8">
+  {# --- Część statyczna z opisem --- #}
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-screen-xl mx-auto px-4 my-16">
     <div>
         <img src="{{ theme_url }}/images/photos/stones-photo-3.jpg" alt="Renowacja starego nagrobka granitowego"
@@ -35,16 +30,18 @@
         <p class="text-lg text-gray-700">
             Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
             Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
-
         </p>
         <button class="btn-primary w-full flex justify-center">
             Dowiedz się więcej
         </button>
     </div>
-</div>
+  </div>
 
-{% include 'modular/_stones.html.twig'%}
+  {# --- Tutaj dołączasz komponent karuzeli --- #}
+  {# Komponent otrzyma listę zdefiniowaną powyżej (bez piaskowca) #}
+  {% include 'modular/_stones.html.twig' with {
+      items: granites,
+      unique_id: 'granites'
+  } %}
 
-
-    </div>
 </section>

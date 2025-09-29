@@ -1,6 +1,276 @@
 {% extends 'partials/base.html.twig' %}
 {% block content %}
 
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div class="flex flex-col gap-4 items-stretch">
+        <h1 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Wysoka jakość kamieni
+        </h1>
+        <p class="text-lg text-gray-700">
+            Cena nagrobka zależy przede wszystkim od rodzaju kamienia. 
+            Wyjaśnimy Ci różnicę między gotowymi pomnikami importowanymi a <strong>szlachetnym, 
+            certyfikowanym granitem, który tniemy i obrabiamy na Twoje indywidualne zamówienie 
+            w naszym warsztacie</strong>. Decydując się na tę drugą opcję, zyskujesz najwyższą jakość 
+            i pełną kontrolę nad każdym detalem. <strong>To Ty decydujesz o rodzaju kamienia</strong>, 
+            kształcie i kolorze płyty oraz ewentualnych zdobieniach i dodatkach.
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Sprawdź ofertę kamieni
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/products/stones/stones-main.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <img src="{{ theme_url }}/images/products/stones/stones-features.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Czym różnią się kamienie stosowane przez Kamieniarstwo Wiśniewski?
+        </h2>
+        <p class="text-lg text-gray-700">
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+             In mi ligula, finibus sed risus ac, semper suscipit justo. 
+             <strong>Integer a placerat metus, sed dignissim tortor. </strong>
+             Aenean purus odio, elementum sit amet vulputate a, posuere at metus. 
+             Nulla suscipit sapien et mauris tincidunt eleifend. 
+             Donec <strong>efficitur elit sed diam viverra</strong>, at sodales mauris mollis. 
+             Praesent in dui pulvinar, varius mauris blandit, ultrices eros. Nam eget mi magna. Duis et massa tincidunt, consectetur ipsum vel, aliquam metus. Nullam id ante ac ex posuere fringilla. 
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Sprawdź ofertę kamieni
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Popularne kamienie
+        </h2>
+        <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena za X: <span class="c-white">od <span class="">3000</span> PLN</span>
+        </div>
+        <div class="text-xl md:text-2xl font-bold price-highlighted bg-ink">
+            Dostępność: <span class="c-white"><span class="">łatwo dostępne</span></span>
+        </div>
+        <p class="text-lg text-gray-700">
+             <strong>Kamienie charakteryzujące się estetyką i przystępną ceną.</strong>
+             Aenean purus odio, elementum sit amet vulputate a, posuere at metus. 
+             Nulla suscipit sapien et mauris tincidunt eleifend. 
+             Donec <strong>efficitur elit sed diam viverra</strong>, at sodales mauris mollis. 
+             Praesent in dui pulvinar, varius mauris blandit, ultrices eros. Nam eget mi magna. Duis et massa tincidunt, consectetur ipsum vel, aliquam metus. Nullam id ante ac ex posuere fringilla. 
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/products/stones/stones-popular.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+
+{% set popularGranites = [
+    {
+        name: "Granit strzegomski",
+        desc: "Elegancki i ponadczasowy, biały granit nadaje pomnikowi lekkości i klasy.",
+        img: theme_url ~ "/images/textures/marble-white-1.jpg"
+    },
+    {
+        name: "Granit płomieniowany",
+        desc: "Wyrazisty i pełen charakteru, czerwony granit wyróżnia się na tle innych.",
+        img: theme_url ~ "/images/textures/marble-red-1.jpg"
+    },
+    {
+        name: "Granit polerowany",
+        desc: "Klasyczny i dostojny, czarny granit symbolizuje trwałość i elegancję.",
+        img: theme_url ~ "/images/textures/marble-black-1.jpg"
+    }
+] %}
+
+<section class="py-4 lg:py-8">
+  {# --- Część statyczna z opisem --- #}
+
+
+  {# --- Tutaj dołączasz komponent karuzeli --- #}
+  {# Komponent otrzyma listę zdefiniowaną powyżej (bez piaskowca) #}
+  {% include 'modular/_stones.html.twig' with {
+      items: popularGranites,
+      unique_id: 'popularGranites'
+  } %}
+
+</section>
+<section>
+{% set popularStonesData = [
+    { image_filename: '/images/products/stones/stones-strzegomski-1.jpg', title: 'Granit strzegomski' },
+    { image_filename: '/images/products/stones/stones-strzegomski-2.jpg', title: 'Granit strzegomski' },
+    { image_filename: '/images/products/stones/stones-strzegomski-3.jpg', title: 'Granit strzegomski' }
+] %}
+{% include 'modular/_gallery-modular.html.twig' with {'items': popularStonesData} %}
+</section>
+
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <img src="{{ theme_url }}/images/products/stones/stones-exclusive-alt.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Ekskluzywne kamienie
+        </h2>
+        <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena za X: <span class="c-white">od <span class="">6000</span> PLN</span>
+        </div>
+        <div class="text-xl md:text-2xl font-bold price-highlighted bg-ink">
+            Dostępność: <span class="c-white"><span class="">średnio dostępne</span></span>
+        </div>
+        <p class="text-lg text-gray-700">
+             <strong>Kamienie charakteryzujące się niepowtarzalnym pięknem i odpornością.</strong>
+             Aenean purus odio, elementum sit amet vulputate a, posuere at metus. 
+             Nulla suscipit sapien et mauris tincidunt eleifend. 
+             Donec <strong>efficitur elit sed diam viverra</strong>, at sodales mauris mollis. 
+             Praesent in dui pulvinar, varius mauris blandit, ultrices eros. Nam eget mi magna. Duis et massa tincidunt, consectetur ipsum vel, aliquam metus. Nullam id ante ac ex posuere fringilla. 
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+
+</section>
+
+{% set exclusiveGranites = [
+    {
+        name: "Czarny Szwed",
+        desc: "Elegancki i ponadczasowy, biały granit nadaje pomnikowi lekkości i klasy.",
+        img: theme_url ~ "/images/textures/marble-black-2.jpg"
+    },
+    {
+        name: "Granit płomieniowany",
+        desc: "Wyrazisty i pełen charakteru, czerwony granit wyróżnia się na tle innych.",
+        img: theme_url ~ "/images/textures/marble-white-gold-1.jpg"
+    },
+    {
+        name: "Granit czrewony",
+        desc: "Klasyczny i dostojny, czarny granit symbolizuje trwałość i elegancję.",
+        img: theme_url ~ "/images/textures/marble-red-1.jpg"
+    }
+] %}
+
+<section class="py-4 lg:py-8">
+  {# --- Część statyczna z opisem --- #}
+
+
+  {# --- Tutaj dołączasz komponent karuzeli --- #}
+  {# Komponent otrzyma listę zdefiniowaną powyżej (bez piaskowca) #}
+  {% include 'modular/_stones.html.twig' with {
+      items: exclusiveGranites,
+      unique_id: 'exclusiveGranites'
+  } %}
+
+</section>
+<section>
+{% set exclusiveStonesData = [
+    { image_filename: '/images/products/stones/stones-exclusive-1.jpg', title: 'Czarny Szwed' },
+    { image_filename: '/images/products/stones/stones-exclusive-2.jpg', title: 'Granit Drogi' },
+    { image_filename: '/images/products/stones/stones-exclusive-3.jpg', title: 'Drogi granit' }
+] %}
+{% include 'modular/_gallery-modular.html.twig' with {'items': exclusiveStonesData} %}
+</section>
+
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <img src="{{ theme_url }}/images/products/stones/stones-rare.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Rzadkie kamienie
+        </h2>
+        <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena za X: <span class="c-white">od <span class="">12000</span> PLN</span>
+        </div>
+        <div class="text-xl md:text-2xl font-bold price-highlighted bg-ink">
+            Dostępność: <span class="c-white"><span class="">trudno dostępne</span></span>
+        </div>
+        <p class="text-lg text-gray-700">
+             <strong>Kamienie trudno dostępne, sprowadzane z egzotycznych krajów. Idealne na mauzoleum
+             budzące zachwyt przez pokolenia.</strong>
+             Aenean purus odio, elementum sit amet vulputate a, posuere at metus. 
+             Nulla suscipit sapien et mauris tincidunt eleifend. 
+             Donec <strong>efficitur elit sed diam viverra</strong>, at sodales mauris mollis. 
+             Praesent in dui pulvinar, varius mauris blandit, ultrices eros. Nam eget mi magna. Duis et massa tincidunt, consectetur ipsum vel, aliquam metus. Nullam id ante ac ex posuere fringilla. 
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+
+</section>
+
+{% set rareGranites = [
+    {
+        name: "Granit indyjski",
+        desc: "Elegancki i ponadczasowy, biały granit nadaje pomnikowi lekkości i klasy.",
+        img: theme_url ~ "/images/textures/marble-black-2.jpg"
+    },
+    {
+        name: "Granit afrykański",
+        desc: "Wyrazisty i pełen charakteru, czerwony granit wyróżnia się na tle innych.",
+        img: theme_url ~ "/images/textures/marble-white-gold-1.jpg"
+    },
+    {
+        name: "Granit japoński",
+        desc: "Klasyczny i dostojny, czarny granit symbolizuje trwałość i elegancję.",
+        img: theme_url ~ "/images/textures/marble-red-1.jpg"
+    }
+] %}
+
+<section class="py-4 lg:py-8">
+  {# --- Część statyczna z opisem --- #}
+
+
+  {# --- Tutaj dołączasz komponent karuzeli --- #}
+  {# Komponent otrzyma listę zdefiniowaną powyżej (bez piaskowca) #}
+  {% include 'modular/_stones.html.twig' with {
+      items: rareGranites,
+      unique_id: 'rareGranites'
+  } %}
+
+</section>
+<section>
+{% set rareStonesData = [
+    { image_filename: '/images/products/stones/stones-rare-1.jpg', title: 'Czarny Szwed' },
+    { image_filename: '/images/products/stones/stones-rare-2.jpg', title: 'Granit Drogi' },
+    { image_filename: '/images/products/stones/stones-rare-3.jpg', title: 'Drogi granit' }
+] %}
+{% include 'modular/_gallery-modular.html.twig' with {'items': rareStonesData} %}
+</section>
+
 
 
 {% include 'modular/_gallery_modal.html.twig'%}
