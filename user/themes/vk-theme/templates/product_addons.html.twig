@@ -1,0 +1,233 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div class="flex flex-col gap-4 items-stretch">
+        <h1 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Galanteria nagrobkowa
+        </h1>
+        <p class="text-lg text-gray-700">
+            Pamięć o bliskich może przybrać fizyczną formę. 
+            To ona sprawia, że zimny kamień staje się bliższy, bardziej ludzki. 
+            <strong>Stworzyliśmy naszą kolekcję galanterii nagrobkowej właśnie po to – byś mógł nadać pomnikowi ten osobisty, 
+            ciepły wymiar. Rzeźbiony detal, przy którym zatrzymasz dłoń, ławeczka zapraszająca do chwili ciszy, 
+            wazon gotowy przyjąć żywy kolor kwiatów.</strong> To Twoje gesty miłości i pamięci, którym nadaliśmy trwałą, 
+            szlachetną formę.
+        </p>
+        <p class="text-lg text-gray-700">
+           Każdy nagrobek przyozdobimy w wybrane przez Ciebie elementy z naszej oferty galanterii nagrobkowej.<br>
+           <strong>Sprawdź dostępne wzory i materiały, aby pomnik nabrał wyjątkowego charakteru i godnie upamiętniał 
+           Twoich bliskich.</strong>
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Galanteria nagrobkowa
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/products/addons/addons-main.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <div>
+        <img src="{{ theme_url }}/images/products/addons/addons-bench-2-square.jpg" alt="Granitowa ławeczka wykonana przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Ławeczki nagrobkowe
+        </h2>
+        <p class="text-lg text-gray-700">
+            Wiemy, że każdy potrzebuje czegoś innego, by w spokoju przeżyć chwilę refleksji. 
+            Jeśli Twoim celem jest stworzenie jednolitej, kamiennej kompozycji z pomnikiem, 
+            najlepszym rozwiązaniem będzie <strong>ławeczka granitowa</strong>. Gdy chcesz dodać przestrzeni klasycznej elegancji 
+            i szlachetnego detalu, najlepiej sprawdzi się kunsztowny metal. A jeśli po prostu szukasz wygodnego 
+            i trwałego siedziska, które nie będzie wymagało Twojej uwagi, wybierz praktyczne, 
+            nowoczesne ławeczki z tworzywa.
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
+<section>
+{% set benchData = [
+    { image_filename: '/images/products/addons/addons-bench-gallery-1.jpg', title: 'Ławeczka składana, z tworzywa' },
+    { image_filename: '/images/products/addons/addons-bench-gallery-2.jpg', title: 'Ławeczka granitowa' },
+    { image_filename: '/images/products/addons/addons-bench-gallery-3.jpg', title: 'Ławeczka w zestawie z pomnikiem' }
+] %}
+{% include 'modular/_gallery-modular.html.twig' with {'items': benchData} %}
+</section>
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Wazony nagrobkowe
+        </h2>
+        <p class="text-lg text-gray-700">
+            Nasz klimat wymaga rozwiązań, które są odporne na mróz, deszcz i słońce. 
+            Wazony z granitu, który jest naturalną skałą, są <strong>absolutnie niewrażliwe 
+            na cykle zamarzania i odmarzania</strong>, a zatem nie pękną zimą. Integrujemy je z pomnikiem na stałe, 
+            eliminując ryzyko przypadkowego strącenia przez wiatr. Wazony z metali szlachetnych 
+            <strong>zabezpieczamy specjalnymi powłokami</strong>, które chronią je przed korozją i utratą koloru przez wiele lat. 
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/products/addons/addons-vase-square-alt-2.jpg" alt="Granitowa ławeczka wykonana przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+<section>
+{% set vaseData = [
+    { image_filename: '/images/products/addons/addons-vase-gallery-1.jpg', title: 'Ławeczka składana, z tworzywa' },
+    { image_filename: '/images/products/addons/addons-vase-gallery-2.jpg', title: 'Ławeczka granitowa' },
+    { image_filename: '/images/products/addons/addons-vase-gallery-3.jpg', title: 'Ławeczka w zestawie z pomnikiem' }
+] %}
+{% include 'modular/_gallery-modular.html.twig' with {'items': vaseData} %}
+</section>
+
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <img src="{{ theme_url }}/images/products/addons/addons-surnames-alt.jpg" alt="Antypoślizgowa posadzka" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Płyty, nakładki i kamienne księgi nagrobkowe 
+        </h2>
+        <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena: <span class="c-white">od <span class="">800</span> PLN</span>
+        </div>
+        <ul class="list-inside mt-2 space-y-1 text-base text-lg text-gray-700 custom-list">
+            <li>Demontaż i montaż napisówki do dopiski: <span class="font-bold c-cherry">od 350 PLN</span></li>
+            <li>Montaż nakładek i książek, na których umieszcza się dane zmarłych: <span class="font-bold c-cherry">od 800 PLN</span></li>
+            <li>Montaż nowych napisówek z granitu: <span class="font-bold c-cherry">od 1800 PLN</span></li>
+        </ul>
+        <p class="text-lg text-gray-700 min-h-[240px]">
+           Proces dodania nowego napisu do istniejącego pomnika jest prosty. 
+           Jeśli na istniejącej płycie jest miejsce, bezpiecznie ją demontujemy, 
+           a w naszym warsztacie nanosimy nowe dane, odtwarzając styl napisu. 
+           Gdy potrzebujesz nowej przestrzeni, stworzymy ją, montując na pomniku <strong>elegancką nakładkę</strong> 
+           lub symboliczną <strong>kamienną księgę</strong>. Oferujemy także możliwość montażu 
+           <strong>całkowicie nowej płyty napisowej z granitu</strong>, jeśli pragniesz odświeżyć wygląd całości pomnika.
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
+
+<section>
+{% set surnamesData = [
+    { image_filename: '/images/products/addons/surnames-gallery-4.jpg', title: 'Płyta na grobowcu' },
+    { image_filename: '/images/products/addons/surnames-gallery-3.jpg', title: 'Płyta z Czarnego Szweda' },
+    { image_filename: '/images/products/addons/surnames-gallery-1.jpg', title: 'Księga nagrobkowa' }
+] %}
+{% include 'modular/_gallery-modular.html.twig' with {'items': surnamesData} %}
+</section>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <img src="{{ theme_url }}/images/products/addons/addons-sculpture.jpg" alt="Antypoślizgowa posadzka" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Rzeźby nagrobkowe 
+        </h2>
+        <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena: <span class="c-white">od <span class="">???</span> PLN</span>
+        </div>
+        <p class="text-lg text-gray-700 min-h-[240px]">
+          Jedna, prosta rzeźba potrafi zawrzeć w sobie całą miłość, tęsknotę i szacunek, 
+          stając się cichym strażnikiem miejsca pamięci. Postać anioła, 
+          symbolizująca nadzieję i ochronę lub krzyż upamiętniający mękę Chrystusa, przypominający o życiu wiecznym.
+          Niezależnie od Twojej wizji z granitu, marmuru lub piaskowca wydobędziemy kształt, 
+          który stanie się wiecznym wyrazem Twoich najgłębszych uczuć.
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
+
+<section>
+{% set sculptureData = [
+    { image_filename: '/images/products/addons/sculpture-gallery-4.jpg', title: 'Płyta na grobowcu' },
+    { image_filename: '/images/products/addons/sculpture-gallery-2.jpg', title: 'Płyta z Czarnego Szweda' },
+    { image_filename: '/images/products/addons/sculpture-gallery-3.jpg', title: 'Księga nagrobkowa' }
+] %}
+{% include 'modular/_gallery-modular.html.twig' with {'items': sculptureData} %}
+</section>
+
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <img src="{{ theme_url }}/images/services/leveling.jpg" alt="Antypoślizgowa posadzka" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Wylewki, płytki, okładziny 
+        </h2>
+        <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena: <span class="c-white">od <span class="">1000</span> PLN</span>
+        </div>
+        <ul class="list-inside mt-2 space-y-1 text-base text-lg text-gray-700 custom-list">
+            <li>Wylewki wokół pomnika ze zbrojeniem: <span class="font-bold c-cherry">od 1000 PLN</span></li>
+            <li>Okładziny wykonane z granitu opalanego, antypoślizgowego: <span class="font-bold c-cherry">od 2000 PLN</span></li>
+            <li>Płytki betonowe z mozaiką: <span class="font-bold c-cherry">od 1200 PLN</span></li>
+        </ul>
+        <p class="text-lg text-gray-700 min-h-[240px]">
+            Naszą pracę zawsze zaczynamy od oceny podłoża i jeśli to konieczne, 
+            tworzymy solidny, zbrojony fundament, który zabezpiecza teren przed zapadaniem 
+            i przesuwaniem się elementów. Dopiero na tak przygotowanym gruncie układamy 
+            wybrane przez Ciebie wykończenie: antypoślizgowy granit, eleganckie płytki 
+            lub klasyczną kostkę brukową. W ten sposób zyskujesz nienaganny wygląd otoczenia pomnika 
+            oraz pewność, że całość zachowa estetykę i stabilność przez dekady.
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section>
+{% set levelingData = [
+    { image_filename: '/images/services/leveling-gallery-1.jpg', title: 'Granit opalany, antypoślizgowy' },
+    { image_filename: '/images/services/leveling-gallery-2.jpg', title: 'Płyty wokół pomnika' },
+    { image_filename: '/images/services/leveling-gallery-3.jpg', title: 'Wylewka ze zbrojeniem' }
+] %}
+{% include 'modular/_gallery-modular.html.twig' with {'items': levelingData} %}
+</section>
+
+{% include 'modular/_gallery_modal.html.twig'%}
+
+
+{% endblock %}

@@ -1,6 +1,5 @@
 ---
 title: 'Multi-Section Page'
-published: true
 hide_page_title: true
 content:
     items: '@self.children'
@@ -12,7 +11,7 @@ content:
         filter:
             - view1
             - view2
-child_type: section
+published: false
 ---
 
 [div class="sections-page-title"]

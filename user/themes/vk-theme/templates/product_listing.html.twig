@@ -94,8 +94,8 @@
                         <div class="details-overlay__content">
                             <p class="product-card__desc">{{ product.full_desc }}</p>
                             <div class="product-card__buttons">
-                                <a href="{{ product.link }}" class="btn-primary">Sprawdź produkt</a>
-                                <a href="#kontakt" class="btn-cta">Zamów wariant</a>
+                                <a href="{{ product.link }}" class="btn-primary w-full text-center">Sprawdź produkt</a>
+                                <a href="#kontakt" class="btn-cta w-full text-center">Zamów wariant</a>
                             </div>
                         </div>
                     </div>
@@ -115,6 +115,42 @@
 
 <section class="px-4 py-16 max-w-screen-xl mx-auto">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Galanteria nagrobkowa
+        </h2>
+        <p class="text-lg text-gray-700">
+            Pamięć o bliskich może przybrać fizyczną formę. 
+            To ona sprawia, że zimny kamień staje się bliższy, bardziej ludzki. 
+            <strong>Stworzyliśmy naszą kolekcję galanterii nagrobkowej właśnie po to – byś mógł nadać pomnikowi ten osobisty, 
+            ciepły wymiar. Rzeźbiony detal, przy którym zatrzymasz dłoń, ławeczka zapraszająca do chwili ciszy, 
+            wazon gotowy przyjąć żywy kolor kwiatów.</strong> To Twoje gesty miłości i pamięci, którym nadaliśmy trwałą, 
+            szlachetną formę.
+        </p>
+        <p class="text-lg text-gray-700">
+           Każdy nagrobek przyozdobimy w wybrane przez Ciebie elementy z naszej oferty galanterii nagrobkowej.<br>
+           <strong>Sprawdź dostępne wzory i materiały, aby pomnik nabrał wyjątkowego charakteru i godnie upamiętniał 
+           Twoich bliskich.</strong>
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Galanteria nagrobkowa
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/products/addons/addons-main.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <img src="{{ theme_url }}/images/products/product-design.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
     <div class="flex flex-col gap-4 items-stretch">
         <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
             Indywidualny projekt nagrobka
@@ -138,9 +174,6 @@
                     Skontaktuj się
                 </a>
         </div>
-    </div>
-    <div>
-        <img src="{{ theme_url }}/images/products/product-design.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
     </div>
 </section>
 
