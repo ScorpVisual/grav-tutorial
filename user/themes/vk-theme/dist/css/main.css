@@ -581,7 +581,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 2.44140625rem;
   line-height: 1.5;
   font-family: "Cormorant", serif;
-  color: inherit;
 }
 .typography h2 {
   font-size: 1.953125rem;
@@ -1060,7 +1059,6 @@ hr {
   z-index: 1;
   isolation: isolate;
   overflow: hidden;
-  color: #030208;
   border-radius: 0.4rem;
   padding: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -1097,7 +1095,6 @@ hr {
   z-index: 1;
   isolation: isolate;
   overflow: hidden;
-  color: #edd7cb;
   border-radius: 0.4rem;
   padding: 1rem;
   border: 1px solid rgba(3, 2, 8, 0.4);
@@ -1134,7 +1131,6 @@ hr {
   z-index: 1;
   isolation: isolate;
   overflow: hidden;
-  color: #edd7cb;
   border-radius: 0.4rem;
   padding: 1rem;
   border: 1px solid rgba(3, 2, 8, 0.4);
@@ -1171,7 +1167,6 @@ hr {
   z-index: 1;
   isolation: isolate;
   overflow: hidden;
-  color: #030208;
   border-radius: 0.4rem;
   padding: 1rem;
   border: 1px solid rgba(237, 215, 203, 0.4);
@@ -1208,7 +1203,6 @@ hr {
   z-index: 1;
   isolation: isolate;
   overflow: hidden;
-  color: #edd7cb;
   border-radius: 0.4rem;
   padding: 1rem;
   border: 1px solid rgba(172, 159, 88, 0.4);
@@ -1245,7 +1239,6 @@ hr {
   z-index: 1;
   isolation: isolate;
   overflow: hidden;
-  color: #e1dfdd;
   border-radius: 0.4rem;
   padding: 1rem;
   border: 1px solid rgba(225, 223, 221, 0.4);
@@ -1282,7 +1275,6 @@ hr {
   z-index: 1;
   isolation: isolate;
   overflow: hidden;
-  color: #e1dfdd;
   border-radius: 0.4rem;
   padding: 1rem;
   border: 1px solid rgba(47, 47, 47, 0.4);
