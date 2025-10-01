@@ -1,4 +1,4 @@
-{% set granites = [
+{% set recommendedGranites = [
     {
         name: "Biały granit",
         desc: "Elegancki i ponadczasowy, biały granit nadaje pomnikowi lekkości i klasy.",
@@ -40,8 +40,8 @@
   {# --- Tutaj dołączasz komponent karuzeli --- #}
   {# Komponent otrzyma listę zdefiniowaną powyżej (bez piaskowca) #}
   {% include 'modular/_stones.html.twig' with {
-      items: granites,
-      unique_id: 'granites'
+      items: recommendedGranites,
+      unique_id: 'recommendedGranites'
   } %}
 
 </section>
