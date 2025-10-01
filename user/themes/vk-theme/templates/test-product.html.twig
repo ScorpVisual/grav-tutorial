@@ -2,28 +2,67 @@
 {% block content %}
 
 
-<div class="relative w-full h-96 rounded-lg shadow-lg overflow-hidden pale-img-border product-img is-active">
+{% set productVariants = [
+    {
+        title: "Wariant Standard - Ponadczasowa Elegancja",
+        price: "5 499",
+        size: "Pojedynczy",
+        full_desc: "Nasz Wariant Standard to idealne połączenie klasycznego wzornictwa i wysokiej jakości materiałów. Zapewnia trwałość i estetyczny wygląd, będąc jednocześnie najbardziej ekonomicznym wyborem dla pojedynczego miejsca."
+    },
+    {
+        title: "Wariant Standard - Ponadczasowa Elegancja",
+        price: "8 000",
+        size: "Podwójny",
+        full_desc: "Wariant podwójny oferuje więcej przestrzeni, zachowując te same walory estetyczne i jakościowe. Jest to doskonałe rozwiązanie dla par, zapewniające harmonię i elegancję."
+    },
+    {
+        title: "Wariant Standard - Ponadczasowa Elegancja",
+        price: "12 499",
+        size: "Rodzinny",
+        full_desc: "Największy z naszych wariantów, zaprojektowany z myślą o grobowcach rodzinnych. Łączy w sobie majestatyczny wygląd z najwyższą jakością wykonania, aby godnie upamiętnić bliskich."
+    }
+] %}
+
+{# <div class="relative w-full h-[600px] rounded-lg shadow-lg overflow-hidden pale-img-border product-img is-active">
     <img src="{{ theme_url }}/images/placeholders/test-prod/VK-nagrobki-120.jpg" alt="Obrazek dla produktu 1" class="w-full h-full object-cover">
-    <div class="absolute inset-0 flex flex-col items-center justify-center p-4  text-white">
-        <div class="product-img__mini--title mt-2 text-xl font-semibold ">
+    <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white">
+        <div class="product-img__mini--title mt-2 text-2xl font-semibold">
             PRODUCT - GRANITE WHITE TOMBSTONE POLISHED #1
         </div>
     </div>
-</div>
+</div> #}
 
 <section class="lg:px-4 py-16 max-w-screen-xl mx-auto">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <div>
         <img src="{{ theme_url }}/images/placeholders/test-prod/VK-nagrobki-125.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
     </div>
     <div class="overflow-hidden h-full flex flex-col">
         <div class="p-0 flex flex-col flex-grow gap-4 md:p-6">
-            <h2 class="text-3xl font-bold text-gray-800 underline--cherry lg:whitespace-nowrap">Produkt Numer 1 - Nagłówek</h2>
-            <div class="text-xl md:text-2xl font-bold mt-2 price-highlighted">
-                Cena: <span class="c-white">od 5499 PLN</span>
+            <h2 class="text-3xl font-bold text-gray-800 underline--cherry lg:whitespace-nowrap">Nagrobek urnowy</h2>
+
+            {# Przyciski generowane dynamicznie #}
+            <div class="flex flex-col justify-between lg:flex-row gap-3">
+                {% for variant in productVariants %}
+                    <button
+                        type="button"
+                        class="variant-button btn-tertiary text-center text-gray-600 hover:text-gray-900 shrink-0 whitespace-nowrap {% if loop.first %}is-active{% endif %}"
+                        data-price="{{ variant.price }}"
+                        data-desc="{{ variant.full_desc }}"
+                    >
+                        {{ variant.size }}
+                    </button>
+                {% endfor %}
             </div>
-            <p class="text-gray-700 text-lg">
-                Tutaj znajduje się szczegółowy opis wybranego produktu. Możesz tu umieścić wszystkie niezbędne informacje, które pomogą klientowi podjąć decyzję. Opis może być dłuższy i zawierać kilka akapitów.
+
+            {# Zaktualizowane wyświetlanie ceny #}
+            <div class="text-xl md:text-2xl font-bold mt-2 price-highlighted">
+                Cena: <span class="c-white">od <span id="product-price" class="animated-opacity">{{ productVariants[0].price }}</span> PLN</span>
+            </div>
+
+            {# Zaktualizowane wyświetlanie opisu #}
+            <p id="product-description" class="min-h-[200px] text-gray-700 text-lg animated-opacity">
+                {{ productVariants[0].full_desc }}
             </p>
 
             <div class="flex flex-col lg:flex-row gap-3 mt-auto">
@@ -34,9 +73,19 @@
                     Zamów produkt
                 </a>
             </div>
-
         </div>
+    </div>
 </section>
+
+{% set galleryItems = [
+    { image_filename: 'VK-nagrobki-120.jpg', title: 'Nagrobek Pojedynczy Klasyczny' },
+    { image_filename: 'VK-nagrobki-124.jpg', title: 'Nagrobek Podwójny Nowoczesny' },
+    { image_filename: 'VK-nagrobki-126.jpg', title: 'Grobowiec Rodzinny z Granitu' },
+    { image_filename: 'VK-nagrobki-127.jpg', title: 'Pomnik z Czarnym Krzyżem' },
+    { image_filename: 'VK-nagrobki-129.jpg', title: 'Nagrobek Urnowy Jasny' },
+    { image_filename: 'VK-nagrobki-131.jpg', title: 'Renowacja starego pomnika' }
+] %}
+{# 
 <section class="lg:px-4 py-16 max-w-screen-xl mx-auto">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
     <div class="overflow-hidden h-full flex flex-col">
@@ -58,9 +107,9 @@
     <div>
           <img src="{{ theme_url }}/images/placeholders/test-prod/VK-nagrobki-124.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
     </div>
-</section>
+</section> #}
 <section>
-    <div class="max-w-4xl mx-auto">
+    {# <div class="max-w-4xl mx-auto">
         <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
             Galeria 
         </h1>
@@ -68,179 +117,83 @@
             Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
             Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, ale jesteśmy dostępni telefonicznie i mailowo. 
         </p>
+    </div> #}
+    <div class="lg:p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            {# 
+              2. PĘTLA FOR W TWIGU
+              Iterujemy po każdym elemencie w tablicy `galleryItems`.
+              Każdy element jest dostępny pod zmienną `item`.
+            #}
+            {% for item in galleryItems %}
+                <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
+                    <img src="{{ theme_url }}/images/placeholders/test-prod/{{ item.image_filename }}" 
+                         alt="{{ item.title }}" 
+                         class="w-full h-full object-cover">
+                    
+                    <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white bg-black bg-opacity-20">
+                        <span class="product-img__mini--check text-lg font-bold tracking-widest">
+                            OBEJRZYJ
+                        </span>
+                        <div class="product-img__mini--title mt-2 text-xl font-semibold">
+                            {{ item.title }}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p class="col-span-full text-center text-gray-500">
+                    Obecnie brak zdjęć w galerii.
+                </p>
+            {% endfor %}
+            
+        </div>
     </div>
-    <div class=" lg:p-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
-            <img src="{{ theme_url }}/images/placeholders/test-prod/VK-nagrobki-120.jpg" alt="Obrazek dla produktu 1" class="w-full h-full object-cover">
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white bg-black bg-opacity-20">
-                <span class="product-img__mini--check text-lg font-bold tracking-widest">
-                OBEJRZYJ
-                </span>
-                <div class="product-img__mini--title mt-2 text-xl font-semibold">
-                PRODUCT #1
-                </div>
-            </div>
-        </div>
-        
-        <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
-            <img src="{{ theme_url }}/images/placeholders/test-prod/VK-nagrobki-124.jpg" alt="Obrazek dla produktu 2" class="w-full h-full object-cover">
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white bg-black bg-opacity-20">
-                <span class="product-img__mini--check text-lg font-bold tracking-widest">
-                OBEJRZYJ
-                </span>
-                <div class="product-img__mini--title mt-2 text-xl font-semibold">
-                PRODUCT #2
-                </div>
-            </div>
-        </div>
-        
-        <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
-            <img src="{{ theme_url }}/images/placeholders/test-prod/VK-nagrobki-126.jpg" alt="Obrazek dla produktu 3" class="w-full h-full object-cover">
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white bg-black bg-opacity-20">
-                <span class="product-img__mini--check text-lg font-bold tracking-widest">
-                OBEJRZYJ
-                </span>
-                <div class="product-img__mini--title mt-2 text-xl font-semibold">
-                PRODUCT #3
-                </div>
-            </div>
-        </div>
-        
-        <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
-            <img src="{{ theme_url }}/images/placeholders/test-prod/VK-nagrobki-127.jpg" alt="Obrazek dla produktu 4" class="w-full h-full object-cover">
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white bg-black bg-opacity-20">
-                <span class="product-img__mini--check text-lg font-bold tracking-widest">
-                OBEJRZYJ
-                </span>
-                <div class="product-img__mini--title mt-2 text-xl font-semibold">
-                PRODUCT #4
-                </div>
-            </div>
-        </div>
-        
-        <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
-            <img src="{{ theme_url }}/images/placeholders/test-prod/VK-nagrobki-129.jpg" alt="Obrazek dla produktu 5" class="w-full h-full object-cover">
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white bg-black bg-opacity-20">
-                <span class="product-img__mini--check text-lg font-bold tracking-widest">
-                OBEJRZYJ
-                </span>
-                <div class="product-img__mini--title mt-2 text-xl font-semibold">
-                PRODUCT #5
-                </div>
-            </div>
-        </div>
-        
-        <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
-            <img src="{{ theme_url }}/images/placeholders/test-prod/VK-nagrobki-131.jpg" alt="Obrazek dla produktu 6" class="w-full h-full object-cover">
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white bg-black bg-opacity-20">
-                <span class="product-img__mini--check text-lg font-bold tracking-widest">
-                OBEJRZYJ
-                </span>
-                <div class="product-img__mini--title mt-2 text-xl font-semibold">
-                PRODUCT #6
-                </div>
-            </div>
-        </div>
-        
-    </div>
-    </div>
-</section>
+{# </section>
 <section class="px-4 py-16 max-w-screen-xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12">
-        <div class="flex flex-col gap-4">
-            <h2 class="text-3xl font-bold text-gray-800 underline--cherry">Produkt Numer 1 - Nagłówek</h2>
+        <div class="flex flex-col gap-4 py-4">
+            <h2 class="text-3xl font-bold text-gray-800 underline--cherry">Wysoka jakość kamieni</h2>
             <p class="text-gray-700 text-lg">
-                Tutaj znajduje się szczegółowy opis wybranego produktu. Możesz tu umieścić wszystkie niezbędne informacje, które pomogą klientowi podjąć decyzję. Opis może być dłuższy i zawierać kilka akapitów. W tej kolumnie możesz opisać np. specyfikację techniczną produktu lub jego główne cechy.
+                Cena nagrobka zależy przede wszystkim od rodzaju kamienia. 
+                Wyjaśnimy Ci różnicę między gotowymi pomnikami importowanymi a <strong>szlachetnym, 
+                certyfikowanym granitem, który tniemy i obrabiamy na Twoje indywidualne zamówienie w naszym warsztacie.</strong> 
+                Decydując się na tę drugą opcję, zyskujesz najwyższą jakość i pełną kontrolę nad każdym detalem. 
+                <strong>To Ty decydujesz</strong> o rodzaju kamienia, kształcie i kolorze płyty oraz ewentualnych zdobieniach i dodatkach.
             </p>
         </div>
-        <div class="flex flex-col gap-4">
-            <h2 class="text-3xl font-bold text-gray-800 underline--cherry">Dodatkowe informacje</h2>
+        <div class="flex flex-col gap-4 py-4">
+            <h2 class="text-3xl font-bold text-gray-800 underline--cherry">Trwałość nagrobków</h2>
             <p class="text-gray-700 text-lg">
-                Druga kolumna tekstu może zawierać dodatkowe informacje, takie jak korzyści z użytkowania produktu, przykłady zastosowań lub opinie klientów. Dzięki podziałowi na dwie kolumny treść jest bardziej przejrzysta i łatwiejsza do przyswojenia przez czytelnika na większych ekranach.
+                Prawdziwą jakość trudno dostrzec na pierwszy rzut oka. 
+                Dlatego pod każdym nagrobkiem wylewamy solidny, zbrojony fundament betonowy. 
+                To nasz obowiązek i Twoja pewność, że nagrobek zachowa idealny stan przez pokolenia. 
+                To właśnie pieczęć jakości Kamieniarstwa Wiśniewski.
             </p>
         </div>
     </div>
-</section>
-<section class="py-8 lg:py-16">
-  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 ">
-    
-    {# --- Nagłówek sekcji --- #}
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
-            Galeria 
-        </h1>
-        <p>
-            Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
-            Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, ale jesteśmy dostępni telefonicznie i mailowo. 
-        </p>
-    </div>
-    
-    {# --- Siatka z cechami --- #}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-8 py-8 lg:py-16">
-      
-      {% set features = [
-        {
-          icon: 'tombstone.svg',
-          title: 'Jakość materiału',
-          text: 'Używamy tylko starannie wyselekcjonowanego granitu, gwarantującego niezrównaną trwałość i odporność na warunki atmosferyczne.',
-          alt: 'Ikona jakości materiału'
-        },
-        {
-          icon: 'tombstone.svg',
-          title: 'Precyzja wykonania',
-          text: 'Każdy element jest rzeźbiony i polerowany z rzemieślniczą precyzją, co zapewnia perfekcyjne wykończenie i estetykę.',
-          alt: 'Ikona precyzji wykonania'
-        },
-        {
-          icon: 'tombstone.svg',
-          title: 'Indywidualny projekt',
-          text: 'Oferujemy pełną personalizację – od kształtu płyty po grawerowane napisy, tworząc unikalne i osobiste upamiętnienie.',
-          alt: 'Ikona indywidualnego projektu'
-        },
-        {
-          icon: 'tombstone.svg',
-          title: 'Odporność na lata',
-          text: 'Nasze produkty są odporne na mróz, wilgoć i promieniowanie UV, zachowując swój wygląd przez dziesięciolecia.',
-          alt: 'Ikona trwałości'
-        },
-        {
-          icon: 'tombstone.svg',
-          title: 'Profesjonalny montaż',
-          text: 'Zapewniamy fachowy montaż z dbałością o każdy szczegół, gwarantując stabilność i bezpieczeństwo konstrukcji.',
-          alt: 'Ikona profesjonalnego montażu'
-        },
-        {
-          icon: 'tombstone.svg',
-          title: 'Gwarancja satysfakcji',
-          text: 'Twoje zadowolenie jest naszym priorytetem. Służymy wsparciem na każdym etapie realizacji zamówienia.',
-          alt: 'Ikona gwarancji satysfakcji'
-        }
-      ] %}
-      
-      {% for feature in features %}
-
-        <div class="p-4 flex flex-col items-center text-center h-full article-card">
-            <div class="flex-shrink-0 my-auto">
-                <div class="flex items-start justify-center h-16 w-16">
-                    <img src="{{ theme_url }}/images/icons/{{ feature.icon }}" alt="{{ feature.alt }}">
-                </div>
-            </div>
-            <h3 class="text-xl font-semibold text-ink mb-3 grow min-h-[3.5rem] flex items-center justify-center text-center">
-                {{ feature.title }}
-            </h3>
-            <hr class="w-full hr-underline bg-cherry mb-3">
-            <p class="text-text-brown leading-relaxed">
-                {{ feature.text }}   
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12">
+        <div class="flex flex-col gap-4 py-4">
+            <h2 class="text-3xl font-bold text-gray-800 underline--cherry">Indywidualny projekt&nbsp;nagrobka</h2>
+            <p class="text-gray-700 text-lg">
+                CPomnik powinien być tak unikalny, jak osoba, którą upamiętnia. 
+                Dlatego oferujemy Ci szeroką paletę materiałów, z których wspólnie stworzymy projekt 
+                odzwierciedlający Twoje oczekiwania. Każdy projekt zaczynamy od rozmowy z Tobą, 
+                słuchając Twojej wizji i przekuwając ją w jedyny w swoim rodzaju projekt nagrobka.
             </p>
         </div>
-
-      {% endfor %}
-      
+        <div class="flex flex-col gap-4 py-4">
+            <h2 class="text-3xl font-bold text-gray-800 underline--cherry">Precyzja wykonania</h2>
+            <p class="text-gray-700 text-lg">
+                Kamień nie wybacza błędów. 
+                Dlatego w naszym warsztacie każde cięcie, każdy szlif, 
+                każda polerowana krawędź i każda rzeźbiona litera są dowodem naszej pasji i szacunku do materiału. 
+                Ta dbałość o detale sprawia, że nasze nagrobki są dopracowanym w każdym calu dziełem 
+                kamieniarskiego rzemiosła.
+            </p>
+        </div>
     </div>
-  </div>
-</section>
+</section> #}
 
 {% set materials = [
     {
@@ -269,7 +222,7 @@
     {# --- Nagłówek sekcji --- #}
     <div class="max-w-4xl mx-auto mb-16">
         <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
-            Dostępne kamienie
+            Polecane kamienie
         </h1>
         <p>
             Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
@@ -280,123 +233,166 @@
             Prosimy o kontakt w celu uzyskania dokładnych informacji na temat cen i dostępności kamieni. 
         </p>
     </div>
-    <div class="max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center">
+    
+{% include 'partials/recommended-stones.html.twig'%}
 
-        <div class="relative flex items-center justify-center h-[350px]">
-            <button data-dir="prev" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--prev">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-            </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-screen-xl mx-auto px-4 my-16">
+    <div>
+        <img src="{{ theme_url }}/images/photos/stones-photo-5.jpg" alt="Renowacja starego nagrobka granitowego"
+        class="w-[500px] h-[500px] object-cover golden-img-border hard-shadow">
+    </div>
+    <div class="flex flex-col space-y-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2 border-bot-cherry">
+            Wszystkie dostępne kamienie
+        </h1>
+        <p class="text-lg text-gray-700">
+            Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
+            Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
 
-            <div id="carousel-container" class="w-full h-full flex items-center justify-center">
-                {% for material in materials %}
-                    <img src="{{ material.img }}"
-                         alt="{{ material.name }}"
-                         data-name="{{ material.name }}"
-                         data-desc="{{ material.desc }}"
-                         class="carousel-item rounded-lg  object-cover cursor-pointer">
-                {% endfor %}
+        </p>
+            <div class="flex flex-col lg:flex-row gap-3 mt-auto">
+                <a href="#szczegoly" class="btn-primary flex-grow text-center">
+                    Pełna oferta kamieni
+                </a>
+                <a href="#kontakt" class="btn-cta flex-grow text-center">
+                    Zapytaj o dostępność
+                </a>
             </div>
-
-            <button data-dir="next" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--next">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-            </button>
-        </div>
-
-    <div id="materialInfo" class="p-2 lg:p-6 lg:ml-12">
-        <h3 id="materialName" class="text-3xl font-bold mb-3 text-gray-800 transition-opacity duration-300 underline--cherry"></h3>
-        <p id="materialDesc" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300"></p>
     </div>
-
-
-    </div>
+</div>
 </section>
 
 
-{% set product_variants = [
+{# Zmiana nazwy zmiennej z 'product_variants' na 'product_addons' #}
+{% set product_addons = [
     {
-        name: "Wariant Standard",
-        short_desc: "Klasyczne rozwiązanie w najlepszej cenie.",
-        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-120.jpg",
-        alt_text: "Nagrobek w wariancie Standard",
-        title: "Wariant Standard - Ponadczasowa Elegancja",
-        price: "od 5 499 PLN",
-        full_desc: "Nasz Wariant Standard to idealne połączenie klasycznego wzornictwa i wysokiej jakości materiałów. Zapewnia trwałość i estetyczny wygląd, będąc jednocześnie najbardziej ekonomicznym wyborem."
+        name: "Ławeczki nagrobkowe",
+        short_desc: "Short now",
+        image: theme_url ~ "/images/products/addons/addons-bench-2.jpg",
+        alt_text: "Zbliżenie na grawerowaną dedykację na kamieniu",
+        title: "Ławeczki nagrobkowe",
+        price: "od 499 PLN",
+        full_desc: "Wiemy, że każdy potrzebuje czegoś innego, 
+                    by w spokoju przeżyć chwilę refleksji. Jeśli Twoim celem jest stworzenie jednolitej, 
+                    kamiennej kompozycji z pomnikiem, najlepszym rozwiązaniem będzie ławeczka granitowa. 
+                    Gdy chcesz dodać przestrzeni klasycznej elegancji i szlachetnego detalu, najlepiej sprawdzi się 
+                    kunsztowny metal. A jeśli po prostu szukasz wygodnego i trwałego siedziska, 
+                    które nie będzie wymagało Twojej uwagi, wybierz praktyczne, nowoczesne ławeczki z tworzywa."
     },
     {
-        name: "Wariant Premium",
-        short_desc: "Dodatkowe zdobienia i wyższa jakość granitu.",
-        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-124.jpg",
-        alt_text: "Nagrobek w wariancie Premium",
-        title: "Wariant Premium - Luksus i Prestiż",
-        price: "od 7 999 PLN",
-        full_desc: "Wariant Premium został stworzony dla najbardziej wymagających klientów. Używamy tu granitu o wyższej klasie, a całość wzbogacona jest o ręcznie wykonane zdobienia i unikalne detale, które podkreślają jego wyjątkowy charakter."
+        name: "Wazon nagrobkowy",
+        short_desc: "Short now",
+        image: theme_url ~ "/images/products/addons/addons-vase.jpg",
+        alt_text: "Porcelanowe zdjęcie zamontowane na płycie nagrobnej",
+        title: "Wazon nagrobkowy",
+        price: "od 350 PLN",
+        full_desc: "Nasz klimat wymaga rozwiązań, które są odporne na mróz, deszcz i słońce. 
+                    Wazony z granitu, który jest naturalną skałą, są absolutnie niewrażliwe na cykle zamarzania i odmarzania, 
+                    a zatem nie pękną zimą. Integrujemy je z pomnikiem na stałe, eliminując ryzyko przypadkowego strącenia 
+                    przez wiatr. Wazony z metali szlachetnych zabezpieczamy specjalnymi powłokami, które chronią je przed korozją 
+                    i utratą koloru przez wiele lat. "
     },
     {
-        name: "Wariant Exclusive",
-        short_desc: "Unikalny projekt i sprowadzany kamień.",
-        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-126.jpg",
-        alt_text: "Nagrobek w wariancie Exclusive",
-        title: "Wariant Exclusive - Indywidualne Dzieło Sztuki",
-        price: "od 12 499 PLN",
-        full_desc: "Wybierając Wariant Exclusive, decydujesz się na unikalny projekt realizowany na zamówienie. Korzystamy z rzadkich, importowanych rodzajów kamienia i współpracujemy z Tobą na każdym etapie, aby stworzyć niepowtarzalne dzieło sztuki."
+        name: "Liternictwo nagrobkowe",
+        short_desc: "Short now",
+        image: theme_url ~ "/images/products/addons/addons-text.jpg",
+        alt_text: "Granitowy wazon i lampion stojące obok nagrobka",
+        title: "Liternictwo nagrobkowe",
+        price: "od 899 PLN",
+        full_desc: "Możesz zdecydować się na klasyczne litery piaskowane, 
+                    rzeźbione w kamieniu i wypełnione kolorem, które podkreślą jego naturalne piękno. 
+                    Jeśli szukasz nowoczesnego kontrastu i efektu 3D, zaproponujemy Ci litery nakładane ze stali szlachetnej 
+                    lub brązu, montowane w kamieniu na dyskretnych kołkach. Oferujemy również możliwość pokrycia napisów płatkami prawdziwego złota 
+                    lub platyny. Pamiętaj też, że jeśli stare napisy na rodzinnym grobowcu straciły blask, 
+                    nasza usługa renowacji liternictwa nagrobkowego obejmuje dokładne czyszczenie liter oraz ich ponowne malowanie 
+                    lub złocenie."
     },
     {
-        name: "Wariant Modern",
-        short_desc: "Nowoczesny design i minimalistyczna forma.",
-        image: theme_url ~ "/images/placeholders/test-prod/VK-nagrobki-129.jpg",
-        alt_text: "Nagrobek w wariancie Modern",
-        title: "Wariant Modern - Minimalizm i Nowoczesność",
-        price: "od 8 999 PLN",
-        full_desc: "Wariant Modern to odpowiedź na współczesne trendy w kamieniarstwie. Charakteryzuje się prostą, geometryczną formą, brakiem zbędnych zdobień i skupieniem na naturalnym pięknie polerowanego kamienia."
+        name: "Zdobienia kamienne",
+        short_desc: "Short now",
+        image: theme_url ~ "/images/products/addons/addons-decoration.jpg",
+        alt_text: "Kamienna ławka ustawiona przy nagrobku",
+        title: "Zdobienia kamienne",
+        price: "od 1 200 PLN",
+        full_desc: "Są rzeczy, których nie da się ubrać w słowa. 
+                    Można je za to wyrazić symbolem, który trafia prosto do serca. 
+                    Zdobienia kamienne to właśnie taki cichy, wizualny język. 
+                    Subtelny, granitowy krzyż mówiący o głębokiej wierze. 
+                    Pąk róży wykuty w kamieniu jako znak wiecznej miłości. 
+                    Delikatna kalia symbolizująca piękno i szlachetność. Zadbamy o to, by ten ważny detal 
+                    został wykonany z mistrzowską precyzją i stał się integralną częścią pomnika."
     }
 ] %}
+{% include 'modular/_content-switcher.html.twig'%}
 
-<section
-    class="content-switcher js-content-switcher max-w-7xl mx-auto p-4 md:p-6 lg:p-8"
-    data-content-items='{{ product_variants|json_encode|raw }}'
->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="md:col-span-1">
-            <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-8 underline--cherry">Nasze Warianty</h2>
-            <div class="flex flex-col gap-3">
-                {% for variant in product_variants %}
-                    <div
-                        class="content-switcher__card pick-a-card p-4 rounded-lg cursor-pointer transition-all duration-300 {% if loop.first %}--is-active{% endif %}"
-                        data-index="{{ loop.index0 }}"
-                        role="button" aria-pressed="{{ loop.first ? 'true' : 'false' }}" tabindex="0"
-                    >
-                        <h3 class="font-bold text-lg text-gray-900 underline--light-grey">{{ variant.name }}</h3>
-                        <p class="text-sm text-gray-600">{{ variant.short_desc }}</p>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="md:col-span-2">
-            <div class="content-switcher__display black-gradient-down rounded-lg overflow-hidden h-full flex flex-col p-6">
-                <img
-                    src="{{ product_variants[0].image }}" alt="{{ product_variants[0].alt_text }}"
-                    class="content-switcher__image content-switcher__fade-in w-full h-64 object-cover cherry-img-border mb-4 rounded-md"
-                >
-                <div class="flex flex-col flex-grow gap-4 text-white">
-                    <h2 class="content-switcher__title content-switcher__fade-in text-3xl font-bold underline--gold">{{ product_variants[0].title }}</h2>
-                    
-                    <div class="content-switcher__price-wrapper text-xl md:text-2xl font-bold mt-2">
-                       <span class="content-switcher__fade-in"> Cena: <span class="content-switcher__price c-pink">{{ product_variants[0].price }}</span>
-                    </div>
 
-                    <p class="content-switcher__description content-switcher__fade-in text-lg">{{ product_variants[0].full_desc }}</p>
-                    <div class="flex flex-col lg:flex-row gap-3 mt-auto">
-                        <a href="#szczegoly" class="btn-primary flex-grow text-center">Zobacz realizacje</a>
-                        <a href="#kontakt" class="btn-cta flex-grow text-center">Zamów Wariant</a>
-                    </div>
+
+<section class="py-8 lg:py-16">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 ">
+    
+    {# --- Nagłówek sekcji --- #}
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
+            Co nas wyróżnia? 
+        </h1>
+        <p>
+            Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
+            Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, ale jesteśmy dostępni telefonicznie i mailowo. 
+        </p>
+    </div>
+    
+{# --- Siatka z cechami (poprawiona) --- #}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-8 py-8 lg:py-16">
+      
+    {% set features = [
+        {
+            icon: 'tombstone.svg',
+            title: 'Wysoka jakość kamieni',
+            text: 'Używamy tylko starannie wyselekcjonowanego granitu, gwarantującego niezrównaną trwałość i odporność na warunki atmosferyczne.',
+            alt: 'Ikona jakości materiału'
+        },
+        {
+            icon: 'tombstone.svg',
+            title: 'Precyzja wykonania',
+            text: 'Każdy element jest rzeźbiony i polerowany z rzemieślniczą precyzją, co zapewnia perfekcyjne wykończenie i estetykę.',
+            alt: 'Ikona precyzji wykonania'
+        },
+        {
+            icon: 'tombstone.svg',
+            title: 'Gwarancja satysfakcji',
+            text: 'Twoje zadowolenie jest naszym priorytetem. Służymy wsparciem na każdym etapie realizacji zamówienia.',
+            alt: 'Ikona gwarancji satysfakcji'
+        }
+    ] %}
+      
+    {% for feature in features %}
+
+        <div class="p-4 flex flex-col items-center text-center h-full article-card hover-up-4">
+            <div class="flex-shrink-0 my-auto">
+                <div class="flex items-start justify-center h-16 w-16">
+                    <img src="{{ theme_url }}/images/icons/{{ feature.icon }}" alt="{{ feature.alt }}">
                 </div>
             </div>
+            
+            <h3 class="text-xl font-semibold text-ink mb-3 min-h-[3.5rem] flex items-center justify-center text-center">
+                {{ feature.title }}
+            </h3>
+
+            <hr class="w-full hr-underline bg-cherry mb-3">
+            
+            <p class="text-text-brown leading-relaxed grow">
+                {{ feature.text }}
+            </p>
         </div>
-    </div>
+
+    {% endfor %}
+      
+</div>
+
 </section>
 
-
-
+{# FAQ #}
 {% set faq_items = [
     {
         question: "Jak mogę zamówić usługę?",
@@ -415,52 +411,35 @@
         answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
     }
 ] %}
+{% include 'modular/_faq.html.twig'%}
+{# END FAQ #}
 
-<section class="py-4 lg:py-8">
-    <div class="mx-auto">
-        <h2 class="text-xl text-gray-800 mb-4 underline--cherry text-left">
-            Najczęściej zadawane pytania
-        </h2>
-    </div>
-        <div class="space-y-4 pt-8">
-            {% for item in faq_items %}
-                {# Ustawiamy pierwszą pozycję jako domyślnie otwartą #}
-                <div class="faq-item pick-a-card rounded-lg shadow-sm transition-all duration-300 {% if loop.first %}is-active{% endif %}">
-                    
-                    {# Nagłówek pytania (teraz jest klikalny w całości) #}
-                    <div class="faq-question flex justify-between items-center p-5 cursor-pointer">
-                        <h3 class="font-bold text-lg text-gray-800">
-                            {{ item.question }}
-                        </h3>
-                        {# Ikona strzałki, która będzie się obracać #}
-                        <svg class="faq-icon w-5 h-5 text-gray-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </div>
-
-                    {# Kontener na odpowiedź, który będzie animowany #}
-                    <div class="faq-answer-content">
-                        <p class="text-gray-600 p-5 pt-0">
-                            {{ item.answer }}
-                        </p>
-                    </div>
-
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-{# GALLERY MODAL: #}
+{# GALLERY MODAL WITH NAVIGATION:
 <div id="fullscreen-modal" class="is-hidden fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ease-in-out opacity-0 reset-fadeIn">
-    <button id="close-modal-btn" class="absolute top-5 right-5 text-white text-5xl font-bold z-50 hover:text-gray-300 transition-colors">&times;</button>
-    <div class="relative overflow-hidden">
-        <img id="fullscreen-image" src="" alt="Fullscreen product image" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-2xl">
-        <div id="fullscreen-alt-text" class="product-img__mini--title mt-2 text-xl font-semibold">
-            
-        </div>
+    
+    <button id="close-modal-btn" class="absolute top-5 right-5 text-white text-5xl font-bold z-[52] hover:text-gray-300 transition-colors">&times;</button>
+    
+    <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl font-bold z-[52] p-4 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    
+    <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl font-bold z-[52] p-4 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+
+    <div class="relative flex flex-col items-center justify-center">
+        <img id="fullscreen-image" src="" alt="Fullscreen product image" class="max-w-[85vw] max-h-[85vh] rounded-lg shadow-2xl">
+        <div id="fullscreen-alt-text" class="product-img__mini--title mt-4 text-xl font-semibold text-white text-center">
+            </div>
     </div>
 </div>
+ #}
+
+ {% include 'modular/_gallery_modal.html.twig'%}
 
 
 {% endblock %}

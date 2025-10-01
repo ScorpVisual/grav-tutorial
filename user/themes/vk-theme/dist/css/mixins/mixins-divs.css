@@ -212,6 +212,30 @@
   background: linear-gradient(45deg, rgba(162, 199, 212, 0.8) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(159, 173, 197, 0.8) 100%);
 }
 
+.schowaj {
+  display: none;
+}
+
+.schowaj-mocno {
+  display: none !important;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.is-fading {
+  opacity: 0;
+}
+
+.animated-opacity {
+  transition: opacity 0.25s ease-in-out;
+}
+
+.reset-fadeIn {
+  animation: none !important;
+}
+
 .btn-hoverUp {
   transform: translateY(-2px);
 }
@@ -259,6 +283,13 @@
     opacity: 0.1;
   }
 }
+.hover-up-4 {
+  transition: transform 0.3s ease;
+}
+.hover-up-4:hover {
+  transform: translateY(-4px);
+}
+
 @keyframes bg-slide {
   from {
     background-position: 0 0;

@@ -5,9 +5,21 @@
 @use '../mixins/mixins-backgrounds.scss' as *;
 @use 'sass:color';
 
-    #carousel-container {
+.js-material-carousel {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+    .carousel-main-container {
         perspective: 1000px;
-    }
+        /* Warto dodać te dwie właściwości dla lepszej obsługi 3D */
+        position: relative;
+        transform-style: preserve-3d;
+        overflow: hidden;
+        padding-block: 12rem;
+        padding-inline: 24rem;
+        // border: 2px solid purple;
+        }
     .carousel-item {
         position: absolute;
         transition: all .5s ease-in-out;

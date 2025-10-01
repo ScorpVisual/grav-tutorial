@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Nagrobek Pierwszy N-01",
+        "image": "/images/products/product_01/card-img-01.jpg",
+        "alt_text": "Nagrobek nazwa 01",
+        "price": "od 11 111 PLN",
+        "link": "#link-do-n01",
+        "full_desc": "Model N-01 to kwintesencja nowoczesnego designu..."
+    },
+    {
+        "name": "Nagrobek Drugi N-02",
+        "image": "/images/products/product_02/card-img-02.jpg",
+        "alt_text": "Nagrobek nazwa 02",
+        "price": "od 12 222 PLN",
+        "link": "#link-do-n02",
+        "full_desc": "Model N-02 to kwintesencja nowoczesnego designu..."
+    },
+    {
+        "name": "Nagrobek Trzeci N-03",
+        "image": "/images/products/product_03/card-img-03.jpg",
+        "alt_text": "Nagrobek nazwa 03",
+        "price": "od 3 333 PLN",
+        "link": "#link-do-n03",
+        "full_desc": "Model N-03 to kwintesencja nowoczesnego designu..."
+    },
+    {
+        "name": "Nagrobek Czwarty N-04",
+        "image": "/images/products/product_04/card-img-04.jpg",
+        "alt_text": "Nagrobek nazwa 04",
+        "price": "od 4 444 PLN",
+        "link": "#link-do-n04",
+        "full_desc": "Model N-04 to kwintesencja nowoczesnego designu..."
+    },
+    {
+        "name": "Nagrobek Piąty N-05",
+        "image": "/images/products/product_05/card-img-05.jpg",
+        "alt_text": "Nagrobek nazwa 05",
+        "price": "od 5 555 PLN",
+        "link": "#link-do-n05",
+        "full_desc": "Model N-05 to kwintesencja nowoczesnego designu..."
+    },
+    {
+        "name": "Nagrobek Szósty N-06",
+        "image": "/images/products/product_06/card-img-06.jpg",
+        "alt_text": "Nagrobek nazwa 06",
+        "price": "od 6 666 PLN",
+        "link": "#link-do-n06",
+        "full_desc": "Model N-06 to kwintesencja nowoczesnego designu..."
+    }
+]

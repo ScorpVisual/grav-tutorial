@@ -160,6 +160,27 @@
     &--prev { left: calc(50% - 250px); }
     &--next { right: calc(50% - 250px); }
 }
+
+.shortcut-button {
+  border-radius: $border-radius;
+  height: 3.2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba($marble, .2);
+  background: linear-gradient(45deg,
+        rgba(213, 168, 72, 0.5) 0%,
+        rgba(243, 198, 102, 0.7) 50%,
+        rgba(213, 168, 72, 0.5) 100%
+        );
+        transition: $transition;
+   &:hover {
+        background-color: rgba($white, .25);
+      mix-blend-mode: lighten;
+    }
+  }
+
 // .btn-primary--red {
 //     @include base-btn(
 //     $background: $red,

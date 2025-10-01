@@ -68,6 +68,115 @@
 }
 
 
+.white-gradient-down {
+  @include create-card-gradient(
+    $text-color: $ink,
+    $border-color: $white,
+    $gradient: linear-gradient(
+      0deg,
+      rgba($white, 0.97) 0%,
+      rgba($marble, 0.6) 80%,
+      rgba($white, 0.1) 100%
+    ),
+    $blend-mode: normal,
+    $texture-url: '../../images/textures/marble-white-2.jpg'
+  );
+}
+
+.black-gradient-down {
+  @include create-card-gradient(
+    $text-color: $sand,
+    $border-color: $ink,
+    $gradient: linear-gradient(
+      0deg,
+      rgba($ink, .97) 0%,
+      rgba($ink, 0.6) 80%,
+      rgba($white, .1) 100%
+    ),
+    $blend-mode: multiply,
+    $texture-url: '../../images/textures/marble-black-5.jpg'
+  );
+}
+
+.dark-gradient-down {
+  @include create-card-gradient(
+    $text-color: $sand,
+    $border-color: $ink,
+    $gradient: linear-gradient(
+      0deg,
+      rgba($ink, .97) 0%,
+      rgba($ink, 0.6) 80%,
+      rgba($white, .1) 100%
+    ),
+    $blend-mode: multiply,
+    $texture-url: '../../images/textures/marble-black-gold-3-darkened.jpg'
+  );
+}
+
+.sand-gradient-down {
+  @include create-card-gradient(
+    $text-color: $ink,
+    $border-color: $sand,
+    $gradient: linear-gradient(
+      0deg,
+      rgba($sand, .97) 0%,
+      rgba($sand, 0.6) 80%,
+      rgba($white, .1) 100%
+    ),
+    $blend-mode: normal,
+    $texture-url: '../../images/textures/limestone-1.jpg'
+  );
+}
+
+.red-gradient-down {
+  @include create-card-gradient(
+    $text-color: $sand,
+    $border-color: $pyrite,
+    $gradient: linear-gradient(
+      0deg,
+      rgba($red-marble, .2),
+      rgba($red-marble, .6),
+      rgba($red-marble, .3),
+      rgba($red-marble, 0)
+    ),
+    $blend-mode: multiply,
+    $texture-url: '../../images/textures/marble-red-2.jpg'
+  );
+}
+
+.granite-gradient-down {
+  @include create-card-gradient(
+    $text-color: $marble,
+    $border-color: $marble,
+    $gradient: linear-gradient(
+      0deg,
+      rgba($granite, .8),
+      rgba($granite, .9),
+      rgba($granite, .4),
+      rgba($white, 0.2)
+    ),
+    $blend-mode: multiply,
+    $texture-url: '../../images/textures/granite-1.jpg'
+  );
+}
+
+.marbleTest-gradient-down {
+  @include create-card-gradient(
+    $text-color: $marble,
+    $border-color: $granite,
+    $gradient: linear-gradient(
+      0deg,
+      rgba($ink, .9),
+      rgba($ink, .9),
+      rgba($ink, .7),
+      rgba($white, 0.2)
+    ),
+    $blend-mode: multiply,
+    $texture-url: '../../images/textures/texture-4-black.jpg'
+  );
+}
+
+
 .test-div {
     display: flex;
     flex-direction: column;

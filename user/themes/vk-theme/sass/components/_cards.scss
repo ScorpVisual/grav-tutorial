@@ -58,6 +58,26 @@
           @include dark-img-border;
          }
   }
+  &__golden {
+      @include vkCard('../../images/textures/marble-white-gold-2.jpg',
+          rgba($white, .3),
+          rgba($grey, 0),
+          rgba($marble, .9),
+          $white,
+          normal
+        );
+      color: $marble;
+      & img {
+          @include golden-img-border;
+         }
+  }
+  &__golden-alt {
+      @include vkCard('../../images/textures/marble-white-gold-1.jpg', rgba($granite, .9));
+      color: $marble;
+      & img {
+          @include golden-img-border;
+         }
+  }
 }
 
 
@@ -143,11 +163,45 @@
     border-color: $cherry;
     box-shadow: 0 0 0 1px $cherry;
     background-color: rgba($white, .5);
+
+    @media (max-width: $breakpoint-sm) {
+    border-color: $trans;
+    box-shadow: 0 0 0 1px $trans;
+  }
     
     &:hover {
       border-color: $cherry;
       box-shadow: 0 0 0 1px $cherry;
       background-color: $white;
+    }
+  }
+}
+.pick-a-card-dark {
+  width: auto;
+  padding: 1rem;
+  border: 1px solid $light-grey;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background-color 200ms, border-color 200ms, box-shadow 200ms;
+
+    @media (max-width: $breakpoint-sm) {
+    padding-inline: $minimal-padding;
+  }
+  
+  &:hover {
+    border-color: $cherry;
+    background-color: $ink;
+  }
+
+  &.is-active {
+    border-color: $cherry;
+    box-shadow: 0 0 0 1px $cherry;
+    background-color: rgba($cherry, .9);
+    
+    &:hover {
+      border-color: $cherry;
+      box-shadow: 0 0 0 1px $cherry;
+      background-color: $cherry;
     }
   }
 }
@@ -161,99 +215,6 @@
     // );
 
 // CARDS
-.white-gradient-down {
-  @include create-card-gradient(
-    $text-color: $ink,
-    $border-color: $white,
-    $gradient: linear-gradient(
-      0deg,
-      rgba($white, 0.97) 0%,
-      rgba($marble, 0.6) 80%,
-      rgba($white, 0.1) 100%
-    ),
-    $blend-mode: normal,
-    $texture-url: '../../images/textures/marble-white-2.jpg'
-  );
-}
-
-.black-gradient-down {
-  @include create-card-gradient(
-    $text-color: $sand,
-    $border-color: $ink,
-    $gradient: linear-gradient(
-      0deg,
-      rgba($ink, .97) 0%,
-      rgba($ink, 0.6) 80%,
-      rgba($white, .1) 100%
-    ),
-    $blend-mode: multiply,
-    $texture-url: '../../images/textures/marble-black-5.jpg'
-  );
-}
-
-.sand-gradient-down {
-  @include create-card-gradient(
-    $text-color: $ink,
-    $border-color: $sand,
-    $gradient: linear-gradient(
-      0deg,
-      rgba($sand, .97) 0%,
-      rgba($sand, 0.6) 80%,
-      rgba($white, .1) 100%
-    ),
-    $blend-mode: normal,
-    $texture-url: '../../images/textures/limestone-1.jpg'
-  );
-}
-
-.red-gradient-down {
-  @include create-card-gradient(
-    $text-color: $sand,
-    $border-color: $pyrite,
-    $gradient: linear-gradient(
-      0deg,
-      rgba($red-marble, .2),
-      rgba($red-marble, .6),
-      rgba($red-marble, .3),
-      rgba($red-marble, 0)
-    ),
-    $blend-mode: multiply,
-    $texture-url: '../../images/textures/marble-red-2.jpg'
-  );
-}
-
-.granite-gradient-down {
-  @include create-card-gradient(
-    $text-color: $marble,
-    $border-color: $marble,
-    $gradient: linear-gradient(
-      0deg,
-      rgba($granite, .8),
-      rgba($granite, .9),
-      rgba($granite, .4),
-      rgba($white, 0.2)
-    ),
-    $blend-mode: multiply,
-    $texture-url: '../../images/textures/granite-1.jpg'
-  );
-}
-
-.marbleTest-gradient-down {
-  @include create-card-gradient(
-    $text-color: $marble,
-    $border-color: $granite,
-    $gradient: linear-gradient(
-      0deg,
-      rgba($ink, .9),
-      rgba($ink, .9),
-      rgba($ink, .7),
-      rgba($white, 0.2)
-    ),
-    $blend-mode: multiply,
-    $texture-url: '../../images/textures/texture-4-black.jpg'
-  );
-}
-
 
 // .card {
 //     @include base-card;
@@ -273,18 +234,19 @@
   cursor: pointer;
   background-color: rgba($white, .3);
 
-
   &:hover {
     border: 2px solid $cherry;
     box-shadow: 0 4px 12px rgba($ink, 0.1);
-    transform: translateY(-4px);
     background-color: rgba($white, .6);
+    transition: all 400ms ease-in-out;
+
     img {
       border-color: $cherry;
+      transition: all 400ms ease-in-out;
     }
     .article-card__description {
-    color: $granite; 
-  }
+      color: $granite;
+    }
   }
 
   &:focus {
@@ -296,13 +258,14 @@
   }
 
   &__image {
-    aspect-ratio: 16 / 9; 
+    aspect-ratio: 16 / 9;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-bottom: 2px solid $light-grey;
+      transition: all 400ms ease-in-out;
     }
   }
 
@@ -311,7 +274,7 @@
     flex-direction: column;
     flex-grow: 1;
     padding: 1.25rem;
-    gap: 0.75rem; 
+    gap: 0.75rem;
   }
 
   &__title {
@@ -320,8 +283,11 @@
   }
 
   &__description {
-    color: rgba($granite, .65); 
+    flex-grow: 1;
+    color: rgba($granite, .65);
     line-height: 1.5;
+    transition: all 400ms ease-in-out;
+
   }
 
   &__meta {
@@ -330,9 +296,9 @@
     align-items: center;
     font-size: 0.875rem;
     color: $grey;
-    margin-top: auto;
     padding-top: 0.75rem;
     border-top: 1px solid $light-grey;
+
   }
   
   &__meta-item {
@@ -341,6 +307,7 @@
     gap: 0.5rem;
   }
 }
+
 
 // vertical article card
 

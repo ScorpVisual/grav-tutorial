@@ -1,0 +1,61 @@
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        header_options:
+          type: tab
+          title: Opcje Nagłówka
+          fields:
+            header.hero_type:
+              type: select
+              label: Wybierz rodzaj sekcji "Hero"
+              default: 'main-hero'
+              options:
+                'main-hero': 'Główny (z wideo)'
+                'custom-hero': 'Standardowy (obrazek + tekst)'
+
+            header.hero_image:
+              type: filepicker
+              label: Dedykowany obrazek dla Hero
+              help: Wybierz jedno zdjęcie, które będzie tłem.
+              preview_images: true
+              multiple: false
+              accept:
+                - .jpg
+                - .jpeg
+                - .png
+                - .gif
+                - .webp
+                - .mkv
+                - .mp4
+              when:
+                header.hero_type: custom-hero
+
+            header.hero_subtitle:
+              type: textarea
+              label: Podtytuł w sekcji Hero
+              rows: 3
+              when:
+                header.hero_type: custom-hero
+
+            header.hero_buttons:
+              type: list
+              label: Przyciski w sekcji Hero
+              when:
+                header.hero_type: custom-hero
+              fields:
+                .text:
+                  type: text
+                  label: Tekst przycisku
+                .url:
+                  type: text
+                  label: Link (URL)
+                .class:
+                  type: select
+                  label: Styl przycisku
+                  default: 'btn-primary flex-grow text-center'
+                  options:
+                    'btn-primary flex-grow text-center': 'Podstawowy'
+                    'btn-cta flex-grow text-center': 'CTA'

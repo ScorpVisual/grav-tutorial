@@ -215,6 +215,30 @@
   background: linear-gradient(45deg, rgba(162, 199, 212, 0.8) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(159, 173, 197, 0.8) 100%);
 }
 
+.schowaj {
+  display: none;
+}
+
+.schowaj-mocno {
+  display: none !important;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.is-fading {
+  opacity: 0;
+}
+
+.animated-opacity {
+  transition: opacity 0.25s ease-in-out;
+}
+
+.reset-fadeIn {
+  animation: none !important;
+}
+
 .btn-hoverUp {
   transform: translateY(-2px);
 }
@@ -262,6 +286,13 @@
     opacity: 0.1;
   }
 }
+.hover-up-4 {
+  transition: transform 0.3s ease;
+}
+.hover-up-4:hover {
+  transform: translateY(-4px);
+}
+
 @keyframes bg-slide {
   from {
     background-position: 0 0;
@@ -296,22 +327,6 @@
   color: #fff;
 }
 
-.schowaj {
-  display: none;
-}
-
-.schowaj-mocno {
-  display: none !important;
-}
-
-.is-hidden {
-  display: none !important;
-}
-
-.reset-fadeIn {
-  animation: none !important;
-}
-
 .price-highlighted {
   color: #edd7cb;
   background-color: #800020;
@@ -325,7 +340,27 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: rgba(0, 0, 0, 0.5) 0px 2px 8px, rgba(255, 255, 255, 0.25) 0px -1px 1px;
+  text-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px, rgba(255, 255, 255, 0.25) 0px -1px 1px;
+}
+
+.fill-letters-gold-section {
+  background-color: #c0a258;
+  background-image: linear-gradient(170deg, #feec81 2%, #e2c16d 20%, #ac9202 50%, #6e5718 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* NOWY, WARSTWOWY CIEŃ DLA EFEKTU 3D */
+  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3), 0px 1px 1px rgba(142, 121, 4, 0.44);
+}
+
+.fill-letters-gold-section-dark {
+  background-color: #c0a258;
+  background-image: linear-gradient(170deg, #ffee90 10%, #e2c16d 30%, #ac9202 50%, #6e5718 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* NOWY, WARSTWOWY CIEŃ DLA EFEKTU 3D */
+  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.4), 0px 1px 1px rgba(142, 121, 4, 0.34);
 }
 
 .set-border-radius {
@@ -458,6 +493,18 @@
   border: 2px solid green !important;
 }
 
+.folder-flag {
+  position: absolute;
+  z-index: -1;
+  display: flex;
+  border-radius: 4px 4px 0 0;
+  top: -38%;
+  left: 0;
+  width: auto;
+  height: 32px;
+  padding-inline: 1.2rem;
+}
+
 .gradient-up-ink {
   position: relative;
   isolation: isolate;
@@ -532,9 +579,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .typography h1 {
   font-size: 2.44140625rem;
-  line-height: 1.2;
+  line-height: 1.5;
   font-family: "Cormorant", serif;
-  color: inherit;
 }
 .typography h2 {
   font-size: 1.953125rem;
@@ -554,21 +600,27 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 768px) {
   .typography h1 {
     font-size: 3.5rem;
+    line-height: 1.2;
   }
   .typography h2 {
     font-size: 2.75rem;
+    line-height: 1.2;
   }
   .typography h3 {
     font-size: 2rem;
+    line-height: 1.2;
   }
   .typography h4 {
     font-size: 1.5rem;
+    line-height: 1.2;
   }
   .typography h5 {
     font-size: 1.25rem;
+    line-height: 1.2;
   }
   .typography h6 {
     font-size: 1rem;
+    line-height: 1.2;
   }
 }
 .typography p {
@@ -816,6 +868,28 @@ hr {
   display: none; /* Chrome, Safari and Opera */
 }
 
+.custom-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.custom-list li {
+  position: relative;
+  padding-left: 1.6rem; /* miejsce na ikonę */
+}
+
+.custom-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4em;
+  width: 1rem;
+  height: 1rem;
+  background-image: url("../../images/svg/stone.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .marble-slab {
   position: relative;
   z-index: 1;
@@ -978,6 +1052,258 @@ hr {
   .dark-textured-marble-slab {
     padding-inline: 0.6rem;
   }
+}
+
+.white-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.white-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.white-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.97) 0%, rgba(225, 223, 221, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
+  mix-blend-mode: normal;
+  z-index: -1;
+}
+.white-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/marble-white-2.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.black-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(3, 2, 8, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.black-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.black-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(3, 2, 8, 0.97) 0%, rgba(3, 2, 8, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+.black-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/marble-black-5.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.dark-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(3, 2, 8, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.dark-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.dark-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(3, 2, 8, 0.97) 0%, rgba(3, 2, 8, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+.dark-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/marble-black-gold-3-darkened.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.sand-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(237, 215, 203, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.sand-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.sand-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(237, 215, 203, 0.97) 0%, rgba(237, 215, 203, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
+  mix-blend-mode: normal;
+  z-index: -1;
+}
+.sand-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/limestone-1.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.red-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(172, 159, 88, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.red-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.red-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(87, 32, 21, 0.2), rgba(87, 32, 21, 0.6), rgba(87, 32, 21, 0.3), rgba(87, 32, 21, 0));
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+.red-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/marble-red-2.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.granite-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(225, 223, 221, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.granite-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.granite-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(47, 47, 47, 0.8), rgba(47, 47, 47, 0.9), rgba(47, 47, 47, 0.4), rgba(255, 255, 255, 0.2));
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+.granite-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/granite-1.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
+}
+
+.marbleTest-gradient-down {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  border: 1px solid rgba(47, 47, 47, 0.4);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.marbleTest-gradient-down:hover {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+}
+.marbleTest-gradient-down::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(3, 2, 8, 0.9), rgba(3, 2, 8, 0.9), rgba(3, 2, 8, 0.7), rgba(255, 255, 255, 0.2));
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+.marbleTest-gradient-down::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../images/textures/texture-4-black.jpg") center/cover no-repeat;
+  z-index: -2;
+  opacity: 1;
 }
 
 .test-div {
@@ -1539,7 +1865,7 @@ hr {
 }
 .btn-tertiary:hover, .btn-tertiary:focus {
   border: 2px solid #800020;
-  background-color: #e1dfdd;
+  background-color: #fff;
   color: #393c45;
 }
 
@@ -1570,6 +1896,22 @@ hr {
 }
 .shuffle-carousel__btn--next {
   right: calc(50% - 250px);
+}
+
+.shortcut-button {
+  border-radius: 4px;
+  height: 3.2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(225, 223, 221, 0.2);
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  transition: all 0.3s ease-in-out;
+}
+.shortcut-button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  mix-blend-mode: lighten;
 }
 
 .vkCard__white {
@@ -1784,6 +2126,112 @@ hr {
   border-radius: inherit;
   z-index: -1;
 }
+.vkCard__golden {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.6), inset 0 1px 4px rgba(255, 255, 255, 0.3);
+  isolation: isolate;
+  color: #e1dfdd;
+}
+.vkCard__golden::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: url("../../images/textures/marble-white-gold-2.jpg");
+  background-size: contain no-repeat;
+  background-position: center;
+}
+.vkCard__golden::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.3) 0%, rgba(150, 150, 150, 0) 12.5%, rgba(150, 150, 150, 0) 30%, rgba(225, 223, 221, 0.9) 55%);
+  mix-blend-mode: normal;
+  pointer-events: none;
+  z-index: -1;
+}
+.vkCard__golden img {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  padding: 2px;
+}
+.vkCard__golden img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+}
+.vkCard__golden-alt {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.6), inset 0 1px 4px rgba(255, 255, 255, 0.3);
+  isolation: isolate;
+  color: #e1dfdd;
+}
+.vkCard__golden-alt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: url("../../images/textures/marble-white-gold-1.jpg");
+  background-size: contain no-repeat;
+  background-position: center;
+}
+.vkCard__golden-alt::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(165deg, rgba(47, 47, 47, 0.9) 0%, rgba(178, 1, 1, 0) 12.5%, rgba(178, 1, 1, 0) 30%, rgba(0, 0, 0, 0) 55%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: -1;
+}
+.vkCard__golden-alt img {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  padding: 2px;
+}
+.vkCard__golden-alt img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+}
 
 .stone-div {
   position: relative;
@@ -1878,232 +2326,44 @@ hr {
   box-shadow: 0 0 0 1px #800020;
   background-color: rgba(255, 255, 255, 0.5);
 }
+@media (max-width: 640px) {
+  .pick-a-card.is-active {
+    border-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0);
+  }
+}
 .pick-a-card.is-active:hover {
   border-color: #800020;
   box-shadow: 0 0 0 1px #800020;
   background-color: #fff;
 }
 
-.white-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #030208;
-  border-radius: 0.4rem;
+.pick-a-card-dark {
+  width: auto;
   padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
+  border: 1px solid #cbcdd1;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 200ms, border-color 200ms, box-shadow 200ms;
 }
-.white-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
+@media (max-width: 640px) {
+  .pick-a-card-dark {
+    padding-inline: 0.6rem;
+  }
 }
-.white-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.97) 0%, rgba(225, 223, 221, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
-  mix-blend-mode: normal;
-  z-index: -1;
+.pick-a-card-dark:hover {
+  border-color: #800020;
+  background-color: #030208;
 }
-.white-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/marble-white-2.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
+.pick-a-card-dark.is-active {
+  border-color: #800020;
+  box-shadow: 0 0 0 1px #800020;
+  background-color: rgba(128, 0, 32, 0.9);
 }
-
-.black-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #edd7cb;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba(3, 2, 8, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
-}
-.black-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
-}
-.black-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(3, 2, 8, 0.97) 0%, rgba(3, 2, 8, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
-  mix-blend-mode: multiply;
-  z-index: -1;
-}
-.black-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/marble-black-5.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
-}
-
-.sand-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #030208;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba(237, 215, 203, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
-}
-.sand-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
-}
-.sand-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(237, 215, 203, 0.97) 0%, rgba(237, 215, 203, 0.6) 80%, rgba(255, 255, 255, 0.1) 100%);
-  mix-blend-mode: normal;
-  z-index: -1;
-}
-.sand-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/limestone-1.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
-}
-
-.red-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #edd7cb;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba(172, 159, 88, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
-}
-.red-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
-}
-.red-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(87, 32, 21, 0.2), rgba(87, 32, 21, 0.6), rgba(87, 32, 21, 0.3), rgba(87, 32, 21, 0));
-  mix-blend-mode: multiply;
-  z-index: -1;
-}
-.red-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/marble-red-2.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
-}
-
-.granite-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #e1dfdd;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba(225, 223, 221, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
-}
-.granite-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
-}
-.granite-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(47, 47, 47, 0.8), rgba(47, 47, 47, 0.9), rgba(47, 47, 47, 0.4), rgba(255, 255, 255, 0.2));
-  mix-blend-mode: multiply;
-  z-index: -1;
-}
-.granite-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/granite-1.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
-}
-
-.marbleTest-gradient-down {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-  overflow: hidden;
-  color: #e1dfdd;
-  border-radius: 0.4rem;
-  padding: 1rem;
-  border: 1px solid rgba(47, 47, 47, 0.4);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.6), inset 2px 2px 6px rgba(150, 150, 150, 0.3), 0 8px 8px rgba(3, 2, 8, 0.3);
-  transition: all 0.2s ease-in-out;
-}
-.marbleTest-gradient-down:hover {
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: inset -2px -2px 6px rgba(255, 255, 255, 0.7), inset 2px 2px 6px rgba(150, 150, 150, 0.4), 0 10px 12px rgba(3, 2, 8, 0.4);
-}
-.marbleTest-gradient-down::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(0deg, rgba(3, 2, 8, 0.9), rgba(3, 2, 8, 0.9), rgba(3, 2, 8, 0.7), rgba(255, 255, 255, 0.2));
-  mix-blend-mode: multiply;
-  z-index: -1;
-}
-.marbleTest-gradient-down::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../../images/textures/texture-4-black.jpg") center/cover no-repeat;
-  z-index: -2;
-  opacity: 1;
+.pick-a-card-dark.is-active:hover {
+  border-color: #800020;
+  box-shadow: 0 0 0 1px #800020;
+  background-color: #800020;
 }
 
 .article-card {
@@ -2121,11 +2381,12 @@ hr {
 .article-card:hover {
   border: 2px solid #800020;
   box-shadow: 0 4px 12px rgba(3, 2, 8, 0.1);
-  transform: translateY(-4px);
   background-color: rgba(255, 255, 255, 0.6);
+  transition: all 400ms ease-in-out;
 }
 .article-card:hover img {
   border-color: #800020;
+  transition: all 400ms ease-in-out;
 }
 .article-card:hover .article-card__description {
   color: #2f2f2f;
@@ -2145,6 +2406,7 @@ hr {
   height: 100%;
   object-fit: cover;
   border-bottom: 2px solid #cbcdd1;
+  transition: all 400ms ease-in-out;
 }
 .article-card__content {
   display: flex;
@@ -2158,8 +2420,10 @@ hr {
   font-weight: 600;
 }
 .article-card__description {
+  flex-grow: 1;
   color: rgba(47, 47, 47, 0.65);
   line-height: 1.5;
+  transition: all 400ms ease-in-out;
 }
 .article-card__meta {
   display: flex;
@@ -2167,7 +2431,6 @@ hr {
   align-items: center;
   font-size: 0.875rem;
   color: rgb(150, 150, 150);
-  margin-top: auto;
   padding-top: 0.75rem;
   border-top: 1px solid #cbcdd1;
 }
@@ -2502,11 +2765,344 @@ option {
   }
 }
 
+.section-header {
+  position: relative;
+  width: 90%;
+  height: 4rem;
+  border-radius: 0.125rem;
+  box-shadow: 0 16px 4px rgba(3, 2, 8, 0.25);
+}
+.section-header::before {
+  content: "";
+  position: absolute;
+  inset: -4px -4px -8px -4px;
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  border-radius: inherit;
+  z-index: 1;
+}
+.section-header__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  border-radius: inherit;
+  position: relative;
+  z-index: 2;
+}
+.section-header__bg--golden {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.6), inset 0 1px 4px rgba(255, 255, 255, 0.3);
+  isolation: isolate;
+}
+.section-header__bg--golden::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: url("../../images/textures/marble-white-gold-2.jpg");
+  background-size: contain no-repeat;
+  background-position: center;
+}
+.section-header__bg--golden::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.92) 25%, rgba(255, 255, 255, 0.5) 35%, rgba(255, 255, 255, 0) 70%);
+  mix-blend-mode: normal;
+  pointer-events: none;
+  z-index: -1;
+}
+.section-header__bg--golden img {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  padding: 2px;
+}
+.section-header__bg--golden img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+}
+.section-header__bg--golden-alt {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.6), inset 0 1px 4px rgba(255, 255, 255, 0.3);
+  isolation: isolate;
+}
+.section-header__bg--golden-alt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: url("../../images/textures/marble-white-gold-1.jpg");
+  background-size: contain no-repeat;
+  background-position: center;
+}
+.section-header__bg--golden-alt::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.92) 25%, rgba(255, 255, 255, 0.5) 35%, rgba(255, 255, 255, 0) 70%);
+  mix-blend-mode: normal;
+  pointer-events: none;
+  z-index: -1;
+}
+.section-header__bg--golden-alt img {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  padding: 2px;
+}
+.section-header__bg--golden-alt img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+}
+.section-header__bg--black {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.6), inset 0 1px 4px rgba(255, 255, 255, 0.3);
+  isolation: isolate;
+}
+.section-header__bg--black::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: url("../../images/textures/marble-black-gold-2.jpg");
+  background-size: contain no-repeat;
+  background-position: center;
+}
+.section-header__bg--black::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(3, 2, 8, 0.7) 25%, rgba(3, 2, 8, 0.3) 35%, rgba(3, 2, 8, 0.2) 70%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: -1;
+}
+.section-header__bg--black img {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  padding: 2px;
+}
+.section-header__bg--black img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+}
+.section-header__bg--red {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(87, 32, 21, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.6), inset 0 1px 4px rgba(255, 255, 255, 0.3);
+  isolation: isolate;
+}
+.section-header__bg--red::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: url("../../images/textures/marble-red-5.jpg");
+  background-size: contain no-repeat;
+  background-position: center;
+}
+.section-header__bg--red::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(87, 32, 21, 0.9) 25%, rgba(87, 32, 21, 0.7) 35%, rgba(87, 32, 21, 0.45) 70%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: -1;
+}
+.section-header__bg--red img {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  padding: 2px;
+}
+.section-header__bg--red img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+}
+.section-header__bg--red-alt {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(172, 159, 88, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.6), inset 0 1px 4px rgba(255, 255, 255, 0.3);
+  isolation: isolate;
+}
+.section-header__bg--red-alt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: url("../../images/textures/marble-red-4.jpg");
+  background-size: contain no-repeat;
+  background-position: center;
+}
+.section-header__bg--red-alt::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(87, 32, 21, 0.7) 25%, rgba(87, 32, 21, 0.3) 35%, rgba(87, 32, 21, 0.7) 70%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: -1;
+}
+.section-header__bg--red-alt img {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  padding: 2px;
+}
+.section-header__bg--red-alt img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+}
+.section-header__bg--granite {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(172, 159, 88, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 8px 12px rgba(0, 0, 0, 0.6), inset 0 1px 4px rgba(255, 255, 255, 0.3);
+  isolation: isolate;
+}
+.section-header__bg--granite::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: url("../../images/textures/granite-rep-x.jpg");
+  background-size: contain no-repeat;
+  background-position: center;
+}
+.section-header__bg--granite::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(47, 47, 47, 0.7) 25%, rgba(47, 47, 47, 0.2) 35%, rgba(47, 47, 47, 0.5) 70%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: -1;
+}
+.section-header__bg--granite img {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  padding: 2px;
+}
+.section-header__bg--granite img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+}
+
 .content-switcher__card.--is-active {
   box-shadow: 0 0 0 2px #800020;
 }
 .content-switcher__display {
-  transition: opacity 300ms ease-in-out;
+  transition: opacity 100ms ease-in-out;
 }
 .content-switcher__display.--is-fading {
   opacity: 0;
@@ -2517,7 +3113,7 @@ option {
 }
 .content-switcher__fade-in {
   opacity: 1;
-  transition: opacity 400ms ease-in-out;
+  transition: opacity 250ms ease-in-out;
 }
 .content-switcher__image {
   transition-delay: 50ms;
@@ -2526,10 +3122,10 @@ option {
   transition-delay: 70ms;
 }
 .content-switcher__price-wrapper {
-  transition-delay: 70ms;
+  transition-delay: 80ms;
 }
 .content-switcher__description {
-  transition-delay: 120ms;
+  transition-delay: 80ms;
 }
 
 .shuffle-carousel {
@@ -2706,8 +3302,20 @@ option {
   transform: scale(1.1);
 }
 
-#carousel-container {
+.js-material-carousel {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+.carousel-main-container {
   perspective: 1000px;
+  /* Warto dodać te dwie właściwości dla lepszej obsługi 3D */
+  position: relative;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  padding-block: 12rem;
+  padding-inline: 24rem;
 }
 
 .carousel-item {

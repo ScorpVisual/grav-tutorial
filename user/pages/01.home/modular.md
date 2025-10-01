@@ -6,7 +6,6 @@ content:
 featured_product_main: /_module-one
 hero_type: main-hero
 media_order: strongman.jpeg
-hero_image: 4aNXtMGlKav8LhV0RnWrssqcqM0CFnuR.mp4
 hero_subtitle: 'Tekst podtytułowy dziewięć'
 hero_buttons:
     -
