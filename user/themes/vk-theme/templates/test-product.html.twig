@@ -6,18 +6,21 @@
     {
         title: "Wariant Standard - Ponadczasowa Elegancja",
         price: "5 499",
+        img: "/images/products/product_01/single-01.jpg",
         size: "Pojedynczy",
         full_desc: "Nasz Wariant Standard to idealne połączenie klasycznego wzornictwa i wysokiej jakości materiałów. Zapewnia trwałość i estetyczny wygląd, będąc jednocześnie najbardziej ekonomicznym wyborem dla pojedynczego miejsca."
     },
     {
         title: "Wariant Standard - Ponadczasowa Elegancja",
         price: "8 000",
+        img: "/images/products/product_01/double-01.jpg",
         size: "Podwójny",
         full_desc: "Wariant podwójny oferuje więcej przestrzeni, zachowując te same walory estetyczne i jakościowe. Jest to doskonałe rozwiązanie dla par, zapewniające harmonię i elegancję."
     },
     {
         title: "Wariant Standard - Ponadczasowa Elegancja",
         price: "12 499",
+        img: "",
         size: "Rodzinny",
         full_desc: "Największy z naszych wariantów, zaprojektowany z myślą o grobowcach rodzinnych. Łączy w sobie majestatyczny wygląd z najwyższą jakością wykonania, aby godnie upamiętnić bliskich."
     }
@@ -35,7 +38,7 @@
 <section class="lg:px-4 py-16 max-w-screen-xl mx-auto">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <div>
-        <img src="{{ theme_url }}/images/placeholders/test-prod/VK-nagrobki-125.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
+        <img src="{{ theme_url }}{{ variant.img }}" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
     </div>
     <div class="overflow-hidden h-full flex flex-col">
         <div class="p-0 flex flex-col flex-grow gap-4 md:p-6">
