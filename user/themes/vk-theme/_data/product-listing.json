@@ -1,7 +1,7 @@
 [
     {
         "name": "Nagrobek podstawowy na trumnę",
-        "image": "/images/products/product_01/card-img-01.jpg",
+        "image": "/images/products/product-01/card-img-01.jpg",
         "alt_text": "Nagrobek nazwa 01",
         "price": "od 11 111 PLN",
         "path": "/test-produktu",
@@ -9,7 +9,7 @@
     },
     {
         "name": "Nagrobek Drugi N-02",
-        "image": "/images/products/product_02/card-img-02.jpg",
+        "image": "/images/products/product-02/card-img-02.jpg",
         "alt_text": "Nagrobek nazwa 02",
         "price": "od 12 222 PLN",
         "path": "/test-produktu",
@@ -17,7 +17,7 @@
     },
     {
         "name": "Nagrobek Trzeci N-03",
-        "image": "/images/products/product_03/card-img-03.jpg",
+        "image": "/images/products/product-03/card-img-03.jpg",
         "alt_text": "Nagrobek nazwa 03",
         "price": "od 3 333 PLN",
         "path": "/test-produktu",
@@ -25,7 +25,7 @@
     },
     {
         "name": "Nagrobek Czwarty N-04",
-        "image": "/images/products/product_04/card-img-04.jpg",
+        "image": "/images/products/product-04/card-img-04.jpg",
         "alt_text": "Nagrobek nazwa 04",
         "price": "od 4 444 PLN",
         "path": "/test-produktu",
@@ -33,7 +33,7 @@
     },
     {
         "name": "Nagrobek Piąty N-05",
-        "image": "/images/products/product_05/card-img-05.jpg",
+        "image": "/images/products/product-05/card-img-05.jpg",
         "alt_text": "Nagrobek nazwa 05",
         "price": "od 5 555 PLN",
         "path": "/test-produktu",
@@ -41,7 +41,7 @@
     },
     {
         "name": "Nagrobek Szósty N-06",
-        "image": "/images/products/product_06/card-img-06.jpg",
+        "image": "/images/products/product-06/card-img-06.jpg",
         "alt_text": "Nagrobek nazwa 06",
         "price": "od 6 666 PLN",
         "path": "/test-produktu",

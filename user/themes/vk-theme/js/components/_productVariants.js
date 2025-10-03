@@ -5,46 +5,33 @@ document.addEventListener('DOMContentLoaded', function () {
     // ====================================================================
     
     // Pobranie elementów z DOM
-const variantButtons = document.querySelectorAll('.variant-button');
+    const variantButtons = document.querySelectorAll('.variant-button');
     const priceElement = document.getElementById('product-price');
     const descriptionElement = document.getElementById('product-description');
+    const imageElement = document.getElementById('product-image');
 
-    if (variantButtons.length > 0 && priceElement && descriptionElement) {
+    if (variantButtons.length > 0 && priceElement && descriptionElement && imageElement) {
         variantButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Jeśli kliknięty przycisk jest już aktywny, nic nie rób
-                if (this.classList.contains('is-active')) {
-                    return;
-                }
+        button.addEventListener('click', function () {
+            if (this.classList.contains('is-active')) return;
 
-                // Usuń klasę 'is-active' ze wszystkich przycisków
-                variantButtons.forEach(btn => btn.classList.remove('is-active'));
-                
-                // Dodaj klasę 'is-active' do klikniętego przycisku
-                this.classList.add('is-active');
+            variantButtons.forEach(btn => btn.classList.remove('is-active'));
+            this.classList.add('is-active');
 
-                // --- START ANIMACJI ---
-                
-                // 1. Dodaj klasę, aby rozpocząć zanikanie obecnego tekstu
-                priceElement.classList.add('is-fading');
-                descriptionElement.classList.add('is-fading');
+            priceElement.classList.add('is-fading');
+            descriptionElement.classList.add('is-fading');
+            imageElement.classList.add('is-fading');
 
-                // 2. Użyj setTimeout, aby poczekać, aż animacja zanikania się zakończy
-                setTimeout(() => {
-                    // 3. Pobierz nowe dane i zaktualizuj treść, gdy jest niewidoczna
-                    const newPrice = this.dataset.price;
-                    const newDescription = this.dataset.desc;
-                    
-                    priceElement.textContent = newPrice;
-                    descriptionElement.textContent = newDescription;
+            setTimeout(() => {
+            priceElement.textContent = this.dataset.price;
+            descriptionElement.textContent = this.dataset.desc;
+            imageElement.src = this.dataset.img;
 
-                    // 4. Usuń klasę, aby nowy tekst płynnie się pojawił
-                    priceElement.classList.remove('is-fading');
-                    descriptionElement.classList.remove('is-fading');
-                }, 200); // Czas w milisekundach - musi być taki sam jak w CSS (0.2s = 200ms)
-
-                // --- KONIEC ANIMACJI ---
-            });
+            priceElement.classList.remove('is-fading');
+            descriptionElement.classList.remove('is-fading');
+            imageElement.classList.remove('is-fading');
+            }, 200);
+        });
         });
     }
 

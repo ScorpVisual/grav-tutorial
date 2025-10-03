@@ -6,21 +6,15 @@
     {
         title: "Wariant Standard - Ponadczasowa Elegancja",
         price: "5 499",
-        img: "/images/products/product_01/single-01.jpg",
-        size: "Pojedynczy",
+        img: "/images/products/product-01/single-01.jpg",
+        size: "Standard",
         full_desc: "Nasz Wariant Standard to idealne połączenie klasycznego wzornictwa i wysokiej jakości materiałów. Zapewnia trwałość i estetyczny wygląd, będąc jednocześnie najbardziej ekonomicznym wyborem dla pojedynczego miejsca."
     },
-    {
-        title: "Wariant Standard - Ponadczasowa Elegancja",
-        price: "8 000",
-        img: "/images/products/product_01/double-01.jpg",
-        size: "Podwójny",
-        full_desc: "Wariant podwójny oferuje więcej przestrzeni, zachowując te same walory estetyczne i jakościowe. Jest to doskonałe rozwiązanie dla par, zapewniające harmonię i elegancję."
-    },
+
     {
         title: "Wariant Standard - Ponadczasowa Elegancja",
         price: "12 499",
-        img: "",
+        img: "/images/products/product-01/double-01.jpg",
         size: "Rodzinny",
         full_desc: "Największy z naszych wariantów, zaprojektowany z myślą o grobowcach rodzinnych. Łączy w sobie majestatyczny wygląd z najwyższą jakością wykonania, aby godnie upamiętnić bliskich."
     }
@@ -38,20 +32,25 @@
 <section class="lg:px-4 py-16 max-w-screen-xl mx-auto">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <div>
-        <img src="{{ theme_url }}{{ variant.img }}" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
+<img id="product-image" src="{{ theme_url }}{{ productVariants[0].img }}" 
+    alt="Renowacja starego nagrobka granitowego" 
+    class="w-full object-cover golden-img-border hard-shadow animated-opacity">
     </div>
     <div class="overflow-hidden h-full flex flex-col">
         <div class="p-0 flex flex-col flex-grow gap-4 md:p-6">
-            <h2 class="text-3xl font-bold text-gray-800 underline--cherry lg:whitespace-nowrap">Nagrobek urnowy</h2>
+            <h2 class="text-3xl font-bold text-gray-800 underline--cherry lg:whitespace-nowrap">Nagrobek jakiśtam</h2>
 
             {# Przyciski generowane dynamicznie #}
-            <div class="flex flex-col justify-between lg:flex-row gap-3">
+            <div class="flex flex-col justify-around lg:flex-row gap-3">
                 {% for variant in productVariants %}
                     <button
                         type="button"
-                        class="variant-button btn-tertiary text-center text-gray-600 hover:text-gray-900 shrink-0 whitespace-nowrap {% if loop.first %}is-active{% endif %}"
+                        class="variant-button btn-tertiary text-center 
+                                text-gray-600 hover:text-gray-900 shrink-0 
+                                whitespace-nowrap {% if loop.first %}is-active{% endif %}"
                         data-price="{{ variant.price }}"
                         data-desc="{{ variant.full_desc }}"
+                        data-img="{{ theme_url }}{{ variant.img }}"
                     >
                         {{ variant.size }}
                     </button>
@@ -81,12 +80,13 @@
 </section>
 
 {% set galleryItems = [
-    { image_filename: 'VK-nagrobki-120.jpg', title: 'Nagrobek Pojedynczy Klasyczny' },
-    { image_filename: 'VK-nagrobki-124.jpg', title: 'Nagrobek Podwójny Nowoczesny' },
-    { image_filename: 'VK-nagrobki-126.jpg', title: 'Grobowiec Rodzinny z Granitu' },
-    { image_filename: 'VK-nagrobki-127.jpg', title: 'Pomnik z Czarnym Krzyżem' },
-    { image_filename: 'VK-nagrobki-129.jpg', title: 'Nagrobek Urnowy Jasny' },
-    { image_filename: 'VK-nagrobki-131.jpg', title: 'Renowacja starego pomnika' }
+    { image_filename: '/images/products/product-01/product-01-gallery-7.jpg', title: 'Nagrobek Pojedynczy Klasyczny' },
+    { image_filename: '/images/products/product-01/product-01-gallery-8.jpg', title: 'Nagrobek Podwójny Nowoczesny' },
+    { image_filename: '/images/products/product-01/product-01-gallery-1.jpg', title: 'Grobowiec Rodzinny z Granitu' },
+    { image_filename: '/images/products/product-01/product-01-gallery-2.jpg', title: 'Pomnik z Czarnym Krzyżem' },
+    { image_filename: '/images/products/product-01/product-01-gallery-3.jpg', title: 'Nagrobek Urnowy Jasny' },
+    { image_filename: '/images/products/product-01/product-01-gallery-4.jpg', title: 'Renowacja starego pomnika' },
+    { image_filename: '/images/products/product-01/product-01-gallery-5.jpg', title: 'Renowacja starego pomnika' }
 ] %}
 {# 
 <section class="lg:px-4 py-16 max-w-screen-xl mx-auto">
@@ -131,7 +131,7 @@
             #}
             {% for item in galleryItems %}
                 <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
-                    <img src="{{ theme_url }}/images/placeholders/test-prod/{{ item.image_filename }}" 
+                    <img src="{{ theme_url }}{{ item.image_filename }}" 
                          alt="{{ item.title }}" 
                          class="w-full h-full object-cover">
                     
@@ -221,50 +221,57 @@
     }
 ] %}
 
-<section class="py-4 lg:py-8">
-    {# --- Nagłówek sekcji --- #}
-    <div class="max-w-4xl mx-auto mb-16">
-        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
-            Polecane kamienie
-        </h1>
-        <p>
-            Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
-            Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, ale jesteśmy dostępni telefonicznie i mailowo. 
-        </p>
-        <p>
-            Uwaga! Ceny kamieni są zależne od aktualnych cen rynkowych. Dostępność i koszty mogą się różnić w zależności od dostawcy i regionu. 
-            Prosimy o kontakt w celu uzyskania dokładnych informacji na temat cen i dostępności kamieni. 
-        </p>
-    </div>
     
-{% include 'partials/recommended-stones.html.twig'%}
+{% set recommendedGranites = [
+    {
+        name: "Biały granit",
+        desc: "Elegancki i ponadczasowy, biały granit nadaje pomnikowi lekkości i klasy.",
+        img: theme_url ~ "/images/textures/marble-white-1.jpg"
+    },
+    {
+        name: "Czerwony granit",
+        desc: "Wyrazisty i pełen charakteru, czerwony granit wyróżnia się na tle innych.",
+        img: theme_url ~ "/images/textures/marble-red-1.jpg"
+    },
+    {
+        name: "Czarny granit",
+        desc: "Klasyczny i dostojny, czarny granit symbolizuje trwałość i elegancję.",
+        img: theme_url ~ "/images/textures/marble-black-1.jpg"
+    }
+] %}
 
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-screen-xl mx-auto px-4 my-16">
+<section class="py-4 lg:py-8">
+  {# --- Część statyczna z opisem --- #}
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-screen-xl mx-auto px-4 my-16">
     <div>
-        <img src="{{ theme_url }}/images/photos/stones-photo-5.jpg" alt="Renowacja starego nagrobka granitowego"
-        class="w-[500px] h-[500px] object-cover golden-img-border hard-shadow">
+        <img src="{{ theme_url }}/images/photos/stones-photo-3.jpg" alt="Renowacja starego nagrobka granitowego"
+        class="w-full object-cover golden-img-border hard-shadow">
     </div>
     <div class="flex flex-col space-y-6">
         <h1 class="text-3xl font-bold text-gray-800 mb-2 border-bot-cherry">
-            Wszystkie dostępne kamienie
+            Polecane kamienie
         </h1>
         <p class="text-lg text-gray-700">
-            Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
-            Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
-
+            Tekst o tym jakie dostępne kamienie są najlepsze do tego typu nagrobka.
+            Możemy dodać różne kolory, możemy dodać różne ceny i dostępności.
         </p>
-            <div class="flex flex-col lg:flex-row gap-3 mt-auto">
-                <a href="#szczegoly" class="btn-primary flex-grow text-center">
-                    Pełna oferta kamieni
-                </a>
-                <a href="#kontakt" class="btn-cta flex-grow text-center">
-                    Zapytaj o dostępność
-                </a>
-            </div>
+        <button class="btn-primary w-full flex justify-center">
+            Wszystkie dostępne kamienie
+        </button>
     </div>
-</div>
+  </div>
+
+  {# --- Tutaj dołączasz komponent karuzeli --- #}
+  {# Komponent otrzyma listę zdefiniowaną powyżej (bez piaskowca) #}
+  {% include 'modular/_stones.html.twig' with {
+      items: recommendedGranites,
+      unique_id: 'recommendedGranites'
+  } %}
+
 </section>
+
+
+
 
 
 {# Zmiana nazwy zmiennej z 'product_variants' na 'product_addons' #}
@@ -337,7 +344,7 @@
     {# --- Nagłówek sekcji --- #}
     <div class="max-w-4xl mx-auto">
         <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
-            Co nas wyróżnia? 
+            Cechy produktu 
         </h1>
         <p>
             Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
@@ -351,13 +358,13 @@
     {% set features = [
         {
             icon: 'tombstone.svg',
-            title: 'Wysoka jakość kamieni',
+            title: 'Odporna konstrukcja',
             text: 'Używamy tylko starannie wyselekcjonowanego granitu, gwarantującego niezrównaną trwałość i odporność na warunki atmosferyczne.',
             alt: 'Ikona jakości materiału'
         },
         {
             icon: 'tombstone.svg',
-            title: 'Precyzja wykonania',
+            title: 'Klasyczne wzornictwo',
             text: 'Każdy element jest rzeźbiony i polerowany z rzemieślniczą precyzją, co zapewnia perfekcyjne wykończenie i estetykę.',
             alt: 'Ikona precyzji wykonania'
         },
