@@ -1,0 +1,32 @@
+{# Pobieramy dane z nagłówka modułu, używając 'page.header' #}
+{% set promo_image = page.header.recommended_granites_promo_image %}
+{% set promo_text = page.header.recommended_text %}
+{% set granites = page.header.recommended_granites %}
+
+<section class="py-4 lg:py-8">
+  {# --- Część statyczna z opisem --- #}
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-screen-xl mx-auto px-4 my-16">
+    <div>
+      {% if promo_image %}
+        <img src="{{ url(promo_image) }}"
+             alt="Różne rodzaje kamieni granitowych"
+             class="w-full object-cover golden-img-border hard-shadow">
+      {% endif %}
+    </div>
+    <div class="flex flex-col space-y-6">
+      <h1 class="text-3xl font-bold text-gray-800 mb-2 border-bot-cherry">Polecane kamienie</h1>
+      <p class="text-lg text-gray-700">
+        {{ promo_text|default('Tekst o tym jakie dostępne kamienie są najlepsze do tego typu nagrobka.') }}
+      </p>
+      <a href="/kamienie" class="btn-primary w-full flex justify-center">Wszystkie dostępne kamienie</a>
+    </div>
+  </div>
+
+  {# --- Tutaj dołączasz komponent karuzeli --- #}
+  {% if granites %}
+    {% include 'modular/_stones.html.twig' with {
+        items: granites,
+        unique_id: 'recommendedGranites' ~ page.id 
+    } %}
+  {% endif %}
+</section>

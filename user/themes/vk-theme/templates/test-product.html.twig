@@ -272,182 +272,41 @@
 
 
 
+{% set product_addons = header.product_addons %}
+{% set features = header.features %}
+{% set faq_items = header.faq_items %}
 
+{# Addons #}
+{% include 'modular/_content-switcher.html.twig' with { items: product_addons } %}
 
-{# Zmiana nazwy zmiennej z 'product_variants' na 'product_addons' #}
-{% set product_addons = [
-    {
-        name: "Ławeczki nagrobkowe",
-        short_desc: "Short now",
-        image: theme_url ~ "/images/products/addons/addons-bench-2.jpg",
-        alt_text: "Zbliżenie na grawerowaną dedykację na kamieniu",
-        title: "Ławeczki nagrobkowe",
-        price: "od 499 PLN",
-        full_desc: "Wiemy, że każdy potrzebuje czegoś innego, 
-                    by w spokoju przeżyć chwilę refleksji. Jeśli Twoim celem jest stworzenie jednolitej, 
-                    kamiennej kompozycji z pomnikiem, najlepszym rozwiązaniem będzie ławeczka granitowa. 
-                    Gdy chcesz dodać przestrzeni klasycznej elegancji i szlachetnego detalu, najlepiej sprawdzi się 
-                    kunsztowny metal. A jeśli po prostu szukasz wygodnego i trwałego siedziska, 
-                    które nie będzie wymagało Twojej uwagi, wybierz praktyczne, nowoczesne ławeczki z tworzywa."
-    },
-    {
-        name: "Wazon nagrobkowy",
-        short_desc: "Short now",
-        image: theme_url ~ "/images/products/addons/addons-vase.jpg",
-        alt_text: "Porcelanowe zdjęcie zamontowane na płycie nagrobnej",
-        title: "Wazon nagrobkowy",
-        price: "od 350 PLN",
-        full_desc: "Nasz klimat wymaga rozwiązań, które są odporne na mróz, deszcz i słońce. 
-                    Wazony z granitu, który jest naturalną skałą, są absolutnie niewrażliwe na cykle zamarzania i odmarzania, 
-                    a zatem nie pękną zimą. Integrujemy je z pomnikiem na stałe, eliminując ryzyko przypadkowego strącenia 
-                    przez wiatr. Wazony z metali szlachetnych zabezpieczamy specjalnymi powłokami, które chronią je przed korozją 
-                    i utratą koloru przez wiele lat. "
-    },
-    {
-        name: "Liternictwo nagrobkowe",
-        short_desc: "Short now",
-        image: theme_url ~ "/images/products/addons/addons-text.jpg",
-        alt_text: "Granitowy wazon i lampion stojące obok nagrobka",
-        title: "Liternictwo nagrobkowe",
-        price: "od 899 PLN",
-        full_desc: "Możesz zdecydować się na klasyczne litery piaskowane, 
-                    rzeźbione w kamieniu i wypełnione kolorem, które podkreślą jego naturalne piękno. 
-                    Jeśli szukasz nowoczesnego kontrastu i efektu 3D, zaproponujemy Ci litery nakładane ze stali szlachetnej 
-                    lub brązu, montowane w kamieniu na dyskretnych kołkach. Oferujemy również możliwość pokrycia napisów płatkami prawdziwego złota 
-                    lub platyny. Pamiętaj też, że jeśli stare napisy na rodzinnym grobowcu straciły blask, 
-                    nasza usługa renowacji liternictwa nagrobkowego obejmuje dokładne czyszczenie liter oraz ich ponowne malowanie 
-                    lub złocenie."
-    },
-    {
-        name: "Zdobienia kamienne",
-        short_desc: "Short now",
-        image: theme_url ~ "/images/products/addons/addons-decoration.jpg",
-        alt_text: "Kamienna ławka ustawiona przy nagrobku",
-        title: "Zdobienia kamienne",
-        price: "od 1 200 PLN",
-        full_desc: "Są rzeczy, których nie da się ubrać w słowa. 
-                    Można je za to wyrazić symbolem, który trafia prosto do serca. 
-                    Zdobienia kamienne to właśnie taki cichy, wizualny język. 
-                    Subtelny, granitowy krzyż mówiący o głębokiej wierze. 
-                    Pąk róży wykuty w kamieniu jako znak wiecznej miłości. 
-                    Delikatna kalia symbolizująca piękno i szlachetność. Zadbamy o to, by ten ważny detal 
-                    został wykonany z mistrzowską precyzją i stał się integralną częścią pomnika."
-    }
-] %}
-{% include 'modular/_content-switcher.html.twig'%}
-
-
-
+{# Features #}
 <section class="py-8 lg:py-16">
   <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 ">
-    
-    {# --- Nagłówek sekcji --- #}
     <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
-            Cechy produktu 
-        </h1>
-        <p>
-            Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
-            Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, ale jesteśmy dostępni telefonicznie i mailowo. 
-        </p>
+      <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">Cechy produktu</h1>
+      <p>{{ header.features_intro|default('Specjalizujemy się w pracach cmentarnych...') }}</p>
     </div>
-    
-{# --- Siatka z cechami (poprawiona) --- #}
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-8 py-8 lg:py-16">
-      
-    {% set features = [
-        {
-            icon: 'tombstone.svg',
-            title: 'Odporna konstrukcja',
-            text: 'Używamy tylko starannie wyselekcjonowanego granitu, gwarantującego niezrównaną trwałość i odporność na warunki atmosferyczne.',
-            alt: 'Ikona jakości materiału'
-        },
-        {
-            icon: 'tombstone.svg',
-            title: 'Klasyczne wzornictwo',
-            text: 'Każdy element jest rzeźbiony i polerowany z rzemieślniczą precyzją, co zapewnia perfekcyjne wykończenie i estetykę.',
-            alt: 'Ikona precyzji wykonania'
-        },
-        {
-            icon: 'tombstone.svg',
-            title: 'Gwarancja satysfakcji',
-            text: 'Twoje zadowolenie jest naszym priorytetem. Służymy wsparciem na każdym etapie realizacji zamówienia.',
-            alt: 'Ikona gwarancji satysfakcji'
-        }
-    ] %}
-      
-    {% for feature in features %}
 
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-8 py-8 lg:py-16">
+      {% for feature in features %}
         <div class="p-4 flex flex-col items-center text-center h-full article-card hover-up-4">
-            <div class="flex-shrink-0 my-auto">
-                <div class="flex items-start justify-center h-16 w-16">
-                    <img src="{{ theme_url }}/images/icons/{{ feature.icon }}" alt="{{ feature.alt }}">
-                </div>
+          <div class="flex-shrink-0 my-auto">
+            <div class="flex items-start justify-center h-16 w-16">
+              <img src="{{ theme_url }}/images/icons/{{ feature.icon }}" alt="{{ feature.alt }}">
             </div>
-            
-            <h3 class="text-xl font-semibold text-ink mb-3 min-h-[3.5rem] flex items-center justify-center text-center">
-                {{ feature.title }}
-            </h3>
-
-            <hr class="w-full hr-underline bg-cherry mb-3">
-            
-            <p class="text-text-brown leading-relaxed grow">
-                {{ feature.text }}
-            </p>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{{ feature.title }}</h3>
+          <hr class="w-full hr-underline bg-cherry mb-3">
+          <p class="text-text-brown leading-relaxed grow">{{ feature.text }}</p>
         </div>
-
-    {% endfor %}
-      
-</div>
-
+      {% endfor %}
+    </div>
+  </div>
 </section>
 
 {# FAQ #}
-{% set faq_items = [
-    {
-        question: "Jak mogę zamówić usługę?",
-        answer: "Wystarczy skontaktować się z nami przez formularz kontaktowy lub telefonicznie, a nasz zespół poprowadzi Cię krok po kroku przez cały proces, od wyboru materiału po finalizację zamówienia."
-    },
-    {
-        question: "Ile trwa realizacja zamówienia?",
-        answer: "Standardowy czas realizacji to od 2 do 4 tygodni, w zależności od złożoności projektu i dostępności wybranych materiałów. Zawsze informujemy o przewidywanym terminie na etapie składania zamówienia."
-    },
-    {
-        question: "Czy mogę liczyć na wsparcie po wykonaniu usługi?",
-        answer: "Oczywiście. Oferujemy pełne wsparcie posprzedażowe, w tym porady dotyczące konserwacji i pielęgnacji. Jesteśmy do Twojej dyspozycji w razie jakichkolwiek pytań."
-    },
-    {
-        question: "Czy oferujecie gwarancję na swoje produkty?",
-        answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
-    }
-] %}
-{% include 'modular/_faq.html.twig'%}
-{# END FAQ #}
+{% include 'modular/_faq.html.twig' with { items: faq_items } %}
 
-{# GALLERY MODAL WITH NAVIGATION:
-<div id="fullscreen-modal" class="is-hidden fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ease-in-out opacity-0 reset-fadeIn">
-    
-    <button id="close-modal-btn" class="absolute top-5 right-5 text-white text-5xl font-bold z-[52] hover:text-gray-300 transition-colors">&times;</button>
-    
-    <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl font-bold z-[52] p-4 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-    </button>
-    
-    <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl font-bold z-[52] p-4 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-    </button>
-
-    <div class="relative flex flex-col items-center justify-center">
-        <img id="fullscreen-image" src="" alt="Fullscreen product image" class="max-w-[85vw] max-h-[85vh] rounded-lg shadow-2xl">
-        <div id="fullscreen-alt-text" class="product-img__mini--title mt-4 text-xl font-semibold text-white text-center">
-            </div>
-    </div>
-</div>
- #}
 
  {% include 'modular/_gallery_modal.html.twig'%}
 

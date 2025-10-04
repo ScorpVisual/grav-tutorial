@@ -1,0 +1,45 @@
+form: flex-pages
+id: 'tmp://forms/session/3c7a4a47125d6794f474a54259f70df0'
+unique_id: 3c7a4a47125d6794f474a54259f70df0
+url: 'http://127.0.0.1:8000/admin/pages/_test-stones'
+user:
+  username: kocietexty
+  email: scorpvisualcontact@gmail.com
+timestamps:
+  created: 1759567928
+  updated: 1759567941
+data:
+  frontmatter: "title: 'Test stones'\nbody_classes: modular\n"
+  content: asdasdasdasdasd
+  ordering: false
+  folder: _test-stones
+  route: ''
+  name: modular/_stones
+  order: null
+  blueprint: null
+  xss_check: null
+  header:
+    media_order: null
+files: {  }
+object:
+  type: pages
+  key: _test-stones
+  storage_key: ''
+  timestamp: 0
+  serialized:
+    __META: {  }
+    storage_key: ''
+    parent_key: ''
+    order: false
+    folder: _test-stones
+    template: _stones
+    lang: ''
+    root: false
+    header:
+      title: 'Test stones'
+      body_classes: modular
+    route: /
+    name: modular/_stones
+    modular: '1'
+    frontmatter: "title: 'Test stones'\nbody_classes: modular\n"
+    slug: _test-stones

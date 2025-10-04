@@ -1,0 +1,64 @@
+title: Photo and text on the left Section
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+          title: Content
+
+          fields:
+
+            header.title:
+              type: text
+              label: Tytuł sekcji
+              default: "Różne formy pisma - opis ogólny"
+
+            header.image:
+              type: filepicker
+              folder: 'theme://images/products/letters'
+              preview_images: true
+              label: Obrazek
+              accept:
+                - .jpg
+                - .png
+                - .jpeg
+                - .webp
+
+            header.alt:
+              type: text
+              label: Tekst alternatywny obrazka
+              default: "Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski"
+
+            content:
+              type: editor
+              label: Opis
+              validate:
+                type: textarea
+
+            header.btn1_url:
+              type: text
+              label: Link przycisku 1
+              default: "#main-content"
+
+            header.btn1_text:
+              type: text
+              label: Tekst przycisku 1
+              default: "Sprawdź ofertę kamieni"
+
+            header.btn2_url:
+              type: text
+              label: Link przycisku 2
+              default: "#main-content"
+
+            header.btn2_text:
+              type: text
+              label: Tekst przycisku 2
+              default: "Skontaktuj się"

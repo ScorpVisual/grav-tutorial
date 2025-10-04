@@ -1,0 +1,29 @@
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+      <img src="{{ page.media[header.image].url ?? (theme_url ~ '/images/products/letters/letters-carved-vk.jpg') }}"
+           alt="{{ header.alt|default('Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski') }}"
+           class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div class="flex flex-col gap-4 items-stretch">
+      <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+        {{ header.title|default('Różne formy pisma - opis ogólny') }}
+      </h2>
+      <p class="text-lg text-gray-700">
+        {{ content|raw }}
+      </p>
+      <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+        {% if header.btn1_url %}
+          <a href="{{ header.btn1_url }}" class="btn-primary flex-grow text-center">
+            {{ header.btn1_text|default('Sprawdź ofertę kamieni') }}
+          </a>
+        {% endif %}
+        {% if header.btn2_url %}
+          <a href="{{ header.btn2_url }}" class="btn-cta flex-grow text-center">
+            {{ header.btn2_text|default('Skontaktuj się') }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

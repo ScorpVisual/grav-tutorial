@@ -1,0 +1,171 @@
+title: Strona Produktu
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        # Zakładka z główną treścią produktu
+        content:
+          type: tab
+          title: 📦 Produkt
+          fields:
+            header.title:
+              type: text
+              label: Tytuł główny produktu
+              default: "Nagrobek Pojedynczy Klasyczny"
+
+            header.alt:
+              type: text
+              label: Tekst alternatywny dla głównego obrazka
+              help: "Ważne dla SEO i dostępności. Opisz, co przedstawia główne zdjęcie produktu."
+
+            header.product_variants:
+              name: product_variants
+              type: list
+              label: Warianty produktu (np. rozmiary)
+              style: vertical
+              fields:
+                .title:
+                  type: text
+                  label: Tytuł wariantu
+                .price:
+                  type: text
+                  label: Cena
+                .img:
+                  type: filepicker
+                  folder: 'theme://images/products'
+                  preview_images: true
+                  label: Zdjęcie wariantu
+                .size:
+                  type: text
+                  label: Nazwa wariantu (np. "Pojedynczy", "Rodzinny")
+                .full_desc:
+                  type: textarea
+                  label: Pełny opis wariantu
+
+        # Zakładka z galerią realizacji
+        gallery:
+          type: tab
+          title: 🖼️ Galeria Realizacji
+          fields:
+            header.gallery_items:
+              name: gallery_items
+              type: list
+              label: Zdjęcia w galerii
+              style: vertical
+              fields:
+                .image_filename:
+                  type: filepicker
+                  folder: 'theme://images/products'
+                  preview_images: true
+                  label: Plik obrazka
+                .title:
+                  type: text
+                  label: Tytuł (widoczny na zdjęciu)
+
+        # Zakładka z polecanymi kamieniami
+        stones:
+          type: tab
+          title: 💎 Polecane Kamienie
+          fields:
+            header.recommended_granites_promo_image:
+                type: filepicker
+                folder: 'theme://images/photos'
+                preview_images: true
+                label: Zdjęcie promocyjne dla sekcji
+            header.recommended_text:
+              type: textarea
+              label: Tekst wprowadzający do polecanych kamieni
+              default: 'Poniżej prezentujemy listę kamieni, które najlepiej komponują się z tym modelem nagrobka, gwarantując zarówno estetykę, jak i wyjątkową trwałość.'
+            header.recommended_granites:
+              name: recommended_granites
+              type: list
+              label: Lista polecanych granitów
+              style: vertical
+              fields:
+                .name:
+                  type: text
+                  label: Nazwa kamienia
+                .desc:
+                  type: textarea
+                  label: Krótki opis
+                .img:
+                  type: filepicker
+                  folder: 'theme://images/textures'
+                  preview_images: true
+                  label: Zdjęcie tekstury kamienia
+
+        # Zakładka z dodatkami
+        addons:
+          type: tab
+          title: ✨ Dodatki i Akcesoria
+          fields:
+            header.product_addons:
+              name: product_addons
+              type: list
+              label: Dodatki do produktu
+              style: vertical
+              fields:
+                .name:
+                  type: text
+                  label: Nazwa dodatku
+                .image:
+                  type: filepicker
+                  folder: 'theme://images/products/addons'
+                  preview_images: true
+                  label: Zdjęcie dodatku
+                .alt_text:
+                  type: text
+                  label: Tekst alternatywny obrazka
+                .title:
+                  type: text
+                  label: Tytuł (wyświetlany na karcie)
+                .price:
+                  type: text
+                  label: Cena (np. od 499 PLN)
+                .full_desc:
+                  type: textarea
+                  label: Pełny opis dodatku
+
+        # Zakładka z cechami i FAQ
+        features_faq:
+          type: tab
+          title: 🤔 Cechy i FAQ
+          fields:
+            header.features:
+              name: features
+              type: list
+              label: Cechy produktu
+              style: vertical
+              fields:
+                .icon:
+                  type: filepicker
+                  folder: 'theme://images/icons'
+                  preview_images: true
+                  label: Ikona
+                .title:
+                  type: text
+                  label: Tytuł cechy
+                .text:
+                  type: textarea
+                  label: Opis cechy
+                .alt:
+                  type: text
+                  label: Tekst alternatywny dla ikony
+            header.faq_items:
+              name: faq_items
+              type: list
+              label: Pytania i odpowiedzi (FAQ)
+              style: vertical
+              fields:
+                .question:
+                  type: text
+                  label: Pytanie
+                .answer:
+                  type: textarea
+                  label: Odpowiedź

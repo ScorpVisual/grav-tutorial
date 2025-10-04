@@ -1,34 +1,61 @@
-{# Sprawdzamy, czy przekazano unique_id, jeśli nie, generujemy losowy, by uniknąć błędów #}
-{% set unique_id = unique_id | default(random()) %}
+{# Pobieramy dane z nagłówka modułu, używając 'page.header' #}
+{% set promo_image = page.header.recommended_granites_promo_image %}
+{% set promo_text = page.header.recommended_text %}
+{% set granites = page.header.recommended_granites %}
 
-<div class="js-material-carousel max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center my-12">
+{# Używamy ID strony, aby każda karuzela na stronie miała unikalne identyfikatory #}
+{% set unique_id = 'stones-' ~ page.id %}
 
-  {# KARUZELA - dodajemy unikalne ID do kontenera i atrybuty danych do przycisków #}
-  <div class="relative flex items-center justify-center h-[350px]">
-    <button data-dir="prev" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--prev" data-target="carousel-container-{{ unique_id }}">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-    </button>
-
-    <div id="carousel-container-{{ unique_id }}" class="carousel-main-container w-full h-full flex items-center justify-center">
-      {% for material in items %}
-        <img src="{{ material.img }}"
-             alt="{{ material.name }}"
-             data-name="{{ material.name }}"
-             data-desc="{{ material.desc }}"
-             {# Dodajemy atrybut data-info-target, by JS wiedział, gdzie wyświetlić info #}
-             data-info-target="materialInfo-{{ unique_id }}" 
-             class="carousel-item rounded-lg object-cover cursor-pointer material-info-container">
-      {% endfor %}
+<section class="py-4 lg:py-8">
+  {# --- Część z opisem i zdjęciem promocyjnym --- #}
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-screen-xl mx-auto px-4 my-16">
+    <div>
+      {% if promo_image %}
+        <img src="{{ url(promo_image) }}"
+             alt="Różne rodzaje kamieni granitowych"
+             class="w-full object-cover golden-img-border hard-shadow">
+      {% endif %}
     </div>
-
-    <button data-dir="next" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--next" data-target="carousel-container-{{ unique_id }}">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-    </button>
+    <div class="flex flex-col space-y-6">
+      <h1 class="text-3xl font-bold text-gray-800 mb-2 border-bot-cherry">Polecane kamienie</h1>
+      <p class="text-lg text-gray-700">
+        {{ promo_text|default('Tekst o tym jakie dostępne kamienie są najlepsze do tego typu nagrobka.') }}
+      </p>
+      <a href="/kamienie" class="btn-primary w-full flex justify-center">Wszystkie dostępne kamienie</a>
+    </div>
   </div>
 
-  {# PANEL INFORMACYJNY - dodajemy unikalne ID do kontenera i podelementów #}
-  <div id="materialInfo-{{ unique_id }}" class="p-2 lg:p-6 lg:ml-12 material-info-container">
-    <h3 id="materialName-{{ unique_id }}" class="text-3xl font-bold mb-3 text-gray-800 transition-opacity duration-300 underline--cherry"></h3>
-    <p id="materialDesc-{{ unique_id }}" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300"></p>
-  </div>
-</div>
+  {# --- Karuzela (wklejona bezpośrednio tutaj) --- #}
+  {% if granites %}
+    <div class="js-material-carousel max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center my-12">
+
+      {# Obrazy karuzeli #}
+      <div class="relative flex items-center justify-center h-[350px]">
+        <button data-dir="prev" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--prev" data-target="carousel-container-{{ unique_id }}">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+
+        <div id="carousel-container-{{ unique_id }}" class="carousel-main-container w-full h-full flex items-center justify-center">
+          {% for material in granites %}
+            <img src="{{ url(material.img) }}"
+                 alt="{{ material.name }}"
+                 data-name="{{ material.name }}"
+                 data-desc="{{ material.desc }}"
+                 data-info-target="materialInfo-{{ unique_id }}" 
+                 class="carousel-item rounded-lg object-cover cursor-pointer material-info-container">
+          {% endfor %}
+        </div>
+
+        <button data-dir="next" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--next" data-target="carousel-container-{{ unique_id }}">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+
+      {# Panel informacyjny obok karuzeli #}
+      <div id="materialInfo-{{ unique_id }}" class="p-2 lg:p-6 lg:ml-12 material-info-container">
+        <h3 id="materialName-{{ unique_id }}" class="text-3xl font-bold mb-3 text-gray-800 transition-opacity duration-300 underline--cherry"></h3>
+        <p id="materialDesc-{{ unique_id }}" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300"></p>
+      </div>
+    </div>
+  {% endif %}
+</section>
