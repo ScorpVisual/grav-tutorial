@@ -6,7 +6,13 @@
 <body class="typography">
     <header class="relative">
         {% include 'partials/header.html.twig' %}
-        {% include 'partials/custom-hero.html.twig' %}
+        {% set hero_type = page.header.hero_type|default('custom-hero') %}
+
+        {% if hero_type == 'main-hero' %}
+            {% include 'partials/main-hero.html.twig' %}
+        {% else %}
+            {% include 'partials/custom-hero.html.twig' %}
+        {% endif %}
     </header>
 
     <div id="main-content" class="grid-container">
