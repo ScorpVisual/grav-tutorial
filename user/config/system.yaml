@@ -54,7 +54,6 @@ pages:
     twig: true
   markdown:
     extra: true
-    parser: ParsedownExtra
     auto_line_breaks: false
     auto_url_links: false
     escape_markup: false
@@ -67,6 +66,7 @@ pages:
       - id
       - class
       - classes
+    parser: ParsedownExtra
   types:
     - html
     - htm
@@ -98,7 +98,7 @@ pages:
       - form
       - forms
 cache:
-  enabled: false 
+  enabled: false
   check:
     method: file
   driver: auto
@@ -178,7 +178,7 @@ images:
     aspect_ratio: false
     retina_scale: '1'
   defaults:
-    loading: auto
+    loading: lazy
     decoding: auto
     fetchpriority: auto
   watermark:
@@ -242,5 +242,5 @@ strict_mode:
   plugins:
     admin:
       notifications:
-        feed: false 
+        feed: false
         updates: false

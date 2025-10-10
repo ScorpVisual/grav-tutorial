@@ -4,9 +4,9 @@ author:
   email: 'kocietexty@gmail.com'
 
 # This menu is at the root level (zero indentation)
-menu:
-  # This dash is indented with 2 spaces
-  - text: 'Style Guide'
-    # These properties are indented with 4 spaces
-    url: '/styleguide'
-    icon: 'paint-brush'
+# menu:
+#   # # This dash is indented with 2 spaces
+#   - text: 'Opieka nad grobem'
+#     # These properties are indented with 4 spaces
+#     url: '/uslugi'
+#     icon: 'paint-brush'
