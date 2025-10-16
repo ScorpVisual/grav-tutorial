@@ -886,6 +886,10 @@ video {
   min-height: 3.5rem;
 }
 
+.min-h-\[650px\] {
+  min-height: 650px;
+}
+
 .min-h-\[70vh\] {
   min-height: 70vh;
 }
@@ -896,18 +900,6 @@ video {
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.min-h-\[1600px\] {
-  min-height: 1600px;
-}
-
-.min-h-\[400px\] {
-  min-height: 400px;
-}
-
-.min-h-\[650px\] {
-  min-height: 650px;
 }
 
 .w-16 {
