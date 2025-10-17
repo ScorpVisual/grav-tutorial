@@ -1,0 +1,190 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+
+{% include 'partials/shortcut.html.twig'%}
+
+
+{% include 'partials/video-ad.html.twig'%}
+
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <div>
+        <img src="{{ theme_url }}/images/products/featured/landing-tombstone.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Specjalizujemy się w nagrobkach
+        </h1>
+        <p class="text-lg text-gray-700">
+            Specjalizujemy się w kompleksowym tworzeniu nagrobków. 
+            Zapewniamy naszym klientom pełne wsparcie i fachowe doradztwo. 
+            Oferujemy zarówno pomoc z przygotowaniem projektu pomnika, jak i realizację gotowych projektów.
+        </p>
+        <p class="text-lg text-gray-700">
+            <strong>Nasze usługi obejmują cały proces:</strong> od selekcji odpowiedniego kamienia,
+             po precyzyjne i terminowe wykonawstwo z zastosowaniem najlepszych praktyk branżowych.
+        </p>
+                <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Nasze produkty
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            <span class="c-cherry">Kamieniarstwo Wiśniewski:</span><br>
+            Zaufany zakład kamieniarski na Śląsku
+        </h1>
+        <p class="text-lg text-gray-700">
+              Od ponad 30 lat dostarczamy wysokiej jakości usługi kamieniarskie, specjalizując się w projektowaniu i wykonawstwie nagrobków dla klientów z Dąbrowy Górniczej i całego Śląska.
+        </p>
+        <p class="text-lg text-gray-700">
+              Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
+        </p>
+                <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Nasze usługi
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/photos/kamieniarstwo-wisniewski-wlasciciel.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+        
+        <div>
+            <img src="{{ theme_url }}/images/photos/article-photo.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover rounded-lg shadow-lg golden-img-border hard-shadow">
+        </div>
+
+        <div class="flex flex-col space-y-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 border-bot-cherry">
+                <span class="c-cherry block font-semibold text-2xl">Potrzebujesz pomocy?</span>
+                Zawsze służymy fachowym doradztwem!
+            </h2>
+
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Wybór odpowiedniego nagrobka to ważna i często trudna decyzja. Rozumiemy to, dlatego nasze wieloletnie doświadczenie jest do Państwa dyspozycji. Służymy wsparciem na każdym etapie – od wyboru materiału, przez projekt, aż po finalny montaż, dbając o każdy detal.
+            </p>
+                <a href="https://biznes.interia.pl/finanse/news-ile-kosztuje-pomnik-granitowy-ceny-u-kamieniarza,nId,7977744"
+                   class="btn-tertiary w-full sm:w-auto text-center justify-center text-gray-700 hover:text-gray-900 text-xl font-semibold">
+                    Przeczytaj nasz wywiad dla Interii Biznes!
+                </a>
+            
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Naszym celem jest transparentność i Państwa spokój. Chętnie odpowiemy na wszystkie pytania, wyjaśnimy różnice w cenach i pomożemy znaleźć rozwiązanie, które najlepiej odda hołd pamięci Państwa bliskich, mieszcząc się w założonym budżecie.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                <a href="#kontakt" class="btn-cta--big w-full sm:w-auto flex-grow text-center justify-center ">
+                    Skontaktuj się!
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'partials/landing-tombstone.html.twig'%}
+
+
+
+{% include 'partials/produkty.html.twig'%}
+
+{% include 'partials/popular-services.html.twig'%}
+
+<div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--granite">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Kamienie</h3>
+        </div>
+    </div>
+
+
+
+{% include 'partials/recommended-stones.html.twig'%}
+
+
+<div class="flex section-header mx-auto my-8">
+    <div class="section-header__content section-header__bg--black">
+        <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Liternictwo</h3>
+    </div>
+</div>
+
+
+{% include 'partials/partial-letters.html.twig'%}
+
+{% include 'partials/gallery.html.twig'%}
+
+{% include 'modular/_gallery_modal.html.twig'%}
+
+{# articles #}
+{% set articles = [
+    {
+        image_src: theme_url ~ '/images/photos/services-photo.jpg',
+        image_alt: 'Nagłówek artykułu o nowoczesnych nagrobkach',
+        title: 'Nowoczesne trendy w kamieniarstwie',
+        description: 'Odkryj minimalistyczne formy i innowacyjne materiały, które zyskują na popularności w projektowaniu nagrobków.',
+        url: '#',
+        date: '20.09.2025',
+        category: 'Inspiracje'
+    },
+    {
+        image_src: theme_url ~ '/images/photos/stones-photo-2.jpg',
+        image_alt: 'Granitowa płyta nagrobna',
+        title: 'Jak dbać o nagrobek z granitu?',
+        description: 'Praktyczne porady dotyczące czyszczenia i konserwacji granitu, aby zachował swój blask na długie lata.',
+        url: '#',
+        date: '15.09.2025',
+        category: 'Porady'
+    },
+    {
+        image_src: theme_url ~ '/images/photos/stones-photo.jpg',
+        image_alt: 'Rzeźba anioła na nagrobku',
+        title: 'Personalizacja pomnika – co warto wiedzieć?',
+        description: 'Od grawerunku po rzeźbę - poznaj możliwości personalizacji, które nadadzą pomnikowi unikalny charakter.',
+        url: '#',
+        date: '10.09.2025',
+        category: 'Wiedza'
+    }
+] %}
+{% include 'modular/_article-cards.html.twig' %}
+{# end articles #}
+{# FAQ #}
+{% set faq_items = [
+    {
+        question: "Jak mogę zamówić usługę?",
+        answer: "Wystarczy skontaktować się z nami przez formularz kontaktowy lub telefonicznie, a nasz zespół poprowadzi Cię krok po kroku przez cały proces, od wyboru materiału po finalizację zamówienia."
+    },
+    {
+        question: "Ile trwa realizacja zamówienia?",
+        answer: "Standardowy czas realizacji to od 2 do 4 tygodni, w zależności od złożoności projektu i dostępności wybranych materiałów. Zawsze informujemy o przewidywanym terminie na etapie składania zamówienia."
+    },
+    {
+        question: "Czy mogę liczyć na wsparcie po wykonaniu usługi?",
+        answer: "Oczywiście. Oferujemy pełne wsparcie posprzedażowe, w tym porady dotyczące konserwacji i pielęgnacji. Jesteśmy do Twojej dyspozycji w razie jakichkolwiek pytań."
+    },
+    {
+        question: "Czy oferujecie gwarancję na swoje produkty?",
+        answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
+    }
+] %}
+   <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--red">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Najczęstsze pytania</h3>
+        </div>
+    </div>
+{% include 'modular/_faq.html.twig'%}
+{# END FAQ #}
+{% endblock %}
