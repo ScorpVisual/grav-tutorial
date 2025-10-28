@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clickableImages.forEach((container, index) => {
             container.addEventListener('click', (event) => {
                 // Zapobiegamy otwieraniu się nakładki karty, jeśli na nią klikamy
+                event.preventDefault();
                 event.stopPropagation();
                 openModal(index);
             });
@@ -339,45 +340,47 @@ function initMaterialCarousel() {
  * Umożliwia otwieranie i zamykanie nakładki ze szczegółami.
  */
 function initProductCards() {
-  const allProductCards = document.querySelectorAll('.product-card');
+    const allProductCards = document.querySelectorAll('.product-card');
 
-  allProductCards.forEach(card => {
-    const expandButton = card.querySelector('.product-card__expand-btn');
-    const closeButton = card.querySelector('.details-overlay__close-btn');
-    const overlay = card.querySelector('.product-card__details-overlay');
+    allProductCards.forEach(card => {
+        const expandButton = card.querySelector('.product-card__expand-btn');
+        const closeButton = card.querySelector('.details-overlay__close-btn');
+        const overlay = card.querySelector('.product-card__details-overlay');
 
-    if (!expandButton || !closeButton || !overlay) return;
+        if (!expandButton || !closeButton || !overlay) return;
 
-    // Otwieranie karty
-    expandButton.addEventListener('click', (event) => {
-      event.stopPropagation();
-      card.classList.add('is-details-open');
+        // Otwieranie karty
+        expandButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            card.classList.add('is-details-open');
+        });
+
+        // Zamykanie przez przycisk "X"
+        closeButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            card.classList.remove('is-details-open');
+        });
+
+        // INTELIGENTNE zamykanie przez kliknięcie w tło
+        overlay.addEventListener('click', (event) => {
+            // Zamknij tylko, jeśli kliknięto w tło (overlay), a nie w jego zawartość
+            if (event.target === overlay) {
+                card.classList.remove('is-details-open');
+            }
+        });
     });
 
-    // Zamykanie przez przycisk "X"
-    closeButton.addEventListener('click', (event) => {
-      event.stopPropagation();
-      card.classList.remove('is-details-open');
+    // Zamykanie przez kliknięcie poza jakąkolwiek otwartą kartą
+    document.addEventListener('click', (event) => {
+        // Sprawdź, czy kliknięcie NIE nastąpiło wewnątrz jakiejkolwiek karty
+        if (!event.target.closest('.product-card')) {
+            // Jeśli tak, zamknij wszystkie otwarte karty
+            document.querySelectorAll('.product-card.is-details-open').forEach(card => {
+                card.classList.remove('is-details-open');
+            });
+        }
     });
-
-    // Zamykanie przez kliknięcie w overlay (dowolne miejsce)
-    overlay.addEventListener('click', () => {
-      card.classList.remove('is-details-open');
-    });
-  });
-
-  // Zamykanie przez kliknięcie poza otwartą kartą
-  document.addEventListener('click', (event) => {
-    const openCards = document.querySelectorAll('.product-card.is-details-open');
-
-    openCards.forEach(card => {
-      if (!card.contains(event.target)) {
-        card.classList.remove('is-details-open');
-      }
-    });
-  });
 }
-
 
 
   
