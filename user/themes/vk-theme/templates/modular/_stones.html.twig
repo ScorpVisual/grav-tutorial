@@ -11,7 +11,7 @@
 
     <div id="carousel-container-{{ unique_id }}" class="carousel-main-container w-full h-full flex items-center justify-center">
       {% for material in items %}
-        <img src="{{ material.img }}"
+        <img src="{{ theme_url }}/{{ material.img }}"
              alt="{{ material.name }}"
              data-name="{{ material.name }}"
              data-desc="{{ material.desc }}"

@@ -1,0 +1,61 @@
+title: Moduł - Polecane Kamienie
+icon: th-large
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        # Zakładka na treść po lewej stronie
+        content:
+          type: tab
+          title: 📜 Treść Sekcji
+          fields:
+            header.main_image:
+              type: filepicker
+              label: Główne zdjęcie (po lewej)
+              folder: 'theme@:/images/photos'
+              preview_images: true
+              default: 'images/photos/stones-photo-3.jpg'
+            header.title:
+              type: text
+              label: Nagłówek sekcji
+              default: "Polecane kamienie"
+            header.text:
+              type: textarea
+              label: Tekst pod nagłówkiem
+              rows: 5
+              default: "Stawiamy na najwyższą jakość materiałów i precyzję pracy..."
+            header.button_text:
+              type: text
+              label: Tekst na przycisku
+              default: "Wszystkie dostępne kamienie"
+            header.button_link:
+              type: text
+              label: Link przycisku (np. /kamienie lub #)
+              default: "#"
+              
+        # Zakładka na listę kamieni do karuzeli
+        stones_list:
+          type: tab
+          title: 💎 Lista Kamieni
+          fields:
+            header.items:
+              type: list
+              label: Kamienie do karuzeli
+              style: vertical
+              fields:
+                .name:
+                  type: text
+                  label: Nazwa kamienia
+                  default: "Biały granit"
+                .desc:
+                  type: textarea
+                  label: Opis kamienia
+                  default: "Elegancki i ponadczasowy..."
+                .img:
+                  type: filepicker
+                  label: Zdjęcie (tekstura)
+                  folder: 'theme@:/images/textures'
+                  preview_images: true

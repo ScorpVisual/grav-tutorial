@@ -1,0 +1,47 @@
+{# 
+  Plik: templates/modular/faq.html.twig
+  Pobiera dane z blueprintu faq.yaml
+#}
+<section class="py-4 lg:py-8">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        {# Nagłówek i podtytuł pobierane z CMS #}
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
+                {{ page.header.title }}
+            </h1>
+            {% if page.header.subtitle %}
+            <p class="text-center text-lg text-gray-700">
+                {{ page.header.subtitle|nl2br }}
+            </p>
+            {% endif %}
+        </div>
+
+        {# Sprawdzamy, czy lista nie jest pusta #}
+        {% set faq_items = page.header.faq_items %}
+        {% if faq_items is not empty %}
+            <div class="space-y-4 pt-8">
+                {# Pętla po liście zdefiniowanej w CMS #}
+                {% for item in faq_items %}
+                    <div class="faq-item pick-a-card rounded-lg shadow-sm transition-all duration-300 {% if loop.first %}is-active{% endif %}">
+                        
+                        <div class="faq-question flex justify-between items-center p-5 cursor-pointer">
+                            <h3 class="font-bold text-lg text-gray-800">
+                                {{ item.question }}
+                            </h3>
+                            <svg class="faq-icon w-5 h-5 text-gray-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </div>
+
+                        <div class="faq-answer-content">
+                            <p class="text-gray-600 p-5 pt-0">
+                                {{ item.answer|nl2br }} {# nl2br, aby textarea zachowywała entery #}
+                            </p>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>

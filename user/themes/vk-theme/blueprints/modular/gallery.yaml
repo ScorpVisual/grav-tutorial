@@ -1,0 +1,38 @@
+title: Moduł - Galeria
+icon: image
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Ustawienia
+          fields:
+            header.title:
+              type: text
+              label: Tytuł sekcji (opcjonalny)
+              help: "Np. 'Nasze Realizacje' lub 'Galeria Produktu'"
+
+        gallery_list:
+          type: tab
+          title: 🖼️ Zdjęcia
+          fields:
+            header.gallery_items:
+              type: list
+              label: Zdjęcia w galerii
+              style: vertical
+              
+              fields:
+                .image_filename:
+                  type: filepicker
+                  label: Zdjęcie
+                  folder: 'theme@:/images/products' # Możesz to zmienić lub usunąć, by przeglądać wszystko
+                  preview_images: true
+                  help: "Wybierz obrazek z galerii"
+                .title:
+                  type: text
+                  label: Podpis zdjęcia
+                  help: "Np. 'Nagrobek Pojedynczy Klasyczny'"
