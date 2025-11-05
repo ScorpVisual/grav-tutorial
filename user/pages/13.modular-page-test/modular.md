@@ -1,6 +1,6 @@
 ---
 title: Modular-page-test
-published: false
+published: true
 hero_type: main-hero
 ---
 
