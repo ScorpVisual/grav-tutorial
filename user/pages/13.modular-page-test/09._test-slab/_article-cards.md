@@ -1,5 +1,5 @@
 ---
-template: marbleSlab_lettersGolden
+template: modular/marbleSlab-lettersGolden
 title: 'Liternictwo nagrobkowe'
 text: "Cena nagrobka zależy przede wszystkim od rodzaju kamienia. \nWyjaśnimy Ci różnicę między gotowymi pomnikami importowanymi a <strong>szlachetnym, \ncertyfikowanym granitem, który tniemy i obrabiamy na Twoje indywidualne zamówienie \nw naszym warsztacie</strong>."
 image: images/products/letters/letters-main.jpg

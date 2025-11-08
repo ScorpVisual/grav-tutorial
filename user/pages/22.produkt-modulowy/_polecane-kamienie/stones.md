@@ -1,5 +1,5 @@
 ---
-template: modular/stones
+template: stones
 main_image: images/photos/stones-photo-3.jpg
 title: 'Polecane kamienie'
 text: 'Tekst o tym jakie dostępne kamienie są najlepsze do tego typu nagrobka. Możemy dodać różne kolory, możemy dodać różne ceny i dostępności.'

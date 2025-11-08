@@ -1,0 +1,39 @@
+title: 'Moduł - Karuzela Skrótów'
+icon: link
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        settings:
+          type: tab
+          title: 📜 Ustawienia
+          fields:
+            header.title:
+              type: text
+              label: Tytuł "flagi"
+              default: 'Na skróty'
+
+        buttons:
+          type: tab
+          title: 🔘 Przyciski
+          fields:
+            header.shortcut_buttons:
+              type: list
+              label: Lista przycisków (skrótów)
+              style: vertical
+              fields:
+                .text:
+                  type: text
+                  label: Tekst przycisku
+                  validate:
+                    required: true
+                .url:
+                  type: text
+                  label: Link (URL)
+                  validate:
+                    required: true
+                  help: "Np. /kontakt lub #wylewki"

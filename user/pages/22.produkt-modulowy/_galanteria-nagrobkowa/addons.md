@@ -1,5 +1,5 @@
 ---
-template: modular/addons
+template: addons
 section_title: 'Galanteria nagrobkowa'
 product_addons:
     -
