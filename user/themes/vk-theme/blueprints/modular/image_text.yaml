@@ -1,0 +1,110 @@
+title: 'Moduł - Tekst i Obraz (Podstawowy)'
+icon: columns
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        content:
+          type: tab
+          title: 📜 Treść
+          fields:
+            header.title:
+              type: text
+              label: Tytuł
+              default: "Tytuł sekcji"
+            header.subtitle:
+              type: text
+              label: Podtytuł (opcjonalny)
+              help: "Wyświetla się nad głównym tytułem (jak w wariancie 'Pomoc')"
+            header.image:
+              type: filepicker
+              label: Zdjęcie
+              folder: 'theme@:/images/'
+              preview_images: true
+            header.image_alt:
+              type: text
+              label: Tekst alternatywny dla zdjęcia (SEO)
+              default: "Zdjęcie"
+            header.main_text:
+              type: textarea
+              label: Główny tekst
+              size: large
+              help: "Użyj Markdown do list (`* `) lub pogrubień (`**...**`). Możesz też wkleić HTML."
+
+        info:
+          type: tab
+          title: ℹ️ Linie Informacyjne
+          fields:
+            header.info_lines:
+              type: list
+              label: 'Linie informacyjne (np. Cena, Dostępność)'
+              style: vertical
+              fields:
+                .label:
+                  type: text
+                  label: Etykieta
+                  help: "Np. 'Cena:', 'Pomnik granitowy:', 'Dostępność:'"
+                .value:
+                  type: text
+                  label: Wartość
+                  help: "Np. 'od 1000 PLN', 'trudno dostępne'"
+                .style:
+                  type: select
+                  label: Styl
+                  default: 'default'
+                  options:
+                    'default': 'Standardowy (price-highlighted)'
+                    'highlighted': 'Wyróżniony (price-highlighted bg-ink)'
+
+        buttons:
+          type: tab
+          title: 🔘 Przyciski
+          fields:
+            header.buttons:
+              type: list
+              label: Przyciski (opcjonalne)
+              style: vertical
+              fields:
+                .text:
+                  type: text
+                  label: Tekst na przycisku
+                .url:
+                  type: text
+                  label: Link (np. /kontakt lub #kontakt)
+                .class:
+                  type: select
+                  label: Wygląd przycisku
+                  default: 'btn-cta flex-grow text-center'
+                  options:
+                    'btn-cta flex-grow text-center': 'CTA (Czerwony)'
+                    'btn-primary flex-grow text-center': 'Primary (Złoty)'
+                    'btn-cta--big w-full sm:w-auto flex-grow text-center justify-center': 'CTA Duży (Czerwony)'
+                    'btn-tertiary w-full sm:w-auto text-center justify-center text-gray-700 hover:text-gray-900': 'Tertiary (Szary, tekstowy)'
+
+        settings:
+          type: tab
+          title: ⚙️ Ustawienia
+          fields:
+            header.layout_style:
+              type: select
+              label: Układ (Kolejność)
+              default: 'image_left'
+              options:
+                'image_left': 'Obraz po lewej, Tekst po prawej'
+                'text_left': 'Tekst po lewej, Obraz po prawej'
+            header.image_style:
+              type: select
+              label: Styl obrazka
+              default: 'golden-border'
+              options:
+                'golden-border': 'Złota ramka (standard)'
+                'rounded': 'Zaokrąglone rogi (jak w "Pomoc")'
+                'none': 'Brak stylu'
+            header.section_id:
+              type: text
+              label: ID Sekcji (opcjonalne)
+              help: "Do linkowania (np. 'wylewki' lub 'impregnacja')"

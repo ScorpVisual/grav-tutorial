@@ -218,7 +218,7 @@ http:
   proxy_url: null
   proxy_cert_path: null
   concurrent_connections: 5
-  verify_peer: true
+  verify_peer: false
   verify_host: true
 accounts:
   type: regular

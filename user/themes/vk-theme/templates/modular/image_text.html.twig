@@ -1,0 +1,78 @@
+{# Pobieramy zmienne dla czytelności #}
+{% set layout = page.header.layout_style|default('image_left') %}
+{% set image_style = page.header.image_style|default('golden-border') %}
+{% set section_id = page.header.section_id %}
+
+{% set subtitle = page.header.subtitle %}
+{% set title = page.header.title %}
+{% set info_lines = page.header.info_lines %}
+{% set main_text = page.header.main_text %}
+{% set buttons = page.header.buttons %}
+
+{# Ustawiamy klasę dla obrazka na podstawie wyboru w CMS #}
+{% set image_class = '' %}
+{% if image_style == 'golden-border' %}
+    {% set image_class = 'w-full object-cover golden-img-border hard-shadow' %}
+{% elseif image_style == 'rounded' %}
+    {% set image_class = 'w-full object-cover rounded-lg shadow-lg golden-img-border hard-shadow' %}
+{% else %}
+    {% set image_class = 'w-full object-cover' %}
+{% endif %}
+
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto" {% if section_id %}id="{{ section_id }}"{% endif %}>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    
+    {# --- KOLUMNA ZE ZDJĘCIEM --- #}
+    <div class="{% if layout == 'text_left' %}md:order-last{% else %}md:order-first{% endif %}">
+        <img src="{{ theme_url }}/{{ page.header.image }}" alt="{{ page.header.image_alt }}" class="{{ image_class }}">
+    </div>
+
+    {# --- KOLUMNA TEKSTOWA --- #}
+    <div class="flex flex-col gap-4 items-stretch {% if layout == 'text_left' %}md:order-first{% else %}md:order-last{% endif %}">
+        
+        {# Opcjonalny podtytuł (jak w wariancie 5) #}
+        {% if subtitle %}
+            <span class="c-cherry block font-semibold text-2xl">{{ subtitle }}</span>
+        {% endif %}
+
+        {# Tytuł #}
+        {% if title %}
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 border-bot-cherry">
+                {{ title }}
+            </h2>
+        {% endif %}
+
+        {# Opcjonalne linie informacyjne (Cena, Dostępność itp.) #}
+        {% if info_lines is not empty %}
+            <div class="flex flex-col gap-2 mt-2">
+                {% for line in info_lines %}
+                    {% set line_class = (line.style == 'highlighted') ? 'price-highlighted bg-ink' : 'price-highlighted' %}
+                    <div class="text-xl md:text-2xl font-bold {{ line_class }}">
+                        {{ line.label }} <span class="c-white">{{ line.value }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {# Główny tekst (renderuje akapity, listy <ul>, <strong> itp.) #}
+        {% if main_text %}
+            <div class="text-lg text-gray-700 leading-relaxed space-y-4">
+                {{ main_text|markdown|raw }}
+            </div>
+        {% endif %}
+
+        {# Opcjonalne przyciski (renderują się na końcu) #}
+        {% if buttons is not empty %}
+            <div class="flex flex-col lg:flex-row gap-3 mt-4">
+                {% for button in buttons %}
+                    <a href="{{ button.url }}" class="{{ button.class }}">
+                        {{ button.text }}
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+  </div>
+</section>

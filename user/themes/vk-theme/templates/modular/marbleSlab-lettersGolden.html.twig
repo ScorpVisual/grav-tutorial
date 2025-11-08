@@ -1,0 +1,56 @@
+{# Pobieramy zmienne dla czytelności #}
+{% set title = page.header.title %}
+{% set text = page.header.text %}
+{% set image = page.header.image %}
+{% set image_alt = page.header.image_alt %}
+{% set buttons = page.header.buttons %}
+
+{# Ustawienia wyglądu #}
+{% set bg_class = page.header.background_style|default('dark-gradient-down') %}
+{% set title_class = page.header.title_style|default('fill-letters-gold-section-dark') %}
+{% set text_class = page.header.text_style|default('c-pink') %}
+{% set layout = page.header.layout_style|default('text_left') %}
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto {{ bg_class }}">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+    {# 
+      LOGIKA KOLEJNOŚCI: 
+      Jeśli układ to 'image_left', najpierw renderujemy obrazek.
+      Używamy `order-first` i `order-last` z Tailwind CSS dla elastyczności na mobilkach.
+    #}
+    
+    {# --- KOLUMNA TEKSTOWA --- #}
+    <div class="flex flex-col gap-4 items-stretch 
+                {% if layout == 'image_left' %}md:order-last{% else %}md:order-first{% endif %}">
+        
+        <h1 class="text-xl font-bold mb-4 border-bot-cherry uppercase {{ title_class }}">
+            {{ title }}
+        </h1>
+        
+        <div class="text-lg {{ text_class }}">
+            {# Używamy filtra |raw lub |markdown, aby tekst z textarea renderował HTML/Markdown #}
+            {{ text|raw }}
+        </div>
+        
+        {# --- SEKCJA PRZYCISKÓW (OPCJONALNA) --- #}
+        {# Ta sekcja wyświetli się tylko, jeśli dodasz przyciski w CMS #}
+        {% if buttons is not empty %}
+        <div class="flex flex-col lg:flex-row gap-3 mt-4">
+            {% for button in buttons %}
+                <a href="{{ button.url }}" class="{{ button.class }}">
+                    {{ button.text }}
+                </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    {# --- KOLUMNA ZE ZDJĘCIEM --- #}
+    <div class="{% if layout == 'image_left' %}md:order-first{% else %}md:order-last{% endif %}">
+        <img src="{{ theme_url }}/{{ image }}" alt="{{ image_alt }}" 
+             class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    
+  </div>
+</section>
