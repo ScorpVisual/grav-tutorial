@@ -1,0 +1,64 @@
+{# Pobieramy zmienne dla czytelności #}
+{% set title = page.header.title %}
+{% set section_id = page.header.section_id %}
+{% set left_blocks = page.header.left_column_blocks %}
+{% set right_blocks = page.header.right_column_blocks %}
+
+{# --- NOWA ZMIENNA DLA PRZEŁĄCZNIKA TYTUŁU --- #}
+{% set title_border = page.header.title_border|default(0) %}
+
+{# Funkcja pomocnicza do renderowania bloków #}
+{% macro render_blocks(blocks) %}
+    {% if blocks is not empty %}
+        {% for block in blocks %}
+            
+            {# Renderuj Akapit Tekstu #}
+            {% if block.type == 'paragraph' %}
+                <div class="text-lg text-gray-700 leading-relaxed space-y-4">
+                    {{ block.content|markdown|raw }}
+                </div>
+            
+            {# Renderuj Stylowaną Listę #}
+            {% elseif block.type == 'styled_list' and block.items is not empty %}
+                <ul class="list-inside mt-2 space-y-1 text-base text-lg text-gray-700 custom-list">
+                    {% for item in block.items %}
+                        <li>{{ item.text|raw }}</li>
+                    {% endfor %}
+                </ul>
+            
+            {# Renderuj Podnagłówek z toggle underline #}
+            {% elseif block.type == 'subheading' and block.text %}
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-2 {% if block.underline|default(10) == 1 %}underline--cherry{% endif %}">
+                    {{ block.text }}
+                </h3>
+            {% endif %}
+            
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto" {% if section_id %}id="{{ section_id }}"{% endif %}>
+
+    {# Opcjonalny tytuł sekcji #}
+    {% if title %}
+    <div class="max-w-4xl mx-auto mb-8 lg:mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 text-center {% if title_border == 1 %}border-bot-cherry{% endif %}">
+            {{ title }}
+        </h2>
+    </div>
+    {% endif %}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+        
+        {# Kolumna lewa #}
+        <div class="flex flex-col gap-4">
+            {{ _self.render_blocks(left_blocks) }}
+        </div>
+
+        {# Kolumna prawa #}
+        <div class="flex flex-col gap-4">
+            {{ _self.render_blocks(right_blocks) }}
+        </div>
+        
+    </div>
+</section>

@@ -1,0 +1,140 @@
+title: 'Moduł - Dwie Kolumny Tekstu'
+icon: align-left
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        settings:
+          type: tab
+          title: ⚙️ Ustawienia
+          fields:
+            header.title:
+              type: text
+              label: Tytuł sekcji (opcjonalny)
+
+            header.title_border:
+              type: toggle
+              label: 'Włączyć dolną linię (border-bot-cherry) dla tytułu?'
+              highlight: 1
+              default: 1
+              options:
+                1: 'Tak'
+                0: 'Nie'
+              validate:
+                type: bool
+
+            header.section_id:
+              type: text
+              label: ID Sekcji (opcjonalne)
+
+        left_column:
+          type: tab
+          title: ⬅️ Lewa Kolumna
+          fields:
+            header.left_column_blocks:
+              type: list
+              label: Bloki treści w lewej kolumnie
+              style: vertical
+              fields:
+                .type:
+                  type: select
+                  label: Typ bloku
+                  default: paragraph
+                  options:
+                    paragraph: 'Akapit tekstu'
+                    styled_list: 'Stylowana Lista (Kamyczki)'
+                    subheading: 'Podnagłówek'
+                
+                .content:
+                  type: textarea
+                  label: Treść (dla Akapitu)
+                  size: medium
+                  display_if:
+                    .type: paragraph
+                
+                .text:
+                  type: text
+                  label: Treść Podnagłówka
+                  display_if:
+                    .type: subheading
+                
+                .underline:
+                  type: toggle
+                  label: 'Podkreślenie podnagłówka (underline--cherry)?'
+                  highlight: 1
+                  default: 0
+                  options:
+                    1: 'Tak'
+                    0: 'Nie'
+                  validate:
+                    type: bool
+                  display_if:
+                    .type: subheading
+                
+                .items:
+                  type: list
+                  label: Punkty listy (dla Listy)
+                  display_if:
+                    .type: styled_list
+                  fields:
+                    .text:
+                      type: text
+                      label: Treść punktu
+
+        right_column:
+          type: tab
+          title: ➡️ Prawa Kolumna
+          fields:
+            header.right_column_blocks:
+              type: list
+              label: Bloki treści w prawej kolumnie
+              style: vertical
+              fields:
+                .type:
+                  type: select
+                  label: Typ bloku
+                  default: paragraph
+                  options:
+                    paragraph: 'Akapit tekstu'
+                    styled_list: 'Stylowana Lista (Kamyczki)'
+                    subheading: 'Podnagłówek'
+                
+                .content:
+                  type: textarea
+                  label: Treść (dla Akapitu)
+                  size: medium
+                  display_if:
+                    .type: paragraph
+                
+                .text:
+                  type: text
+                  label: Treść Podnagłówka
+                  display_if:
+                    .type: subheading
+                
+                .underline:
+                  type: toggle
+                  label: 'Podkreślenie podnagłówka (underline--cherry)?'
+                  highlight: 1
+                  default: 0
+                  options:
+                    1: 'Tak'
+                    0: 'Nie'
+                  validate:
+                    type: bool
+                  display_if:
+                    .type: subheading
+                
+                .items:
+                  type: list
+                  label: Punkty listy (dla Listy)
+                  display_if:
+                    .type: styled_list
+                  fields:
+                    .text:
+                      type: text
+                      label: Treść punktu
