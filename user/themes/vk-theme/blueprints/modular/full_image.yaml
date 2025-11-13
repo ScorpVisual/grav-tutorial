@@ -1,0 +1,79 @@
+title: 'Moduł - Duży Obraz (Scentrowany)'
+icon: image
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        content:
+          type: tab
+          title: 📜 Treść
+          fields:
+            header.image:
+              type: filepicker
+              label: Obrazek
+              folder: 'theme@:/images'
+              preview_images: true
+              # --- NAPRAWA BŁĘDU ---
+              # Przeniesione z błędnego 'validate:' do poprawnego 'required:'
+              required: true
+              
+            header.image_alt:
+              type: text
+              label: Tekst alternatywny (SEO)
+              # --- NAPRAWA BŁĘDU ---
+              required: true
+              
+            header.caption:
+              type: text
+              label: Podpis pod obrazkiem (opcjonalny)
+
+        settings:
+          type: tab
+          title: ⚙️ Ustawienia
+          fields:
+            header.image_style:
+              type: select
+              label: Styl obrazka
+              default: 'golden-border'
+              options:
+                'golden-border': 'Złota ramka (standard)'
+                'rounded': 'Zaokrąglone rogi (jak w "Pomoc")'
+                'none': 'Brak stylu (prosty obraz)'
+
+            # --- NOWE POLE KONTROLI WYSOKOŚCI ---
+            header.aspect_ratio:
+              type: select
+              label: 'Proporcje Obrazu (Kontrola Wysokości)'
+              default: 'none'
+              options:
+                'none': 'Oryginalne (bez zmian)'
+                'aspect-video': '16:9 (Szeroki, filmowy)'
+                'aspect-[4/3]': '4:3 (Klasyczny, TV)'
+                'aspect-square': '1:1 (Kwadrat)'
+            
+# --- NOWE POLE KONTROLI WYSOKOŚCI ---
+            header.max_height:
+              type: number
+              label: 'Maksymalna Wysokość Obrazu (w pikselach)'
+              help: 'Wpisz liczbę, np. 600. Obrazek nigdy nie będzie wyższy niż ta wartość. Używaj w połączeniu z `object-cover`.'
+              default: ''
+              validate:
+                  min: 0
+
+            header.max_width:
+              type: select
+              label: Maksymalna szerokość obrazka
+              default: 'max-w-5xl'
+              options:
+                'max-w-3xl': 'Mały (max-w-3xl)'
+                'max-w-5xl': 'Standardowy (max-w-5xl)'
+                'max-w-screen-xl': 'Szeroki (max-w-screen-xl)'
+                'full': 'Pełna szerokość (bez limitu)'
+            
+            header.section_id:
+              type: text
+              label: ID Sekcji (opcjonalne)
