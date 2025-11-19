@@ -7,9 +7,41 @@
 @use '../mixins/mixins-divs' as *;
 
 
+// .hero-video {
+//   position: relative;
+//   overflow: hidden;
+//   background-position: center;
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   background-image: url('../../images/video/main-hero-poster.jpg');
+//   animation: switch-poster 15s steps(1) infinite;
+
+//   @media (min-width: $breakpoint-lg) {
+//     background: none;
+//     animation: none;
+//   }
+
+//   &__video {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     min-width: 100%;
+//     min-height: 100%;
+//     width: auto;
+//     height: auto;
+//     z-index: 1;
+
+//     @media (max-width: $breakpoint-lg) {
+//       display: none;
+//     }
+//   }
+// }
 .hero-video {
   position: relative;
   overflow: hidden;
+  // Upewnij się, że kontener ma wymiary (np. z klasy Tailwind min-h-[780px])
+  // Tutaj style dla fallbacku (obrazka), gdy wideo się nie ładuje lub na mobile
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -22,22 +54,25 @@
   }
 
   &__video {
+    // --- ZMIANY TUTAJ ---
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    // To jest klucz do naprawienia pasków:
+    object-fit: cover; 
+    // Opcjonalnie: object-position: center; (jeśli chcesz centrować wideo)
+    
     z-index: 1;
+    // --------------------
 
     @media (max-width: $breakpoint-lg) {
       display: none;
     }
   }
 }
-
 @keyframes switch-poster {
   0% {
     background-image: url('../../images/video/main-hero-poster.jpg');

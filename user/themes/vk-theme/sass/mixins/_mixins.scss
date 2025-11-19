@@ -59,6 +59,12 @@
     color: $btn-text-focus;
     filter: drop-shadow(0 8px 4px rgba($shadow-color, .35));
   }
+
+
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 

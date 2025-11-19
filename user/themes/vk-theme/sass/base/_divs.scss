@@ -89,9 +89,9 @@
     $border-color: $ink,
     $gradient: linear-gradient(
       0deg,
-      rgba($ink, .97) 0%,
-      rgba($ink, 0.6) 80%,
-      rgba($white, .1) 100%
+      rgba($ink, 1) 0%,
+      rgba($ink, 0.7) 97%,
+      rgba($white, 1) 130%
     ),
     $blend-mode: multiply,
     $texture-url: '../../images/textures/marble-black-5.jpg'

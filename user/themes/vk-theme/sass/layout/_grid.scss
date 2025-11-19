@@ -10,7 +10,7 @@
   min-height: 100vh;
   overflow: hidden;
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $breakpoint-xl) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 1.5rem;
@@ -29,7 +29,7 @@
   &__sidebar {
     display: none;
 
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: $breakpoint-xl) {
       min-width: 9rem;
       display: block;
       grid-column: span 1;
@@ -47,6 +47,8 @@
   &__main-content {
     min-height: 100vh;
     padding-inline: 0;
+    min-width: 0;
+    width: 100%;
 
     @media (min-width: $breakpoint-md) {
       grid-column: span 11;

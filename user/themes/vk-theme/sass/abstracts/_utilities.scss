@@ -3,6 +3,17 @@
 @use '../abstracts/variables' as *;
 @use '../mixins/mixins' as *;
 
+// helpers
+// ===================================================================
+
+.hp1 {
+    border: 2px solid green !important;
+}
+
+
+// code
+
+
 
 .price-highlighted {
     color: $sand;
@@ -109,9 +120,6 @@
 .border-bot-pyrite { @include bottom-border ($border-color: $pyrite); }
 .border-bot-aluminium { @include bottom-border ($border-color: $aluminium); }
 
-.hp1 {
-    border: 2px solid green !important;
-}
 
 .folder-flag {
     position: absolute;

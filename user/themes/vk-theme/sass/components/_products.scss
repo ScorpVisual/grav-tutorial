@@ -46,80 +46,181 @@
 // NEW PRODUCT CARD
 // Plik: _product-card-overlay.scss
 // Plik: _twoja-karuzela.scss
-
 .shuffle-carousel {
-    position: relative;
-    width: 100%;
-    height: 550px;
+  position: relative;
+  width: 100%;
+  height: 550px; // Stała wysokość zapobiega skakaniu layoutu
+  display: flex;
+  align-items: center;
+  
+  // Maski gradientowe (zanikanie po bokach)
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+
+  &__track {
     display: flex;
     align-items: center;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    gap: 2rem;
+    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  }
 
-    &__track {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  &__slide {
+    width: 320px;
+    height: 480px;
+    flex-shrink: 0;
+    
+    // Płynne animacje
+    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s, box-shadow 0.6s;
+    
+    // Stan domyślny (nieaktywny)
+    transform: scale(0.85);
+    opacity: 0.8;
+    box-shadow: 0 8px 12px rgba($ink, .45);
+
+    // Stan aktywny (środkowy element)
+    &.is-active {
+      transform: scale(1);
+      opacity: 1;
+      box-shadow: 0 26px 8px rgba($ink, .45);
     }
+  }
+
+  // --- PRZYCISKI (STABILNA WERSJA) ---
+  &__btn {
+    position: absolute;
+    top: 45%;
+    // Bazowe centrowanie w pionie (dla mobile i desktop)
+    transform: translateY(-50%); 
+    z-index: 10;
+    
+    width: 50px;
+    height: 50px;
+    
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    cursor: pointer;
+    
+    // Animujemy tylko konkretne właściwości, żeby uniknąć skakania "top"
+    transition: background-color 0.3s, transform 0.3s;
+
+    // --- Mobile (Domyślnie) ---
+    // Przyciski przy krawędziach ekranu
+    &--prev { left: 10px; }
+    &--next { right: 10px; }
+
+    // Efekt wciśnięcia na mobile
+    &:active {
+      background-color: $white;
+    }
+
+    // --- Desktop ---
+    @media (min-width: $breakpoint-lg) {
+      // Rozsuwamy przyciski szeroko
+      &--prev { left: calc(50% - 250px); }
+      &--next { right: calc(50% - 250px); }
+
+      // Hover z powiększeniem tylko na desktopie
+      &:hover {
+        background-color: $white;
+        // Powtarzamy translateY, żeby element nie "spadł" przy skalowaniu
+        transform: translateY(-50%) scale(1.1); 
+      }
+    }
+  }
+
+  // --- MEDIA QUERIES DLA SAMEJ KARUZELI ---
+  @media (max-width: 768px) {
+    mask-image: none; // Usuwamy maskę na małych ekranach, żeby widzieć więcej
 
     &__slide {
-        width: 320px;
-        height: 480px;
-        flex-shrink: 0;
-        transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s, box-shadow 0.6s;
-        transform: scale(0.85);
-        opacity: 0.8;
-        box-shadow: 0 8px 12px rgba($ink,.45);
-
-
-        &.is-active {
-            transform: scale(1);
-            opacity: 1;
-            box-shadow: 0 26px 8px rgba($ink,.45);
-        }
+      width: 280px; // Mniejsze slajdy na mobile
+      height: 420px;
     }
-
-    // &__btn {
-    //     position: absolute;
-    //     top: 50%;
-    //     transform: translateY(-50%);
-    //     z-index: 10;
-    //     width: 50px;
-    //     height: 50px;
-    //     background: white;
-    //     border-radius: 50%;
-    //     border: none;
-    //     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    //     cursor: pointer;
-    //     transition: all 0.3s ease;
-
-    //     &:hover {
-    //         transform: translateY(-50%) scale(1.1);
-    //     }
-        
-    //     &--prev { left: 20px; }
-    //     &--next { right: 20px; }
-    // }
-
-    @media (max-width: 768px) {
-        mask-image: none;
-
-        &__slide {
-            width: 280px;
-            height: 420px;
-        }
-
-        &__btn {
-            top: auto;
-            bottom: 10px;
-            transform: none;
-
-            &--prev { left: calc(50% - 60px); }
-            &--next { right: calc(50% - 60px); }
-        }
-    }
+    
+    // Usunąłem stąd stare style przycisków (top: auto, bottom: 10px),
+    // ponieważ teraz używamy stabilnego centrowania z translateY(-50%).
+  }
 }
+// .shuffle-carousel {
+//     position: relative;
+//     width: 100%;
+//     height: 550px;
+//     display: flex;
+//     align-items: center;
+//     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+//     mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+
+//     &__track {
+//         display: flex;
+//         align-items: center;
+//         gap: 2rem;
+//         transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+//     }
+
+//     &__slide {
+//         width: 320px;
+//         height: 480px;
+//         flex-shrink: 0;
+//         transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s, box-shadow 0.6s;
+//         transform: scale(0.85);
+//         opacity: 0.8;
+//         box-shadow: 0 8px 12px rgba($ink,.45);
+
+
+//         &.is-active {
+//             transform: scale(1);
+//             opacity: 1;
+//             box-shadow: 0 26px 8px rgba($ink,.45);
+//         }
+//     }
+
+//     // &__btn {
+//     //     position: absolute;
+//     //     top: 50%;
+//     //     transform: translateY(-50%);
+//     //     z-index: 10;
+//     //     width: 50px;
+//     //     height: 50px;
+//     //     background: white;
+//     //     border-radius: 50%;
+//     //     border: none;
+//     //     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+//     //     cursor: pointer;
+//     //     transition: all 0.3s ease;
+
+//     //     &:hover {
+//     //         transform: translateY(-50%) scale(1.1);
+//     //     }
+        
+//     //     &--prev { left: 20px; }
+//     //     &--next { right: 20px; }
+//     // }
+
+//     @media (max-width: 768px) {
+//         mask-image: none;
+
+//         &__slide {
+//             width: 280px;
+//             height: 420px;
+//         }
+
+//         &__btn {
+//             top: auto;
+//             bottom: 10px;
+//             transform: none;
+
+//             &--prev { left: calc(50% - 60px); }
+//             &--next { right: calc(50% - 60px); }
+//         }
+//     }
+// }
 
 .product-card {
     position: relative;

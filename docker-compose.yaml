@@ -25,3 +25,6 @@ services:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf # Konfiguracja Nginx
     depends_on:
       - php # Nginx zależy od serwisu PHP
+
+
+      
