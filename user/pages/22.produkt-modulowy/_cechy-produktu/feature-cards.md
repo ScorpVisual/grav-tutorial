@@ -1,5 +1,5 @@
 ---
-template: feature-cards
+template: modular/feature-cards
 title: 'Cechy produktu'
 subtitle: 'Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników. Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, ale jesteśmy dostępni telefonicznie i mailowo.'
 features:
