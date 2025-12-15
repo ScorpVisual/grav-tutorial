@@ -69,7 +69,7 @@
     { image_filename: '/images/services/sanding-gallery-2.jpg', title: 'Odrestaurowany wygląd' },
     { image_filename: '/images/services/sanding-gallery-3.jpg', title: 'Gładka faktura' }
 ] %}
-{% include 'modular/_gallery-modular.html.twig' with {'items': galleryData} %}
+{% include 'modular/gallery-modular.html.twig' with {'items': galleryData} %}
 </section>
 
 
@@ -148,7 +148,7 @@
     { image_filename: '/images/services/leveling-gallery-2.jpg', title: 'Płyty wokół pomnika' },
     { image_filename: '/images/services/leveling-gallery-3.jpg', title: 'Wylewka ze zbrojeniem' }
 ] %}
-{% include 'modular/_gallery-modular.html.twig' with {'items': levelingData} %}
+{% include 'modular/gallery-modular.html.twig' with {'items': levelingData} %}
 </section>
 <section class="px-4 py-16 max-w-screen-xl mx-auto" id="impregnacja">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -234,7 +234,7 @@
             alt: 'Ikona gwarancji satysfakcji'
         }
     ] %}
-{% include 'modular/feature-cards.html.twig'%}
+{% include 'modular/feature-cards-static.html.twig'%}
 
 
 {# FAQ #}
@@ -256,9 +256,9 @@
         answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
     }
 ] %}
-{% include 'modular/_faq.html.twig'%}
+{% include 'modular/faq.html.twig'%}
 {# END FAQ #}
-{% include 'modular/_gallery_modal.html.twig'%}
+{% include 'modular/gallery_modal.html.twig'%}
 
 
 {% endblock %}

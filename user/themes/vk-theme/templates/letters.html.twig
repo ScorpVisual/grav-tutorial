@@ -132,7 +132,7 @@
     { image_filename: '/images/products/letters/letters-3d-gallery-2.jpg', title: 'Granit Drogi' },
     { image_filename: '/images/products/letters/letters-3d-gallery-3.jpg', title: 'Drogi granit' }
 ] %}
-{% include 'modular/_gallery-modular.html.twig' with {'items': letters3dData} %}
+{% include 'modular/gallery-modular.html.twig' with {'items': letters3dData} %}
 </section>
 
 
@@ -172,7 +172,7 @@
     { image_filename: '/images/products/letters/letters-gold-gallery-2.jpg', title: 'Granit Drogi' },
     { image_filename: '/images/products/letters/letters-gold-gallery-3.jpg', title: 'Drogi granit' }
 ] %}
-{% include 'modular/_gallery-modular.html.twig' with {'items': lettersGoldData} %}
+{% include 'modular/gallery-modular.html.twig' with {'items': lettersGoldData} %}
 </section>
 
 
@@ -228,7 +228,7 @@
         category: 'Wiedza'
     }
 ] %}
-{% include 'modular/_article-cards.html.twig' %}
+{% include 'modular/article-cards.html.twig' %}
 {# end articles #}
 {# FAQ #}
 {% set faq_items = [
@@ -250,8 +250,8 @@
     }
 ] %}
 
-{% include 'modular/_faq.html.twig'%}
+{% include 'modular/faq.html.twig'%}
 {# END FAQ #}
 
-{% include 'modular/_gallery_modal.html.twig'%}
+{% include 'modular/gallery_modal.html.twig'%}
 {% endblock %}

@@ -113,7 +113,7 @@
 
   {# --- Tutaj dołączasz komponent karuzeli --- #}
   {# Komponent otrzyma listę zdefiniowaną powyżej (bez piaskowca) #}
-  {% include 'modular/_stones.html.twig' with {
+  {% include 'modular/stones-carousel-static.html.twig' with {
       items: popularGranites,
       unique_id: 'popularGranites'
   } %}
@@ -125,7 +125,7 @@
     { image_filename: '/images/products/stones/stones-strzegomski-2.jpg', title: 'Granit strzegomski' },
     { image_filename: '/images/products/stones/stones-strzegomski-3.jpg', title: 'Granit strzegomski' }
 ] %}
-{% include 'modular/_gallery-modular.html.twig' with {'items': popularStonesData} %}
+{% include 'modular/gallery-modular.html.twig' with {'items': popularStonesData} %}
 </section>
 
 
@@ -184,7 +184,7 @@
 
   {# --- Tutaj dołączasz komponent karuzeli --- #}
   {# Komponent otrzyma listę zdefiniowaną powyżej (bez piaskowca) #}
-  {% include 'modular/_stones.html.twig' with {
+  {% include 'modular/stones-carousel-static.html.twig' with {
       items: exclusiveGranites,
       unique_id: 'exclusiveGranites'
   } %}
@@ -196,7 +196,7 @@
     { image_filename: '/images/products/stones/stones-exclusive-2.jpg', title: 'Granit Drogi' },
     { image_filename: '/images/products/stones/stones-exclusive-3.jpg', title: 'Drogi granit' }
 ] %}
-{% include 'modular/_gallery-modular.html.twig' with {'items': exclusiveStonesData} %}
+{% include 'modular/gallery-modular.html.twig' with {'items': exclusiveStonesData} %}
 </section>
 
 
@@ -256,7 +256,7 @@
 
   {# --- Tutaj dołączasz komponent karuzeli --- #}
   {# Komponent otrzyma listę zdefiniowaną powyżej (bez piaskowca) #}
-  {% include 'modular/_stones.html.twig' with {
+  {% include 'modular/stones-carousel-static.html.twig' with {
       items: rareGranites,
       unique_id: 'rareGranites'
   } %}
@@ -268,7 +268,7 @@
     { image_filename: '/images/products/stones/stones-rare-2.jpg', title: 'Granit Drogi' },
     { image_filename: '/images/products/stones/stones-rare-3.jpg', title: 'Drogi granit' }
 ] %}
-{% include 'modular/_gallery-modular.html.twig' with {'items': rareStonesData} %}
+{% include 'modular/gallery-modular.html.twig' with {'items': rareStonesData} %}
 </section>
 
 
@@ -292,7 +292,7 @@
             alt: 'Ikona gwarancji satysfakcji'
         }
     ] %}
-{% include 'modular/_feature-cards.html.twig'%}
+{% include 'modular/feature-cards.html.twig'%}
 
 {# articles #}
 {% set articles = [
@@ -324,7 +324,7 @@
         category: 'Wiedza'
     }
 ] %}
-{% include 'modular/_article-cards.html.twig' %}
+{% include 'modular/article-cards.html.twig' %}
 {# end articles #}
 {# FAQ #}
 {% set faq_items = [
@@ -350,8 +350,8 @@
             <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Najczęstsze pytania</h3>
         </div>
     </div>
-{% include 'modular/_faq.html.twig'%}
+{% include 'modular/faq.html.twig'%}
 {# END FAQ #}
 
-{% include 'modular/_gallery_modal.html.twig'%}
+{% include 'modular/gallery_modal.html.twig'%}
 {% endblock %}

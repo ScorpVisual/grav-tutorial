@@ -1,5 +1,6 @@
 ---
 title: Produkty
+hero_type: main-hero
 content:
     items: '@self.children'
     order:

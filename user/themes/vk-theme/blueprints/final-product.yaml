@@ -1,0 +1,73 @@
+title: Produkt (Nagrobek)
+extends: default
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        # --- ZAKŁADKA 1: DANE PRODUKTU ---
+        product_details:
+          type: tab
+          title: 💎 Dane Produktu
+          fields:
+            
+            # Sekcja nagłówka (opcjonalna, jeśli chcesz nadpisać tytuł strony)
+            header_section:
+              type: section
+              title: Główne informacje
+              underline: true
+            
+            header.title:
+              type: text
+              label: Tytuł Produktu (Nadpisuje tytuł strony w Hero)
+              help: Jeśli puste, zostanie użyty tytuł strony.
+
+            # Lista wariantów
+            header.product_variants:
+              type: list
+              label: Warianty Produktu
+              help: Dodaj warianty (np. Granit, Marmur, Rozmiar M)
+              style: vertical
+              fields:
+                .title:
+                  type: text
+                  label: Nazwa wariantu (systemowa)
+                .size:
+                  type: text
+                  label: Etykieta przycisku (np. "120x60 Standard")
+                .price:
+                  type: text
+                  label: Cena (tylko liczba, np. 4500)
+                .img:
+                  type: filepicker
+                  label: Zdjęcie główne wariantu
+                  folder: 'theme@:/images/products'
+                  preview_images: true
+                  accept:
+                    - image/*
+                .full_desc:
+                  type: textarea
+                  label: Opis dla tego wariantu
+                  rows: 4
+
+        # --- ZAKŁADKA 2: MODUŁY ---
+        content:
+          type: tab
+          title: 📜 Treść (Moduły)
+          fields:
+            content:
+              type: modular
+              label: Moduły na stronie produktu
+              help: Tutaj dodajesz kolejne sekcje pod Hero (galerie, FAQ itp.)
+              
+              # Lista dozwolonych modułów (zgodnie z Twoją prośbą)
+              options:
+                 modular/addons: 'Moduł - Dodatki'
+                 modular/faq: 'Moduł - FAQ'
+                 modular/features: 'Moduł - Cechy'
+                 modular/gallery: 'Moduł - Galeria'
+                 modular/text: 'Moduł - Tekst'
+                 # Upewnij się, że nazwy plików w folderze templates/modular pasują do kluczy tutaj

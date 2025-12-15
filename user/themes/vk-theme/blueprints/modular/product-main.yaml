@@ -1,0 +1,40 @@
+title: Szczegóły Produktu (Warianty)
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+          title: Treść
+          fields:
+            header.section_title:
+              type: text
+              label: Tytuł sekcji (np. Nazwa nagrobka)
+              default: "Nagrobek Granitowy"
+
+            header.product_variants:
+              type: list
+              label: Warianty Produktu
+              style: vertical
+              fields:
+                .title:
+                  type: text
+                  label: Pełna nazwa wariantu
+                .size:
+                  type: text
+                  label: Nazwa na przycisku (np. Standard, Rodzinny)
+                .price:
+                  type: text
+                  label: Cena (np. 5 499)
+                .img:
+                  type: filepicker
+                  label: Zdjęcie
+                  preview_images: true
+                  folder: 'theme@:/images/products'
+                .full_desc:
+                  type: textarea
+                  label: Opis wariantu
+                  rows: 4

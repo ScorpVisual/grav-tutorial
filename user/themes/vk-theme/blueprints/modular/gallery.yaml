@@ -1,4 +1,5 @@
 title: Moduł - Galeria
+template: gallery
 icon: image
 
 form:
@@ -29,7 +30,6 @@ form:
                 .image_filename:
                   type: filepicker
                   label: Zdjęcie
-                  folder: 'theme@:/images/products' # Możesz to zmienić lub usunąć, by przeglądać wszystko
                   preview_images: true
                   help: "Wybierz obrazek z galerii"
                 .title:

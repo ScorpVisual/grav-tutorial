@@ -1,0 +1,19 @@
+{% extends 'partials/base.html.twig' %}
+
+{# Pobieramy warianty z frontmattera #}
+{% set productVariants = page.header.product_variants %}
+{# Główny (pierwszy) wariant do wyświetlenia #}
+{% set mainVariant = productVariants|first %}
+
+{% block content %}
+
+    <div class="product-modules">
+        {% for module in page.collection() %}
+            {{ module.content|raw }}
+        {% endfor %}
+    </div>
+
+    {# 4. Inne include (np. modal) #}
+    {% include 'modular/_gallery_modal.html.twig' ignore missing %}
+
+{% endblock %}

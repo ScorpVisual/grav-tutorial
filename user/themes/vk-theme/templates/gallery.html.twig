@@ -20,7 +20,7 @@
       przekazując mu listę 'gallery_items' z blueprintu (zakładka 'Zdjęcia')
       jako zmienną 'items', której ten partial oczekuje.
     #}
-    {% include 'modular/_gallery-modular.html.twig' with {
+    {% include 'modular/gallery-modular.html.twig' with {
         items: page.header.gallery_items
     } %}
 
