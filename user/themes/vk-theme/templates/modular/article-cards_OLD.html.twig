@@ -1,67 +1,44 @@
-<section class="py-8 lg:py-12">
-    
-    {# --- NAGŁÓWEK SEKCJI (Dynamiczny) --- #}
-    <div class="flex section-header mx-auto my-8">
+
+   <div class="flex section-header mx-auto my-8">
         <div class="section-header__content section-header__bg--black">
-            {# Pobieramy mały napis z YAML #}
-            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
-                {{ page.header.top_label|default('Artykuły') }}
-            </h3>
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Artykuły</h3>
         </div>
     </div>
-
+{# NIE ZAPOMNIJ O TABLICY POPRZEDZAJĄCEJ TEGO PARTIALA! #}
+<section class="py-8 lg:py-12">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto mb-8">
-            {# Pobieramy główny tytuł z YAML #}
             <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
-                {{ page.header.title|default('Dowiedz się więcej z naszych artykułów') }}
+                Dowiedz się więcej z naszych artykułów
             </h1>
-            {# Pobieramy opis z YAML #}
-            <p class="text-center text-gray-700">
-                {{ page.header.text|nl2br }}
+            <p>
+            Dowiedz się więcej o naszych usługach kamieniarskich, projektowaniu nagrobków i renowacji pomników poprzez nasze artykuły i porady ekspertów.
             </p>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-12">
 
             {# --- PĘTLA GENERUJĄCA ARTYKUŁY --- #}
-            {# Pobieramy listę z page.header.articles #}
-            {% set articles = page.header.articles %}
-
             {% if articles is defined and articles is not empty %}
                 {% for article in articles %}
                     <div class="article-card">
-                      
                       <div class="article-card__image">
-                        {# Używamy funkcji url() do poprawnego wyświetlenia ścieżki z filepickera #}
-                        {% if article.image_src %}
-                            <img src="{{ url(article.image_src) }}" alt="{{ article.image_alt }}">
-                        {% endif %}
+                        <img src="{{ article.image_src }}" alt="{{ article.image_alt }}">
                       </div>
-                      
                       <div class="article-card__content">
                         <h3 class="article-card__title underline--light-grey">{{ article.title }}</h3>
-                        
                         <p class="article-card__description">
                           {{ article.description }}
                         </p>
-                        
-                        {# Link #}
                         <a href="{{ article.url }}" class="btn-tertiary">Czytaj więcej</a>
-                        
                         <div class="article-card__meta">
                           <div class="article-card__meta-item">
-                            {# Upewnij się, że ta ikona istnieje w Twoim motywie #}
                             <img src="{{ url('theme://images/svg/articleCard--calendar.svg') }}" alt="" class="icon-svg">
-                            {# Formatujemy datę (opcjonalne, ale zalecane przy polu typu date) #}
-                            <span>{{ article.date|date("d.m.Y") }}</span>
+                            <span>{{ article.date }}</span>
                           </div>
-                          
                           <div class="article-card__meta-item">
                             <span>{{ article.category }}</span>
                           </div>
                         </div>
-
                       </div>
                     </div>
                 {% endfor %}

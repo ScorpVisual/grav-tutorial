@@ -1,33 +1,78 @@
-{# Sprawdzamy, czy przekazano unique_id, jeśli nie, generujemy losowy, by uniknąć błędów #}
-{% set unique_id = unique_id | default(random()) %}
+<section class="py-4 lg:py-8">
+  
+  {# --- 1. NAGŁÓWEK I OPIS (Wycentrowane) --- #}
+  <div class="max-w-4xl mx-auto px-4 my-12 flex flex-col items-center text-center space-y-6">
+      
+      {# Tytuł #}
+      <h1 class="text-3xl font-bold text-gray-800 mb-2 border-bot-cherry">
+          {{ page.header.title|default('Polecane kamienie') }}
+      </h1>
+      
+      {# Tekst opisu #}
+      <p class="text-lg text-gray-700">
+          {{ page.header.text|nl2br }}
+      </p>
 
-<div class="js-material-carousel max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center my-12">
+  </div>
 
-  {# KARUZELA - dodajemy unikalne ID do kontenera i atrybuty danych do przycisków #}
-  <div class="relative flex items-center justify-center h-[350px]">
-    <button data-dir="prev" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--prev" data-target="carousel-container-{{ unique_id }}">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-    </button>
-    <div id="carousel-container-{{ unique_id }}" class="carousel-main-container w-full h-full flex items-center justify-center">
-      {% for material in page.header.items %}
-        <img src="{{ theme_url }}/images/stones/{{ material.img }}"
-             alt="{{ material.name }}"
-             data-name="{{ material.name }}"
-             data-desc="{{ material.desc }}"
-             {# Dodajemy atrybut data-info-target, by JS wiedział, gdzie wyświetlić info #}
-             data-info-target="materialInfo-{{ unique_id }}" 
-             class="carousel-item rounded-lg object-cover cursor-pointer material-info-container">
-      {% endfor %}
+
+  {# --- 2. KARUZELA (Bez zmian w logice, tylko ID) --- #}
+  {% set unique_id = unique_id | default(random()) %}
+
+  {# Sprawdzamy, czy w ogóle są jakieś kamienie dodane w adminie #}
+  {% if page.header.items is not empty %}
+
+  <div class="js-material-carousel max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center my-12">
+
+    {# LEWA STRONA: KARUZELA ZDJĘĆ #}
+    <div class="relative flex items-center justify-center h-[350px]">
+      
+      {# Przycisk Poprzedni #}
+      <button data-dir="prev" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--prev" data-target="carousel-container-{{ unique_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+
+      {# Kontener zdjęć #}
+      <div id="carousel-container-{{ unique_id }}" class="carousel-main-container w-full h-full flex items-center justify-center">
+        {% for material in page.header.items %}
+          
+          {% if material.img %}
+              {# Pamiętaj o ścieżce theme_url - dostosuj ją w razie potrzeby #}
+              <img src="{{ theme_url }}/images/stones/{{ material.img }}"
+                   alt="{{ material.name|default('Kamień') }}"
+                   data-name="{{ material.name }}"
+                   data-desc="{{ material.desc }}"
+                   data-info-target="materialInfo-{{ unique_id }}" 
+                   class="carousel-item rounded-lg object-cover cursor-pointer material-info-container">
+          {% endif %}
+
+        {% endfor %}
+      </div>
+
+      {# Przycisk Następny #}
+      <button data-dir="next" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--next" data-target="carousel-container-{{ unique_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </button>
     </div>
 
-    <button data-dir="next" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--next" data-target="carousel-container-{{ unique_id }}">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-    </button>
-  </div>
+    {# PRAWA STRONA: OPIS KAMIENIA #}
+    <div id="materialInfo-{{ unique_id }}" class="p-2 lg:p-6 lg:ml-12 material-info-container text-center lg:text-left">
+      <h3 id="materialName-{{ unique_id }}" class="text-3xl font-bold mb-3 text-gray-800 transition-opacity duration-300 underline--cherry inline-block lg:block">
+      </h3>
+      <p id="materialDesc-{{ unique_id }}" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300 mt-4">
+      </p>
+    </div>
 
-  {# PANEL INFORMACYJNY - dodajemy unikalne ID do kontenera i podelementów #}
-  <div id="materialInfo-{{ unique_id }}" class="p-2 lg:p-6 lg:ml-12 material-info-container">
-    <h3 id="materialName-{{ unique_id }}" class="text-3xl font-bold mb-3 text-gray-800 transition-opacity duration-300 underline--cherry"></h3>
-    <p id="materialDesc-{{ unique_id }}" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300"></p>
   </div>
-</div>
+  {% endif %}
+
+
+  {% if page.header.button_text %}
+    <div class="flex justify-center w-full mt-12 mb-8">
+        <a href="{{ page.header.button_link|default('#') }}" class="btn-primary w-auto px-10 py-3 flex justify-center items-center text-center shadow-lg transition-transform transform hover:-translate-y-1">
+            {{ page.header.button_text }}
+        </a>
+    </div>
+  {% endif %}
+
+</section>

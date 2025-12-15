@@ -1,7 +1,7 @@
 ---
-title: 'polecane kamienie final'
+title: 'Polecane kamienie'
 body_classes: modular
-main_image: images/photos/stones-photo-3.jpg
+main_image: stones-photo-2.jpg
 text: 'Stawiamy na najwyższą jakość materiałów i precyzję pracy...'
 button_text: 'Wszystkie dostępne kamienie'
 button_link: '#'

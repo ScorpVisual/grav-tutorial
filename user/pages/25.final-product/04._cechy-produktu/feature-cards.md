@@ -12,5 +12,21 @@ faq_items:
     -
         question: Pytanie
         answer: odpowiedź
+features:
+    -
+        icon: tombstone.svg
+        title: 'Cecha 1'
+        text: asdasdas
+        alt: null
+    -
+        icon: tombstone.svg
+        title: 'Cecha 1'
+        text: asdasdas
+        alt: null
+    -
+        icon: tombstone.svg
+        title: 'Cecha 1'
+        text: asdasdas
+        alt: null
 ---
 
