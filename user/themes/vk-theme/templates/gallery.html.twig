@@ -3,23 +3,25 @@
   To jest główny szablon modułu.
 #}
 
-{# Ustawiamy ID sekcji, aby link "Zobacz realizacje" działał #}
-<section class="py-16 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8" id="szczegoly">
+{# <section class="py-2 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 hp1" id="szczegoly"> #}
+<section class="py-4 lg:py-8" id="szczegoly">
     
-    {# Renderujemy opcjonalny tytuł sekcji z CMS #}
     {% if page.header.title %}
-    <div class="max-w-4xl mx-auto mb-8 lg:mb-12">
+    {# <div class="max-w-4xl mx-auto mb-8 lg:mb-12">
         <h2 class="text-3xl font-bold text-gray-800 border-bot-cherry text-center">
             {{ page.header.title }}
         </h2>
+    </div> #}
+    
+    <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--black-darkened ">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                {{ page.header.title|default('Realizacje') }}
+            </h3>
+        </div>
     </div>
     {% endif %}
 
-    {# 
-      Tutaj wczytujemy Twój partial (_gallery-modular.html.twig), 
-      przekazując mu listę 'gallery_items' z blueprintu (zakładka 'Zdjęcia')
-      jako zmienną 'items', której ten partial oczekuje.
-    #}
     {% include 'modular/gallery-modular.html.twig' with {
         items: page.header.gallery_items
     } %}
@@ -29,8 +31,6 @@
 
 
 
-
-{# GALLERY MODAL WITH NAVIGATION: #}
 <div id="fullscreen-modal" class="is-hidden fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ease-in-out opacity-0 reset-fadeIn">
     
     <button id="close-modal-btn" class="absolute top-5 right-5 text-white text-5xl font-bold z-[52] hover:text-gray-300 transition-colors">&times;</button>
@@ -53,3 +53,4 @@
             </div>
     </div>
 </div>
+

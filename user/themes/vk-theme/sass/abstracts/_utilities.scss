@@ -53,8 +53,8 @@
 
     /* NOWY, WARSTWOWY CIEŃ DLA EFEKTU 3D */
     text-shadow: 
-        0px 1px 1px rgba(255, 255, 255, 0.3),
-        0px 1px 1px rgba(rgb(142, 121, 4), .44);
+        0px 0px 0px rgba(255, 255, 255, 0.3),
+        0px 0px 0px rgba(rgb(142, 121, 4), .44);
 }
 .fill-letters-gold-section-dark {
     background-color: #c0a258;
@@ -71,8 +71,8 @@
 
     /* NOWY, WARSTWOWY CIEŃ DLA EFEKTU 3D */
     text-shadow: 
-        0px 1px 1px rgba(255, 255, 255, 0.4),
-        0px 1px 1px rgba(rgb(142, 121, 4), .34);
+        0px 0px 0px rgba(255, 255, 255, 0.4),
+        0px 0px 0px rgba(rgb(142, 121, 4), .34);
 }
 .set-border-radius {
     border-radius: $border-radius;

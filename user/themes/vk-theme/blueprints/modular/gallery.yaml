@@ -15,7 +15,7 @@ form:
             header.title:
               type: text
               label: Tytuł sekcji (opcjonalny)
-              help: "Np. 'Nasze Realizacje' lub 'Galeria Produktu'"
+              help: "Np. 'Nasze Realizacje'"
 
         gallery_list:
           type: tab
@@ -25,14 +25,15 @@ form:
               type: list
               label: Zdjęcia w galerii
               style: vertical
-              
+              btnLabel: "Dodaj nowe zdjęcie"
               fields:
                 .image_filename:
                   type: filepicker
-                  label: Zdjęcie
+                  label: Wybierz zdjęcie
                   preview_images: true
-                  help: "Wybierz obrazek z galerii"
+                  # folder: '@self'  <- Opcjonalnie: ogranicza wybór do folderu tego modułu
+                  help: "Wybierz obrazek, który jest wgrany do tego folderu (media strony)"
                 .title:
                   type: text
-                  label: Podpis zdjęcia
+                  label: Podpis zdjęcia (ALT)
                   help: "Np. 'Nagrobek Pojedynczy Klasyczny'"

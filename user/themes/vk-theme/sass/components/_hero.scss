@@ -117,112 +117,112 @@
 }
 
 
-.section-header {
-  position: relative;
-  width: 90%;
-  height: 4rem;
-  border-radius: 0.125rem;
-  box-shadow: 0 16px 4px rgba($ink, 0.25);
+// .section-header {
+//   position: relative;
+//   width: 90%;
+//   height: 4rem;
+//   border-radius: 0.125rem;
+//   box-shadow: 0 16px 4px rgba($ink, 0.25);
   
-  &::before {
-    content: "";
-    position: absolute;
-    inset: -4px -4px -8px -4px;
-    background: linear-gradient(45deg,
-        rgba(213, 168, 72, 0.5) 0%,
-        rgba(243, 198, 102, 0.7) 50%,
-        rgba(213, 168, 72, 0.5) 100%
-    );
-    border-radius: inherit;
-    z-index: 1;  
-  }
-&__content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 8px;
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     inset: -4px -4px -8px -4px;
+//     background: linear-gradient(45deg,
+//         rgba(213, 168, 72, 0.5) 0%,
+//         rgba(243, 198, 102, 0.7) 50%,
+//         rgba(213, 168, 72, 0.5) 100%
+//     );
+//     border-radius: inherit;
+//     z-index: 1;  
+//   }
+// &__content {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100%;
+//   height: 100%;
+//   padding: 8px;
 
   
-  border-radius: inherit; 
-  position: relative;    
-  z-index: 2;            
-}
-  &__bg {
-      &--golden {
-      @include section-header-bg('../../images/textures/marble-white-gold-2.jpg',
-          rgba(white, .92),
-          rgba(white, .5),
-          rgba(white, 0),
-          $white,
-          normal
-        );
-      & img {
-          @include golden-img-border;
-         }
-  }
-      &--golden-alt {
-      @include section-header-bg('../../images/textures/marble-white-gold-1.jpg',
-          rgba(white, .92),
-          rgba(white, .5),
-          rgba(white, 0),
-          $white,
-          normal
-        );
-      & img {
-          @include golden-img-border;
-         }
-  }
-      &--black {
-      @include section-header-bg('../../images/textures/marble-black-gold-2.jpg',
-          rgba($ink, .7),
-          rgba($ink, .3),
-          rgba($ink, .2),
-          $white,
-          multiply
-        );
-      & img {
-          @include golden-img-border;
-         }
-  }
-      &--red {
-      @include section-header-bg(
-          '../../images/textures/marble-red-5.jpg',
-          rgba($red-marble, .9),
-          rgba($red-marble, .7),
-          rgba($red-marble, .45),
-          $red-marble,
-        );
-      & img {
-          @include golden-img-border;
-         }
-  }
-      &--red-alt {
-      @include section-header-bg('../../images/textures/marble-red-4.jpg',
-          rgba($red-marble, .7),
-          rgba($red-marble, .3),
-          rgba($red-marble, .7),
-          $pyrite,
-          multiply
-        );
-      & img {
-          @include golden-img-border;
-         }
-  }
-      &--granite {
-      @include section-header-bg('../../images/textures/granite-rep-x.jpg',
-          rgba($granite, .7),
-          rgba($granite, .2),
-          rgba($granite, .5),
-          $pyrite,
-          multiply
-        );
-      & img {
-          @include golden-img-border;
-         }
-  }
+//   border-radius: inherit; 
+//   position: relative;    
+//   z-index: 2;            
+// }
+//   &__bg {
+//       &--golden {
+//       @include section-header-bg('../../images/textures/marble-white-gold-2.jpg',
+//           rgba(white, .92),
+//           rgba(white, .5),
+//           rgba(white, 0),
+//           $white,
+//           normal
+//         );
+//       & img {
+//           @include golden-img-border;
+//          }
+//   }
+//       &--golden-alt {
+//       @include section-header-bg('../../images/textures/marble-white-gold-1.jpg',
+//           rgba(white, .92),
+//           rgba(white, .5),
+//           rgba(white, 0),
+//           $white,
+//           normal
+//         );
+//       & img {
+//           @include golden-img-border;
+//          }
+//   }
+//       &--black {
+//       @include section-header-bg('../../images/textures/marble-black-gold-2.jpg',
+//           rgba($ink, .7),
+//           rgba($ink, .3),
+//           rgba($ink, .2),
+//           $white,
+//           multiply
+//         );
+//       & img {
+//           @include golden-img-border;
+//          }
+//   }
+//       &--red {
+//       @include section-header-bg(
+//           '../../images/textures/marble-red-5.jpg',
+//           rgba($red-marble, .9),
+//           rgba($red-marble, .7),
+//           rgba($red-marble, .45),
+//           $red-marble,
+//         );
+//       & img {
+//           @include golden-img-border;
+//          }
+//   }
+//       &--red-alt {
+//       @include section-header-bg('../../images/textures/marble-red-4.jpg',
+//           rgba($red-marble, .7),
+//           rgba($red-marble, .3),
+//           rgba($red-marble, .7),
+//           $pyrite,
+//           multiply
+//         );
+//       & img {
+//           @include golden-img-border;
+//          }
+//   }
+//       &--granite {
+//       @include section-header-bg('../../images/textures/granite-rep-x.jpg',
+//           rgba($granite, .7),
+//           rgba($granite, .2),
+//           rgba($granite, .5),
+//           $pyrite,
+//           multiply
+//         );
+//       & img {
+//           @include golden-img-border;
+//          }
+//   }
 
-  }
-}
+//   }
+// }
 

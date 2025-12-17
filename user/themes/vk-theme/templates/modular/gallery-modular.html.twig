@@ -1,16 +1,10 @@
-{# Plik: partials/_gallery-modular.html.twig #}
 
-{# Sprawdzamy, czy zmienna 'items' została przekazana i nie jest pusta #}
 {% if items is defined and items is not empty %}
-    <div class="lg:p-6">
+    <div class="lg:px-[5%]" >
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {# 
-              Używamy tutaj generycznej zmiennej 'items', 
-              którą otrzymamy z zewnątrz.
-            #}
+
             {% for item in items %}
                 <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer">
-                    {# Ścieżka do obrazka może też być przekazywana jako zmienna, jeśli galerie są w różnych folderach! #}
                     <img src="{{ theme_url }}/{{ item.image_filename }}" 
                          alt="{{ item.title }}" 
                          class="w-full h-full object-cover">
@@ -28,7 +22,6 @@
         </div>
     </div>
 {% else %}
-    {# Ten fragment wyświetli się, jeśli przekażemy pustą tablicę lub nic nie przekażemy #}
     <p class="col-span-full text-center text-gray-500">
         Obecnie brak zdjęć w galerii.
     </p>

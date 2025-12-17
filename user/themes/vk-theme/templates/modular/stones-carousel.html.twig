@@ -1,20 +1,26 @@
 <section class="py-4 lg:py-8">
   
-  {# --- 1. NAGŁÓWEK I OPIS (Wycentrowane) --- #}
+  {# --- 1. NAGŁÓWEK I OPIS (Wycentrowane)
   <div class="max-w-4xl mx-auto px-4 my-12 flex flex-col items-center text-center space-y-6">
       
-      {# Tytuł #}
+
       <h1 class="text-3xl font-bold text-gray-800 mb-2 border-bot-cherry">
           {{ page.header.title|default('Polecane kamienie') }}
       </h1>
-      
-      {# Tekst opisu #}
+ 
       <p class="text-lg text-gray-700">
           {{ page.header.text|nl2br }}
       </p>
 
-  </div>
-
+  </div> --- #}
+  {# NAGŁÓWEK #}
+    <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--black">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                {{ page.header.top_label|default('Polecane kamienie') }}
+            </h3>
+        </div>
+    </div>
 
   {# --- 2. KARUZELA (Bez zmian w logice, tylko ID) --- #}
   {% set unique_id = unique_id | default(random()) %}
@@ -61,18 +67,19 @@
       </h3>
       <p id="materialDesc-{{ unique_id }}" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300 mt-4">
       </p>
+      
+
+  {% if page.header.button_text %}
+    <div class="flex justify-center w-full mt-12 mb-8">
+        <a href="{{ page.header.button_link|default('#') }}" class="btn-primary w-auto text-center">
+            {{ page.header.button_text }}
+        </a>
+    </div>
+  {% endif %}
     </div>
 
   </div>
   {% endif %}
 
-
-  {% if page.header.button_text %}
-    <div class="flex justify-center w-full mt-12 mb-8">
-        <a href="{{ page.header.button_link|default('#') }}" class="btn-primary w-auto px-10 py-3 flex justify-center items-center text-center shadow-lg transition-transform transform hover:-translate-y-1">
-            {{ page.header.button_text }}
-        </a>
-    </div>
-  {% endif %}
 
 </section>
