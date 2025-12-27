@@ -1,37 +1,21 @@
-{# Pobieramy zmienne z blueprintu #}
-{% set image_file = page.header.image %}
+{# 1. Pobranie danych obrazu #}
+{% set image_data = page.header.image|first %}
+{% set image_name = image_data.name %}
+{% set image = image_name ? page.media[image_name] : null %}
+
+{# 2. Zmienne #}
 {% set image_alt = page.header.image_alt %}
 {% set caption = page.header.caption %}
 {% set image_style = page.header.image_style|default('golden-border') %}
 {% set section_id = page.header.section_id %}
-
-{# Ustawienie szerokości obrazka z CMS #}
 {% set max_width = page.header.max_width|default('max-w-5xl') %}
-{% if max_width == 'full' %}
-    {% set container_class = 'max-w-full' %}
-{% else %}
-    {% set container_class = max_width ~ ' mx-auto' %}
-{% endif %}
-
-{# Ustawienie proporcji obrazka (kontroli wysokości) z CMS #}
-{% set aspect_class = page.header.aspect_ratio|default('none') %}
-{% if aspect_class == 'none' %}
-    {% set aspect_class = '' %} {# Nie dodawaj żadnej klasy #}
-{% endif %}
-
-{# --- NOWA LOGIKA DLA STYLÓW INLINE --- #}
+{% set aspect_class = page.header.aspect_ratio|default('') %}
 {% set max_height = page.header.max_height %}
-{% set style_attr = '' %}
-{# Sprawdzamy, czy max_height jest zdefiniowane i jest liczbą większą od 0 #}
-{% if max_height and max_height > 0 %}
-    {# Budujemy atrybut stylu #}
-    {% set style_attr = 'style="max-height: ' ~ max_height ~ 'px;"' %}
-    
-    {# WAŻNE: Jeśli ustawimy max-height, klasa object-cover jest kluczowa #}
-    {% set image_class = image_class ~ ' object-cover' %}
-{% endif %}
 
-{# --- To jest Twoja logika, którą chciałeś zachować --- #}
+{# 3. Kontener #}
+{% set container_class = (max_width == 'full') ? 'max-w-full' : max_width ~ ' mx-auto' %}
+
+{# 4. Klasy obrazu #}
 {% set image_class = '' %}
 {% if image_style == 'golden-border' %}
     {% set image_class = 'w-full golden-img-border hard-shadow' %}
@@ -40,23 +24,30 @@
 {% else %}
     {% set image_class = 'w-full' %}
 {% endif %}
-{# --- Koniec Twojej logiki --- #}
 
-<section class="px-4 py-16" {% if section_id %}id="{{ section_id }}"{% endif %}>
+<section class="px-4 py-2" {% if section_id %}id="{{ section_id }}"{% endif %}>
     
-    <figure class="{{ container_class }}">
-        {% if image_file %}
-            <img src="{{ theme_url }}/{{ image_file }}" 
-                 alt="{{ image_alt }}" 
-                 class="{{ image_class }} {{ aspect_class }} object-cover" {# Dodajemy 'object-cover' na stałe, aby max-height działało poprawnie #}
-                 {{ style_attr|raw }}> {# <-- Dodany atrybut stylu inline #}
-            
+    <figure class="{{ container_class }} m-0 p-0">
+
+        {% if image %}
+            <div class="flex justify-center w-full">
+                <img 
+                    src="{{ image.url }}"
+                    alt="{{ image_alt|default(page.title) }}"
+                    class="{{ image_class }} {{ aspect_class }} block h-auto object-cover"
+                    {% if max_height and max_height > 0 %}
+                        style="max-height: {{ max_height }}px;"
+                    {% endif %}
+                >
+            </div>
+
             {% if caption %}
                 <figcaption class="text-center text-gray-600 text-lg mt-4">
                     {{ caption }}
                 </figcaption>
             {% endif %}
         {% endif %}
+
     </figure>
-    
+
 </section>

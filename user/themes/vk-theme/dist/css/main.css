@@ -3663,7 +3663,6 @@ option {
 @media (min-width: 768px) {
   .grid-container__main-content {
     grid-column: span 11;
-    min-height: 200vh;
   }
 }
 @media (min-width: 768px) {

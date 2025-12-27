@@ -13,9 +13,13 @@ form:
           title: 📜 Treść
           fields:
             header.image:
-              type: filepicker
-              label: Obrazek
-              folder: 'theme@:/images'
+              type: file
+              label: Zdjęcie
+              destination: 'self@' # Zapisuje w folderze modułu
+              multiple: false      # Chcemy tylko jedno zdjęcie
+              random_name: false
+              accept:
+                - image/*
               preview_images: true
               # --- NAPRAWA BŁĘDU ---
               # Przeniesione z błędnego 'validate:' do poprawnego 'required:'
