@@ -1,20 +1,12 @@
-{# 1. Pobieramy surową wartość z headera #}
-{% set hero_header = page.header.hero_image %}
-{% set image_name = "" %}
+{# 1. Pobieramy nazwę pliku z headera #}
+{% set hero_image_name = page.header.hero_image %}
 
-{# 2. Sprawdzamy, czy to tablica (z Admina) czy tekst (wpisany ręcznie) #}
-{% if hero_header is iterable %}
-    {% set image_name = (hero_header|first).name %}
-{% else %}
-    {% set image_name = hero_header %}
-{% endif %}
-
-{# 3. Pobieramy obiekt zdjęcia #}
-{% set hero_image = image_name ? page.media[image_name] : null %}
+{# 2. Tworzymy ścieżkę do pliku wewnątrz motywu #}
+{% set hero_image_url = hero_image_name ? url('theme://images/covers/' ~ hero_image_name) : null %}
 
 <section 
     class="hero-section relative flex items-center justify-center w-full min-h-[780px] text-center overflow-hidden bg-cover bg-overlay-custom bg-center navbar-gradient-down" 
-    style="{% if hero_image %}background-image: url('{{ hero_image.url }}');{% else %}background-color: #333;{% endif %}"
+    style="{% if hero_image_url %}background-image: url('{{ hero_image_url }}');{% else %}background-color: #333;{% endif %}"
 >
     {# Twoja oryginalna nakładka #}
     <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
@@ -33,7 +25,7 @@
         {% if page.header.hero_buttons %}
             <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 {% for button in page.header.hero_buttons %}
-                    <a href="{{ button.url }}" class="{{ button.class | default('btn-primary') }}">
+                    <a href="{{ button.url }}" class="{{ button.class | default('btn-primary') }} w-full sm-w-56 flex items-center justify-center text-center transition-all">
                         {{ button.text }}
                     </a>
                 {% endfor %}

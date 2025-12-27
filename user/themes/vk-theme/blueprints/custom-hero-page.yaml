@@ -1,4 +1,4 @@
-title: Custom Hero Section
+title: Custom Hero Page
 '@extends':
     type: default
     context: blueprints://pages
@@ -9,56 +9,47 @@ form:
       type: tabs
       active: 1
       fields:
-        content:
+        # Zmieniamy nazwę taba na 'hero_tab', aby nie kolidowała z polem 'content'
+        hero_tab:
           type: tab
           title: Treść Hero
           fields:
+            header.custom_hero_section:
+              type: section
+              title: Ustawienia Sekcji Hero
+              underline: true
 
-            # Pole na obrazek tła
             header.hero_image:
               type: filepicker
               label: Wybierz obraz tła Hero
               folder: 'theme@:/images/covers'
+              value: name
               preview_images: true
               accept:
                 - .jpg
                 - .png
                 - .webp
-              help: "Wybierz plik z folderu theme/images/covers"
 
-            # Pole na podtytuł
             header.hero_subtitle:
-              type: text
-              label: Podtytuł (tekst pod głównym tytułem)
-              help: "Wpisz tutaj tekst, który pojawi się pod tytułem strony."
+              type: textarea
+              label: Podtytuł Hero
+              rows: 3
 
-            # Pole do zarządzania przyciskami (jako lista)
             header.hero_buttons:
               type: list
-              label: Przyciski
+              label: Przyciski Hero
               style: vertical
               fields:
                 .text:
                   type: text
                   label: Tekst przycisku
-                  validate:
-                    required: true
                 .url:
                   type: text
                   label: Link (URL)
-                  validate:
-                    required: true
                 .class:
                   type: select
-                  label: Wygląd przycisku
+                  label: Styl przycisku
                   default: 'btn-primary'
                   options:
-                    'btn-primary': 'Podstawowy (Primary)'
-                    'btn-cta': 'Wezwanie do akcji (CTA)'
-
-        advanced:
-          type: tab
-          title: Zaawansowane
-          fields:
-            # Tutaj możesz przenieść standardowe pola, jeśli chcesz
-            # np. folder, parent, etc.
+                    'btn-primary': 'Podstawowy'
+                    'btn-cta': 'Cherry CTA'

@@ -1,0 +1,11 @@
+title: Debug Test Module
+form:
+  fields:
+    header.test_title:
+      type: text
+      label: Tytuł testowy
+      default: "To jest moduł testowy"
+    header.test_color:
+      type: colorpicker
+      label: Kolor tła testu
+      default: "#e74c3c"

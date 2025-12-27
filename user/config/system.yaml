@@ -35,8 +35,9 @@ pages:
     - 'page://'
   theme: vk-theme
   order:
-    by: default
+    by: folder
     dir: asc
+  numeric_prefix: true
   list:
     count: 20
   dateformat:

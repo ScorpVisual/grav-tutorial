@@ -1,0 +1,12 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    {# Renderowanie wyłącznie modułów, ponieważ Hero jest już wstrzyknięte przez base.html.twig #}
+    <div class="modular-content">
+        {% for module in page.collection() %}
+            {# <div id="{{ _self.generateSlug(module.header.title) }}"> #}
+                {{ module.content|raw }}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
