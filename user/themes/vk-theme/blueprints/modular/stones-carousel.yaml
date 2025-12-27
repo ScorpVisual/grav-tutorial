@@ -60,3 +60,13 @@ form:
                   label: Zdjęcie (tekstura)
                   folder: 'theme@:/images/stones'
                   preview_images: true
+                .price_level:
+                  type: select
+                  label: Poziom ceny
+                  default: 1
+                  options:
+                    1: "1 - Bardzo przystępny"
+                    2: "2 - Ekonomiczny"
+                    3: "3 - Standardowy"
+                    4: "4 - Premium"
+                    5: "5 - Ekskluzywny"

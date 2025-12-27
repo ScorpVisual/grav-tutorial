@@ -171,32 +171,64 @@ function initMaterialCarousel() {
         let isAnimating = false;
         const total = items.length;
 
-        function update() {
-            isAnimating = true;
-            nameEl.style.opacity = 0;
-            descEl.style.opacity = 0;
+    function update() {
+    isAnimating = true;
+    const center = items[currentIndex];
+    const uniqueId = container.id.split('-').pop(); // Pobieramy ID tej instancji
 
-            setTimeout(() => {
-                const center = items[currentIndex];
-                nameEl.textContent = center.dataset.name;
-                descEl.textContent = center.dataset.desc;
-                nameEl.style.opacity = 1;
-                descEl.style.opacity = 1;
-            }, 250);
+    // 1. Chwytamy wszystkie elementy do animacji
+    const priceStarsContainer = carouselWrapper.querySelector('.js-price-stars');
+    const priceLabel = document.getElementById(`materialPriceLabel-${uniqueId}`);
 
-            const leftIdx = (currentIndex - 1 + total) % total;
-            const rightIdx = (currentIndex + 1) % total;
+    // 2. Start animacji - wszystko zanika
+    nameEl.style.opacity = 0;
+    descEl.style.opacity = 0;
+    if (priceStarsContainer) priceStarsContainer.style.opacity = 0;
+    if (priceLabel) priceLabel.style.opacity = 0; // NOWOŚĆ
 
-            items.forEach((it, idx) => {
-                it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
-                if (idx === currentIndex) it.classList.add('carousel-center', 'golden-img-border');
-                else if (idx === leftIdx) it.classList.add('carousel-left');
-                else if (idx === rightIdx) it.classList.add('carousel-right');
-                else it.classList.add('carousel-hidden');
-            });
+    setTimeout(() => {
+        // 3. Podmiana treści dynamicznych
+        nameEl.textContent = center.dataset.name;
+        descEl.textContent = center.dataset.desc;
+        
+        // 4. Generowanie ikon (Twoja obecna bezpieczna logika)
+        if (priceStarsContainer) {
+            const priceLevel = parseInt(center.dataset.price) || 1;
+            const iconPath = priceStarsContainer.dataset.icon;
+            priceStarsContainer.replaceChildren(); 
 
-            setTimeout(() => (isAnimating = false), 500);
+            for (let i = 1; i <= 5; i++) {
+                const img = document.createElement('img');
+                img.src = iconPath;
+                img.className = 'h-6 w-auto';
+                img.style.opacity = i <= priceLevel ? '1' : '0.2';
+                img.alt = `Poziom ceny ${i} z 5`;
+                priceStarsContainer.appendChild(img);
+            }
+            // 5. Powrót widoczności ikon i etykiety
+            priceStarsContainer.style.opacity = 1;
         }
+
+        if (priceLabel) priceLabel.style.opacity = 1; // NOWOŚĆ
+        
+        nameEl.style.opacity = 1;
+        descEl.style.opacity = 1;
+    }, 250);
+
+    // 7. Logika klas karuzeli (bez zmian)
+    const leftIdx = (currentIndex - 1 + total) % total;
+    const rightIdx = (currentIndex + 1) % total;
+
+    items.forEach((it, idx) => {
+        it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
+        if (idx === currentIndex) it.classList.add('carousel-center', 'golden-img-border');
+        else if (idx === leftIdx) it.classList.add('carousel-left');
+        else if (idx === rightIdx) it.classList.add('carousel-right');
+        else it.classList.add('carousel-hidden');
+    });
+
+    setTimeout(() => (isAnimating = false), 500);
+}
 
         nextBtn.addEventListener('click', () => {
             if (isAnimating) return;

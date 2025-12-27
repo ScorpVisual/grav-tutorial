@@ -1,5 +1,5 @@
 ---
-title: 'Nagrobek Granitowy "Eternity"'
+title: 'Nagrobek Granitowy "Eternity 2"'
 menu: 'Nagrobek Eternity'
 template: final-product
 content:
