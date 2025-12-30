@@ -2095,6 +2095,10 @@ video {
     max-width: 240px;
   }
 
+  .md\:max-w-\[256px\] {
+    max-width: 256px;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2287,6 +2291,10 @@ video {
 
   .lg\:max-w-\[256px\] {
     max-width: 256px;
+  }
+
+  .lg\:max-w-\[320px\] {
+    max-width: 320px;
   }
 
   .lg\:grid-cols-12 {
