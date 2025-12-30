@@ -1,6 +1,17 @@
 ---
-title: Produkty
-hero_type: main-hero
+title: Nagrobki
+published: true
+hero_image: tombs-2.jpg
+hero_subtitle: 'Cośtam cośtam o nagrobkach '
+hero_buttons:
+    -
+        text: Oferta
+        url: '#oferta'
+        class: btn-primary
+    -
+        text: 'Zapytaj o wycenę'
+        url: '#kontakt'
+        class: btn-cta
 content:
     items: '@self.children'
     order:

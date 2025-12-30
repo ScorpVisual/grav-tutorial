@@ -26,5 +26,31 @@ items:
         desc: 'Głęboki, ciemny odcień z delikatnymi żyłkowaniami przypominającymi jedwab. Doskonały wybór dla nowoczesnych, minimalistycznych form.'
         img: 18._orion_silk.jpg
         price_level: '3'
+top_label: 'Polecane kamienie'
+selected_stones:
+    szary_perlowy: true
+    nowy_zbik: true
+    yellow_queen: true
+    orion_silk: true
+    zbik_szary: false
+    braz_mysi: false
+    monte_grey: false
+    braz_krolewski: false
+    china_viscount: false
+    china_juparana: false
+    skalisty: false
+    impala_jasna: false
+    impala_ciemna: false
+    ruby_star: false
+    szary_piekny: false
+    viscount_white: false
+    orion: false
+    aurora: false
+    tan_brown: false
+    impala_indie: false
+    padang_dark: false
+    himalaya_blue: false
+    chinska_aurora: false
+    roz_srebrzysty: false
 ---
 

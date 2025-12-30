@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- ZUNIFIKOWANY MANAGER BLOKOWANIA PRZEWIJANIA (bez zmian) ---
+    // --- ZUNIFIKOWANY MANAGER BLOKOWANIA PRZEWIJANIA ---
     const scrollLockManager = {
         lockCount: 0,
         body: document.body,
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ====================================================================
-    //  POPRAWIONY SKRYPT MODALA GALERII
+    //  1. GALERIA MODAL (FULLSCREEN)
     // ====================================================================
     function initGalleryModal() {
         const modal = document.getElementById('fullscreen-modal');
@@ -67,10 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300);
         };
         
-        // NOWA, LEPSZA LOGIKA: Listener podpięty bezpośrednio do każdego obrazka
         clickableImages.forEach((container, index) => {
             container.addEventListener('click', (event) => {
-                // Zapobiegamy otwieraniu się nakładki karty, jeśli na nią klikamy
                 event.preventDefault();
                 event.stopPropagation();
                 openModal(index);
@@ -91,163 +89,266 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ====================================================================
-    //  POPRAWIONY SKRYPT KART PRODUKTÓW
+    //  2. KARUZELA MATERIAŁÓW (CENA I DOSTĘPNOŚĆ)
     // ====================================================================
-    function initProductCards() {
-        const allProductCards = document.querySelectorAll('.product-card');
+    // function initMaterialCarousel() {
+    //     // 1. Znajdź WSZYSTKIE kontenery karuzel na stronie
+    //     document.querySelectorAll('.js-material-carousel').forEach(carouselWrapper => {
+            
+    //         const container = carouselWrapper.querySelector('.carousel-main-container');
+    //         if (!container) return;
 
-        allProductCards.forEach(card => {
-            const expandButton = card.querySelector('.product-card__expand-btn');
-            const closeButton = card.querySelector('.details-overlay__close-btn');
-            const overlay = card.querySelector('.product-card__details-overlay');
+    //         const uniqueId = container.id.split('-').pop();
+    //         if (!uniqueId) return;
+            
+    //         const items = container.querySelectorAll('.carousel-item');
+    //         const nameEl = document.getElementById(`materialName-${uniqueId}`);
+    //         const descEl = document.getElementById(`materialDesc-${uniqueId}`);
+    //         const prevBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="prev"]');
+    //         const nextBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="next"]');
 
-            if (!expandButton || !closeButton || !overlay) return;
+    //         if (!items.length || !nameEl || !descEl || !prevBtn || !nextBtn) return;
 
-            expandButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                card.classList.add('is-details-open');
-            });
+    //         // Ukryj przyciski, jeśli za mało slajdów
+    //         if (items.length < 3) {
+    //             prevBtn.style.display = 'none';
+    //             nextBtn.style.display = 'none';
+    //             if (items.length > 0) {
+    //                  const center = items[0];
+    //                  nameEl.textContent = center.dataset.name;
+    //                  descEl.textContent = center.dataset.desc;
+    //                  items[0].classList.add('carousel-center', 'golden-img-border');
+    //             }
+    //             return;
+    //         }
 
-            closeButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                card.classList.remove('is-details-open');
-            });
+    //         let currentIndex = 0;
+    //         let isAnimating = false;
+    //         const total = items.length;
 
-            overlay.addEventListener('click', (event) => {
-                if (event.target === overlay) { // Poprawiona logika!
-                    card.classList.remove('is-details-open');
-                }
-            });
-        });
+    //         // Główna funkcja aktualizująca stan
+    //         function update() {
+    //             isAnimating = true;
+    //             const center = items[currentIndex];
+                
+    //             // Elementy do animacji
+    //             const priceStarsContainer = carouselWrapper.querySelector('.js-price-stars');
+    //             const priceLabel = document.getElementById(`materialPriceLabel-${uniqueId}`);
+    //             const availStarsContainer = carouselWrapper.querySelector('.js-availability-stars');
 
-        document.addEventListener('click', (event) => {
-            if (!event.target.closest('.product-card')) {
-                document.querySelectorAll('.product-card.is-details-open').forEach(card => {
-                    card.classList.remove('is-details-open');
-                });
+    //             // 1. Zanikanie treści
+    //             nameEl.style.opacity = 0;
+    //             descEl.style.opacity = 0;
+    //             if (priceStarsContainer) priceStarsContainer.style.opacity = 0;
+    //             if (priceLabel) priceLabel.style.opacity = 0;
+    //             if (availStarsContainer) availStarsContainer.style.opacity = 0;
+
+    //             setTimeout(() => {
+    //                 // 2. Podmiana tekstów
+    //                 nameEl.textContent = center.dataset.name;
+    //                 descEl.textContent = center.dataset.desc;
+                    
+    //                 // Funkcja pomocnicza do gwiazdek
+    //                 const renderStars = (starContainer, levelValue) => {
+    //                     if (!starContainer) return;
+    //                     const level = parseInt(levelValue) || 1;
+    //                     const iconPath = starContainer.dataset.icon;
+    //                     starContainer.replaceChildren();
+
+    //                     for (let i = 1; i <= 5; i++) {
+    //                         const img = document.createElement('img');
+    //                         img.src = iconPath;
+    //                         img.className = 'h-6 w-auto';
+    //                         img.style.opacity = i <= level ? '1' : '0.2'; 
+    //                         img.alt = `Poziom ${i} z 5`;
+    //                         starContainer.appendChild(img);
+    //                     }
+    //                     starContainer.style.opacity = 1;
+    //                 };
+
+    //                 // Generowanie gwiazdek
+    //                 renderStars(priceStarsContainer, center.dataset.price);
+    //                 renderStars(availStarsContainer, center.dataset.availability || 5);
+
+    //                 // Przywracanie widoczności
+    //                 if (priceLabel) priceLabel.style.opacity = 1;
+    //                 nameEl.style.opacity = 1;
+    //                 descEl.style.opacity = 1;
+                    
+    //             }, 250);
+
+    //             // 3. Logika klas CSS (przesuwanie kafelków)
+    //             const leftIdx = (currentIndex - 1 + total) % total;
+    //             const rightIdx = (currentIndex + 1) % total;
+
+    //             items.forEach((it, idx) => {
+    //                 it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
+    //                 if (idx === currentIndex) it.classList.add('carousel-center', 'golden-img-border');
+    //                 else if (idx === leftIdx) it.classList.add('carousel-left');
+    //                 else if (idx === rightIdx) it.classList.add('carousel-right');
+    //                 else it.classList.add('carousel-hidden');
+    //             });
+
+    //             // Odblokowanie klikania po zakończeniu animacji
+    //             setTimeout(() => (isAnimating = false), 500);
+    //         }
+
+    //         nextBtn.addEventListener('click', () => {
+    //             if (isAnimating) return;
+    //             currentIndex = (currentIndex + 1) % total;
+    //             update();
+    //         });
+
+    //         prevBtn.addEventListener('click', () => {
+    //             if (isAnimating) return;
+    //             currentIndex = (currentIndex - 1 + total) % total;
+    //             update();
+    //         });
+
+    //         // Start
+    //         update();
+    //     });
+    // }
+// ====================================================================
+    //  2. KARUZELA MATERIAŁÓW (FIXED FOR YOUR SCSS)
+    // ====================================================================
+    function initMaterialCarousel() {
+        document.querySelectorAll('.js-material-carousel').forEach(carouselWrapper => {
+            
+            const container = carouselWrapper.querySelector('.carousel-main-container');
+            if (!container) return;
+
+            const uniqueId = container.id.split('-').pop();
+            const items = container.querySelectorAll('.carousel-item');
+            
+            // --- Elementy do aktualizacji ---
+            const nameEl = document.getElementById(`materialName-${uniqueId}`);
+            const descEl = document.getElementById(`materialDesc-${uniqueId}`);
+            
+            // Labele (Cena/Dostępność - stringi)
+            const labelPrice = document.getElementById(`labelPrice-${uniqueId}`);
+            const labelAvail = document.getElementById(`labelAvail-${uniqueId}`);
+
+            // Kontenery Gwiazdek
+            const priceStarsContainer = carouselWrapper.querySelector('.js-price-stars');
+            const availStarsContainer = carouselWrapper.querySelector('.js-availability-stars');
+
+            const prevBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="prev"]');
+            const nextBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="next"]');
+
+            if (!items.length) return;
+
+            // Obsługa małej ilości elementów
+            if (items.length < 3) {
+                if(prevBtn) prevBtn.style.display = 'none';
+                if(nextBtn) nextBtn.style.display = 'none';
+                items[0].classList.add('carousel-center'); // Bez golden-border, bo to styl z innego mixina
+                if(nameEl) nameEl.textContent = items[0].dataset.name;
+                if(descEl) descEl.textContent = items[0].dataset.desc;
+                // Tutaj opcjonalnie render gwiazdek dla pierwszego elementu
+                return;
             }
+
+            let currentIndex = 0;
+            let isAnimating = false;
+            const total = items.length;
+
+            function update() {
+                isAnimating = true;
+                const center = items[currentIndex];
+
+                // 1. Ustawianie klas (Logika 3D z Twojego SCSS)
+                const leftIdx = (currentIndex - 1 + total) % total;
+                const rightIdx = (currentIndex + 1) % total;
+
+                items.forEach((it, idx) => {
+                    it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
+                    
+                    if (idx === currentIndex) {
+                        it.classList.add('carousel-center');
+                        // Dodaję golden-img-border jeśli chcesz efektu ramki
+                         it.classList.add('golden-img-border'); 
+                    } else if (idx === leftIdx) {
+                        it.classList.add('carousel-left');
+                    } else if (idx === rightIdx) {
+                        it.classList.add('carousel-right');
+                    } else {
+                        it.classList.add('carousel-hidden');
+                    }
+                });
+
+                // 2. Animacja ZNIKANIA (Wszystko znika)
+                if(nameEl) nameEl.style.opacity = 0;
+                if(descEl) descEl.style.opacity = 0;
+                
+                // Znikają kontenery z gwiazdkami
+                if(priceStarsContainer) priceStarsContainer.style.opacity = 0;
+                if(availStarsContainer) availStarsContainer.style.opacity = 0;
+                
+                // Znikają napisy "Cena:" i "Dostępność:"
+                if(labelPrice) labelPrice.style.opacity = 0;
+                if(labelAvail) labelAvail.style.opacity = 0;
+
+
+                setTimeout(() => {
+                    // 3. Podmiana treści (kiedy jest niewidoczne)
+                    if(nameEl) nameEl.textContent = center.dataset.name;
+                    if(descEl) descEl.textContent = center.dataset.desc;
+
+                    // Funkcja pomocnicza do gwiazdek
+                    const renderStars = (container, val) => {
+                        if (!container) return;
+                        const level = parseInt(val) || 1;
+                        const src = container.dataset.icon;
+                        container.replaceChildren();
+                        for (let i = 1; i <= 5; i++) {
+                            const img = document.createElement('img');
+                            img.src = src;
+                            img.className = 'h-6 w-auto';
+                            img.style.opacity = i <= level ? '1' : '0.2';
+                            container.appendChild(img);
+                        }
+                    };
+
+                    renderStars(priceStarsContainer, center.dataset.price);
+                    renderStars(availStarsContainer, center.dataset.availability);
+
+                    // 4. Animacja POJAWIANIA (Wszystko wraca)
+                    if(nameEl) nameEl.style.opacity = 1;
+                    if(descEl) descEl.style.opacity = 1;
+                    
+                    if(priceStarsContainer) priceStarsContainer.style.opacity = 1;
+                    if(availStarsContainer) availStarsContainer.style.opacity = 1;
+                    
+                    if(labelPrice) labelPrice.style.opacity = 1;
+                    if(labelAvail) labelAvail.style.opacity = 1;
+
+                }, 250); // Zgodne z połową czasu CSS transition
+
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 500);
+            }
+
+            if(nextBtn) nextBtn.addEventListener('click', () => {
+                if (isAnimating) return;
+                currentIndex = (currentIndex + 1) % total;
+                update();
+            });
+
+            if(prevBtn) prevBtn.addEventListener('click', () => {
+                if (isAnimating) return;
+                currentIndex = (currentIndex - 1 + total) % total;
+                update();
+            });
+
+            // Start
+            update();
         });
     }
-
-    // --- LOGIKA KARUZELI "WYBÓR MATERIAŁU" ---
-   // --- LOGIKA KARUZELI "WYBÓR MATERIAŁU" (WERSJA DZIAŁAJĄCA DLA WIELU INSTANCJI) ---
-function initMaterialCarousel() {
-    // 1. Znajdź WSZYSTKIE kontenery karuzel na stronie
-    document.querySelectorAll('.js-material-carousel').forEach(carouselWrapper => {
-        // 2. Dla każdej karuzeli z osobna, znajdź jej elementy wewnętrzne
-        const container = carouselWrapper.querySelector('.carousel-main-container');
-        if (!container) return;
-
-        // Wyciągamy unikalne ID, żeby znaleźć powiązane elementy info
-        const uniqueId = container.id.split('-').pop();
-        if (!uniqueId) return;
-        
-        const items = container.querySelectorAll('.carousel-item');
-        const nameEl = document.getElementById(`materialName-${uniqueId}`);
-        const descEl = document.getElementById(`materialDesc-${uniqueId}`);
-        const prevBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="prev"]');
-        const nextBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="next"]');
-
-        // Sprawdzamy, czy ta konkretna instancja ma wszystko, czego potrzebuje
-        if (!items.length || !nameEl || !descEl || !prevBtn || !nextBtn) return;
-
-        // Ukryj przyciski, jeśli nie ma wystarczająco slajdów
-        if (items.length < 3) {
-            prevBtn.style.display = 'none';
-            nextBtn.style.display = 'none';
-            // Ale nadal zainicjuj stan początkowy dla jednego elementu
-            if (items.length > 0) {
-                 const center = items[0];
-                 nameEl.textContent = center.dataset.name;
-                 descEl.textContent = center.dataset.desc;
-                 items[0].classList.add('carousel-center', 'golden-img-border');
-            }
-            return;
-        }
-
-        // 3. Cała logika (stan, funkcje, listenery) jest "zamknięta" w tej pętli
-        //    i dotyczy tylko jednej karuzeli. Dzięki temu nie ma konfliktów.
-        let currentIndex = 0;
-        let isAnimating = false;
-        const total = items.length;
-
-    function update() {
-    isAnimating = true;
-    const center = items[currentIndex];
-    const uniqueId = container.id.split('-').pop(); // Pobieramy ID tej instancji
-
-    // 1. Chwytamy wszystkie elementy do animacji
-    const priceStarsContainer = carouselWrapper.querySelector('.js-price-stars');
-    const priceLabel = document.getElementById(`materialPriceLabel-${uniqueId}`);
-
-    // 2. Start animacji - wszystko zanika
-    nameEl.style.opacity = 0;
-    descEl.style.opacity = 0;
-    if (priceStarsContainer) priceStarsContainer.style.opacity = 0;
-    if (priceLabel) priceLabel.style.opacity = 0; // NOWOŚĆ
-
-    setTimeout(() => {
-        // 3. Podmiana treści dynamicznych
-        nameEl.textContent = center.dataset.name;
-        descEl.textContent = center.dataset.desc;
-        
-        // 4. Generowanie ikon (Twoja obecna bezpieczna logika)
-        if (priceStarsContainer) {
-            const priceLevel = parseInt(center.dataset.price) || 1;
-            const iconPath = priceStarsContainer.dataset.icon;
-            priceStarsContainer.replaceChildren(); 
-
-            for (let i = 1; i <= 5; i++) {
-                const img = document.createElement('img');
-                img.src = iconPath;
-                img.className = 'h-6 w-auto';
-                img.style.opacity = i <= priceLevel ? '1' : '0.2';
-                img.alt = `Poziom ceny ${i} z 5`;
-                priceStarsContainer.appendChild(img);
-            }
-            // 5. Powrót widoczności ikon i etykiety
-            priceStarsContainer.style.opacity = 1;
-        }
-
-        if (priceLabel) priceLabel.style.opacity = 1; // NOWOŚĆ
-        
-        nameEl.style.opacity = 1;
-        descEl.style.opacity = 1;
-    }, 250);
-
-    // 7. Logika klas karuzeli (bez zmian)
-    const leftIdx = (currentIndex - 1 + total) % total;
-    const rightIdx = (currentIndex + 1) % total;
-
-    items.forEach((it, idx) => {
-        it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
-        if (idx === currentIndex) it.classList.add('carousel-center', 'golden-img-border');
-        else if (idx === leftIdx) it.classList.add('carousel-left');
-        else if (idx === rightIdx) it.classList.add('carousel-right');
-        else it.classList.add('carousel-hidden');
-    });
-
-    setTimeout(() => (isAnimating = false), 500);
-}
-
-        nextBtn.addEventListener('click', () => {
-            if (isAnimating) return;
-            currentIndex = (currentIndex + 1) % total;
-            update();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (isAnimating) return;
-            currentIndex = (currentIndex - 1 + total) % total;
-            update();
-        });
-
-        // Zainicjuj stan początkowy dla tej karuzeli
-        update();
-    });
-}
-
-    // --- LOGIKA KARUZELI "NA ZAKŁADKĘ" ---
+    // ====================================================================
+    //  3. KARUZELA "NA ZAKŁADKĘ" (SHUFFLE)
+    // ====================================================================
     function initShuffleCarousel() {
         const carousel = document.querySelector('.js-shuffle-carousel');
         if (!carousel) return;
@@ -256,6 +357,7 @@ function initMaterialCarousel() {
         const nextButton = carousel.querySelector('.shuffle-carousel__btn--next');
         const prevButton = carousel.querySelector('.shuffle-carousel__btn--prev');
         if (slides.length === 0) return;
+        
         let currentIndex = Math.floor(slides.length / 2);
 
         function updateCarousel() {
@@ -264,6 +366,7 @@ function initMaterialCarousel() {
             const gap = parseInt(window.getComputedStyle(track).gap) || 32;
             const offset = (carouselWidth / 2) - (slideWidth / 2) - (currentIndex * (slideWidth + gap));
             track.style.transform = `translateX(${offset}px)`;
+            
             slides.forEach((slide, index) => {
                 slide.classList.toggle('is-active', index === currentIndex);
                 slide.classList.toggle('golden-img-border', index === currentIndex);
@@ -314,7 +417,9 @@ function initMaterialCarousel() {
         window.addEventListener('resize', updateCarousel);
     }
 
-    // --- POPRAWIONA LOGIKA KARUZELI "NA SKRÓTY" ---
+    // ====================================================================
+    //  4. KARUZELA "NA SKRÓTY" (SHORTCUT)
+    // ====================================================================
     function initShortcutCarousel() {
         const carouselContainer = document.querySelector('.js-shortcut-carousel-container');
         if (!carouselContainer) return;
@@ -322,13 +427,12 @@ function initMaterialCarousel() {
         const track = carouselContainer.querySelector('.shortcut-carousel__track');
         const prevButton = carouselContainer.querySelector('.shortcut-button__left');
         const nextButton = carouselContainer.querySelector('.shortcut-button__right');
-        const viewport = track.parentElement; // Element z overflow:hidden
+        const viewport = track.parentElement; 
 
         if (!track || !prevButton || !nextButton || !viewport) return;
 
         const updateNavButtons = () => {
             const tolerance = 1;
-            // Sprawdzamy pozycję przewinięcia 'viewportu', a nie 'tracka'
             const isAtStart = viewport.scrollLeft <= tolerance;
             const isAtEnd = viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - tolerance;
 
@@ -340,82 +444,61 @@ function initMaterialCarousel() {
 
         nextButton.addEventListener('click', () => {
             const scrollAmount = viewport.clientWidth * 0.8;
-            // Przewijamy 'viewport', a nie 'track'
-            viewport.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
+            viewport.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         });
 
         prevButton.addEventListener('click', () => {
             const scrollAmount = viewport.clientWidth * 0.8;
-            // Przewijamy 'viewport', a nie 'track'
-            viewport.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
+            viewport.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         });
 
-        // Nasłuchujemy na zdarzenie 'scroll' na 'viewporcie'
         viewport.addEventListener('scroll', updateNavButtons, { passive: true });
         new ResizeObserver(updateNavButtons).observe(viewport);
-
         updateNavButtons();
     }
 
-// ====================================================================
-    //  SKRYPT 3: obsługa kart produktów (otwieranie i zamykanie nakładki)
     // ====================================================================
-    
-    /**
- * Inicjalizuje interaktywność dla wszystkich kart produktów (.product-card).
- * Umożliwia otwieranie i zamykanie nakładki ze szczegółami.
- */
-function initProductCards() {
-    const allProductCards = document.querySelectorAll('.product-card');
+    //  5. OBSŁUGA KART PRODUKTÓW (NAKŁADKI)
+    // ====================================================================
+    function initProductCards() {
+        const allProductCards = document.querySelectorAll('.product-card');
 
-    allProductCards.forEach(card => {
-        const expandButton = card.querySelector('.product-card__expand-btn');
-        const closeButton = card.querySelector('.details-overlay__close-btn');
-        const overlay = card.querySelector('.product-card__details-overlay');
+        allProductCards.forEach(card => {
+            const expandButton = card.querySelector('.product-card__expand-btn');
+            const closeButton = card.querySelector('.details-overlay__close-btn');
+            const overlay = card.querySelector('.product-card__details-overlay');
 
-        if (!expandButton || !closeButton || !overlay) return;
+            if (!expandButton || !closeButton || !overlay) return;
 
-        // Otwieranie karty
-        expandButton.addEventListener('click', (event) => {
-            event.stopPropagation();
-            card.classList.add('is-details-open');
-        });
+            // Otwieranie karty
+            expandButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                card.classList.add('is-details-open');
+            });
 
-        // Zamykanie przez przycisk "X"
-        closeButton.addEventListener('click', (event) => {
-            event.stopPropagation();
-            card.classList.remove('is-details-open');
-        });
-
-        // INTELIGENTNE zamykanie przez kliknięcie w tło
-        overlay.addEventListener('click', (event) => {
-            // Zamknij tylko, jeśli kliknięto w tło (overlay), a nie w jego zawartość
-            if (event.target === overlay) {
-                card.classList.remove('is-details-open');
-            }
-        });
-    });
-
-    // Zamykanie przez kliknięcie poza jakąkolwiek otwartą kartą
-    document.addEventListener('click', (event) => {
-        // Sprawdź, czy kliknięcie NIE nastąpiło wewnątrz jakiejkolwiek karty
-        if (!event.target.closest('.product-card')) {
-            // Jeśli tak, zamknij wszystkie otwarte karty
-            document.querySelectorAll('.product-card.is-details-open').forEach(card => {
+            // Zamykanie przez przycisk "X"
+            closeButton.addEventListener('click', (event) => {
+                event.stopPropagation();
                 card.classList.remove('is-details-open');
             });
-        }
-    });
-}
 
+            // Zamykanie przez kliknięcie w tło
+            overlay.addEventListener('click', (event) => {
+                if (event.target === overlay) {
+                    card.classList.remove('is-details-open');
+                }
+            });
+        });
 
-  
+        // Zamykanie przez kliknięcie poza jakąkolwiek otwartą kartą
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.product-card')) {
+                document.querySelectorAll('.product-card.is-details-open').forEach(card => {
+                    card.classList.remove('is-details-open');
+                });
+            }
+        });
+    }
 
     // --- INICJALIZACJA WSZYSTKICH KOMPONENTÓW ---
     initGalleryModal();
@@ -425,8 +508,9 @@ function initProductCards() {
     initProductCards(); 
 });
 
+
 // document.addEventListener('DOMContentLoaded', () => {
-//     // --- ZUNIFIKOWANY MANAGER BLOKOWANIA PRZEWIJANIA ---
+//     // --- ZUNIFIKOWANY MANAGER BLOKOWANIA PRZEWIJANIA (bez zmian) ---
 //     const scrollLockManager = {
 //         lockCount: 0,
 //         body: document.body,
@@ -445,263 +529,711 @@ function initProductCards() {
 //         }
 //     };
 
+//     // ====================================================================
+//     //  POPRAWIONY SKRYPT MODALA GALERII
+//     // ====================================================================
 //     function initGalleryModal() {
-//     // --- Pobieranie elementów DOM ---
-//     const modal = document.getElementById('fullscreen-modal');
-//     const modalImage = document.getElementById('fullscreen-image');
-//     const closeModalBtn = document.getElementById('close-modal-btn');
-//     const modalAltText = document.getElementById('fullscreen-alt-text');
-//     const prevBtn = document.getElementById('prev-btn'); // Nowy przycisk
-//     const nextBtn = document.getElementById('next-btn'); // Nowy przycisk
+//         const modal = document.getElementById('fullscreen-modal');
+//         const modalImage = document.getElementById('fullscreen-image');
+//         const closeModalBtn = document.getElementById('close-modal-btn');
+//         const modalAltText = document.getElementById('fullscreen-alt-text');
+//         const prevBtn = document.getElementById('prev-btn');
+//         const nextBtn = document.getElementById('next-btn');
+        
+//         // Znajdź WSZYSTKIE klikalne obrazki galerii na stronie
+//         const clickableImages = document.querySelectorAll('.product-img');
 
-//     if (!modal || !modalImage || !closeModalBtn || !modalAltText || !prevBtn || !nextBtn) return;
-
-//     // --- Stan galerii ---
-//     const galleryImages = document.querySelectorAll('.product-img img'); // Pobieramy wszystkie obrazki
-//     let currentIndex = 0; // Indeks aktualnie wyświetlanego obrazka
-
-//     // --- Funkcja do wyświetlania obrazka na podstawie indeksu ---
-//     const showImage = (index) => {
-//         if (index < 0 || index >= galleryImages.length) return;
-
-//         const img = galleryImages[index];
-//         currentIndex = index; // Aktualizujemy bieżący indeks
-
-//         // Ustawiamy źródło i tekst alternatywny
-//         modalImage.src = img.src;
-//         modalImage.alt = img.alt;
-//         modalAltText.textContent = img.alt;
-
-//         // Pokazujemy/ukrywamy przyciski nawigacji na krańcach galerii
-//         prevBtn.style.display = (currentIndex === 0) ? 'none' : 'block';
-//         nextBtn.style.display = (currentIndex === galleryImages.length - 1) ? 'none' : 'block';
-//     };
-
-//     // --- Funkcje otwierania/zamykania modala ---
-//     const openModal = (startIndex) => {
-//         showImage(startIndex); // Wyświetlamy obrazek o podanym indeksie
-//         modal.classList.remove('is-hidden');
-//         // scrollLockManager.lock(); // Odkomentuj, jeśli używasz
-//         requestAnimationFrame(() => modal.classList.remove('opacity-0'));
-//     };
-
-//     const closeModal = () => {
-//         modal.classList.add('opacity-0');
-//         setTimeout(() => {
-//             modal.classList.add('is-hidden');
-//             // scrollLockManager.unlock(); // Odkomentuj, jeśli używasz
-//             modalImage.src = ""; // Czyścimy src, by uniknąć mignięcia starego obrazka
-//             modalAltText.textContent = '';
-//         }, 300);
-//     };
-    
-//     // --- Nawigacja ---
-//     const showPrev = () => showImage(currentIndex - 1);
-//     const showNext = () => showImage(currentIndex + 1);
-
-//     // --- Listenery zdarzeń ---
-
-//     // Otwieranie modala po kliknięciu na obrazek
-//     document.body.addEventListener('click', e => {
-//         const container = e.target.closest('.product-img');
-//         if (!container) return;
-
-//         const img = container.querySelector('img');
-//         if (img) {
-//             // Znajdujemy indeks klikniętego obrazka w naszej liście
-//             const clickedIndex = Array.from(galleryImages).findIndex(item => item.src === img.src);
-//             if (clickedIndex !== -1) {
-//                 openModal(clickedIndex);
-//             }
-//         }
-//     });
-
-//     // Zamykanie
-//     if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-//     if (modal) modal.addEventListener('click', e => {
-//         // Zamykaj tylko, gdy kliknięto tło (a nie przyciski nawigacji)
-//         if (e.target === modal) closeModal();
-//     });
-
-//     // Nawigacja przyciskami
-//     prevBtn.addEventListener('click', showPrev);
-//     nextBtn.addEventListener('click', showNext);
-    
-//     // Nawigacja klawiaturą (strzałki i Escape)
-//     document.addEventListener('keydown', e => {
-//         if (modal.classList.contains('is-hidden')) return; // Nie rób nic, jeśli modal jest ukryty
-
-//         if (e.key === 'Escape') closeModal();
-//         if (e.key === 'ArrowLeft') showPrev();
-//         if (e.key === 'ArrowRight') showNext();
-//     });
-// }
-//     // --- LOGIKA KARUZELI "WYBÓR MATERIAŁU" ---
-//     function initMaterialCarousel() {
-//         // ... (cała, oryginalna logika karuzeli materiałów bez zmian) ...
-//         const container = document.getElementById('carousel-container');
-//         if (!container) return;
-
-//         const items = container.querySelectorAll('.carousel-item');
-//         const nameEl = document.getElementById('materialName');
-//         const descEl = document.getElementById('materialDesc');
-//         const prevBtn = container.parentElement.querySelector('.carousel-btn[data-dir="prev"]');
-//         const nextBtn = container.parentElement.querySelector('.carousel-btn[data-dir="next"]');
-//         if (!items.length || !nameEl || !descEl || !prevBtn || !nextBtn) return;
-//         if (items.length < 3) {
-//             prevBtn.style.display = 'none';
-//             nextBtn.style.display = 'none';
+//         if (!modal || !modalImage || !closeModalBtn || !modalAltText || !prevBtn || !nextBtn || clickableImages.length === 0) {
 //             return;
 //         }
 
+//         const galleryImageElements = Array.from(clickableImages).map(container => container.querySelector('img'));
+//         let currentIndex = 0;
+
+//         const showImage = (index) => {
+//             if (index < 0 || index >= galleryImageElements.length) return;
+//             const img = galleryImageElements[index];
+//             currentIndex = index;
+//             modalImage.src = img.src;
+//             modalImage.alt = img.alt;
+//             modalAltText.textContent = img.alt;
+//             prevBtn.style.display = (currentIndex === 0) ? 'none' : 'block';
+//             nextBtn.style.display = (currentIndex === galleryImageElements.length - 1) ? 'none' : 'block';
+//         };
+
+//         const openModal = (startIndex) => {
+//             showImage(startIndex);
+//             modal.classList.remove('is-hidden');
+//             scrollLockManager.lock();
+//             requestAnimationFrame(() => modal.classList.remove('opacity-0'));
+//         };
+
+//         const closeModal = () => {
+//             modal.classList.add('opacity-0');
+//             setTimeout(() => {
+//                 modal.classList.add('is-hidden');
+//                 scrollLockManager.unlock();
+//                 modalImage.src = "";
+//                 modalAltText.textContent = '';
+//             }, 300);
+//         };
+        
+//         // NOWA, LEPSZA LOGIKA: Listener podpięty bezpośrednio do każdego obrazka
+//         clickableImages.forEach((container, index) => {
+//             container.addEventListener('click', (event) => {
+//                 // Zapobiegamy otwieraniu się nakładki karty, jeśli na nią klikamy
+//                 event.preventDefault();
+//                 event.stopPropagation();
+//                 openModal(index);
+//             });
+//         });
+
+//         closeModalBtn.addEventListener('click', closeModal);
+//         modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+//         prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
+//         nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
+
+//         document.addEventListener('keydown', e => {
+//             if (modal.classList.contains('is-hidden')) return;
+//             if (e.key === 'Escape') closeModal();
+//             if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+//             if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+//         });
+//     }
+
+//     // ====================================================================
+//     //  POPRAWIONY SKRYPT KART PRODUKTÓW
+//     // ====================================================================
+//     function initProductCards() {
+//         const allProductCards = document.querySelectorAll('.product-card');
+
+//         allProductCards.forEach(card => {
+//             const expandButton = card.querySelector('.product-card__expand-btn');
+//             const closeButton = card.querySelector('.details-overlay__close-btn');
+//             const overlay = card.querySelector('.product-card__details-overlay');
+
+//             if (!expandButton || !closeButton || !overlay) return;
+
+//             expandButton.addEventListener('click', (event) => {
+//                 event.stopPropagation();
+//                 card.classList.add('is-details-open');
+//             });
+
+//             closeButton.addEventListener('click', (event) => {
+//                 event.stopPropagation();
+//                 card.classList.remove('is-details-open');
+//             });
+
+//             overlay.addEventListener('click', (event) => {
+//                 if (event.target === overlay) { // Poprawiona logika!
+//                     card.classList.remove('is-details-open');
+//                 }
+//             });
+//         });
+
+//         document.addEventListener('click', (event) => {
+//             if (!event.target.closest('.product-card')) {
+//                 document.querySelectorAll('.product-card.is-details-open').forEach(card => {
+//                     card.classList.remove('is-details-open');
+//                 });
+//             }
+//         });
+//     }
+
+//     // --- LOGIKA KARUZELI "WYBÓR MATERIAŁU" ---
+//    // --- LOGIKA KARUZELI "WYBÓR MATERIAŁU" (WERSJA DZIAŁAJĄCA DLA WIELU INSTANCJI) ---
+// function initMaterialCarousel() {
+//     // 1. Znajdź WSZYSTKIE kontenery karuzel na stronie
+//     document.querySelectorAll('.js-material-carousel').forEach(carouselWrapper => {
+//         // 2. Dla każdej karuzeli z osobna, znajdź jej elementy wewnętrzne
+//         const container = carouselWrapper.querySelector('.carousel-main-container');
+//         if (!container) return;
+
+//         // Wyciągamy unikalne ID, żeby znaleźć powiązane elementy info
+//         const uniqueId = container.id.split('-').pop();
+//         if (!uniqueId) return;
+        
+//         const items = container.querySelectorAll('.carousel-item');
+//         const nameEl = document.getElementById(`materialName-${uniqueId}`);
+//         const descEl = document.getElementById(`materialDesc-${uniqueId}`);
+//         const prevBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="prev"]');
+//         const nextBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="next"]');
+
+//         // Sprawdzamy, czy ta konkretna instancja ma wszystko, czego potrzebuje
+//         if (!items.length || !nameEl || !descEl || !prevBtn || !nextBtn) return;
+
+//         // Ukryj przyciski, jeśli nie ma wystarczająco slajdów
+//         if (items.length < 3) {
+//             prevBtn.style.display = 'none';
+//             nextBtn.style.display = 'none';
+//             // Ale nadal zainicjuj stan początkowy dla jednego elementu
+//             if (items.length > 0) {
+//                  const center = items[0];
+//                  nameEl.textContent = center.dataset.name;
+//                  descEl.textContent = center.dataset.desc;
+//                  items[0].classList.add('carousel-center', 'golden-img-border');
+//             }
+//             return;
+//         }
+
+//         // 3. Cała logika (stan, funkcje, listenery) jest "zamknięta" w tej pętli
+//         //    i dotyczy tylko jednej karuzeli. Dzięki temu nie ma konfliktów.
 //         let currentIndex = 0;
 //         let isAnimating = false;
 //         const total = items.length;
 
-//         function update() {
-//             isAnimating = true;
-//             nameEl.style.opacity = 0;
-//             descEl.style.opacity = 0;
+//     function update() {
+//     isAnimating = true;
+//     const center = items[currentIndex];
+//     const uniqueId = container.id.split('-').pop(); // Pobieramy ID tej instancji
 
-//             setTimeout(() => {
-//                 const center = items[currentIndex];
-//                 nameEl.textContent = center.dataset.name;
-//                 descEl.textContent = center.dataset.desc;
-//                 nameEl.style.opacity = 1;
-//                 descEl.style.opacity = 1;
-//             }, 250);
+//     // 1. Chwytamy elementy do animacji (Cena + Dostępność)
+//     const priceStarsContainer = carouselWrapper.querySelector('.js-price-stars');
+//     const priceLabel = document.getElementById(`materialPriceLabel-${uniqueId}`);
+    
+//     // NOWOŚĆ: Kontener dostępności
+//     const availStarsContainer = carouselWrapper.querySelector('.js-availability-stars');
 
-//             const leftIdx = (currentIndex - 1 + total) % total;
-//             const rightIdx = (currentIndex + 1) % total;
+//     // 2. Start animacji - wszystko zanika
+//     nameEl.style.opacity = 0;
+//     descEl.style.opacity = 0;
+    
+//     if (priceStarsContainer) priceStarsContainer.style.opacity = 0;
+//     if (priceLabel) priceLabel.style.opacity = 0;
+//     if (availStarsContainer) availStarsContainer.style.opacity = 0; // NOWOŚĆ: Zanikanie dostępności
 
-//             items.forEach((it, idx) => {
-//                 it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
-//                 if (idx === currentIndex) it.classList.add('carousel-center', 'golden-img-border');
-//                 else if (idx === leftIdx) it.classList.add('carousel-left');
-//                 else if (idx === rightIdx) it.classList.add('carousel-right');
-//                 else it.classList.add('carousel-hidden');
-//             });
+//     setTimeout(() => {
+//         // 3. Podmiana treści tekstowych
+//         nameEl.textContent = center.dataset.name;
+//         descEl.textContent = center.dataset.desc;
+        
+//         // --- FUNKCJA POMOCNICZA DO GENEROWANIA GWIAZDEK ---
+//         // (Żeby nie pisać pętli for dwa razy)
+//         const renderStars = (starContainer, levelValue) => {
+//             if (!starContainer) return;
+            
+//             const level = parseInt(levelValue) || 1;
+//             const iconPath = starContainer.dataset.icon;
+//             starContainer.replaceChildren(); // Czyści stare gwiazdki
 
-//             setTimeout(() => (isAnimating = false), 500);
-//         }
+//             for (let i = 1; i <= 5; i++) {
+//                 const img = document.createElement('img');
+//                 img.src = iconPath;
+//                 img.className = 'h-6 w-auto';
+//                 // Logika: pełna widoczność dla aktywnych, 0.2 dla nieaktywnych
+//                 img.style.opacity = i <= level ? '1' : '0.2'; 
+//                 img.alt = `Poziom ${i} z 5`;
+//                 starContainer.appendChild(img);
+//             }
+//             // Przywracamy widoczność kontenera
+//             starContainer.style.opacity = 1;
+//         };
+
+//         // 4. Generowanie ikon CENY
+//         renderStars(priceStarsContainer, center.dataset.price);
+
+//         // 5. Generowanie ikon DOSTĘPNOŚCI (NOWOŚĆ)
+//         // Jeśli w JSON nie ma availability, domyślnie 5 (pełna dostępność)
+//         renderStars(availStarsContainer, center.dataset.availability || 5);
+
+//         // 6. Przywracanie widoczności reszty elementów
+//         if (priceLabel) priceLabel.style.opacity = 1;
+        
+//         nameEl.style.opacity = 1;
+//         descEl.style.opacity = 1;
+        
+//         // Koniec animacji (jeśli masz flagę w szerszym scope)
+//         // isAnimating = false; 
+//     }, 250);
+
+
+//     // 7. Logika klas karuzeli (bez zmian)
+//     const leftIdx = (currentIndex - 1 + total) % total;
+//     const rightIdx = (currentIndex + 1) % total;
+
+//     items.forEach((it, idx) => {
+//         it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
+//         if (idx === currentIndex) it.classList.add('carousel-center', 'golden-img-border');
+//         else if (idx === leftIdx) it.classList.add('carousel-left');
+//         else if (idx === rightIdx) it.classList.add('carousel-right');
+//         else it.classList.add('carousel-hidden');
+//     });
+
+//     setTimeout(() => (isAnimating = false), 500);
+// }
 
 //         nextBtn.addEventListener('click', () => {
 //             if (isAnimating) return;
 //             currentIndex = (currentIndex + 1) % total;
 //             update();
 //         });
+
 //         prevBtn.addEventListener('click', () => {
 //             if (isAnimating) return;
 //             currentIndex = (currentIndex - 1 + total) % total;
 //             update();
 //         });
 
+//         // Zainicjuj stan początkowy dla tej karuzeli
 //         update();
+//     });
+// }
+
+//     // --- LOGIKA KARUZELI "NA ZAKŁADKĘ" ---
+//     function initShuffleCarousel() {
+//         const carousel = document.querySelector('.js-shuffle-carousel');
+//         if (!carousel) return;
+//         const track = carousel.querySelector('.shuffle-carousel__track');
+//         const slides = Array.from(track.children);
+//         const nextButton = carousel.querySelector('.shuffle-carousel__btn--next');
+//         const prevButton = carousel.querySelector('.shuffle-carousel__btn--prev');
+//         if (slides.length === 0) return;
+//         let currentIndex = Math.floor(slides.length / 2);
+
+//         function updateCarousel() {
+//             const carouselWidth = carousel.offsetWidth;
+//             const slideWidth = slides[0].offsetWidth;
+//             const gap = parseInt(window.getComputedStyle(track).gap) || 32;
+//             const offset = (carouselWidth / 2) - (slideWidth / 2) - (currentIndex * (slideWidth + gap));
+//             track.style.transform = `translateX(${offset}px)`;
+//             slides.forEach((slide, index) => {
+//                 slide.classList.toggle('is-active', index === currentIndex);
+//                 slide.classList.toggle('golden-img-border', index === currentIndex);
+//                 if (index !== currentIndex) {
+//                     const card = slide.querySelector('.product-card');
+//                     if (card) card.classList.remove('is-details-open');
+//                 }
+//             });
+//         }
+
+//         function setupEventListeners() {
+//             slides.forEach((slide, index) => {
+//                 slide.addEventListener('click', (e) => {
+//                     if (index !== currentIndex) {
+//                         currentIndex = index;
+//                         updateCarousel();
+//                         return;
+//                     }
+//                     const card = slide.querySelector('.product-card');
+//                     if (!card) return;
+//                     const isDetailsOpen = card.classList.contains('is-details-open');
+//                     if (isDetailsOpen) {
+//                         if (!e.target.closest('a, .btn-primary, .btn-cta')) {
+//                             card.classList.remove('is-details-open');
+//                         }
+//                     } else {
+//                         if (e.target.closest('.product-card__main-content')) {
+//                             card.classList.add('is-details-open');
+//                         }
+//                     }
+//                 });
+//             });
+//             if (nextButton) {
+//                 nextButton.addEventListener('click', () => {
+//                     currentIndex = (currentIndex + 1) % slides.length;
+//                     updateCarousel();
+//                 });
+//             }
+//             if (prevButton) {
+//                 prevButton.addEventListener('click', () => {
+//                     currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+//                     updateCarousel();
+//                 });
+//             }
+//         }
+//         setupEventListeners();
+//         updateCarousel();
+//         window.addEventListener('resize', updateCarousel);
 //     }
 
-//     // --- NOWA, ZAAWANSOWANA LOGIKA KARUZELI 3D "WYBÓR PRODUKTU" ---
-//     // --- NOWA LOGIKA KARUZELI "NA ZAKŁADKĘ" ---
-//    // Zastąp initOverlapCarousel tą nową funkcją
+//     // --- POPRAWIONA LOGIKA KARUZELI "NA SKRÓTY" ---
+//     function initShortcutCarousel() {
+//         const carouselContainer = document.querySelector('.js-shortcut-carousel-container');
+//         if (!carouselContainer) return;
 
-// function initShuffleCarousel() {
-//     const carousel = document.querySelector('.js-shuffle-carousel');
-//     if (!carousel) return;
+//         const track = carouselContainer.querySelector('.shortcut-carousel__track');
+//         const prevButton = carouselContainer.querySelector('.shortcut-button__left');
+//         const nextButton = carouselContainer.querySelector('.shortcut-button__right');
+//         const viewport = track.parentElement; // Element z overflow:hidden
 
-//     const track = carousel.querySelector('.shuffle-carousel__track');
-//     const slides = Array.from(track.children);
-//     const nextButton = carousel.querySelector('.shuffle-carousel__btn--next');
-//     const prevButton = carousel.querySelector('.shuffle-carousel__btn--prev');
-    
-//     if (slides.length === 0) return;
-    
-//     let currentIndex = Math.floor(slides.length / 2); // Zacznij od środkowej karty
-    
-//     function updateCarousel() {
-//         const carouselWidth = carousel.offsetWidth;
-//         const slideWidth = slides[0].offsetWidth;
-//         const gap = parseInt(window.getComputedStyle(track).gap) || 32; // 32px to 2rem
+//         if (!track || !prevButton || !nextButton || !viewport) return;
 
-//         // Oblicz przesunięcie, aby wycentrować aktywny slajd
-//         const offset = (carouselWidth / 2) - (slideWidth / 2) - (currentIndex * (slideWidth + gap));
-//         track.style.transform = `translateX(${offset}px)`;
+//         const updateNavButtons = () => {
+//             const tolerance = 1;
+//             // Sprawdzamy pozycję przewinięcia 'viewportu', a nie 'tracka'
+//             const isAtStart = viewport.scrollLeft <= tolerance;
+//             const isAtEnd = viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - tolerance;
 
-//         // Zaktualizuj klasę 'is-active'
-//         slides.forEach((slide, index) => {
-//             slide.classList.toggle('is-active', index === currentIndex);
-//             slide.classList.toggle('golden-img-border', index === currentIndex);
-            
-//             // Zamknij nakładkę, jeśli karta nie jest aktywna
-//             if (index !== currentIndex) {
-//                  const card = slide.querySelector('.product-card');
-//                  if (card) card.classList.remove('is-details-open');
-//             }
+//             prevButton.disabled = isAtStart;
+//             nextButton.disabled = isAtEnd;
+//             prevButton.style.opacity = isAtStart ? '0.5' : '1';
+//             nextButton.style.opacity = isAtEnd ? '0.5' : '1';
+//         };
+
+//         nextButton.addEventListener('click', () => {
+//             const scrollAmount = viewport.clientWidth * 0.8;
+//             // Przewijamy 'viewport', a nie 'track'
+//             viewport.scrollBy({
+//                 left: scrollAmount,
+//                 behavior: 'smooth'
+//             });
 //         });
+
+//         prevButton.addEventListener('click', () => {
+//             const scrollAmount = viewport.clientWidth * 0.8;
+//             // Przewijamy 'viewport', a nie 'track'
+//             viewport.scrollBy({
+//                 left: -scrollAmount,
+//                 behavior: 'smooth'
+//             });
+//         });
+
+//         // Nasłuchujemy na zdarzenie 'scroll' na 'viewporcie'
+//         viewport.addEventListener('scroll', updateNavButtons, { passive: true });
+//         new ResizeObserver(updateNavButtons).observe(viewport);
+
+//         updateNavButtons();
 //     }
+
+// // ====================================================================
+//     //  SKRYPT 3: obsługa kart produktów (otwieranie i zamykanie nakładki)
+//     // ====================================================================
     
-//     function setupEventListeners() {
-//     slides.forEach((slide, index) => {
+//     /**
+//  * Inicjalizuje interaktywność dla wszystkich kart produktów (.product-card).
+//  * Umożliwia otwieranie i zamykanie nakładki ze szczegółami.
+//  */
+// function initProductCards() {
+//     const allProductCards = document.querySelectorAll('.product-card');
 
-//         // JEDEN GŁÓWNY LISTENER DLA KAŻDEGO SLAJDU
-//         slide.addEventListener('click', (e) => {
-            
-//             // PRZYPADEK 1: Kliknięto na slajd, który NIE JEST w centrum.
-//             // Wtedy chcemy go wycentrować.
-//             if (index !== currentIndex) {
-//                 currentIndex = index;
-//                 updateCarousel();
-//                 return; // Zakończ działanie, nie rób nic więcej.
-//             }
+//     allProductCards.forEach(card => {
+//         const expandButton = card.querySelector('.product-card__expand-btn');
+//         const closeButton = card.querySelector('.details-overlay__close-btn');
+//         const overlay = card.querySelector('.product-card__details-overlay');
 
-//             // PRZYPADEK 2: Kliknięto na slajd, który JEST w centrum.
-//             // Teraz obsługujemy otwieranie/zamykanie nakładki.
-//             const card = slide.querySelector('.product-card');
-//             if (!card) return;
+//         if (!expandButton || !closeButton || !overlay) return;
 
-//             const isDetailsOpen = card.classList.contains('is-details-open');
+//         // Otwieranie karty
+//         expandButton.addEventListener('click', (event) => {
+//             event.stopPropagation();
+//             card.classList.add('is-details-open');
+//         });
 
-//             // Jeśli nakładka jest OTWARTA...
-//             if (isDetailsOpen) {
-//                 // ...to zamykamy ją, CHYBA ŻE kliknięto w link lub przycisk akcji.
-//                 if (!e.target.closest('a, .btn-primary, .btn-cta')) {
-//                     card.classList.remove('is-details-open');
-//                 }
-//             } 
-//             // Jeśli nakładka jest ZAMKNIĘTA...
-//             else {
-//                 // ...to otwieramy ją po kliknięciu w główną treść.
-//                 if (e.target.closest('.product-card__main-content')) {
-//                     card.classList.add('is-details-open');
-//                 }
+//         // Zamykanie przez przycisk "X"
+//         closeButton.addEventListener('click', (event) => {
+//             event.stopPropagation();
+//             card.classList.remove('is-details-open');
+//         });
+
+//         // INTELIGENTNE zamykanie przez kliknięcie w tło
+//         overlay.addEventListener('click', (event) => {
+//             // Zamknij tylko, jeśli kliknięto w tło (overlay), a nie w jego zawartość
+//             if (event.target === overlay) {
+//                 card.classList.remove('is-details-open');
 //             }
 //         });
 //     });
 
-//     // Przyciski nawigacyjne karuzeli (bez zmian)
-//     if(nextButton) {
-//         nextButton.addEventListener('click', () => {
-//             currentIndex = (currentIndex + 1) % slides.length;
-//             updateCarousel();
-//         });
-//     }
+//     // Zamykanie przez kliknięcie poza jakąkolwiek otwartą kartą
+//     document.addEventListener('click', (event) => {
+//         // Sprawdź, czy kliknięcie NIE nastąpiło wewnątrz jakiejkolwiek karty
+//         if (!event.target.closest('.product-card')) {
+//             // Jeśli tak, zamknij wszystkie otwarte karty
+//             document.querySelectorAll('.product-card.is-details-open').forEach(card => {
+//                 card.classList.remove('is-details-open');
+//             });
+//         }
+//     });
+// }
 
-//     if(prevButton) {
-//         prevButton.addEventListener('click', () => {
-//             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-//             updateCarousel();
-//         });
-//     }
-// }
-    
-//     // Inicjalizacja
-//     setupEventListeners();
-//     updateCarousel(); // Ustaw pozycję początkową
-    
-//     // Przelicz pozycje przy zmianie rozmiaru okna
-//     window.addEventListener('resize', updateCarousel);
-// }
+
+  
 
 //     // --- INICJALIZACJA WSZYSTKICH KOMPONENTÓW ---
 //     initGalleryModal();
 //     initMaterialCarousel();
 //     initShuffleCarousel();
+//     initShortcutCarousel();
+//     initProductCards(); 
 // });
+
+// // document.addEventListener('DOMContentLoaded', () => {
+// //     // --- ZUNIFIKOWANY MANAGER BLOKOWANIA PRZEWIJANIA ---
+// //     const scrollLockManager = {
+// //         lockCount: 0,
+// //         body: document.body,
+// //         lock() {
+// //             this.lockCount++;
+// //             if (!this.body.classList.contains('no-scroll')) {
+// //                 this.body.classList.add('no-scroll');
+// //             }
+// //         },
+// //         unlock() {
+// //             this.lockCount--;
+// //             if (this.lockCount <= 0) {
+// //                 this.body.classList.remove('no-scroll');
+// //                 this.lockCount = 0;
+// //             }
+// //         }
+// //     };
+
+// //     function initGalleryModal() {
+// //     // --- Pobieranie elementów DOM ---
+// //     const modal = document.getElementById('fullscreen-modal');
+// //     const modalImage = document.getElementById('fullscreen-image');
+// //     const closeModalBtn = document.getElementById('close-modal-btn');
+// //     const modalAltText = document.getElementById('fullscreen-alt-text');
+// //     const prevBtn = document.getElementById('prev-btn'); // Nowy przycisk
+// //     const nextBtn = document.getElementById('next-btn'); // Nowy przycisk
+
+// //     if (!modal || !modalImage || !closeModalBtn || !modalAltText || !prevBtn || !nextBtn) return;
+
+// //     // --- Stan galerii ---
+// //     const galleryImages = document.querySelectorAll('.product-img img'); // Pobieramy wszystkie obrazki
+// //     let currentIndex = 0; // Indeks aktualnie wyświetlanego obrazka
+
+// //     // --- Funkcja do wyświetlania obrazka na podstawie indeksu ---
+// //     const showImage = (index) => {
+// //         if (index < 0 || index >= galleryImages.length) return;
+
+// //         const img = galleryImages[index];
+// //         currentIndex = index; // Aktualizujemy bieżący indeks
+
+// //         // Ustawiamy źródło i tekst alternatywny
+// //         modalImage.src = img.src;
+// //         modalImage.alt = img.alt;
+// //         modalAltText.textContent = img.alt;
+
+// //         // Pokazujemy/ukrywamy przyciski nawigacji na krańcach galerii
+// //         prevBtn.style.display = (currentIndex === 0) ? 'none' : 'block';
+// //         nextBtn.style.display = (currentIndex === galleryImages.length - 1) ? 'none' : 'block';
+// //     };
+
+// //     // --- Funkcje otwierania/zamykania modala ---
+// //     const openModal = (startIndex) => {
+// //         showImage(startIndex); // Wyświetlamy obrazek o podanym indeksie
+// //         modal.classList.remove('is-hidden');
+// //         // scrollLockManager.lock(); // Odkomentuj, jeśli używasz
+// //         requestAnimationFrame(() => modal.classList.remove('opacity-0'));
+// //     };
+
+// //     const closeModal = () => {
+// //         modal.classList.add('opacity-0');
+// //         setTimeout(() => {
+// //             modal.classList.add('is-hidden');
+// //             // scrollLockManager.unlock(); // Odkomentuj, jeśli używasz
+// //             modalImage.src = ""; // Czyścimy src, by uniknąć mignięcia starego obrazka
+// //             modalAltText.textContent = '';
+// //         }, 300);
+// //     };
+    
+// //     // --- Nawigacja ---
+// //     const showPrev = () => showImage(currentIndex - 1);
+// //     const showNext = () => showImage(currentIndex + 1);
+
+// //     // --- Listenery zdarzeń ---
+
+// //     // Otwieranie modala po kliknięciu na obrazek
+// //     document.body.addEventListener('click', e => {
+// //         const container = e.target.closest('.product-img');
+// //         if (!container) return;
+
+// //         const img = container.querySelector('img');
+// //         if (img) {
+// //             // Znajdujemy indeks klikniętego obrazka w naszej liście
+// //             const clickedIndex = Array.from(galleryImages).findIndex(item => item.src === img.src);
+// //             if (clickedIndex !== -1) {
+// //                 openModal(clickedIndex);
+// //             }
+// //         }
+// //     });
+
+// //     // Zamykanie
+// //     if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+// //     if (modal) modal.addEventListener('click', e => {
+// //         // Zamykaj tylko, gdy kliknięto tło (a nie przyciski nawigacji)
+// //         if (e.target === modal) closeModal();
+// //     });
+
+// //     // Nawigacja przyciskami
+// //     prevBtn.addEventListener('click', showPrev);
+// //     nextBtn.addEventListener('click', showNext);
+    
+// //     // Nawigacja klawiaturą (strzałki i Escape)
+// //     document.addEventListener('keydown', e => {
+// //         if (modal.classList.contains('is-hidden')) return; // Nie rób nic, jeśli modal jest ukryty
+
+// //         if (e.key === 'Escape') closeModal();
+// //         if (e.key === 'ArrowLeft') showPrev();
+// //         if (e.key === 'ArrowRight') showNext();
+// //     });
+// // }
+// //     // --- LOGIKA KARUZELI "WYBÓR MATERIAŁU" ---
+// //     function initMaterialCarousel() {
+// //         // ... (cała, oryginalna logika karuzeli materiałów bez zmian) ...
+// //         const container = document.getElementById('carousel-container');
+// //         if (!container) return;
+
+// //         const items = container.querySelectorAll('.carousel-item');
+// //         const nameEl = document.getElementById('materialName');
+// //         const descEl = document.getElementById('materialDesc');
+// //         const prevBtn = container.parentElement.querySelector('.carousel-btn[data-dir="prev"]');
+// //         const nextBtn = container.parentElement.querySelector('.carousel-btn[data-dir="next"]');
+// //         if (!items.length || !nameEl || !descEl || !prevBtn || !nextBtn) return;
+// //         if (items.length < 3) {
+// //             prevBtn.style.display = 'none';
+// //             nextBtn.style.display = 'none';
+// //             return;
+// //         }
+
+// //         let currentIndex = 0;
+// //         let isAnimating = false;
+// //         const total = items.length;
+
+// //         function update() {
+// //             isAnimating = true;
+// //             nameEl.style.opacity = 0;
+// //             descEl.style.opacity = 0;
+
+// //             setTimeout(() => {
+// //                 const center = items[currentIndex];
+// //                 nameEl.textContent = center.dataset.name;
+// //                 descEl.textContent = center.dataset.desc;
+// //                 nameEl.style.opacity = 1;
+// //                 descEl.style.opacity = 1;
+// //             }, 250);
+
+// //             const leftIdx = (currentIndex - 1 + total) % total;
+// //             const rightIdx = (currentIndex + 1) % total;
+
+// //             items.forEach((it, idx) => {
+// //                 it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
+// //                 if (idx === currentIndex) it.classList.add('carousel-center', 'golden-img-border');
+// //                 else if (idx === leftIdx) it.classList.add('carousel-left');
+// //                 else if (idx === rightIdx) it.classList.add('carousel-right');
+// //                 else it.classList.add('carousel-hidden');
+// //             });
+
+// //             setTimeout(() => (isAnimating = false), 500);
+// //         }
+
+// //         nextBtn.addEventListener('click', () => {
+// //             if (isAnimating) return;
+// //             currentIndex = (currentIndex + 1) % total;
+// //             update();
+// //         });
+// //         prevBtn.addEventListener('click', () => {
+// //             if (isAnimating) return;
+// //             currentIndex = (currentIndex - 1 + total) % total;
+// //             update();
+// //         });
+
+// //         update();
+// //     }
+
+// //     // --- NOWA, ZAAWANSOWANA LOGIKA KARUZELI 3D "WYBÓR PRODUKTU" ---
+// //     // --- NOWA LOGIKA KARUZELI "NA ZAKŁADKĘ" ---
+// //    // Zastąp initOverlapCarousel tą nową funkcją
+
+// // function initShuffleCarousel() {
+// //     const carousel = document.querySelector('.js-shuffle-carousel');
+// //     if (!carousel) return;
+
+// //     const track = carousel.querySelector('.shuffle-carousel__track');
+// //     const slides = Array.from(track.children);
+// //     const nextButton = carousel.querySelector('.shuffle-carousel__btn--next');
+// //     const prevButton = carousel.querySelector('.shuffle-carousel__btn--prev');
+    
+// //     if (slides.length === 0) return;
+    
+// //     let currentIndex = Math.floor(slides.length / 2); // Zacznij od środkowej karty
+    
+// //     function updateCarousel() {
+// //         const carouselWidth = carousel.offsetWidth;
+// //         const slideWidth = slides[0].offsetWidth;
+// //         const gap = parseInt(window.getComputedStyle(track).gap) || 32; // 32px to 2rem
+
+// //         // Oblicz przesunięcie, aby wycentrować aktywny slajd
+// //         const offset = (carouselWidth / 2) - (slideWidth / 2) - (currentIndex * (slideWidth + gap));
+// //         track.style.transform = `translateX(${offset}px)`;
+
+// //         // Zaktualizuj klasę 'is-active'
+// //         slides.forEach((slide, index) => {
+// //             slide.classList.toggle('is-active', index === currentIndex);
+// //             slide.classList.toggle('golden-img-border', index === currentIndex);
+            
+// //             // Zamknij nakładkę, jeśli karta nie jest aktywna
+// //             if (index !== currentIndex) {
+// //                  const card = slide.querySelector('.product-card');
+// //                  if (card) card.classList.remove('is-details-open');
+// //             }
+// //         });
+// //     }
+    
+// //     function setupEventListeners() {
+// //     slides.forEach((slide, index) => {
+
+// //         // JEDEN GŁÓWNY LISTENER DLA KAŻDEGO SLAJDU
+// //         slide.addEventListener('click', (e) => {
+            
+// //             // PRZYPADEK 1: Kliknięto na slajd, który NIE JEST w centrum.
+// //             // Wtedy chcemy go wycentrować.
+// //             if (index !== currentIndex) {
+// //                 currentIndex = index;
+// //                 updateCarousel();
+// //                 return; // Zakończ działanie, nie rób nic więcej.
+// //             }
+
+// //             // PRZYPADEK 2: Kliknięto na slajd, który JEST w centrum.
+// //             // Teraz obsługujemy otwieranie/zamykanie nakładki.
+// //             const card = slide.querySelector('.product-card');
+// //             if (!card) return;
+
+// //             const isDetailsOpen = card.classList.contains('is-details-open');
+
+// //             // Jeśli nakładka jest OTWARTA...
+// //             if (isDetailsOpen) {
+// //                 // ...to zamykamy ją, CHYBA ŻE kliknięto w link lub przycisk akcji.
+// //                 if (!e.target.closest('a, .btn-primary, .btn-cta')) {
+// //                     card.classList.remove('is-details-open');
+// //                 }
+// //             } 
+// //             // Jeśli nakładka jest ZAMKNIĘTA...
+// //             else {
+// //                 // ...to otwieramy ją po kliknięciu w główną treść.
+// //                 if (e.target.closest('.product-card__main-content')) {
+// //                     card.classList.add('is-details-open');
+// //                 }
+// //             }
+// //         });
+// //     });
+
+// //     // Przyciski nawigacyjne karuzeli (bez zmian)
+// //     if(nextButton) {
+// //         nextButton.addEventListener('click', () => {
+// //             currentIndex = (currentIndex + 1) % slides.length;
+// //             updateCarousel();
+// //         });
+// //     }
+
+// //     if(prevButton) {
+// //         prevButton.addEventListener('click', () => {
+// //             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+// //             updateCarousel();
+// //         });
+// //     }
+// // }
+    
+// //     // Inicjalizacja
+// //     setupEventListeners();
+// //     updateCarousel(); // Ustaw pozycję początkową
+    
+// //     // Przelicz pozycje przy zmianie rozmiaru okna
+// //     window.addEventListener('resize', updateCarousel);
+// // }
+
+// //     // --- INICJALIZACJA WSZYSTKICH KOMPONENTÓW ---
+// //     initGalleryModal();
+// //     initMaterialCarousel();
+// //     initShuffleCarousel();
+// // });

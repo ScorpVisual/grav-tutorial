@@ -1,0 +1,33 @@
+{# Sprawdzamy, czy przekazano unique_id, jeśli nie, generujemy losowy, by uniknąć błędów #}
+{% set unique_id = unique_id | default(random()) %}
+
+<div class="js-material-carousel max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center my-12">
+
+  {# KARUZELA - dodajemy unikalne ID do kontenera i atrybuty danych do przycisków #}
+  <div class="relative flex items-center justify-center h-[350px]">
+    <button data-dir="prev" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--prev" data-target="carousel-container-{{ unique_id }}">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+    </button>
+    <div id="carousel-container-{{ unique_id }}" class="carousel-main-container w-full h-full flex items-center justify-center">
+      {% for material in items %}
+        <img src="{{ theme_url }}/images/stones/{{ material.img }}"
+             alt="{{ material.name }}"
+             data-name="{{ material.name }}"
+             data-desc="{{ material.desc }}"
+             {# Dodajemy atrybut data-info-target, by JS wiedział, gdzie wyświetlić info #}
+             data-info-target="materialInfo-{{ unique_id }}" 
+             class="carousel-item rounded-lg object-cover cursor-pointer material-info-container">
+      {% endfor %}
+    </div>
+
+    <button data-dir="next" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--next" data-target="carousel-container-{{ unique_id }}">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+    </button>
+  </div>
+
+  {# PANEL INFORMACYJNY - dodajemy unikalne ID do kontenera i podelementów #}
+  <div id="materialInfo-{{ unique_id }}" class="p-2 lg:p-6 lg:ml-12 material-info-container">
+    <h3 id="materialName-{{ unique_id }}" class="text-3xl font-bold mb-3 text-gray-800 transition-opacity duration-300 underline--cherry"></h3>
+    <p id="materialDesc-{{ unique_id }}" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300"></p>
+  </div>
+</div>

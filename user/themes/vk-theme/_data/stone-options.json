@@ -1,0 +1,261 @@
+{
+    "srebrzysty_strzegomski": {
+        "name": "Srebrzysty (Strzegomski)",
+        "img": "26-srebrzysty.jpg",
+        "desc": "Polski, jasny granit typu „pieprz i sól”. Dzięki jasnej barwie pomnik zawsze wygląda schludnie, a drobna ziarnistość sprawia, że kurz jest na nim prawie niewidoczny.",
+        "price_level": 2,
+        "availability_level": 5
+    },
+    "szary_perlowy": {
+        "name": "Szary Perłowy",
+        "img": "1-szary-perlowy.jpg",
+        "desc": "Jasny granit o drobnej, równomiernej ziarnistości, przypominający rozsypane drobinki. To jeden z najbardziej ekonomicznych kamieni, który zawsze wygląda czysto i świeżo, nawet po deszczu.",
+        "price_level": 2,
+        "availability_level": 5
+    },
+    "roz_srebrzysty": {
+        "name": "Róż Srebrzysty",
+        "img": "25-roz-srebrzysty.jpg",
+        "desc": "Jasny kamień z delikatną, fioletowo-różową nutą. Ze względu na jego bogatą teksturę, nagrobek prezentuje się estetycznie nawet bez częstej pielęgnacji, skutecznie ukrywając osad i pyłki.",
+        "price_level": 2,
+        "availability_level": 5
+    },
+    "braz_krolewski": {
+        "name": "Brąz Królewski",
+        "img": "7-braz-krolewski.jpg",
+        "desc": "Ponadczasowy kamień o ciepłym odcieniu i wyrazistym ziarnie. Jest to materiał wyjątkowo łatwy w utrzymaniu – jego kolorystyka jest zbliżona do barw natury, dzięki czemu typowe cmentarne zabrudzenia po prostu znikają w jego wzorze.",
+        "price_level": 2,
+        "availability_level": 5
+    },
+    "china_juparana": {
+        "name": "China Juparana",
+        "img": "9-china-juparana.jpg",
+        "desc": "Gnejs o bardzo bogatym, falistym wzorze w odcieniach różu, szarości i beżu. To idealna opcja dla osób, które nie mogą często odwiedzać cmentarza.",
+        "price_level": 2,
+        "availability_level": 5
+    },
+    "yellow_queen": {
+        "name": "Yellow Queen",
+        "img": "10-yelow-queen.jpg",
+        "desc": "Jasny granit o ciepłej, żółto-piaskowej barwie. Jest niezwykle praktyczny, ponieważ jego kolorystyka jest zbliżona do naturalnego pyłu i opadłych jesienią liści.",
+        "price_level": 2,
+        "availability_level": 5
+    },
+    "crystal_grey": {
+        "name": "Crystal Grey",
+        "img": "27-crystal-grey.jpg",
+        "desc": "Klasyczna, spokojna szarość o równomiernym ziarnie. To bezpieczny i ponadczasowy wybór, ponieważ ten odcień granitu jest bardzo łatwy do czyszczenia i odporny na polskie warunki pogodowe.",
+        "price_level": 2,
+        "availability_level": 5
+    },
+    "polar_grey": {
+        "name": "Polar Grey",
+        "img": "28-polar-grey.jpg",
+        "desc": "Granit o bardzo jasnym wybarwieniu. Jasna powierzchnia odbija promienie słoneczne i nie kumuluje ciepła tak jak czarne granity. Dzięki temu kamień jest bardziej odporny na pęknięcia i trudne warunki pogodowe.",
+        "price_level": 2,
+        "availability_level": 5
+    },
+    "impala_ciemna": {
+        "name": "Impala Ciemna",
+        "img": "13-impala-ciemna.jpg",
+        "desc": "Szlachetny granit o barwie ciemnego grafitu. Ma niejednolitą strukturę dlatego w przeciwieństwie do czystej czerni, nie widać na nim każdego odcisku palca czy zaschniętej kropli deszczu.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "impala_indie": {
+        "name": "Impala Indie",
+        "img": "21-impala-indie.jpg",
+        "desc": "Bardzo twardy granit o zbitej, ciemnoszarej strukturze. Jego atutem jest duża odporność na warunki atmosferyczne i nieco większa tolerancja na zabrudzenia.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "impala_jasna": {
+        "name": "Impala Jasna",
+        "img": "12-impala-jasna.jpg",
+        "desc": "Jaśniejsza odmiana klasycznej Impali, wpadająca w odcień stalowy. Wygląda bardzo solidnie i nowocześnie, a dzięki jaśniejszej barwie nie nagrzewa się latem tak mocno jak ciemne grafity.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "viscount_white": {
+        "name": "Viscont White",
+        "img": "16-viscount-white.jpg",
+        "desc": "Biały gnejs o malowniczym, falistym rysunku w odcieniach czerni i szarości. Ze względu na dużą popularność jest łatwo dostępny i oferuje znakomity stosunek ceny do jakości.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "padang_dark": {
+        "name": "Padang Dark",
+        "img": "22-padang-dark.jpg",
+        "desc": "Grafitowy kamień może być doskonałą alternatywą dla czerni. Wygląda szlachetnie, a dzięki temu, że nie jest smoliście czarny, łatwiej utrzymać go w czystości.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "padang_black": {
+        "name": "Padang Black",
+        "img": "28-padang-black.jpg",
+        "desc": "Szlachetny, ciemny kamień, będący doskonałym zamiennikiem dla najdroższych odmian czerni. Oferuje zbliżoną estetykę, a przy tym jest bardzo atrakcyjny cenowo.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "steel_grey": {
+        "name": "Steel Grey",
+        "img": "29-steel-grey.jpg",
+        "desc": "Ciemny kamień wyróżniający się dużymi, stalowymi „płatkami”, które dają efekt trójwymiarowości. Na takiej niejednolitej powierzchni brud i zacieki są znacznie mniej widoczne.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "braz_mysi": {
+        "name": "Brąz Mysi",
+        "img": "5-braz-mysi.jpg",
+        "desc": "Ciekawa alternatywa dla szarości, wpadająca w ciepłe, beżowo-brązowe tony. Dzięki naturalnej, \"ziemistej\" barwie, piasek i pył naniesione przez wiatr są na nim zupełnie niedostrzegalne.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "silver": {
+        "name": "Silver",
+        "img": "30-silver.jpg",
+        "desc": "Delikatniejsza, bardziej jednolita wersja szarości. Wygląda bardzo estetycznie i nowocześnie, stanowiąc świetne tło dla ciemnych tablic lub czarnej galanterii.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "nowy_zbik": {
+        "name": "Nowy Żbik",
+        "img": "2-nowy-zbik.jpg",
+        "desc": "Kamień o wyrazistej, nakrapianej strukturze łączącej biel z szarością. Jest to bardzo bezpieczna, klasyczna opcja – dzięki wzorzystej powierzchni doskonale maskuje kurz i drobne zarysowania.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "zbik_szary": {
+        "name": "Żbik Szary",
+        "img": "3-zbik-szary.jpg",
+        "desc": "Wyróżnia się ciemniejszym, nasyconym odcieniem szarości. To materiał niezwykle wdzięczny w użytkowaniu – gęsty, ziarnisty wzór sprawia, że płyta wygląda dobrze nawet bez częstego czyszczenia.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "chinska_aurora": {
+        "name": "Chińska Aurora",
+        "img": "24-chinska-aurora.jpg",
+        "desc": "Wariant popularnej Aurory o intensywnym, czarno-czerwonym użyleniu. Falisty wzór sprawia, że każda płyta jest unikalna, a ewentualne plamy czy mech \"gubią się\" w bogatej kolorystyce kamienia.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "china_viscount": {
+        "name": "China Viscount",
+        "img": "8-china-viscount.jpg",
+        "desc": "Gnejs stanowi ciekawą alternatywę dla typowych granitów o strukturze kropkowanej, oferując bardziej płynny rysunek. Jasne i ciemne smugi świetnie ukrywają wszelkie osady wodne i kurz.",
+        "price_level": 3,
+        "availability_level": 5
+    },
+    "tan_brown": {
+        "name": "Tan Brown",
+        "img": "20-tan-brown.jpg",
+        "desc": "Ciemny kamień z charakterystycznymi, brązowo-miedzianymi akcentami. Stanowi doskonałą alternatywę dla czystej czerni – na brązowym deseniu kurz jest o wiele mniej widoczny niż na ciemnych granitach.",
+        "price_level": 3,
+        "availability_level": 3
+    },
+    "monte_grey": {
+        "name": "Monte Grey",
+        "img": "6-monte-grey.jpg",
+        "desc": "Elegancka szarość stanowiąca doskonały balans między jasnymi a ciemnymi granitami. Pasuje do każdego stylu nagrobka i świetnie komponuje się z różnymi dodatkami.",
+        "price_level": 3,
+        "availability_level": 3
+    },
+    "szary_piekny": {
+        "name": "Szary Piękny",
+        "img": "15-szary-piekny.jpg",
+        "desc": "Wyróżnia się ciemniejszym, bardzo eleganckim odcieniem szarości. Stanowi doskonałą bazę dla nowoczesnych dodatków ze stali nierdzewnej. Jego powierzchnia świetnie maskuje osad, zachowując estetyczny wygląd przez długi czas.",
+        "price_level": 3,
+        "availability_level": 3
+    },
+    "skalisty": {
+        "name": "Skalisty",
+        "img": "11-skalisty.jpg",
+        "desc": "Granit o wyrazistej, gruboziarnistej strukturze przypominającej naturalną skałę. Jego surowy charakter sprawia, że drobne zarysowania czy pył \"gubią się\" w jego wzorze.",
+        "price_level": 3,
+        "availability_level": 3
+    },
+    "mwhite": {
+        "name": "Mwhite",
+        "img": "31-mwhite.jpg",
+        "desc": "Gnejs o falistym użyleniu, który wyglądem przypomina szlachetny marmur. Jasne tło przenika się tu z szarymi pasmami, tworząc dynamiczny wzór. Dzięki bogatej strukturze, ewentualne ślady po deszczu czy osad wtapiają się w rysunek kamienia.",
+        "price_level": 3,
+        "availability_level": 3
+    },
+    "astoria": {
+        "name": "Astoria",
+        "img": "32-astoria.jpg",
+        "desc": "Jasny granit o łagodnej barwie kości słoniowej, przełamany ciemniejszymi smugami. Nieregularny wzór w odcieniach złota i brązu doskonale maskuje kurz i piasek.",
+        "price_level": 3,
+        "availability_level": 3
+    },
+    "star_galaxy": {
+        "name": "Star Galaxy",
+        "img": "33-star-galaxy.jpg",
+        "desc": "Głęboka czerń granitu jest tu gęsto nakrapiana naturalnymi, złotymi drobinami, które przypominają rozgwieżdżone, nocne niebo. Należy jednak regularnie dbać o nagrobek by pył nie zmatowił tego efektu.",
+        "price_level": 5,
+        "availability_level": 5
+    },
+    "angola_black": {
+        "name": "Angola Black",
+        "img": "34-angola-black.jpg",
+        "desc": "Głęboka czerń z ukrytymi kryształkami, które pięknie mienią się w słońcu. Jest niezwykle elegancki, ale wymaga regularnej pielęgnacji, by kurz nie przesłaniał tego efektu.",
+        "price_level": 5,
+        "availability_level": 5
+    },
+    "bengal_black": {
+        "name": "Bengal Black",
+        "img": "35-bengal-black.jpg",
+        "desc": "Głęboka, nasycona czerń o drobniejszym ziarnie. Stanowi idealne, kontrastowe tło dla złoconych liter, ale wymaga częstego przecierania szmatką.",
+        "price_level": 5,
+        "availability_level": 5
+    },
+    "ruby_star": {
+        "name": "Ruby Star",
+        "img": "14-ruby-star.jpg",
+        "desc": "Bardzo twardy, ciemny granit, wyróżniający się charakterystycznymi, rubinowymi akcentami. Jego ziarnista struktura to duży atut użytkowy – doskonale maskuje drobne zabrudzenia, więc pomnik nie wymaga częstego czyszczenia.",
+        "price_level": 5,
+        "availability_level": 5
+    },
+    "czarny_szwed": {
+        "name": "Czarny Szwed",
+        "img": "35-czarny-szwed.jpg",
+        "desc": "Klasyczna, absolutna czerń. To najbardziej elegancki, lustrzany kamień, ale też najbardziej wymagający – widać na nim każdy pyłek i odcisk palca. Jest najdroższy i najtrudniejszy do zdobycia w formie dużej, czystej płyty.",
+        "price_level": 5,
+        "availability_level": 2
+    },
+    "aurora": {
+        "name": "Aurora",
+        "img": "19-aurora.jpg",
+        "desc": "Szlachetny kamień o czarno-czerwonym, \"płynącym\" wzorze. Jest niezwykle praktyczny – na tej bogatej strukturze nie widać ani kurzu, ani zacieków po deszczu.",
+        "price_level": 5,
+        "availability_level": 2
+    },
+    "prada_gold": {
+        "name": "Prada Gold",
+        "img": "37-prada-gold.jpg",
+        "desc": "Każda płyta wykonana z tego gnejsu jest unikalną kompozycją złotych i szarych pasm. Wielobarwny wzór sprawia, że jest to jeden z najłatwiejszych w utrzymaniu kamieni – zabrudzenia po prostu giną w gąszczu barw.",
+        "price_level": 5,
+        "availability_level": 2
+    },
+    "orion": {
+        "name": "Orion",
+        "img": "17-orion.jpg",
+        "desc": "Gnejs o niepowtarzalnym, smugowym wzorze, łączącym odcienie fioletu, wrzosu i szarości. Przypomina nieco zachmurzone niebo. Dzięki dynamicznej strukturze kurz i zacieki są na nim niemal niedostrzegalne.",
+        "price_level": 5,
+        "availability_level": 2
+    },
+    "orion_silk": {
+        "name": "Orion Silk",
+        "img": "18-orion-silk.jpg",
+        "desc": "Wyróżnia się szlachetnym, ciemnym wybarwieniem i unikalną, pasmową teksturą. Na takiej niejednolitej powierzchni kurz i osad z drzew są o wiele mniej widoczne niż na gładkich, ciemnych granitach.",
+        "price_level": 5,
+        "availability_level": 2
+    },
+    "himalaya_blue": {
+        "name": "Himalaya Blue",
+        "img": "23-himalaya-blue.jpg",
+        "desc": "Kamień o ciepłej, wielobarwnej kolorystyce, w której przeplatają się tony ceglaste, pomarańczowe i fioletowe. Pięknie komponuje się z zielenią i doskonale maskuje zabrudzenia.",
+        "price_level": 5,
+        "availability_level": 2
+    }
+}

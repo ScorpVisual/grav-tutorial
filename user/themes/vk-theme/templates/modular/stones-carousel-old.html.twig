@@ -1,0 +1,125 @@
+<section class="py-4 lg:py-8">
+  
+  {# --- 1. NAGŁÓWEK I OPIS (Wycentrowane)
+  <div class="max-w-4xl mx-auto px-4 my-12 flex flex-col items-center text-center space-y-6">
+      
+
+      <h1 class="text-3xl font-bold text-gray-800 mb-2 border-bot-cherry">
+          {{ page.header.title|default('Polecane kamienie') }}
+      </h1>
+ 
+      <p class="text-lg text-gray-700">
+          {{ page.header.text|nl2br }}
+      </p>
+
+  </div> --- #}
+  {# NAGŁÓWEK #}
+    <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--black">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                {{ page.header.top_label|default('Polecane kamienie') }}
+            </h3>
+        </div>
+    </div>
+
+  {# --- 2. KARUZELA (Bez zmian w logice, tylko ID) --- #}
+  {% set unique_id = unique_id | default(random()) %}
+
+  {# Sprawdzamy, czy w ogóle są jakieś kamienie dodane w adminie #}
+  {% if page.header.items is not empty %}
+
+  <div class="js-material-carousel max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center my-12">
+
+    {# LEWA STRONA: KARUZELA ZDJĘĆ #}
+    <div class="relative flex items-center justify-center h-[350px]">
+      
+      {# Przycisk Poprzedni #}
+      <button data-dir="prev" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--prev" data-target="carousel-container-{{ unique_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+
+      {# Kontener zdjęć #}
+      <div id="carousel-container-{{ unique_id }}" class="carousel-main-container w-full h-full flex items-center justify-center">
+        {% for material in page.header.items %}
+          
+          {% if material.img %}
+              {# Pamiętaj o ścieżce theme_url - dostosuj ją w razie potrzeby #}
+              <img src="{{ theme_url }}/images/stones/{{ material.img }}"
+                   alt="{{ material.name|default('Kamień') }}"
+                   data-name="{{ material.name }}"
+                   data-desc="{{ material.desc }}"
+                   data-price="{{ material.price_level|default(1) }}"
+                   data-info-target="materialInfo-{{ unique_id }}" 
+                   class="carousel-item rounded-lg object-cover cursor-pointer material-info-container">
+          {% endif %}
+
+        {% endfor %}
+      </div>
+
+      {# Przycisk Następny #}
+      <button data-dir="next" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--next" data-target="carousel-container-{{ unique_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </button>
+    </div>
+
+    {# PRAWA STRONA: OPIS KAMIENIA #}
+      <div id="materialInfo-{{ unique_id }}" class=" p-2 lg:p-6 lg:ml-12 material-info-container">
+        <h3 id="materialName-{{ unique_id }}" class="text-3xl font-bold mb-3 text-gray-800 transition-opacity duration-300 underline--cherry inline-block lg:block lg:text-left">
+        </h3>
+        <div id="materialPrice-{{ unique_id }}" class="flex row justify-center lg:justify-start items-center space-x-2 text-2xl font-semibold text-gray-800 mt-2">
+          <span id="materialPriceLabel-{{ unique_id }}" class="transition-opacity duration-300">Cena:</span> 
+          <div class="js-price-stars flex space-x-1 ml-2 transition-opacity duration-300 opacity-0" data-icon="{{ theme_url }}/images/svg/stone.svg">
+          </div>
+        </div>
+<p id="materialDesc-{{ unique_id }}" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300 mt-4 min-h-[160px] md:min-h-[120px] lg:min-h-[240px]">      </p>
+      
+    {# Przycisk akcji (pod legendą) #}
+    {% if page.header.button_text %}
+    <div class="flex justify-center w-full mt-12 mb-8">
+        <a href="{{ page.header.button_link|default('#') }}" class="btn-primary px-10 py-4 shadow-lg hover:shadow-xl transition-all">
+            {{ page.header.button_text }}
+        </a>
+    </div>
+    {% endif %}
+    </div>
+
+  </div>
+  {% endif %}
+
+{# --- 3. LEGENDA I WYCENA (Nowa sekcja) --- #}
+<div class="max-w-screen-xl mx-auto px-4 mt-20">
+    <div class="basic-card-style base-radius p-6 lg:p-10 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {# Lewa kolumna: Ikony #}
+            <div class="lg:col-span-4 flex flex-col items-center lg:items-start border-b lg:border-b-0 lg:border-r border-gray-200 pb-6 lg:pb-0 lg:pr-8">
+                <h4 class="text-xl font-bold text-gray-800 mb-4 underline--cherry inline-block">
+                    Skala cenowa
+                </h4>
+                <div class="flex items-center bg-pink px-4 py-3 rounded-xl shadow-inner border border-gray-200">
+                    <span class="text-sm font-bold c-slate uppercase tracking-wider mr-3">Przykład:</span>
+                    <div class="flex space-x-1">
+                        <img class="h-6 w-auto transition-opacity duration-300" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                        <img class="h-6 w-auto transition-opacity duration-300" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                        <img class="h-6 w-auto transition-opacity duration-300" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                        <img class="h-6 w-auto transition-opacity duration-300 opacity-20" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                        <img class="h-6 w-auto transition-opacity duration-300 opacity-20" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                    </div>
+                </div>
+            </div>
+
+            {# Prawa kolumna: Tekst wyjaśniający #}
+            <div class="lg:col-span-8 text-center lg:text-left">
+                <p class="text-gray-700 text-base lg:text-lg leading-relaxed mb-4">
+                    Końcowa wycena zależy od wielu czynników, takich jak: <strong>dostępność</strong> danego kamienia, <strong>ilość potrzebnego materiału</strong> oraz aktualna sytuacja na rynkach światowych.
+                </p>
+                <p class="text-gray-500 text-sm italic">
+                    * Ikony reprezentują orientacyjne różnice w cenie w porównaniu do innych wariantów. Ostateczna oferta zawsze przygotowywana jest indywidualnie.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+</section>
+

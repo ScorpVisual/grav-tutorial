@@ -8,65 +8,70 @@ form:
       type: tabs
       active: 1
       fields:
-        # Zakładka na treść po lewej stronie
+        
+        # --- ZAKŁADKA 1: TREŚCI TEKSTOWE ---
         content:
           type: tab
           title: 📜 Treść Sekcji
           fields:
-            header.main_image:
-              type: filepicker
-              label: Główne zdjęcie (po lewej)
-              folder: 'theme@:/images/photos'
-              preview_images: true
-              default: 'images/photos/stones-photo-3.jpg'
+            
+            # Sekcja nagłówka
+            section_header_text:
+              type: section
+              title: Nagłówki i Opisy
+              underline: true
+            
+            header.top_label:
+              type: text
+              label: Mały nagłówek (nad tytułem)
+              default: "Polecane kamienie"
+              
             header.title:
               type: text
-              label: Nagłówek sekcji
-              default: "Polecane kamienie"
+              label: Główny tytuł
+              default: "Wyjątkowa trwałość i estetyka"
+              
             header.text:
               type: textarea
-              label: Tekst pod nagłówkiem
+              label: Główny opis (pod tytułem)
               rows: 5
-              default: "Stawiamy na najwyższą jakość materiałów i precyzję pracy..."
+              default: "Opis sekcji wprowadzający do galerii kamieni..."
+
+            # Sekcja przycisku
+            section_button:
+              type: section
+              title: Przycisk akcji (Call to Action)
+              underline: true
+
             header.button_text:
               type: text
               label: Tekst na przycisku
-              default: "Wszystkie dostępne kamienie"
+              default: "Zobacz pełną ofertę"
+            
             header.button_link:
               type: text
-              label: Link przycisku (np. /kamienie lub #)
+              label: Link przycisku (np. /oferta)
               default: "#"
-              
-        # Zakładka na listę kamieni do karuzeli
-        stones_list:
+
+# --- ZAKŁADKA 2: WYBÓR KAMIENI ---
+        stones_selection:
           type: tab
-          title: 💎 Lista Kamieni
+          title: 💎 Wybór Kamieni
           fields:
-            header.items:
-              type: list
-              label: Kamienie do karuzeli
-              style: vertical
-              fields:
-                .name:
-                  type: text
-                  label: Nazwa kamienia
-                  default: "Biały granit"
-                .desc:
-                  type: textarea
-                  label: Opis kamienia
-                  default: "Elegancki i ponadczasowy..."
-                .img:
-                  type: filepicker
-                  label: Zdjęcie (tekstura)
-                  folder: 'theme@:/images/stones'
-                  preview_images: true
-                .price_level:
-                  type: select
-                  label: Poziom ceny
-                  default: 1
-                  options:
-                    1: "1 - Bardzo przystępny"
-                    2: "2 - Ekonomiczny"
-                    3: "3 - Standardowy"
-                    4: "4 - Premium"
-                    5: "5 - Ekskluzywny"
+            
+            info_box:
+              type: spacer
+              text: "Zaznacz kamienie, które mają pojawić się w karuzeli (lista z pliku stone-options.json)"
+              underline: true
+
+            header.selected_stones:
+              type: checkboxes
+              label: Dostępne kamienie
+              help: "Zaznacz, aby dodać. Odznacz, aby usunąć."
+              # To sprawia, że checkboxy wyświetlą się w kolumnach (ładniej)
+              use: keys
+              classes: stone-grid-wrapper
+              validate:
+                type: array
+              # Pobieranie opcji z Twojej funkcji PHP
+              data-options@: '\Grav\Theme\VkTheme::getStoneOption'
