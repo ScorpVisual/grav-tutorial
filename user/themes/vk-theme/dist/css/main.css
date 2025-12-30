@@ -3612,6 +3612,70 @@ option {
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
 }
 
+.drawer-stone-overlay {
+  position: relative;
+  display: inline-block;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.drawer-stone-overlay img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: inherit;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.drawer-stone-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+  background: linear-gradient(176deg, white -7%, rgba(255, 255, 255, 0.2) 12.5%, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0) 80%, rgba(3, 2, 8, 0.7) 99%);
+}
+
+.basic-drawer__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  background-color: #800020;
+  border: 2px solid #800020;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.basic-drawer__button:hover {
+  background-color: #FCD3C1;
+  border-color: #FCD3C1;
+  color: #393c45;
+}
+.basic-drawer__container {
+  border-bottom: 2px solid #cbcdd1;
+  box-shadow: 0 4px 12px rgba(3, 2, 8, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: all 400ms ease-in-out;
+  border-radius: 4px;
+}
+.basic-drawer__option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid rgba(203, 205, 209, 0.5);
+}
+.basic-drawer__option:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
 .grid-container {
   display: flex;
   flex-direction: column;

@@ -1,0 +1,102 @@
+{% set uid = random() %}
+{% set first_key = group_keys[0] %}
+{% set first = stone_options[first_key] %}
+
+<div class="js-stone-drawer max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-3 items-start">
+
+    {# ================= LEWA STRONA ================= #}
+    <div class="relative">
+        <div class="mt-6 basic-radius overflow-hidden basic-drawer__container">
+
+            <button
+                class="js-drawer-toggle basic-drawer__button basic-radius"
+            >
+                Wybierz kamień – {{ group_title }}
+                <span class="text-xl">-</span>
+            </button>
+
+            <div class="js-drawer-list max-h-72 md:max-h-80 lg:max-h-96 overflow-y-auto  open">
+                {% for key in group_keys %}
+                    {% if stone_options[key] is defined %}
+                        {% set stone = stone_options[key] %}
+
+                        <button
+                            class="js-drawer-item basic-drawer__option {% if loop.first %}active{% endif %}"
+                            data-img="{{ theme_url }}/images/stones/{{ stone.img }}"
+                            data-name="{{ stone.name }}"
+                            data-desc="{{ stone.desc }}"
+                            data-price="{{ stone.price_level }}"
+                            data-availability="{{ stone.availability_level }}"
+                        >
+                            <img
+                                src="{{ theme_url }}/images/stones/{{ stone.img }}"
+                                alt="{{ stone.name }}"
+                                class="w-16 h-16 object-cover rounded-sm flex-shrink-0 "
+                            >
+                            <span class="font-medium text-gray-800">
+                                {{ stone.name }}
+                            </span>
+                        </button>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {# ================= PRAWA STRONA ================= #}
+    <div class="p-4 lg:p-6 lg:ml-12 material-info-container relative self-start">
+        <div class="flex justify-center mb-12">
+            <div class="
+                mx-auto
+                w-full
+                max-w-[120px]
+                sm:max-w-[160px]
+                md:max-w-[240px]
+                lg:max-w-[256px]
+                aspect-square
+                rounded-lg
+                overflow-hidden
+                shadow-lg
+                mb-12
+                drawer-stone-overlay
+                hard-shadow
+            ">
+                <img
+                    class="js-drawer-active-img w-full h-full object-cover rounded-lg golden-img-border transition-opacity duration-300"
+                    src="{{ theme_url }}/images/stones/{{ first.img }}"
+                    alt="{{ first.name }}"
+                >
+            </div>
+        </div>
+
+        <div class="flex justify-center lg:justify-start border-bot-cherry mb-4 items-end">
+            <h3 class="js-drawer-name text-3xl font-bold text-gray-800 transition-opacity duration-300 inline-block">
+                {{ first.name }}
+            </h3>
+        </div>
+
+        <div class="flex row justify-center lg:justify-start items-center space-x-2 text-xl font-semibold text-gray-800 mt-2">
+            <span class="w-32 text-right lg:text-left text-gray-500 text-base uppercase tracking-wider">
+                Cena:
+            </span>
+            <div
+                class="js-drawer-price-stars flex space-x-1 ml-2"
+                data-icon="{{ theme_url }}/images/svg/stone.svg"
+            ></div>
+        </div>
+
+        <div class="flex row justify-center lg:justify-start items-center space-x-2 text-xl font-semibold text-gray-800 mt-1">
+            <span class="w-32 text-right lg:text-left text-gray-500 text-base uppercase tracking-wider">
+                Dostępność:
+            </span>
+            <div
+                class="js-drawer-availability-stars flex space-x-1 ml-2"
+                data-icon="{{ theme_url }}/images/svg/stone.svg"
+            ></div>
+        </div>
+
+        <p class="js-drawer-desc text-gray-600 text-lg leading-relaxed transition-opacity duration-300 mt-4 min-h-[160px] lg:min-h-[250px] text-left">
+            {{ first.desc }}
+        </p>
+    </div>
+</div>

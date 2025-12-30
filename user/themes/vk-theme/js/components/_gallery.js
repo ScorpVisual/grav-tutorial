@@ -91,161 +91,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // ====================================================================
     //  2. KARUZELA MATERIAŁÓW (CENA I DOSTĘPNOŚĆ)
     // ====================================================================
-    // function initMaterialCarousel() {
-    //     // 1. Znajdź WSZYSTKIE kontenery karuzel na stronie
-    //     document.querySelectorAll('.js-material-carousel').forEach(carouselWrapper => {
-            
-    //         const container = carouselWrapper.querySelector('.carousel-main-container');
-    //         if (!container) return;
-
-    //         const uniqueId = container.id.split('-').pop();
-    //         if (!uniqueId) return;
-            
-    //         const items = container.querySelectorAll('.carousel-item');
-    //         const nameEl = document.getElementById(`materialName-${uniqueId}`);
-    //         const descEl = document.getElementById(`materialDesc-${uniqueId}`);
-    //         const prevBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="prev"]');
-    //         const nextBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="next"]');
-
-    //         if (!items.length || !nameEl || !descEl || !prevBtn || !nextBtn) return;
-
-    //         // Ukryj przyciski, jeśli za mało slajdów
-    //         if (items.length < 3) {
-    //             prevBtn.style.display = 'none';
-    //             nextBtn.style.display = 'none';
-    //             if (items.length > 0) {
-    //                  const center = items[0];
-    //                  nameEl.textContent = center.dataset.name;
-    //                  descEl.textContent = center.dataset.desc;
-    //                  items[0].classList.add('carousel-center', 'golden-img-border');
-    //             }
-    //             return;
-    //         }
-
-    //         let currentIndex = 0;
-    //         let isAnimating = false;
-    //         const total = items.length;
-
-    //         // Główna funkcja aktualizująca stan
-    //         function update() {
-    //             isAnimating = true;
-    //             const center = items[currentIndex];
-                
-    //             // Elementy do animacji
-    //             const priceStarsContainer = carouselWrapper.querySelector('.js-price-stars');
-    //             const priceLabel = document.getElementById(`materialPriceLabel-${uniqueId}`);
-    //             const availStarsContainer = carouselWrapper.querySelector('.js-availability-stars');
-
-    //             // 1. Zanikanie treści
-    //             nameEl.style.opacity = 0;
-    //             descEl.style.opacity = 0;
-    //             if (priceStarsContainer) priceStarsContainer.style.opacity = 0;
-    //             if (priceLabel) priceLabel.style.opacity = 0;
-    //             if (availStarsContainer) availStarsContainer.style.opacity = 0;
-
-    //             setTimeout(() => {
-    //                 // 2. Podmiana tekstów
-    //                 nameEl.textContent = center.dataset.name;
-    //                 descEl.textContent = center.dataset.desc;
-                    
-    //                 // Funkcja pomocnicza do gwiazdek
-    //                 const renderStars = (starContainer, levelValue) => {
-    //                     if (!starContainer) return;
-    //                     const level = parseInt(levelValue) || 1;
-    //                     const iconPath = starContainer.dataset.icon;
-    //                     starContainer.replaceChildren();
-
-    //                     for (let i = 1; i <= 5; i++) {
-    //                         const img = document.createElement('img');
-    //                         img.src = iconPath;
-    //                         img.className = 'h-6 w-auto';
-    //                         img.style.opacity = i <= level ? '1' : '0.2'; 
-    //                         img.alt = `Poziom ${i} z 5`;
-    //                         starContainer.appendChild(img);
-    //                     }
-    //                     starContainer.style.opacity = 1;
-    //                 };
-
-    //                 // Generowanie gwiazdek
-    //                 renderStars(priceStarsContainer, center.dataset.price);
-    //                 renderStars(availStarsContainer, center.dataset.availability || 5);
-
-    //                 // Przywracanie widoczności
-    //                 if (priceLabel) priceLabel.style.opacity = 1;
-    //                 nameEl.style.opacity = 1;
-    //                 descEl.style.opacity = 1;
-                    
-    //             }, 250);
-
-    //             // 3. Logika klas CSS (przesuwanie kafelków)
-    //             const leftIdx = (currentIndex - 1 + total) % total;
-    //             const rightIdx = (currentIndex + 1) % total;
-
-    //             items.forEach((it, idx) => {
-    //                 it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
-    //                 if (idx === currentIndex) it.classList.add('carousel-center', 'golden-img-border');
-    //                 else if (idx === leftIdx) it.classList.add('carousel-left');
-    //                 else if (idx === rightIdx) it.classList.add('carousel-right');
-    //                 else it.classList.add('carousel-hidden');
-    //             });
-
-    //             // Odblokowanie klikania po zakończeniu animacji
-    //             setTimeout(() => (isAnimating = false), 500);
-    //         }
-
-    //         nextBtn.addEventListener('click', () => {
-    //             if (isAnimating) return;
-    //             currentIndex = (currentIndex + 1) % total;
-    //             update();
-    //         });
-
-    //         prevBtn.addEventListener('click', () => {
-    //             if (isAnimating) return;
-    //             currentIndex = (currentIndex - 1 + total) % total;
-    //             update();
-    //         });
-
-    //         // Start
-    //         update();
-    //     });
-    // }
-// ====================================================================
-    //  2. KARUZELA MATERIAŁÓW (FIXED FOR YOUR SCSS)
-    // ====================================================================
     function initMaterialCarousel() {
+        // 1. Znajdź WSZYSTKIE kontenery karuzel na stronie
         document.querySelectorAll('.js-material-carousel').forEach(carouselWrapper => {
             
             const container = carouselWrapper.querySelector('.carousel-main-container');
             if (!container) return;
 
             const uniqueId = container.id.split('-').pop();
-            const items = container.querySelectorAll('.carousel-item');
+            if (!uniqueId) return;
             
-            // --- Elementy do aktualizacji ---
+            const items = container.querySelectorAll('.carousel-item');
             const nameEl = document.getElementById(`materialName-${uniqueId}`);
             const descEl = document.getElementById(`materialDesc-${uniqueId}`);
-            
-            // Labele (Cena/Dostępność - stringi)
-            const labelPrice = document.getElementById(`labelPrice-${uniqueId}`);
-            const labelAvail = document.getElementById(`labelAvail-${uniqueId}`);
-
-            // Kontenery Gwiazdek
-            const priceStarsContainer = carouselWrapper.querySelector('.js-price-stars');
-            const availStarsContainer = carouselWrapper.querySelector('.js-availability-stars');
-
             const prevBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="prev"]');
             const nextBtn = carouselWrapper.querySelector('.carousel-btn[data-dir="next"]');
 
-            if (!items.length) return;
+            if (!items.length || !nameEl || !descEl || !prevBtn || !nextBtn) return;
 
-            // Obsługa małej ilości elementów
+            // Ukryj przyciski, jeśli za mało slajdów
             if (items.length < 3) {
-                if(prevBtn) prevBtn.style.display = 'none';
-                if(nextBtn) nextBtn.style.display = 'none';
-                items[0].classList.add('carousel-center'); // Bez golden-border, bo to styl z innego mixina
-                if(nameEl) nameEl.textContent = items[0].dataset.name;
-                if(descEl) descEl.textContent = items[0].dataset.desc;
-                // Tutaj opcjonalnie render gwiazdek dla pierwszego elementu
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                if (items.length > 0) {
+                     const center = items[0];
+                     nameEl.textContent = center.dataset.name;
+                     descEl.textContent = center.dataset.desc;
+                     items[0].classList.add('carousel-center', 'golden-img-border');
+                }
                 return;
             }
 
@@ -253,90 +126,80 @@ document.addEventListener('DOMContentLoaded', () => {
             let isAnimating = false;
             const total = items.length;
 
+            // Główna funkcja aktualizująca stan
             function update() {
                 isAnimating = true;
                 const center = items[currentIndex];
+                
+                // Elementy do animacji
+                const priceStarsContainer = carouselWrapper.querySelector('.js-price-stars');
+                const priceLabel = document.getElementById(`materialPriceLabel-${uniqueId}`);
+                const availStarsContainer = carouselWrapper.querySelector('.js-availability-stars');
 
-                // 1. Ustawianie klas (Logika 3D z Twojego SCSS)
+                // 1. Zanikanie treści
+                nameEl.style.opacity = 0;
+                descEl.style.opacity = 0;
+                if (priceStarsContainer) priceStarsContainer.style.opacity = 0;
+                if (priceLabel) priceLabel.style.opacity = 0;
+                if (availStarsContainer) availStarsContainer.style.opacity = 0;
+
+                setTimeout(() => {
+                    // 2. Podmiana tekstów
+                    nameEl.textContent = center.dataset.name;
+                    descEl.textContent = center.dataset.desc;
+                    
+                    // Funkcja pomocnicza do gwiazdek
+                    const renderStars = (starContainer, levelValue) => {
+                        if (!starContainer) return;
+                        const level = parseInt(levelValue) || 1;
+                        const iconPath = starContainer.dataset.icon;
+                        starContainer.replaceChildren();
+
+                        for (let i = 1; i <= 5; i++) {
+                            const img = document.createElement('img');
+                            img.src = iconPath;
+                            img.className = 'h-6 w-auto';
+                            img.style.opacity = i <= level ? '1' : '0.2'; 
+                            img.alt = `Poziom ${i} z 5`;
+                            starContainer.appendChild(img);
+                        }
+                        starContainer.style.opacity = 1;
+                    };
+
+                    // Generowanie gwiazdek
+                    renderStars(priceStarsContainer, center.dataset.price);
+                    renderStars(availStarsContainer, center.dataset.availability || 5);
+
+                    // Przywracanie widoczności
+                    if (priceLabel) priceLabel.style.opacity = 1;
+                    nameEl.style.opacity = 1;
+                    descEl.style.opacity = 1;
+                    
+                }, 250);
+
+                // 3. Logika klas CSS (przesuwanie kafelków)
                 const leftIdx = (currentIndex - 1 + total) % total;
                 const rightIdx = (currentIndex + 1) % total;
 
                 items.forEach((it, idx) => {
                     it.classList.remove('carousel-center', 'carousel-left', 'carousel-right', 'carousel-hidden', 'golden-img-border');
-                    
-                    if (idx === currentIndex) {
-                        it.classList.add('carousel-center');
-                        // Dodaję golden-img-border jeśli chcesz efektu ramki
-                         it.classList.add('golden-img-border'); 
-                    } else if (idx === leftIdx) {
-                        it.classList.add('carousel-left');
-                    } else if (idx === rightIdx) {
-                        it.classList.add('carousel-right');
-                    } else {
-                        it.classList.add('carousel-hidden');
-                    }
+                    if (idx === currentIndex) it.classList.add('carousel-center', 'golden-img-border');
+                    else if (idx === leftIdx) it.classList.add('carousel-left');
+                    else if (idx === rightIdx) it.classList.add('carousel-right');
+                    else it.classList.add('carousel-hidden');
                 });
 
-                // 2. Animacja ZNIKANIA (Wszystko znika)
-                if(nameEl) nameEl.style.opacity = 0;
-                if(descEl) descEl.style.opacity = 0;
-                
-                // Znikają kontenery z gwiazdkami
-                if(priceStarsContainer) priceStarsContainer.style.opacity = 0;
-                if(availStarsContainer) availStarsContainer.style.opacity = 0;
-                
-                // Znikają napisy "Cena:" i "Dostępność:"
-                if(labelPrice) labelPrice.style.opacity = 0;
-                if(labelAvail) labelAvail.style.opacity = 0;
-
-
-                setTimeout(() => {
-                    // 3. Podmiana treści (kiedy jest niewidoczne)
-                    if(nameEl) nameEl.textContent = center.dataset.name;
-                    if(descEl) descEl.textContent = center.dataset.desc;
-
-                    // Funkcja pomocnicza do gwiazdek
-                    const renderStars = (container, val) => {
-                        if (!container) return;
-                        const level = parseInt(val) || 1;
-                        const src = container.dataset.icon;
-                        container.replaceChildren();
-                        for (let i = 1; i <= 5; i++) {
-                            const img = document.createElement('img');
-                            img.src = src;
-                            img.className = 'h-6 w-auto';
-                            img.style.opacity = i <= level ? '1' : '0.2';
-                            container.appendChild(img);
-                        }
-                    };
-
-                    renderStars(priceStarsContainer, center.dataset.price);
-                    renderStars(availStarsContainer, center.dataset.availability);
-
-                    // 4. Animacja POJAWIANIA (Wszystko wraca)
-                    if(nameEl) nameEl.style.opacity = 1;
-                    if(descEl) descEl.style.opacity = 1;
-                    
-                    if(priceStarsContainer) priceStarsContainer.style.opacity = 1;
-                    if(availStarsContainer) availStarsContainer.style.opacity = 1;
-                    
-                    if(labelPrice) labelPrice.style.opacity = 1;
-                    if(labelAvail) labelAvail.style.opacity = 1;
-
-                }, 250); // Zgodne z połową czasu CSS transition
-
-                setTimeout(() => {
-                    isAnimating = false;
-                }, 500);
+                // Odblokowanie klikania po zakończeniu animacji
+                setTimeout(() => (isAnimating = false), 500);
             }
 
-            if(nextBtn) nextBtn.addEventListener('click', () => {
+            nextBtn.addEventListener('click', () => {
                 if (isAnimating) return;
                 currentIndex = (currentIndex + 1) % total;
                 update();
             });
 
-            if(prevBtn) prevBtn.addEventListener('click', () => {
+            prevBtn.addEventListener('click', () => {
                 if (isAnimating) return;
                 currentIndex = (currentIndex - 1 + total) % total;
                 update();
@@ -346,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
             update();
         });
     }
+
     // ====================================================================
     //  3. KARUZELA "NA ZAKŁADKĘ" (SHUFFLE)
     // ====================================================================

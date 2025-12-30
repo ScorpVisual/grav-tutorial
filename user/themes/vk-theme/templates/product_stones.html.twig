@@ -25,6 +25,12 @@
 ] %}
 
 
+
+
+
+
+
+
 {# --- SEKCJA 1: KAMIENIE EKONOMICZNE (TANIE) --- #}
 <section class="px-4 py-16 max-w-screen-xl mx-auto">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -56,21 +62,9 @@
   </div>
 </section>
 
-{# Karuzela Ekonomiczne (Dynamiczna z JSON) #}
-<section id="economic-carousel" class="py-4 lg:py-8">
-    {% set economic_items = [] %}
-    {% for key in economic_keys %}
-        {% if stone_options[key] is defined %}
-            {% set economic_items = economic_items|merge([stone_options[key]]) %}
-        {% endif %}
-    {% endfor %}
-
-    {% include 'modular/stones-carousel-static.html.twig' with {
-        items: economic_items,
-        unique_id: 'economic'
-    } %}
-</section>
-
+    {% include 'modular/stones-drawer.html.twig'
+        with { group_title: 'Ekonomiczne', group_keys: economic_keys }
+    %}
 {# Galeria (Statyczna - Twoje stare dane) #}
 <section>
 {% set popularStonesData = [
@@ -83,20 +77,20 @@
 
 
 {# --- SEKCJA 2: KAMIENIE ŚREDNIE (KOMPROMIS) --- #}
-<section class="px-4 py-16 max-w-screen-xl mx-auto">
+<section class="px-4 py-16 max-w-screen-xl mx-auto lg:mt-24">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
     <div>
         <img src="{{ theme_url }}/images/products/stones/stones-features.jpg" alt="Nagrobki z kamieni średniej klasy" class="w-full object-cover golden-img-border hard-shadow">
     </div>
     <div class="flex flex-col gap-4 items-stretch">
         <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry uppercase">
-        Kamienie Średnie
+        Kamienie Premium
         </h2>
         <div class="text-xl md:text-2xl font-bold price-highlighted">
-            Cena: <span class="c-white">Średnia</span>
+            Cena: <span class="c-white">Najlepszy stosunek ceny do jakości</span>
         </div>
         <div class="text-xl md:text-2xl font-bold price-highlighted bg-ink">
-            Jakość: <span class="c-white">Wysoka</span>
+            Dostępność: <span class="c-white">Wysoka</span>
         </div>
         <p class="text-lg text-gray-700 mt-4">
              <strong>Kompromis Cena/Jakość.</strong> Materiały o najlepszym stosunku ceny do jakości. Oferują szlachetniejszy wygląd i bogatszą kolorystykę niż warianty ekonomiczne.
@@ -113,20 +107,9 @@
   </div>
 </section>
 
-{# Karuzela Średnie (Dynamiczna z JSON) #}
-<section id="medium-carousel" class="py-4 lg:py-8">
-    {% set medium_items = [] %}
-    {% for key in medium_keys %}
-        {% if stone_options[key] is defined %}
-            {% set medium_items = medium_items|merge([stone_options[key]]) %}
-        {% endif %}
-    {% endfor %}
-
-    {% include 'modular/stones-carousel-static.html.twig' with {
-        items: medium_items,
-        unique_id: 'medium'
-    } %}
-</section>
+    {% include 'modular/stones-drawer.html.twig'
+        with { group_title: 'Premium', group_keys: medium_keys }
+    %}
 
 {# Galeria (Statyczna - Twoje stare dane) #}
 <section>
@@ -139,18 +122,19 @@
 </section>
 
 
+
 {# --- SEKCJA 3: KAMIENIE PREMIUM (DROGIE) --- #}
-<section class="px-4 py-16 max-w-screen-xl mx-auto">
+<section class="px-4 py-16 max-w-screen-xl mx-auto lg:mt-24">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
     <div class="flex flex-col gap-4 items-stretch">
         <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry uppercase">
-        Kamienie Premium
+        Kamienie Ekskluzywne
         </h2>
         <div class="text-xl md:text-2xl font-bold price-highlighted">
-            Cena: <span class="c-white">Wysoka</span>
+            Cena: <span class="c-white">Najwyższa</span>
         </div>
         <div class="text-xl md:text-2xl font-bold price-highlighted bg-ink">
-            Dostępność: <span class="c-white">Trudno dostępne</span>
+            Dostępność: <span class="c-white">Na specjalne zamówienie</span>
         </div>
         <p class="text-lg text-gray-700 mt-4">
              Najdroższe materiały na rynku. Obejmują granity w odcieniach głębokiej czerni oraz unikalne granity egzotyczne. Często są trudnodostępne, ponieważ muszą być importowane z odległych rejonów świata (Indie, Skandynawia, Brazylia).
@@ -166,21 +150,9 @@
     </div>
   </div>
 </section>
-
-{# Karuzela Premium (Dynamiczna z JSON) #}
-<section id="premium-carousel" class="py-4 lg:py-8">
-    {% set premium_items = [] %}
-    {% for key in premium_keys %}
-        {% if stone_options[key] is defined %}
-            {% set premium_items = premium_items|merge([stone_options[key]]) %}
-        {% endif %}
-    {% endfor %}
-
-    {% include 'modular/stones-carousel-static.html.twig' with {
-        items: premium_items,
-        unique_id: 'premium'
-    } %}
-</section>
+    {% include 'modular/stones-drawer.html.twig'
+        with { group_title: 'Ekskluzywne', group_keys: premium_keys }
+    %}
 
 {# Galeria (Statyczna - Twoje stare dane) #}
 <section>

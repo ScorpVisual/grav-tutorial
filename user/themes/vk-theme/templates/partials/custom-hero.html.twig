@@ -29,12 +29,12 @@
 
         {# BUTTONY #}
         {% if page.header.hero_buttons %}
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full mt-10">
+            <div class="flex flex-col sm:flex-row gap-1 justify-center items-center w-full mt-10">
                 {% for button in page.header.hero_buttons %}
                     <a href="{{ button.url }}" 
                        class="{{ button.class | default('btn-primary') }} 
                               flex items-center justify-center text-center transition-all 
-                              w-full sm:w-auto min-w-[240px] px-8 py-4">
+                              w-full sm:w-auto min-w-[240px]">
                         {{ button.text }}
                     </a>
                 {% endfor %}
