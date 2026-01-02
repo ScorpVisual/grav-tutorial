@@ -15,17 +15,19 @@
   <div class="shuffle-carousel js-shuffle-carousel">
     <div class="shuffle-carousel__track">
       {% for product in all_products %}
-      <div class="shuffle-carousel__slide">
+      <div class="shuffle-carousel__slide product-card--in-carousel">
         <div class="product-card" style="background-image: url('{{ theme_url }}{{ product.image }}');">
           <div class="product-card__main-content">
             <h3 class="product-card__title">{{ product.name }}</h3>
+            <p class="product-card__undertitle">{{ product.short_desc }}</p>
             <p class="product-card__price"><span class="c-pink">Cena:</span> {{ product.price }}</p>
             <button class="product-card__expand-btn pointer-events-none">ROZWIŃ</button>
           </div>
           <div class="product-card__details-overlay">
             <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">&times;</button>
             <div class="details-overlay__content">
-              <p class="product-card__desc">{{ product.full_desc }}</p>
+              <h4 class="product-card__title--opened">{{ product.name }}</h4>
+              <p class="product-card__desc--carousel">{{ product.full_desc }}</p>
               <div class="product-card__buttons">
                 <a href="{{ base_url_absolute}}{{ product.path }}" class="btn-primary">Sprawdź produkt</a>
                 <a href="#kontakt" class="btn-cta">Zamów wariant</a>

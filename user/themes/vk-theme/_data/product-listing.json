@@ -1,50 +1,56 @@
 [
     {
-        "name": "Nagrobek podstawowy na trumnę",
+        "name": "Kamelia",
+        "short_desc": "Sarkofag na trumny lub urny",
         "image": "/images/products/product-01/card-img-01.jpg",
-        "alt_text": "Nagrobek nazwa 01",
+        "alt_text": "Sarkofag granitowy model Kamelia z napisami na płycie wierzchniej",
         "price": "od 11 111 PLN",
-        "path": "/test-produktu",
-        "full_desc": "Nagrobek podstawowy na trumnę. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mi ligula, finibus sed risus ac, semper suscipit justo. Integer a placerat metus, sed dignissim tortor. Aenean purus odio, elementum sit amet vulputate a, posuere at metus. Nulla suscipit sapien et mauris tincidunt eleifend."
+        "path": "/kamelia",
+        "full_desc": "Klasyczna i trwała forma nagrobka, która swoją masywną, zamkniętą bryłą przypomina lity blok granitu. Wszystkie napisy umieszczamy na dużej płycie wierzchniej, co zapewnia mnóstwo miejsca na dane zmarłych oraz długie sentencje."
     },
     {
-        "name": "Nagrobek Drugi N-02",
+        "name": "Niezapominajka",
+        "short_desc": "Mały nagrobek na urny w stylu amerykańskim",
         "image": "/images/products/product-02/card-img-02.jpg",
-        "alt_text": "Nagrobek nazwa 02",
+        "alt_text": "Minimalistyczny nagrobek urnowy Niezapominajka",
         "price": "od 12 222 PLN",
-        "path": "/test-produktu",
-        "full_desc": "Model N-02 to kwintesencja nowoczesnego designu..."
+        "path": "/niezapominajka",
+        "full_desc": "Minimalistyczna i skromna forma pomnika, idealna dla osób szukających estetyki przy niewielkim nakładzie kosztów. Ten kompaktowy blok przeznaczony jest na 1 lub 2 urny. Napisy mogą zostać wykonane bezpośrednio na płycie leżącej lub na dodatkowej, pionowej tablicy."
     },
     {
-        "name": "Nagrobek Trzeci N-03",
+        "name": "Malwa",
+        "short_desc": "Jednopłytowy nagrobek pojedynczy na urny",
         "image": "/images/products/product-03/card-img-03.jpg",
-        "alt_text": "Nagrobek nazwa 03",
+        "alt_text": "Nagrobek urnowy Malwa z pionową tablicą napisową",
         "price": "od 3 333 PLN",
-        "path": "/test-produktu",
-        "full_desc": "Model N-03 to kwintesencja nowoczesnego designu..."
+        "path": "/malwa",
+        "full_desc": "Najpopularniejsza forma nagrobka urnowego o konstrukcji zamkniętej z pionową tablicą napisową. Gładka, pozioma płyta jest wyjątkowo łatwa w utrzymaniu czystości – wystarczy przemyć ją wodą. Model ten idealnie sprawdza się w miejscach mocno zadrzewionych, gdzie łatwo o zabrudzenia liśćmi."
     },
     {
-        "name": "Nagrobek Czwarty N-04",
+        "name": "Aster",
+        "short_desc": "Nagrobek dwupłytowy na urny",
         "image": "/images/products/product-04/card-img-04.jpg",
-        "alt_text": "Nagrobek nazwa 04",
+        "alt_text": "Kaskadowy nagrobek Aster z dwiema płytami granitowymi",
         "price": "od 4 444 PLN",
-        "path": "/test-produktu",
-        "full_desc": "Model N-04 to kwintesencja nowoczesnego designu..."
+        "path": "/aster",
+        "full_desc": "Nagrobek o wzbogaconej konstrukcji z dwiema osobnymi płytami granitowymi ułożonymi na solidnej ramie. Takie rozwiązanie pozwala na tworzenie efektownych kaskad oraz zestawianie kontrastowych kolorów kamienia. Mimo ozdobnej formy, pomnik pozostaje bardzo praktyczny i łatwy w pielęgnacji."
     },
     {
-        "name": "Nagrobek Piąty N-05",
+        "name": "Chryzantema",
+        "short_desc": "Jednopłytowy pomnik na trumny",
         "image": "/images/products/product-05/card-img-05.jpg",
-        "alt_text": "Nagrobek nazwa 05",
+        "alt_text": "Klasyczny nagrobek Chryzantema z jednolitą taflą granitu",
         "price": "od 5 555 PLN",
-        "path": "/test-produktu",
-        "full_desc": "Model N-05 to kwintesencja nowoczesnego designu..."
+        "path": "/chryzantema",
+        "full_desc": "Klasyczny, pełnowymiarowy nagrobek z dużą, jednolitą taflą granitu, która stanowi dostojne tło dla dekoracji. W wersji rodzinnej stosujemy jednolity blok na całą szerokość grobu o grubości do 7 cm, co gwarantuje ogromną wytrzymałość. Pionowa płyta napisowa sprawia, że inskrypcja jest doskonale widoczna z daleka."
     },
     {
-        "name": "Nagrobek Szósty N-06",
+        "name": "Wrzos",
+        "short_desc": "Podwójny pomnik na trumny",
         "image": "/images/products/product-06/card-img-06.jpg",
-        "alt_text": "Nagrobek nazwa 06",
+        "alt_text": "Duży nagrobek rodzinny Wrzos z szeroką płytą napisową",
         "price": "od 6 666 PLN",
-        "path": "/test-produktu",
-        "full_desc": "Model N-06 to kwintesencja nowoczesnego designu..."
+        "path": "/wrzos",
+        "full_desc": "Szeroki nagrobek rodzinny, będący pięknym symbolem bliskości, pozwalający na pochówek dwóch osób obok siebie. Model realizowany na indywidualne zamówienie z możliwością wyboru wariantu z dwiema lub trzema płytami wierzchnimi."
     }
 ]

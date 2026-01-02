@@ -106,7 +106,8 @@
         rgba(213, 168, 72, 0.5) 100%
         ),
       $shadow-alpha: 0.2
-  )
+  );
+  pointer-events: none;
 }
 
 .cherry-img-border {
