@@ -325,93 +325,107 @@ document.addEventListener('DOMContentLoaded', () => {
     //  5. OBSŁUGA KART PRODUKTÓW (NAKŁADKI)
     // ====================================================================
     function initProductCards() {
-    // Usuwamy stare listenery poprzez delegację na document
-    document.removeEventListener('click', handleProductCardClick);
-    document.addEventListener('click', handleProductCardClick);
-}
+        const allProductCards = document.querySelectorAll('.product-card');
 
-function handleProductCardClick(event) {
-    const target = event.target;
-    
-    // 1. Znajdź najbliższą kartę produktu od miejsca kliknięcia
-    const card = target.closest('.product-card');
-    
-    // 2. Jeśli kliknięto poza kartą - zamknij wszystkie otwarte
-    if (!card) {
-        document.querySelectorAll('.product-card.is-details-open').forEach(openCard => {
-            openCard.classList.remove('is-details-open');
+        allProductCards.forEach(card => {
+            const expandButton = card.querySelector('.product-card__expand-btn');
+            const closeButton = card.querySelector('.details-overlay__close-btn');
+            const overlay = card.querySelector('.product-card__details-overlay');
+
+            if (!expandButton || !closeButton || !overlay) return;
+
+            // Otwieranie karty
+            expandButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                card.classList.add('is-details-open');
+            });
+
+            // Zamykanie przez przycisk "X"
+            closeButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                card.classList.remove('is-details-open');
+            });
+
+            // Zamykanie przez kliknięcie w tło
+            overlay.addEventListener('click', (event) => {
+                if (event.target === overlay) {
+                    card.classList.remove('is-details-open');
+                }
+            });
         });
-        return;
-    }
 
-    // 3. Obsługa przycisków akcji (Linki/CTA) - nie rób nic, pozwól przeglądarce przejść do strony
-    if (target.closest('a') || target.closest('.btn-primary') || target.closest('.btn-cta')) {
-        return;
+        // Zamykanie przez kliknięcie poza jakąkolwiek otwartą kartą
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.product-card')) {
+                document.querySelectorAll('.product-card.is-details-open').forEach(card => {
+                    card.classList.remove('is-details-open');
+                });
+            }
+        });
     }
+// ====================================================================
+    //  5. OBSŁUGA KART PRODUKTÓW (NAKŁADKI - KLIKALNE BODY)
+    // ====================================================================
+    function initOverlayProductCards() {
+    const overlayCards = document.querySelectorAll('.product-card');
 
-    // 4. Obsługa przycisku zamknięcia "X"
-    const closeBtn = target.closest('.details-overlay__close-btn');
-    if (closeBtn) {
-        event.preventDefault();
-        card.classList.remove('is-details-open');
-        return;
-    }
+    overlayCards.forEach(card => {
+        const closeBtn = card.querySelector('.details-overlay__close-btn');
+        const overlayLayer = card.querySelector('.product-card__details-overlay');
+        const overlayContent = card.querySelector('.details-overlay__content');
 
-    // 5. GŁÓWNA LOGIKA: Kliknięcie w body karty
-    // Jeśli karta jest otwarta -> zamknij ją (chyba że kliknięto w treść opisu)
-    // Jeśli karta jest zamknięta -> otwórz ją
-    const isOpen = card.classList.contains('is-details-open');
-    
-    if (isOpen) {
-        // Zamykamy tylko jeśli kliknięto w tło nakładki (overlay) lub ponownie w kartę
-        // ale nie w sam tekst opisu (żeby móc go zaznaczyć)
-        if (!target.closest('.product-card__desc')) {
-            card.classList.remove('is-details-open');
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('a') || e.target.closest('.btn-cta')) {
+                return;
+            }
+            if (!card.classList.contains('is-details-open')) {
+                card.classList.add('is-details-open');
+            }
+        });
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                card.classList.remove('is-details-open');
+            });
         }
-    } else {
-        card.classList.add('is-details-open');
-    }
+
+        if (overlayLayer) {
+            overlayLayer.addEventListener('click', (e) => {
+                if (e.target === overlayLayer) {
+                    e.stopPropagation();
+                    card.classList.remove('is-details-open');
+                }
+            });
+        }
+
+        if (overlayContent) {
+            overlayContent.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+        const desc = card.querySelector('.product-card__desc');
+        if (desc) {
+            desc.addEventListener('click', (e) => {
+                if (!e.target.closest('a')) {
+                    e.stopPropagation();
+                    card.classList.remove('is-details-open');
+                }
+            });
+        }
+
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.product-card')) {
+            document.querySelectorAll('.product-card.is-details-open').forEach(openCard => {
+                openCard.classList.remove('is-details-open');
+            });
+        }
+    });
 }
-    
-    // function initProductCards() {
-    //     const allProductCards = document.querySelectorAll('.product-card');
 
-    //     allProductCards.forEach(card => {
-    //         const expandButton = card.querySelector('.product-card__expand-btn');
-    //         const closeButton = card.querySelector('.details-overlay__close-btn');
-    //         const overlay = card.querySelector('.product-card__details-overlay');
 
-    //         if (!expandButton || !closeButton || !overlay) return;
-
-    //         // Otwieranie karty
-    //         expandButton.addEventListener('click', (event) => {
-    //             event.stopPropagation();
-    //             card.classList.add('is-details-open');
-    //         });
-
-    //         // Zamykanie przez przycisk "X"
-    //         closeButton.addEventListener('click', (event) => {
-    //             event.stopPropagation();
-    //             card.classList.remove('is-details-open');
-    //         });
-
-    //         // Zamykanie przez kliknięcie w tło
-    //         overlay.addEventListener('click', (event) => {
-    //             if (event.target === overlay) {
-    //                 card.classList.remove('is-details-open');
-    //             }
-    //         });
-    //     });
-
-    //     // Zamykanie przez kliknięcie poza jakąkolwiek otwartą kartą
-    //     document.addEventListener('click', (event) => {
-    //         if (!event.target.closest('.product-card')) {
-    //             document.querySelectorAll('.product-card.is-details-open').forEach(card => {
-    //                 card.classList.remove('is-details-open');
-    //             });
-    //         }
-    //     });
-    // }
 
     // --- INICJALIZACJA WSZYSTKICH KOMPONENTÓW ---
     initGalleryModal();
@@ -419,6 +433,8 @@ function handleProductCardClick(event) {
     initShuffleCarousel();
     initShortcutCarousel();
     initProductCards(); 
+    initOverlayProductCards(); // Zmieniona nazwa wywołania
+
 });
 
 

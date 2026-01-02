@@ -11,7 +11,7 @@
 {# --- PRODUKTY --- #}
 {% if all_products is not empty %}
 <section class="py-12 lg:py-16 overflow-hidden">
-  {# --- KONTENER GŁÓWNY KARUZELI "SHUFFLE" --- #}
+  {# --- KONTENER GŁÓWNY KARUZELI "SHUFFLE" KARUZELA Z LANDINGU --- #}
   <div class="shuffle-carousel js-shuffle-carousel">
     <div class="shuffle-carousel__track">
       {% for product in all_products %}
@@ -20,7 +20,7 @@
           <div class="product-card__main-content">
             <h3 class="product-card__title">{{ product.name }}</h3>
             <p class="product-card__price"><span class="c-pink">Cena:</span> {{ product.price }}</p>
-            <button class="product-card__expand-btn">ROZWIŃ</button>
+            <button class="product-card__expand-btn pointer-events-none">ROZWIŃ</button>
           </div>
           <div class="product-card__details-overlay">
             <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">&times;</button>

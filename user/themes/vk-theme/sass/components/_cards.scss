@@ -319,6 +319,17 @@
 }
 
 
+
+.product-card__details-overlay {
+    pointer-events: none;
+}
+
+.product-card.is-details-open .product-card__details-overlay {
+    pointer-events: auto;
+}
+
+
+
 // vertical article card
 
 // square article card

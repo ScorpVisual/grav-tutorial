@@ -2933,6 +2933,14 @@ hr {
   gap: 0.5rem;
 }
 
+.product-card__details-overlay {
+  pointer-events: none;
+}
+
+.product-card.is-details-open .product-card__details-overlay {
+  pointer-events: auto;
+}
+
 main > textarea {
   padding: 0.8rem 1rem;
   border-radius: 4px;
