@@ -1,0 +1,89 @@
+{# 1. Pobieramy zmienne dla czytelności #}
+{% set layout = page.header.layout_style|default('image_left') %}
+{% set image_style = page.header.image_style|default('golden-border') %}
+{% set section_id = page.header.section_id %}
+
+{% set subtitle = page.header.subtitle %}
+{% set title = page.header.title %}
+{% set info_lines = page.header.info_lines %}
+{% set main_text = page.header.main_text %}
+{% set buttons = page.header.buttons %}
+
+{# 2. Obsługa obrazu z pola typu 'file' (pobieramy pierwszy element tablicy) #}
+{% set image_data = page.header.image|first %}
+{% set image_name = image_data.name %}
+{% set image = image_name ? page.media[image_name] : null %}
+
+{# 3. Ustawiamy klasę dla obrazka na podstawie wyboru w CMS #}
+{% set image_class = 'w-full object-cover ' %}
+{% if image_style == 'golden-border' %}
+    {% set image_class = image_class ~ 'golden-img-border hard-shadow' %}
+{% elseif image_style == 'rounded' %}
+    {% set image_class = image_class ~ 'rounded-lg shadow-lg golden-img-border hard-shadow' %}
+{% endif %}
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto" {% if section_id %}id="{{ section_id }}"{% endif %}>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    
+    {# --- KOLUMNA ZE ZDJĘCIEM --- #}
+    <div class="{% if layout == 'text_left' %}md:order-last{% else %}md:order-first{% endif %}">
+        {% if image %}
+            {# Renderowanie obrazu przez system mediów Grav (bezpieczne i wydajne) #}
+            {{ image.html(page.header.image_alt|default(title), page.header.image_alt|default(title), image_class)|raw }}
+        {% else %}
+            <div class="bg-gray-200 aspect-video flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-300">
+                Brak wgranego zdjęcia
+            </div>
+        {% endif %}
+    </div>
+
+    {# --- KOLUMNA TEKSTOWA --- #}
+    <div class="flex flex-col gap-4 items-stretch {% if layout == 'text_left' %}md:order-first{% else %}md:order-last{% endif %}">
+        
+        {# Opcjonalny podtytuł #}
+        {% if subtitle %}
+            <span class="c-cherry block font-semibold text-2xl leading-tight">
+                {{ subtitle }}
+            </span>
+        {% endif %}
+
+        {# Tytuł #}
+        {% if title %}
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 border-bot-cherry pb-2">
+                {{ title }}
+            </h2>
+        {% endif %}
+
+        {# Opcjonalne linie informacyjne #}
+        {% if info_lines is not empty %}
+            <div class="flex flex-col gap-2 mt-2">
+                {% for line in info_lines %}
+                    {% set line_class = (line.style == 'highlighted') ? 'price-highlighted bg-ink' : 'price-highlighted' %}
+                    <div class="text-xl md:text-2xl font-bold {{ line_class }}">
+                        {{ line.label }} <span class="c-white">{{ line.value }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {# Główny tekst #}
+        {% if main_text %}
+            <div class="text-lg text-gray-700 leading-relaxed space-y-4 prose prose-slate max-w-none">
+                {{ main_text|markdown|raw }}
+            </div>
+        {% endif %}
+
+        {# Opcjonalne przyciski #}
+        {% if buttons is not empty %}
+            <div class="flex flex-col lg:flex-row gap-3 mt-4">
+                {% for button in buttons %}
+                    <a href="{{ url(button.url) }}" class="{{ button.class }}">
+                        {{ button.text }}
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,46 @@
+title: Moduł - FAQ (Akordeon)
+template: faq
+icon: question-circle
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        # --- ZAKŁADKA 1: Treść ---
+        content:
+          type: tab
+          title: Ustawienia
+          fields:
+            header.title:
+              type: text
+              label: Nagłówek sekcji
+              default: "Najczęściej zadawane pytania"
+            
+            header.subtitle:
+              type: textarea
+              label: Tekst pod nagłówkiem (opcjonalny)
+              rows: 3
+              default: "Tutaj znajdziecie odpowiedzi..."
+
+        # --- ZAKŁADKA 2: Pytania (Musi być równo z 'content') ---
+        faq_list:
+          type: tab
+          title: ❓ Pytania i Odpowiedzi
+          fields:
+            header.faq_items:
+              type: list
+              label: Lista pytań
+              style: vertical
+              fields:
+                .question:
+                  type: text
+                  label: Pytanie
+                  validate:
+                    required: true
+                .answer:
+                  type: textarea
+                  label: Odpowiedź
+                  validate:
+                    required: true

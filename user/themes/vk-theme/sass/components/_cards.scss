@@ -222,6 +222,16 @@
 
 // big article card
 // Nowy, przebudowany komponent karty artykułu
+
+
+.basic-card-style {
+  background-color: rgba($white, .3);
+  border: 2px solid $cherry;
+  box-shadow: 0 4px 12px rgba($ink, 0.1);
+  background-color: rgba($white, .6);
+  transition: all 400ms ease-in-out;
+}
+
 .article-card {
   display: flex;
   flex-direction: column;
@@ -307,6 +317,17 @@
     gap: 0.5rem;
   }
 }
+
+
+
+.product-card__details-overlay {
+    pointer-events: none;
+}
+
+.product-card.is-details-open .product-card__details-overlay {
+    pointer-events: auto;
+}
+
 
 
 // vertical article card

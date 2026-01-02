@@ -1,0 +1,61 @@
+title: Moduł - Dodatki (Przełącznik Treści)
+icon: toggle-on
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Ustawienia
+          fields:
+            header.section_title:
+              type: text
+              label: Tytuł sekcji
+              default: "Galanteria nagrobkowa"
+
+        addons_list:
+          type: tab
+          title: 💎 Lista Dodatków
+          fields:
+            header.product_addons:
+              type: list
+              label: Dodatki do produktu
+              style: vertical
+              # Walidacja, aby copywriter musiał dodać przynajmniej jeden
+              validate:
+                min: 1 
+              
+              fields:
+                .name:
+                  type: text
+                  label: Nazwa (na karcie i w menu mobilnym)
+                  validate:
+                    required: true
+                .short_desc:
+                  type: textarea
+                  label: Krótki opis (na karcie)
+                  rows: 3
+                .image:
+                  type: filepicker
+                  label: Główne zdjęcie
+                  folder: 'theme@:/images/products/addons'
+                  preview_images: true
+                  validate:
+                    required: true
+                .alt_text:
+                  type: text
+                  label: Tekst alternatywny (SEO)
+                .title:
+                  type: text
+                  label: Tytuł (główny nagłówek po prawej)
+                  help: "Zostaw puste, aby automatycznie użyć 'Nazwy' z karty."
+                .price:
+                  type: text
+                  label: Cena
+                  default: "od 499 PLN"
+                .full_desc:
+                  type: textarea
+                  label: Pełny opis (po prawej)

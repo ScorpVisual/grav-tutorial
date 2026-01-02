@@ -1,0 +1,50 @@
+title: 'Moduł - Blok Dokumentacji'
+icon: book
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: 📜 Treść Dokumentacji
+          fields:
+            header.title:
+              type: text
+              label: Tytuł modułu (nagłówek)
+              default: 'Jak używać modułu "Tekst i Obraz"'
+
+            header.intro_text:
+              type: textarea
+              label: Tekst wstępny
+              size: small
+              default: 'Hej! To jest Twój najważniejszy i najbardziej elastyczny moduł...'
+
+            header.sections:
+              type: list
+              label: Sekcje Dokumentacji (np. Zakładki)
+              style: vertical
+              fields:
+                .title:
+                  type: text
+                  label: Tytuł sekcji
+                  help: 'Np. "1. Zakładka: 📜 Treść"'
+                .description:
+                  type: textarea
+                  label: Opis sekcji
+                  size: small
+                  help: 'Opis ogólny dla tej zakładki.'
+                .fields:
+                  type: list
+                  label: Lista Pól w tej sekcji
+                  style: vertical
+                  fields:
+                    .name:
+                      type: text
+                      label: Nazwa Pola (np. Tytuł)
+                    .help:
+                      type: textarea
+                      label: Opis/Pomoc dla pola
+                      size: small

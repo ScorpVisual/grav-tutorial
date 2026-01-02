@@ -82,7 +82,7 @@
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
             {% for product in all_products %}
-            <div class="golden-img-border">
+            {# <div class="golden-img-border">
                 <div class="product-card aspect-[3/4]" style="background-image: url('{{ theme_url }}{{ product.image }}');">
                     <div class="product-card__main-content">
                         <h3 class="product-card__title">{{ product.name }}</h3>
@@ -100,7 +100,40 @@
                         </div>
                     </div>
                 </div>
+            </div> #}
+<div class="golden-img-border">
+    <div class="product-card aspect-[3/4]" style="background-image: url('{{ theme_url }}{{ product.image }}');">
+        
+        <div class="product-card__main-content">
+            <h3 class="product-card__title">{{ product.name }}</h3>
+            <p class="product-card__undertitle">{{ product.short_desc }}</p>
+
+            <p class="product-card__price">
+                <span class="c-pink">Cena:</span> {{ product.price }}
+            </p>
+            <button class="product-card__expand-btn pointer-events-none">ROZWIŃ</button>
+        </div>
+
+        <div class="product-card__details-overlay">
+            <button class="details-overlay__close-btn" aria-label="Zamknij szczegóły">&times;</button>
+            <div class="details-overlay__content">
+                
+                <h4 class="product-card__title--opened">{{ product.name }}</h4>
+
+                <p class="product-card__desc product-card__desc--overlay" data-role="desc">
+                    {{ product.full_desc }}
+                </p>
+
+                <div class="product-card__buttons">
+                    <a href="{{ base_url_absolute }}{{ product.path }}" class="btn-primary w-full text-center">Sprawdź produkt</a>
+                    <a href="#kontakt" class="btn-cta w-full text-center">Zamów wariant</a>
+                </div>
             </div>
+        </div>
+
+    </div>
+</div>
+
             {% endfor %}
         </div>
     </div>
@@ -180,7 +213,7 @@
 
 {# galeria #}
 {% include 'partials/gallery.html.twig'%}
-{% include 'modular/_gallery_modal.html.twig'%}
+{% include 'modular/gallery_modal.html.twig'%}
 
 
 {% set features = [
@@ -203,7 +236,7 @@
             alt: 'Ikona gwarancji satysfakcji'
         }
     ] %}
-{% include 'modular/_feature-cards.html.twig'%}
+{% include 'modular/feature-cards-static.html.twig'%}
 
 {# articles #}
 {% set articles = [
@@ -235,7 +268,7 @@
         category: 'Wiedza'
     }
 ] %}
-{% include 'modular/_article-cards.html.twig' %}
+{% include 'modular/article-cards-static.html.twig' %}
 {# end articles #}
 {# FAQ #}
 {% set faq_items = [
@@ -261,6 +294,6 @@
             <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Najczęstsze pytania</h3>
         </div>
     </div>
-{% include 'modular/_faq.html.twig'%}
+{% include 'modular/faq-static.html.twig'%}
 {# END FAQ #}
 {% endblock %}

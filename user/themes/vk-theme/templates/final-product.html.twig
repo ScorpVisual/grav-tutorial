@@ -1,0 +1,23 @@
+{% extends 'partials/base.html.twig' %}
+
+{# Pobieramy warianty z frontmattera #}
+{% set productVariants = page.header.product_variants %}
+{# Główny (pierwszy) wariant do wyświetlenia #}
+{% set mainVariant = productVariants|first %}
+
+{% block content %}
+    <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--black-darkened ">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                Wybierz wersję produktu
+            </h3>
+        </div>
+    </div>
+    <div class="product-modules">
+        {% for module in page.collection() %}
+            {{ module.content|raw }}
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

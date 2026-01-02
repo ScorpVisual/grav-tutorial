@@ -1,0 +1,30 @@
+<section class="py-4 lg:py-8">
+  {# --- Część statyczna (teraz dynamiczna z CMS) --- #}
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-screen-xl mx-auto px-4 my-16">
+    <div>
+        {# Obrazek z filepickera z zakładki "Treść Sekcji" #}
+        <img src="{{ theme_url }}/{{ page.header.main_image }}" alt="{{ page.header.title }}"
+             class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div class="flex flex-col space-y-6">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2 border-bot-cherry">
+            {{ page.header.title }}
+        </h1>
+        <p class="text-lg text-gray-700">
+            {{ page.header.text|nl2br }}
+        </p>
+        {# Przycisk z linkiem i tekstem z CMS #}
+        <a href="{{ page.header.button_link }}" class="btn-primary w-full flex justify-center">
+            {{ page.header.button_text }}
+        </a>
+    </div>
+  </div>
+
+  {# --- Tutaj dołączasz komponent karuzeli --- #}
+  {# Komponent otrzyma listę zdefiniowaną w zakładce "Lista Kamieni" #}
+  {% include 'modular/stones-carousel.html.twig' with {
+      items: page.header.items,
+      unique_id: 'recommendedGranites'
+  } %}
+
+</section>

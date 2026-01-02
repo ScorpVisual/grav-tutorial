@@ -1,0 +1,14 @@
+<section class="debug-module py-20 px-4" style="background-color: {{ page.header.test_color|default('#ccc') }};">
+    <div class="container mx-auto bg-white p-10 rounded-lg shadow-2xl text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            {{ page.header.test_title }}
+        </h2>
+        <p class="text-lg text-gray-600">
+            Jeśli widzisz tę sekcję, system modularny Grav działa poprawnie!
+        </p>
+        <div class="mt-6 text-sm font-mono bg-gray-100 p-4 rounded">
+            Szablon: templates/modular/debug_test.html.twig<br>
+            Plik MD: {{ page.filePathClean }}
+        </div>
+    </div>
+</section>

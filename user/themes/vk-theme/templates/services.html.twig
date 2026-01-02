@@ -1,7 +1,7 @@
 {% extends 'partials/base.html.twig' %}
 {% block content %}
 
-<section class="px-4 py-16 max-w-screen-xl mx-auto">
+<section class="px-4 py-16 max-w-screen-xl mx-auto" id="konserwacja">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
       <div>
         <img src="{{ theme_url }}/images/services/main-photo.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
@@ -33,7 +33,7 @@
         </div>
     </div>
 </section>
-<section class="px-4 py-16 max-w-screen-xl mx-auto">
+<section class="px-4 py-16 max-w-screen-xl mx-auto" id="lastryko">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
 
     <div class="flex flex-col gap-4 items-stretch">
@@ -69,12 +69,12 @@
     { image_filename: '/images/services/sanding-gallery-2.jpg', title: 'Odrestaurowany wygląd' },
     { image_filename: '/images/services/sanding-gallery-3.jpg', title: 'Gładka faktura' }
 ] %}
-{% include 'modular/_gallery-modular.html.twig' with {'items': galleryData} %}
+{% include 'modular/gallery-modular.html.twig' with {'items': galleryData} %}
 </section>
 
 
 
-<section class="px-4 py-16 max-w-screen-xl mx-auto">
+<section class="px-4 py-16 max-w-screen-xl mx-auto" id="remonty">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
     <div>
         <img src="{{ theme_url }}/images/services/restoration.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
@@ -105,7 +105,7 @@
 </section>
 
 
-<section class="px-4 py-16 max-w-screen-xl mx-auto">
+<section class="px-4 py-16 max-w-screen-xl mx-auto" id="wylewki">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
     <div>
         <img src="{{ theme_url }}/images/services/leveling.jpg" alt="Antypoślizgowa posadzka" class="w-full object-cover golden-img-border hard-shadow">
@@ -148,9 +148,9 @@
     { image_filename: '/images/services/leveling-gallery-2.jpg', title: 'Płyty wokół pomnika' },
     { image_filename: '/images/services/leveling-gallery-3.jpg', title: 'Wylewka ze zbrojeniem' }
 ] %}
-{% include 'modular/_gallery-modular.html.twig' with {'items': levelingData} %}
+{% include 'modular/gallery-modular.html.twig' with {'items': levelingData} %}
 </section>
-<section class="px-4 py-16 max-w-screen-xl mx-auto">
+<section class="px-4 py-16 max-w-screen-xl mx-auto" id="impregnacja">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
 
     <div class="flex flex-col gap-4 items-stretch">
@@ -181,7 +181,7 @@
     </div>
 </section>
 
-<section class="px-4 py-16 max-w-screen-xl mx-auto">
+<section class="px-4 py-16 max-w-screen-xl mx-auto" id="opieka">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
     <div>
         <img src="{{ theme_url }}/images/services/caretaking.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover golden-img-border hard-shadow">
@@ -234,7 +234,7 @@
             alt: 'Ikona gwarancji satysfakcji'
         }
     ] %}
-{% include 'modular/_feature-cards.html.twig'%}
+{% include 'modular/feature-cards-static.html.twig'%}
 
 
 {# FAQ #}
@@ -256,9 +256,9 @@
         answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
     }
 ] %}
-{% include 'modular/_faq.html.twig'%}
+{% include 'modular/faq.html.twig'%}
 {# END FAQ #}
-{% include 'modular/_gallery_modal.html.twig'%}
+{% include 'modular/gallery_modal.html.twig'%}
 
 
 {% endblock %}

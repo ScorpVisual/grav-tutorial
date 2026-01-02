@@ -1,0 +1,71 @@
+title: Moduł - Karty Artykułów
+template: article-cards
+icon: newspaper-o
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        # --- ZAKŁADKA 1: Treść Nagłówka ---
+        content:
+          type: tab
+          title: 📝 Treść Sekcji
+          fields:
+            header.top_label:
+              type: text
+              label: Mały napis nad nagłówkiem
+              default: "Artykuły"
+            
+            header.title:
+              type: text
+              label: Główny tytuł
+              default: "Dowiedz się więcej z naszych artykułów"
+            
+            header.text:
+              type: textarea
+              label: Opis pod tytułem
+              rows: 3
+              default: "Dowiedz się więcej o naszych usługach kamieniarskich..."
+
+        # --- ZAKŁADKA 2: Lista Artykułów ---
+        articles_tab:
+          type: tab
+          title: 📰 Lista Artykułów
+          fields:
+            header.articles:
+              type: list
+              label: Artykuły
+              style: vertical
+              fields:
+                .image_src:
+                  type: filepicker
+                  label: Zdjęcie artykułu
+                  folder: 'theme@:/images/articles'
+                  preview_images: true
+                  validate:
+                    required: true
+                .image_alt:
+                  type: text
+                  label: Tekst alternatywny (Alt)
+                  default: "Zdjęcie artykułu"
+                .title:
+                  type: text
+                  label: Tytuł artykułu
+                .description:
+                  type: textarea
+                  label: Krótki opis (zajawka)
+                  rows: 3
+                .url:
+                  type: text
+                  label: Link do artykułu (np. /blog/moj-artykul)
+                  default: "#"
+                .date:
+                  type: date
+                  label: Data publikacji
+                  default: 'now'
+                .category:
+                  type: text
+                  label: Kategoria
+                  default: "Porady"

@@ -11,7 +11,7 @@
     <div class="lg:p-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-screen-xl mx-auto px-4 my-16 black-gradient-down">
     <div class="flex flex-col ">
-        <h1 class="text-xl font-bold mb-4 border-bot-cherry fill-letters-gold-section-dark uppercase">
+        <h1 class="!text-lg sm:!text-4xl font-bold mb-4 border-bot-cherry fill-letters-gold-section-dark uppercase break-words hyphens-none">
             Liternictwo nagrobkowe
         </h1>
         <p class="text-lg c-pink">
@@ -20,9 +20,9 @@
             certyfikowanym granitem, który tniemy i obrabiamy na Twoje indywidualne zamówienie 
             w naszym warsztacie</strong>.
         </p>
-        <button class="btn-primary w-full flex justify-center">
+        <a href="{{ page.find('/liternictwo-i-zdobienia').url }}" class="btn-primary w-full flex justify-center">
             Dowiedz się więcej
-        </button>
+        </a>
     </div>
     <div>
         <img src="{{ theme_url }}/images/photos/letters-photo.jpg" alt="Renowacja starego nagrobka granitowego"

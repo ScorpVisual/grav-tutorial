@@ -10,23 +10,6 @@
 // =========================================================================
 //  FONT IMPORT (@font-face)
 // =========================================================================
-// @font-face {
-//   font-family: 'Glacial Indifference';
-//   src: url('../../fonts/GlacialIndifference-Regular.woff2') format('woff2'),
-//        url('../../fonts/GlacialIndifference-Regular.woff') format('woff');
-//   font-weight: normal;
-//   font-style: normal;
-//   font-display: swap;
-// }
-// @font-face {
-//   font-family: 'Glacial Indifference';
-//   src: url('../../fonts/GlacialIndifference-Bold.woff2') format('woff2'),
-//   url('../../fonts/GlacialIndifference-Bold.woff') format('woff');
-//   font-weight: bold;
-//   font-style: normal;
-//   font-display: swap;
-// }
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
@@ -46,6 +29,7 @@ $h3-mobile: $h4-mobile * $scale-ratio-mobile;
 $h2-mobile: $h3-mobile * $scale-ratio-mobile;
 $h1-mobile: $h2-mobile * $scale-ratio-mobile;
 $small-text: math.div($base-font-size, $scale-ratio-mobile);
+
 // =========================================
 // 3. Base & Heading Styles
 // =========================================
@@ -68,8 +52,16 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
   line-height: 1.2;
   margin-bottom: 1.8rem;
-}
 
+  // --- FIX: Word Breaking & Balancing ---
+  word-break: normal; 
+  overflow-wrap: break-word; 
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  hyphens: none;
+  text-wrap: balance; 
+  // --------------------------------------
+}
 
 // Applying mobile-first sizes
 
@@ -80,6 +72,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
   text-decoration-color: $cherry;
 }
+
 // =========================================
 // 4. Responsive Adjustments for Desktop 📱➡️💻
 // =========================================
@@ -110,10 +103,132 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.125rem;
     line-height: 1.7;
     margin-bottom: 1rem;
+    color: inherit;
   }
 }
-
     
 // =========================================
 // 5. Custom design of Headings
 // =========================================
+
+
+// // =========================================================================
+// // MODULE IMPORTS
+// // =========================================================================
+// @use '../abstracts/variables' as *;
+// @use '../mixins/mixins' as *;
+// @use '../abstracts/animations' as *;
+// @use '../abstracts/colors' as *;
+// @use 'sass:math';
+
+// // =========================================================================
+// //  FONT IMPORT (@font-face)
+// // =========================================================================
+// // @font-face {
+// //   font-family: 'Glacial Indifference';
+// //   src: url('../../fonts/GlacialIndifference-Regular.woff2') format('woff2'),
+// //        url('../../fonts/GlacialIndifference-Regular.woff') format('woff');
+// //   font-weight: normal;
+// //   font-style: normal;
+// //   font-display: swap;
+// // }
+// // @font-face {
+// //   font-family: 'Glacial Indifference';
+// //   src: url('../../fonts/GlacialIndifference-Bold.woff2') format('woff2'),
+// //   url('../../fonts/GlacialIndifference-Bold.woff') format('woff');
+// //   font-weight: bold;
+// //   font-style: normal;
+// //   font-display: swap;
+// // }
+
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+// // =========================================
+// // 2. Variables (Mobile First)
+// // =========================================
+// $font-main: 'Poppins', sans-serif;
+// $font-serif: 'Cormorant';
+
+// // Mobile-first typographic scale (Major Third ratio)
+// $base-font-size: 1rem;      // Approx 16px
+// $scale-ratio-mobile: 1.25;
+
+// // Calculating mobile heading sizes
+// $h4-mobile: $base-font-size * $scale-ratio-mobile;
+// $h3-mobile: $h4-mobile * $scale-ratio-mobile;
+// $h2-mobile: $h3-mobile * $scale-ratio-mobile;
+// $h1-mobile: $h2-mobile * $scale-ratio-mobile;
+// $small-text: math.div($base-font-size, $scale-ratio-mobile);
+// // =========================================
+// // 3. Base & Heading Styles
+// // =========================================
+// html {
+//   font-size: $base-font-size;
+//   @media (min-width: $breakpoint-md) {
+//       font-size: 18px;
+//   }
+// }
+
+// body {
+//   font-family: $font-main;
+//   font-weight: normal;
+//   line-height: 1.6;
+//   color: #333;
+// }
+
+// h1, h2, h3, h4, h5, h6 {
+//   font-family: $font-serif;
+//   font-weight: bold;
+//   line-height: 1.2;
+//   margin-bottom: 1.8rem;
+// }
+
+
+// // Applying mobile-first sizes
+
+// .font-cormorant {
+//   font-family: 'Cormorant';
+// }
+// .underline-cherry {
+//   text-decoration: underline;
+//   text-decoration-color: $cherry;
+// }
+// // =========================================
+// // 4. Responsive Adjustments for Desktop 📱➡️💻
+// // =========================================
+// .typography {
+//   h1 {
+//     font-size: $h1-mobile;
+//     line-height: 1.5;
+//     font-family: 'Cormorant', serif;
+//     // color: inherit;
+//   }
+
+//   h2 { font-size: $h2-mobile;}
+//   h3 { font-size: $h3-mobile; }
+//   h4 { font-size: $h4-mobile; }
+//   h5 { font-size: $base-font-size; }
+//   h6 { font-size: $small-text; }
+
+//   @media (min-width: $breakpoint-md) {
+//     h1 { font-size: 3.5rem; line-height: 1.2; }
+//     h2 { font-size: 2.75rem; line-height: 1.2; }
+//     h3 { font-size: 2rem; line-height: 1.2; }
+//     h4 { font-size: 1.5rem; line-height: 1.2; }
+//     h5 { font-size: 1.25rem; line-height: 1.2; }
+//     h6 { font-size: 1rem; line-height: 1.2; }
+//   }
+
+//   p {
+//     font-size: 1.125rem;
+//     line-height: 1.7;
+//     margin-bottom: 1rem;
+//     color: inherit;
+//   }
+// }
+
+    
+// // =========================================
+// // 5. Custom design of Headings
+// // =========================================

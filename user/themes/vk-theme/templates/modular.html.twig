@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{# <!DOCTYPE html>
 <html>
 <head>
     {% include 'partials/head.html.twig' %}
@@ -28,4 +28,19 @@
         {% include 'partials/footer.html.twig' %}
     </footer>
 </body>
-</html>
+</html> #}
+
+{# {% extends 'partials/base.html.twig' %}
+
+{% block content %}
+  {% for module in page.collection() %}
+    {% include 'modular/' ~ module.template ~ '.html.twig' with {'page': module} %}
+  {% endfor %}
+{% endblock %} #}
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    {% for module in page.collection() %}
+        {{ module.content|raw }}
+    {% endfor %}
+{% endblock %}

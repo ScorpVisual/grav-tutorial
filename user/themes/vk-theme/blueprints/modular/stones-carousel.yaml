@@ -1,0 +1,77 @@
+title: Moduł - Polecane Kamienie
+template: stones
+icon: th-large
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        
+        # --- ZAKŁADKA 1: TREŚCI TEKSTOWE ---
+        content:
+          type: tab
+          title: 📜 Treść Sekcji
+          fields:
+            
+            # Sekcja nagłówka
+            section_header_text:
+              type: section
+              title: Nagłówki i Opisy
+              underline: true
+            
+            header.top_label:
+              type: text
+              label: Mały nagłówek (nad tytułem)
+              default: "Polecane kamienie"
+              
+            header.title:
+              type: text
+              label: Główny tytuł
+              default: "Wyjątkowa trwałość i estetyka"
+              
+            header.text:
+              type: textarea
+              label: Główny opis (pod tytułem)
+              rows: 5
+              default: "Opis sekcji wprowadzający do galerii kamieni..."
+
+            # Sekcja przycisku
+            section_button:
+              type: section
+              title: Przycisk akcji (Call to Action)
+              underline: true
+
+            header.button_text:
+              type: text
+              label: Tekst na przycisku
+              default: "Zobacz pełną ofertę"
+            
+            header.button_link:
+              type: text
+              label: Link przycisku (np. /oferta)
+              default: "#"
+
+# --- ZAKŁADKA 2: WYBÓR KAMIENI ---
+        stones_selection:
+          type: tab
+          title: 💎 Wybór Kamieni
+          fields:
+            
+            info_box:
+              type: spacer
+              text: "Zaznacz kamienie, które mają pojawić się w karuzeli (lista z pliku stone-options.json)"
+              underline: true
+
+            header.selected_stones:
+              type: checkboxes
+              label: Dostępne kamienie
+              help: "Zaznacz, aby dodać. Odznacz, aby usunąć."
+              # To sprawia, że checkboxy wyświetlą się w kolumnach (ładniej)
+              use: keys
+              classes: stone-grid-wrapper
+              validate:
+                type: array
+              # Pobieranie opcji z Twojej funkcji PHP
+              data-options@: '\Grav\Theme\VkTheme::getStoneOption'

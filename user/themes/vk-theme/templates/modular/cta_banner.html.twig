@@ -1,0 +1,74 @@
+{# Pobieramy zmienne z header #}
+{% set title = page.header.title %}
+{% set subtitle = page.header.subtitle %}
+{% set buttons = page.header.buttons %}
+{% set bg_image = page.header.background_image %}
+{% set overlay_opacity = page.header.overlay_opacity|default(50) %}
+{% set section_id = page.header.section_id %}
+
+{# Bezpieczne pobranie klasy podtytułu #}
+{% set subtitle_color = attribute(page.header, 'subtitle_color') %}
+{% set subtitle_class = subtitle_color is not empty ? subtitle_color : 'c-pink' %}
+
+{# --- NOWE ZMIENNE STYLU --- #}
+{% set title_color_class = page.header.title_color|default('fill-letters-gold-section') %}
+{% set title_underline_class = page.header.title_underline|default('') %}
+{% set wrapper_border_class = page.header.wrapper_border|default('golden-img-border') %}
+{# --- KONIEC NOWYCH ZMIENNYCH --- #}
+
+{# Tło (Twoja poprawna wersja z kafelkowaniem) #}
+{% set background_style = '' %}
+{% if bg_image %}
+    {% set background_style = 
+        'background-image: url(' ~ theme_url ~ '/images/textures/' ~ bg_image ~ '); ' ~
+        'background-repeat: repeat; ' ~
+        'background-size: auto; ' ~
+        'background-position: center;'
+    %}
+{% endif %}
+
+{# Nakładka #}
+{% set overlay_alpha = overlay_opacity / 100 %}
+
+{# --- ZAKTUALIZOWANY DIV OPAKOWUJĄCY --- #}
+<div class="set-border-radius hard-shadow {{ wrapper_border_class }}">
+<section class="relative py-24 md:py-32 overflow-hidden set-border-radius"
+         style="{{ background_style }}"
+         {% if section_id %}id="{{ section_id }}"{% endif %}>
+
+  <div class="absolute inset-0 bg-gray-900" style="opacity: {{ overlay_alpha }};"></div>
+
+  <div class="relative z-10 max-w-screen-xl mx-auto px-4 text-center">
+
+    {# --- ZAKTUALIZOWANY H2 --- #}
+    <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 hard-shadow {{ title_color_class }} {{ title_underline_class }}">
+      {{ title }}
+    </h2>
+
+    {# Podtytuł (Twój poprawny kod) #}
+    {% if subtitle %}
+      <div class="text-lg md:text-xl max-w-3xl mx-auto mb-8 {{ subtitle_class }}">
+        {{ subtitle|markdown|raw }}
+      </div>
+    {% endif %}
+
+    {# Przyciski (Twój poprawny kod) #}
+    {% if buttons is not empty %}
+      <div class="flex flex-wrap justify-center gap-4">
+        {% for button in buttons %}
+          {% set button_classes = '' %}
+          {% if button.style == 'primary' %}
+            {% set button_classes = 'btn-primary' %}
+          {% elseif button.style == 'secondary' %}
+            {% set button_classes = 'btn-secondary' %}
+          {% endif %}
+          <a href="{{ button.url }}" class="btn {{ button_classes }}">
+            {{ button.text }}
+          </a>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+</div>

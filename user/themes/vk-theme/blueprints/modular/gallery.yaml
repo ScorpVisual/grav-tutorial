@@ -1,0 +1,39 @@
+title: Moduł - Galeria
+template: gallery
+icon: image
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Ustawienia
+          fields:
+            header.title:
+              type: text
+              label: Tytuł sekcji (opcjonalny)
+              help: "Np. 'Nasze Realizacje'"
+
+        gallery_list:
+          type: tab
+          title: 🖼️ Zdjęcia
+          fields:
+            header.gallery_items:
+              type: list
+              label: Zdjęcia w galerii
+              style: vertical
+              btnLabel: "Dodaj nowe zdjęcie"
+              fields:
+                .image_filename:
+                  type: filepicker
+                  label: Wybierz zdjęcie
+                  preview_images: true
+                  # folder: '@self'  <- Opcjonalnie: ogranicza wybór do folderu tego modułu
+                  help: "Wybierz obrazek, który jest wgrany do tego folderu (media strony)"
+                .title:
+                  type: text
+                  label: Podpis zdjęcia (ALT)
+                  help: "Np. 'Nagrobek Pojedynczy Klasyczny'"

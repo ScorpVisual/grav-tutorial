@@ -2,17 +2,17 @@
     {
         name: "Biały granit",
         desc: "Elegancki i ponadczasowy, biały granit nadaje pomnikowi lekkości i klasy.",
-        img: theme_url ~ "/images/textures/marble-white-1.jpg"
+        img: "18._orion_silk.jpg"
     },
     {
         name: "Czerwony granit",
         desc: "Wyrazisty i pełen charakteru, czerwony granit wyróżnia się na tle innych.",
-        img: theme_url ~ "/images/textures/marble-red-1.jpg"
+        img: "18._orion_silk.jpg"
     },
     {
         name: "Czarny granit",
         desc: "Klasyczny i dostojny, czarny granit symbolizuje trwałość i elegancję.",
-        img: theme_url ~ "/images/textures/marble-black-1.jpg"
+        img: "18._orion_silk.jpg"
     }
 ] %}
 
@@ -31,15 +31,16 @@
             Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
             Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
         </p>
-        <button class="btn-primary w-full flex justify-center">
+
+        <a href="{{ page.find('/kamienie').url }}" class="btn-primary w-full flex justify-center">
             Wszystkie dostępne kamienie
-        </button>
+        </a>
     </div>
   </div>
 
   {# --- Tutaj dołączasz komponent karuzeli --- #}
   {# Komponent otrzyma listę zdefiniowaną powyżej (bez piaskowca) #}
-  {% include 'modular/_stones.html.twig' with {
+  {% include 'modular/stones-carousel-static.html.twig' with {
       items: recommendedGranites,
       unique_id: 'recommendedGranites'
   } %}

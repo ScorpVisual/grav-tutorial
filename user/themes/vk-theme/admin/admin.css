@@ -1,0 +1,53 @@
+/* user/themes/vk-theme/admin/admin.css */
+
+/* Układ siatki dla kontenera */
+.stone-grid-wrapper .form-data {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+    gap: 10px !important;
+    max-height: 500px;
+    overflow-y: auto;
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+/* Reset dla listy wewnątrz */
+.stone-grid-wrapper .checkboxes {
+    display: contents !important;
+}
+
+/* Stylizacja kafelka */
+.stone-grid-wrapper input[type="checkbox"] + label {
+    display: block !important;
+    width: 100% !important;
+    padding: 8px 10px !important;
+    margin: 0 !important;
+    background: #fbfbfb;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Hover */
+.stone-grid-wrapper input[type="checkbox"] + label:hover {
+    background: #f0f0f0 !important;
+    border-color: #ccc !important;
+}
+
+/* Zaznaczony element */
+.stone-grid-wrapper input[type="checkbox"]:checked + label {
+    background: #0077dd !important; /* Niebieski */
+    color: white !important;
+    border-color: #0066cc !important;
+    font-weight: bold;
+}
+
+/* Ukrycie domyślnego checka przy labelu (opcjonalne, dla czystszego wyglądu) */
+.stone-grid-wrapper input[type="checkbox"] + label:before {
+    display: none !important;
+}

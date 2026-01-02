@@ -9,43 +9,95 @@
 @use '../base/backgrounds' as *;
 @use 'sass:color';
 
-
 // =========================================
 // Body & HTML Defaults
 // =========================================
-// * { border: 1px solid red !important; }
 
-html, body {
+html {
+  // Ważne: html musi mieć overflow-x hidden, żeby uciąć wystające elementy na mobile/tablet
+  overflow-x: hidden; 
   scroll-behavior: smooth;
-  overflow-x: clip;
-  overflow-y: visible;
 }
+
 body {
-  // Apply the theme's background and text colors.
+
   color: $text-color;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
+  
+
+  overflow-x: hidden; 
+  overflow-y: auto;
+  
+
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
-// Globalny styl do blokowania przewijania
+
 body.no-scroll {
   overflow: hidden;
 }
+
 img {
     max-width: 100%;
     height: auto;
+    display: block; 
 }
+
 main {
   display: flex;
   flex-direction: column;
-  max-width: $breakpoint-xxl;
-  margin: auto;
+  
+  width: 100%;
+  max-width: 100vw !important; 
+  margin: 0 auto; 
+  
+  overflow-x: hidden; 
 }
 
 .anim-fade-in-up {
     animation: $fadeInUp;
 }
+
+// // =========================================
+// // Body & HTML Defaults
+// // =========================================
+// // * { border: 1px solid red !important; }
+
+// html, body {
+//   scroll-behavior: smooth;
+//   overflow-x: clip;
+//   overflow-y: visible;
+// }
+// body {
+//   // Apply the theme's background and text colors.
+//   color: $text-color;
+//   overflow-wrap: break-word;
+//   word-wrap: break-word;
+//   word-break: break-word;
+// }
+
+// // Globalny styl do blokowania przewijania
+// body.no-scroll {
+//   overflow: hidden;
+// }
+// img {
+//     max-width: 100%;
+//     height: auto;
+// }
+// main {
+//   display: flex;
+//   flex-direction: column;
+//   max-width: $breakpoint-xxl;
+//   margin: auto;
+// }
+
+// .anim-fade-in-up {
+//     animation: $fadeInUp;
+// }
 
 // =========================================
 // Link & Interactive Element Defaults

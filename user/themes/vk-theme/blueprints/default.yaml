@@ -1,0 +1,33 @@
+title: Domyślna
+extends: default
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        content:
+          type: tab
+          title: 📜 Treść (Moduły)
+          fields:
+          
+            # TO JEST KLUCZOWY FRAGMENT DO DODANIA/ZAKTUALIZOWANIA
+            content:
+              type: modular
+              label: Moduły strony
+              
+              # Ta lista mówi Gravowi, jakie moduły są dozwolone na tej stronie
+              options:
+
+                marbleSlab_lettersGolden: 'Moduł - Złote Litery (Marmur)'
+                image_text: 'Moduł podstawowy - Tekst i obraz'
+                gallery: 'Moduł - Galeria'
+                stones: 'Moduł - Polecane Kamienie'
+                addons: 'Moduł - Dodatki (Galanteria)'
+                feature-cards: 'Moduł - Karty z Cechami'
+                faq: 'Moduł - FAQ'
+                article-cards: 'Moduł - Article Cards'
+                documentation_block: 'Moduł - Dokumentacja (Blok)'
+                shortcut: 'Moduł - karuzela skrótów'

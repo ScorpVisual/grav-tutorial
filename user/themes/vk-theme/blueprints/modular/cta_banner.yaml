@@ -1,0 +1,136 @@
+title: Moduł - Baner CTA (Wezwanie do Działania)
+icon: bullhorn
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        content:
+          type: tab
+          title: Treść
+          fields:
+            header.title:
+              type: text
+              label: Główny nagłówek
+
+            header.subtitle:
+              type: textarea
+              label: Podtytuł (opcjonalny)
+
+            header.subtitle_color:
+              type: select
+              label: Kolor podtytułu
+              default: c-pink
+              options:
+                c-white: Biały (c-white)
+                c-black: Czarny (c-black)
+                c-grey: Szary (c-grey)
+                c-marble: Marmurowy (c-marble)
+                c-ink: Atramentowy (c-ink)
+                c-cherry: Wiśniowy (c-cherry)
+                c-trans: Transparentny (c-trans)
+                c-light-cherry: Jasno-wiśniowy (c-light-cherry)
+                c-pink: Różowy (c-pink)
+                c-slate: Grafitowy (c-slate)
+                c-dark-slate: Ciemno-grafitowy (c-dark-slate)
+                c-granite: Granitowy (c-granite)
+                c-sand: Piaskowy (c-sand)
+                c-carnelian: Karnelian (c-carnelian)
+                c-red-marble: Czerwony marmur (c-red-marble)
+                c-gold: Złoty (c-gold)
+                c-pyrite: Piryt (c-pyrite)
+                c-aluminium: Aluminium (c-aluminium)
+
+            header.buttons:
+              type: list
+              label: Przyciski (opcjonalne)
+              style: vertical
+              fields:
+                .text:
+                  type: text
+                  label: Tekst przycisku
+                .url:
+                  type: text
+                  label: Link przycisku (URL)
+                .style:
+                  type: select
+                  label: Styl przycisku
+                  default: primary
+                  options:
+                    primary: Główny (złoty/cherry)
+                    secondary: Drugorzędny (ciemny/konturowy)
+
+        settings:
+          type: tab
+          title: Ustawienia
+          fields:
+            header.wrapper_border:
+              type: select
+              label: Styl ramki dla kontenera
+              default: golden-img-border
+              options:
+                '': Brak ramki
+                golden-img-border: Złota (golden-img-border)
+                cherry-img-border: Wiśniowa (cherry-img-border)
+                pale-img-border: Blada (pale-img-border)
+                dark-img-border: Ciemna (dark-img-border)
+
+            header.background_image:
+              type: filepicker
+              label: Obraz tła (z folderu images/textures)
+              folder: theme@:/images/textures
+              preview_images: true
+
+            header.overlay_opacity:
+              type: range
+              label: Ciemność nakładki na tle (0-100%)
+              default: 50
+              min: 0
+              max: 100
+              step: 5
+
+            header.title_color:
+              type: select
+              label: Kolor GŁÓWNEGO tytułu
+              default: fill-letters-gold-section
+              options:
+                fill-letters-gold-section: Złote Litery (fill-letters-gold-section)
+                c-white: Biały (c-white)
+                c-black: Czarny (c-black)
+                c-grey: Szary (c-grey)
+                c-marble: Marmurowy (c-marble)
+                c-ink: Atramentowy (c-ink)
+                c-cherry: Wiśniowy (c-cherry)
+                c-trans: Transparentny (c-trans)
+                c-light-cherry: Jasno-wiśniowy (c-light-cherry)
+                c-pink: Różowy (c-pink)
+                c-slate: Grafitowy (c-slate)
+                c-dark-slate: Ciemno-grafitowy (c-dark-slate)
+                c-granite: Granitowy (c-granite)
+                c-sand: Piaskowy (c-sand)
+                c-carnelian: Karnelian (c-carnelian)
+                c-red-marble: Czerwony marmur (c-red-marble)
+                c-gold: Złoty (c-gold)
+                c-pyrite: Piryt (c-pyrite)
+                c-aluminium: Aluminium (c-aluminium)
+
+            header.title_underline:
+              type: select
+              label: Podkreślenie GŁÓWNEGO tytułu
+              default: ''
+              options:
+                '': Brak podkreślenia
+                underline--marble: Marmurowe (underline--marble)
+                underline--ink: Atramentowe (underline--ink)
+                underline--cherry: Wiśniowe (underline--cherry)
+                underline--light-cherry: Jasno-wiśniowe (underline--light-cherry)
+                underline--gold: Złote (underline--gold)
+                underline--grey: Szare (underline--grey)
+                underline--light-grey: Jasno-szare (underline--light-grey)
+
+            header.section_id:
+              type: text
+              label: ID sekcji (opcjonalne)

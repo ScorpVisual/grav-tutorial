@@ -1,0 +1,314 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div class="flex flex-col gap-4 items-stretch">
+        <h1 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Wysoka jakość kamieni
+        </h1>
+        <p class="text-lg text-gray-700">
+            Cena nagrobka zależy przede wszystkim od rodzaju kamienia. 
+            Wyjaśnimy Ci różnicę między gotowymi pomnikami importowanymi a <strong>szlachetnym, 
+            certyfikowanym granitem, który tniemy i obrabiamy na Twoje indywidualne zamówienie 
+            w naszym warsztacie</strong>. Decydując się na tę drugą opcję, zyskujesz najwyższą jakość 
+            i pełną kontrolę nad każdym detalem. <strong>To Ty decydujesz o rodzaju kamienia</strong>, 
+            kształcie i kolorze płyty oraz ewentualnych zdobieniach i dodatkach.
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Sprawdź ofertę kamieni
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/products/stones/stones-main.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <img src="{{ theme_url }}/images/products/stones/stones-features.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Czym różnią się kamienie stosowane przez Kamieniarstwo Wiśniewski?
+        </h2>
+        <p class="text-lg text-gray-700">
+             Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+             In mi ligula, finibus sed risus ac, semper suscipit justo. 
+             <strong>Integer a placerat metus, sed dignissim tortor. </strong>
+             Aenean purus odio, elementum sit amet vulputate a, posuere at metus. 
+             Nulla suscipit sapien et mauris tincidunt eleifend. 
+             Donec <strong>efficitur elit sed diam viverra</strong>, at sodales mauris mollis. 
+             Praesent in dui pulvinar, varius mauris blandit, ultrices eros. Nam eget mi magna. Duis et massa tincidunt, consectetur ipsum vel, aliquam metus. Nullam id ante ac ex posuere fringilla. 
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-primary flex-grow text-center">
+                    Sprawdź ofertę kamieni
+                </a>
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Popularne kamienie
+        </h2>
+        <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena za X: <span class="c-white">od <span class="">3000</span> PLN</span>
+        </div>
+        <div class="text-xl md:text-2xl font-bold price-highlighted bg-ink">
+            Dostępność: <span class="c-white"><span class="">łatwo dostępne</span></span>
+        </div>
+        <p class="text-lg text-gray-700">
+             <strong>Kamienie charakteryzujące się estetyką i przystępną ceną.</strong>
+             Aenean purus odio, elementum sit amet vulputate a, posuere at metus. 
+             Nulla suscipit sapien et mauris tincidunt eleifend. 
+             Donec <strong>efficitur elit sed diam viverra</strong>, at sodales mauris mollis. 
+             Praesent in dui pulvinar, varius mauris blandit, ultrices eros. Nam eget mi magna. Duis et massa tincidunt, consectetur ipsum vel, aliquam metus. Nullam id ante ac ex posuere fringilla. 
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+    <div>
+        <img src="{{ theme_url }}/images/products/stones/stones-popular.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+
+{# Definiujemy klucze kamieni, które chcemy tu pokazać #}
+{% set popular_keys = ['szary_perlowy', 'skalisty', 'braz_krolewski'] %}
+{% set popularGranites = [] %}
+
+{% for key in popular_keys %}
+    {% if stone_options[key] is defined %}
+        {% set popularGranites = popularGranites|merge([stone_options[key]]) %}
+    {% endif %}
+{% endfor %}
+
+{# Wywołanie karuzeli bez zmian #}
+<section class="py-4 lg:py-8">
+  {% include 'modular/stones-carousel-static.html.twig' with {
+      items: popularGranites,
+      unique_id: 'popularGranites'
+  } %}
+</section>
+<section>
+{% set popularStonesData = [
+    { image_filename: '/images/products/stones/stones-strzegomski-1.jpg', title: 'Granit strzegomski' },
+    { image_filename: '/images/products/stones/stones-strzegomski-2.jpg', title: 'Granit strzegomski' },
+    { image_filename: '/images/products/stones/stones-strzegomski-3.jpg', title: 'Granit strzegomski' }
+] %}
+{% include 'modular/gallery-modular.html.twig' with {'items': popularStonesData} %}
+</section>
+
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <img src="{{ theme_url }}/images/products/stones/stones-exclusive-alt.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Ekskluzywne kamienie
+        </h2>
+        <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena za X: <span class="c-white">od <span class="">6000</span> PLN</span>
+        </div>
+        <div class="text-xl md:text-2xl font-bold price-highlighted bg-ink">
+            Dostępność: <span class="c-white"><span class="">średnio dostępne</span></span>
+        </div>
+        <p class="text-lg text-gray-700">
+             <strong>Kamienie charakteryzujące się niepowtarzalnym pięknem i odpornością.</strong>
+             Aenean purus odio, elementum sit amet vulputate a, posuere at metus. 
+             Nulla suscipit sapien et mauris tincidunt eleifend. 
+             Donec <strong>efficitur elit sed diam viverra</strong>, at sodales mauris mollis. 
+             Praesent in dui pulvinar, varius mauris blandit, ultrices eros. Nam eget mi magna. Duis et massa tincidunt, consectetur ipsum vel, aliquam metus. Nullam id ante ac ex posuere fringilla. 
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+
+</section>
+
+{% set exclusive_keys = ['impala_ciemna', 'viscount_white', 'aurora'] %}
+{% set exclusiveGranites = [] %}
+
+{% for key in exclusive_keys %}
+    {% if stone_options[key] is defined %}
+        {% set exclusiveGranites = exclusiveGranites|merge([stone_options[key]]) %}
+    {% endif %}
+{% endfor %}
+
+<section class="py-4 lg:py-8">
+  {% include 'modular/stones-carousel-static.html.twig' with {
+      items: exclusiveGranites,
+      unique_id: 'exclusiveGranites'
+  } %}
+</section>
+<section>
+{% set exclusiveStonesData = [
+    { image_filename: '/images/products/stones/stones-exclusive-1.jpg', title: 'Czarny Szwed' },
+    { image_filename: '/images/products/stones/stones-exclusive-2.jpg', title: 'Granit Drogi' },
+    { image_filename: '/images/products/stones/stones-exclusive-3.jpg', title: 'Drogi granit' }
+] %}
+{% include 'modular/gallery-modular.html.twig' with {'items': exclusiveStonesData} %}
+</section>
+
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <img src="{{ theme_url }}/images/products/stones/stones-rare.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Rzadkie kamienie
+        </h2>
+        <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena za X: <span class="c-white">od <span class="">12000</span> PLN</span>
+        </div>
+        <div class="text-xl md:text-2xl font-bold price-highlighted bg-ink">
+            Dostępność: <span class="c-white"><span class="">trudno dostępne</span></span>
+        </div>
+        <p class="text-lg text-gray-700">
+             <strong>Kamienie trudno dostępne, sprowadzane z egzotycznych krajów. Idealne na mauzoleum
+             budzące zachwyt przez pokolenia.</strong>
+             Aenean purus odio, elementum sit amet vulputate a, posuere at metus. 
+             Nulla suscipit sapien et mauris tincidunt eleifend. 
+             Donec <strong>efficitur elit sed diam viverra</strong>, at sodales mauris mollis. 
+             Praesent in dui pulvinar, varius mauris blandit, ultrices eros. Nam eget mi magna. Duis et massa tincidunt, consectetur ipsum vel, aliquam metus. Nullam id ante ac ex posuere fringilla. 
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+
+</section>
+
+{% set rare_keys = ['ruby_star', 'himalaya_blue', 'chinska_aurora'] %}
+{% set rareGranites = [] %}
+
+{% for key in rare_keys %}
+    {% if stone_options[key] is defined %}
+        {% set rareGranites = rareGranites|merge([stone_options[key]]) %}
+    {% endif %}
+{% endfor %}
+
+<section class="py-4 lg:py-8">
+  {% include 'modular/stones-carousel-static.html.twig' with {
+      items: rareGranites,
+      unique_id: 'rareGranites'
+  } %}
+</section>
+<section>
+{% set rareStonesData = [
+    { image_filename: '/images/products/stones/stones-rare-1.jpg', title: 'Czarny Szwed' },
+    { image_filename: '/images/products/stones/stones-rare-2.jpg', title: 'Granit Drogi' },
+    { image_filename: '/images/products/stones/stones-rare-3.jpg', title: 'Drogi granit' }
+] %}
+{% include 'modular/gallery-modular.html.twig' with {'items': rareStonesData} %}
+</section>
+
+
+{% set features = [
+        {
+            icon: 'tombstone.svg',
+            title: 'Wysoka jakość kamieni',
+            text: 'Używamy tylko starannie wyselekcjonowanego granitu, gwarantującego niezrównaną trwałość i odporność na warunki atmosferyczne.',
+            alt: 'Ikona jakości materiału'
+        },
+        {
+            icon: 'tombstone.svg',
+            title: 'Precyzja wykonania',
+            text: 'Każdy element jest rzeźbiony i polerowany z rzemieślniczą precyzją, co zapewnia perfekcyjne wykończenie i estetykę.',
+            alt: 'Ikona precyzji wykonania'
+        },
+        {
+            icon: 'tombstone.svg',
+            title: 'Gwarancja satysfakcji',
+            text: 'Twoje zadowolenie jest naszym priorytetem. Służymy wsparciem na każdym etapie realizacji zamówienia.',
+            alt: 'Ikona gwarancji satysfakcji'
+        }
+    ] %}
+{% include 'modular/feature-cards-static.html.twig'%}
+
+{# articles #}
+{% set articles = [
+    {
+        image_src: theme_url ~ '/images/photos/services-photo.jpg',
+        image_alt: 'Nagłówek artykułu o nowoczesnych nagrobkach',
+        title: 'Nowoczesne trendy w kamieniarstwie',
+        description: 'Odkryj minimalistyczne formy i innowacyjne materiały, które zyskują na popularności w projektowaniu nagrobków.',
+        url: '#',
+        date: '20.09.2025',
+        category: 'Inspiracje'
+    },
+    {
+        image_src: theme_url ~ '/images/photos/stones-photo-2.jpg',
+        image_alt: 'Granitowa płyta nagrobna',
+        title: 'Jak dbać o nagrobek z granitu?',
+        description: 'Praktyczne porady dotyczące czyszczenia i konserwacji granitu, aby zachował swój blask na długie lata.',
+        url: '#',
+        date: '15.09.2025',
+        category: 'Porady'
+    },
+    {
+        image_src: theme_url ~ '/images/photos/stones-photo.jpg',
+        image_alt: 'Rzeźba anioła na nagrobku',
+        title: 'Personalizacja pomnika – co warto wiedzieć?',
+        description: 'Od grawerunku po rzeźbę - poznaj możliwości personalizacji, które nadadzą pomnikowi unikalny charakter.',
+        url: '#',
+        date: '10.09.2025',
+        category: 'Wiedza'
+    }
+] %}
+{% include 'modular/article-cards-static.html.twig' %}
+{# end articles #}
+{# FAQ #}
+{% set faq_items = [
+    {
+        question: "Jak mogę zamówić usługę?",
+        answer: "Wystarczy skontaktować się z nami przez formularz kontaktowy lub telefonicznie, a nasz zespół poprowadzi Cię krok po kroku przez cały proces, od wyboru materiału po finalizację zamówienia."
+    },
+    {
+        question: "Ile trwa realizacja zamówienia?",
+        answer: "Standardowy czas realizacji to od 2 do 4 tygodni, w zależności od złożoności projektu i dostępności wybranych materiałów. Zawsze informujemy o przewidywanym terminie na etapie składania zamówienia."
+    },
+    {
+        question: "Czy mogę liczyć na wsparcie po wykonaniu usługi?",
+        answer: "Oczywiście. Oferujemy pełne wsparcie posprzedażowe, w tym porady dotyczące konserwacji i pielęgnacji. Jesteśmy do Twojej dyspozycji w razie jakichkolwiek pytań."
+    },
+    {
+        question: "Czy oferujecie gwarancję na swoje produkty?",
+        answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
+    }
+] %}
+   <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--red">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Najczęstsze pytania</h3>
+        </div>
+    </div>
+{% include 'modular/faq-static.html.twig'%}
+{# END FAQ #}
+
+{% include 'modular/gallery_modal.html.twig'%}
+{% endblock %}

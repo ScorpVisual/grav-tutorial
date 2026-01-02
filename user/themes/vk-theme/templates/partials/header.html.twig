@@ -123,16 +123,17 @@
                 </div>
                 <div class="navbar__menu" id="nav-menu-desktop">
                     <ul class="navbar__links">
-                        <li><a class="navbar__links--a" href="/uslugi">Usługi</a></li>
-                        <li><a class="navbar__links--a" href="/realizacje">Realizacje</a></li>
-                        <li><a class="navbar__links--a" href="/o-firmie">O firmie</a></li>
+                        <li><a class="navbar__links--a" href="{{ page.find('/uslugi').url }}">Usługi</a></li>
+                        <li><a class="navbar__links--a" href="{{ page.find('/produkty').url }}">Nagrobki</a></li>
+                        <li><a class="navbar__links--a" href="{{ home_url }}#realizacje">Realizacje</a></li>
+                        <li><a class="navbar__links--a" href="{{ page.find('/o-firmie').url }}">O firmie</a></li>
                     </ul>
                 </div>
                 <div class="navbar__actions">
                     <a href="/kontakt" class="btn-cta--big navbar__cta">Kontakt</a>
                     <button class="navbar__toggle" id="nav-toggle" aria-label="Toggle navigation">
                     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-                        <svg
+                    <svg
                         width="100%"
                         height="100%"
                         viewBox="0 0 64 64"
@@ -188,7 +189,8 @@
                             height="27.754"
                             class="navbar__toggle--icon"
                             id="rect3"
-                            inkscape:label="menu-1" /></svg>
+                            inkscape:label="menu-1" />
+                    </svg>
                             <span class="navbar__toggle--text c-marble">Menu</span>
                 </button>
                 </div>
@@ -197,3 +199,8 @@
                 {% include 'partials/navigation.html.twig' %}
             </div>
         </nav>
+        <button id="scrollToTopBtn" aria-label="Przewiń do góry strony">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828z"/>
+            </svg>
+        </button>

@@ -1,0 +1,96 @@
+
+<section class="py-4 lg:py-8">
+
+    {# --- LOGIKA DANYCH --- #}
+    {% set stones_source = stone_options %}
+    {# Fallback: jeśli user nie zaznaczył nic, weź pustą tablicę #}
+    {% set selected_keys = page.header.selected_stones|default([]) %}
+    
+    {# Jeśli selected_keys to tablica (z checkboxów), iterujemy po niej #}
+    {% set stones_to_show = [] %}
+
+    {% if selected_keys is not empty %}
+        {% for key, value in selected_keys %}
+            {# Checkboxy zwracają [klucz => true], więc sprawdzamy klucz #}
+            {% if stones_source[key] is defined %}
+                {% set stones_to_show = stones_to_show|merge([stones_source[key]]) %}
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {# Fallback: Jeśli nic nie wybrano, pokaż wszystkie #}
+        {% set stones_to_show = stones_source %}
+    {% endif %}
+
+    {# --- KARUZELA --- #}
+    {% set unique_id = unique_id|default(random()) %}
+
+    {% if stones_to_show is not empty %}
+    <div class="js-material-carousel max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center my-2">
+
+        {# LEWA: KARUZELA (ZDJĘCIA) #}
+        {# Wysokość ustalana przez Twój SCSS w .carousel-main-container, ale wrapper musi pozwolić na overflow #}
+        <div class="relative flex items-center justify-center">
+            
+            <button data-dir="prev" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--prev z-30" data-target="carousel-container-{{ unique_id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+
+            {# 
+               TUTAJ: Klasa .carousel-main-container z Twojego SCSS.
+               Twój SCSS ma padding-inline: 24rem -> to bardzo dużo, upewnij się że na mobile masz media query.
+            #}
+            <div id="carousel-container-{{ unique_id }}" class="carousel-main-container w-full h-full flex items-center justify-center">
+                {% for material in stones_to_show %}
+                    {% if material.img %}
+                        <img src="{{ theme_url }}/images/stones/{{ material.img }}"
+                             alt="{{ material.name|default('Kamień') }}"
+                             {# Atrybuty dla JS #}
+                             data-name="{{ material.name }}"
+                             data-desc="{{ material.desc }}"
+                             data-price="{{ material.price_level|default(1) }}"
+                             data-availability="{{ material.availability_level|default(5) }}"
+                             {# Klasy stylizujące z Twojego starego kodu #}
+                             class="carousel-item rounded-lg object-cover cursor-pointer material-info-container"
+                        >
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <button data-dir="next" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--next z-30" data-target="carousel-container-{{ unique_id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+        </div>
+
+        {# PRAWA: OPIS #}
+        <div id="materialInfo-{{ unique_id }}" class="p-4 lg:p-6 lg:ml-12 material-info-container z-20 relative self-start">
+            <div class="flex justify-center lg:justify-start border-bot-cherry mb-4 items-end">
+                <h3 id="materialName-{{ unique_id }}" class="text-3xl font-bold text-gray-800 transition-opacity duration-300 inline-block"></h3>
+            </div>
+            {# Cena (Z ID dla Labela) #}
+            <div id="rowPrice-{{ unique_id }}" class="flex row justify-center lg:justify-start items-center space-x-2 text-xl font-semibold text-gray-800 mt-2">
+                <span id="labelPrice-{{ unique_id }}" class="w-32 text-right lg:text-left text-gray-500 text-base uppercase tracking-wider transition-opacity duration-300">Cena:</span> 
+                <div class="js-price-stars flex space-x-1 ml-2 transition-opacity duration-300 opacity-0" data-icon="{{ theme_url }}/images/svg/stone.svg"></div>
+            </div>
+
+            {# Dostępność (Z ID dla Labela) #}
+            <div id="rowAvail-{{ unique_id }}" class="flex row justify-center lg:justify-start items-center space-x-2 text-xl font-semibold text-gray-800 mt-1">
+                <span id="labelAvail-{{ unique_id }}" class="w-32 text-right lg:text-left text-gray-500 text-base uppercase tracking-wider transition-opacity duration-300">Dostępność:</span> 
+                <div class="js-availability-stars flex space-x-1 ml-2 transition-opacity duration-300 opacity-0" data-icon="{{ theme_url }}/images/svg/stone.svg"></div>
+            </div>
+
+            <p id="materialDesc-{{ unique_id }}" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300 mt-4 min-h-[160px] text-left">
+                {# JS wypełni to pole #}
+            </p>
+            
+            {% if page.header.button_text %}
+            <div class="flex justify-center lg:justify-start w-full mt-8 mb-8">
+                <a href="{{ page.header.button_link|default('#') }}" class="btn-primary px-10 py-4 shadow-lg hover:shadow-xl transition-all">
+                    {{ page.header.button_text }}
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+</section>

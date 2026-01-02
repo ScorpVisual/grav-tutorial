@@ -27,6 +27,8 @@
         width: 16rem; /* 256px */
         height: 16rem; /* 256px */
     }
+
+
     .carousel-center {
         transform: translateX(0) scale(1) rotateY(0);
         opacity: 1;
@@ -72,3 +74,83 @@
             box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
         }
     }
+
+.drawer-stone-overlay {
+  position: relative;
+  display: inline-block; // lub block, jeśli chcesz pełną szerokość
+  border-radius: 1rem; // odpowiada za zaokrąglone rogi
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: inherit;
+    object-fit: cover; // dopasowanie do kontenera
+    transition: transform 0.3s ease;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 20;
+    // background-color: red;
+
+    background: linear-gradient(
+      176deg,
+      rgba($white, 1) -7%,
+      rgba($white, .2) 12.5%,
+      rgba($white, 0) 30%,
+      rgba($white, 0) 80%,
+      rgba($ink, .7) 99%
+    );
+    // mix-blend-mode: multiply;
+  }
+}
+
+.basic-drawer {
+    &__button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        background-color: $cherry;
+        border: 2px solid $cherry;
+        color: $white;
+        transition: $transition;
+
+        &:hover {
+        background-color: $pink;
+        border-color: $pink;
+        color: $slate;
+        }
+    }
+    &__container {
+    border-bottom: 2px solid rgba($light-grey, 1);
+    box-shadow: 0 4px 12px rgba($ink, 0.1);
+    background-color: rgba($white, .3);
+    transition: all 400ms ease-in-out;
+    border-radius: $border-radius;
+
+    }
+    &__option {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        width: 100%;
+        text-align: left;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid rgba($light-grey, .5);
+
+        &:hover {
+        background-color: rgba($white, 0.6);
+
+        }
+    }
+}

@@ -20,11 +20,32 @@
 
                 <div>
                     <h4 class="text-lg font-medium c-ink border-bot-cherry mb-4">Usługi</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#uslugi" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Renowacje pomników</a></li>
-                        <li><a href="#uslugi" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Czyszczenie nagrobków</a></li>
-                        <li><a href="#uslugi" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Sprzątanie</a></li>
-                    </ul>
+                        <ul class="space-y-2 text-sm">
+                            {% set uslugi_page = pages.find('/uslugi') %}
+                            
+                            {% if uslugi_page %}
+                                <li>
+                                    <a href="{{ uslugi_page.url }}#remonty" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">
+                                        Renowacje pomników
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ uslugi_page.url }}#impregnacja" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">
+                                        Konserwacja nagrobków
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ uslugi_page.url }}#opieka" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">
+                                        Sprzątanie i opieka nad grobem
+                                    </a>
+                                </li>
+                            {% else %}
+                                {# Opcjonalny fallback, jeśli strona /uslugi nie istnieje #}
+                                <li><a href="#remonty" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Renowacje pomników</a></li>
+                                <li><a href="#impregnacja" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Konserwacja nagrobków</a></li>
+                                <li><a href="#opieka" class="text-gray-700 hover:c-cherry transition-colors link-hover-fill">Sprzątanie i opieka nad grobem</a></li>
+                            {% endif %}
+                        </ul>
                 </div>
 
                 <div>
@@ -53,7 +74,6 @@
                 </p>
                 <div class="flex gap-4">
                     <a href="#" class="hover:text-red transition-colors">Polityka Prywatności</a>
-                    <a href="#" class="hover:text-red transition-colors">Mapa strony</a>
                 </div>
             </div>
         </div>

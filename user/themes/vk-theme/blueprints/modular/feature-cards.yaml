@@ -1,0 +1,46 @@
+title: Moduł - Karty z Cechami
+template: feature-cards
+icon: tasks
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Treść
+          fields:
+            header.title:
+              type: text
+              label: Nagłówek sekcji
+              default: "Co nas wyróżnia?"
+              
+            header.subtitle:
+              type: textarea
+              label: Tekst pod nagłówkiem (opcjonalny)
+              default: "Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników..."
+
+        features_list:
+          type: tab
+          title: 📦 Lista Cech
+          fields:
+            header.features:
+              type: list
+              label: Lista cech
+              style: vertical
+              fields:
+                .icon:
+                  type: text
+                  label: Nazwa pliku ikony (np. tombstone.svg)
+                  help: "Upewnij się, że plik istnieje w 'theme/images/icons/'"
+                .title:
+                  type: text
+                  label: Tytuł cechy
+                .text:
+                  type: textarea
+                  label: Opis cechy
+                .alt:
+                  type: text
+                  label: Tekst alternatywny dla ikony (SEO)

@@ -1,30 +1,30 @@
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class="sidebar-nav__item">
-                        <a href="#start" class="block mb-8 flex justify-center">
-                            <img src="{{ theme_url }}/images/brand/full-logotype-vertical.svg" class="h-auto w-24" alt="Logo firmy">
-                        </a>
-                    </li>
-                    <li class="sidebar-nav__item is-active">
-                        <a href="#start" class="sidebar-nav__link">Start</a>
-                    </li>
-                    <li class="sidebar-nav__item">
-                        <a href="#produkty" class="sidebar-nav__link">Produkty</a>
-                    </li>
-                    <li class="sidebar-nav__item">
-                        <a href="#uslugi" class="sidebar-nav__link">Usługi</a>
-                    </li>
-                    <li class="sidebar-nav__item">
-                        <a href="#realizacje" class="sidebar-nav__link">Realizacje</a>
-                    </li>
-                    <li class="sidebar-nav__item">
-                        <a href="#about" class="sidebar-nav__link">O firmie</a>
-                    </li>
-                    <li class="sidebar-nav__item">
-                        <a href="#faq" class="sidebar-nav__link">Najczęstsze pytania</a>
-                    </li>
-                    <li class="sidebar-nav__item sidebar-nav__item--cta">
-                        <a href="#kontakt" class="sidebar-nav__link sidebar-nav__link--cta">Kontakt</a>
-                    </li>
-                </ul>
-            </nav>
+<nav class="sidebar-nav">
+    <ul>
+        <li class="sidebar-nav__item">
+            <a href="{{ base_url_absolute }}" class="block mb-8 flex justify-center">
+                <img src="{{ theme_url }}/images/brand/full-logotype-vertical.svg" class="h-auto w-24" alt="Logo firmy">
+            </a>
+        </li>
+        <li class="sidebar-nav__item is-active">
+            <a href="{{ home_url }}" class="sidebar-nav__link">Start</a>
+        </li>
+        <li class="sidebar-nav__item">
+            <a href="{{ page.find('/produkty').url }}" class="sidebar-nav__link">Nagrobki</a>
+        </li>
+        <li class="sidebar-nav__item">
+            <a href="{{ page.find('/uslugi').url }}" class="sidebar-nav__link">Usługi</a>
+        </li>
+        <li class="sidebar-nav__item">
+            <a href="{{ home_url }}#realizacje" class="sidebar-nav__link">Realizacje</a>
+        </li>
+        <li class="sidebar-nav__item">
+            <a href="{{ page.find('/o-firmie').url }}" class="sidebar-nav__link">O firmie</a>
+        </li>
+        <li class="sidebar-nav__item">
+            <a href="{{ home_url }}#faq" class="sidebar-nav__link">Najczęstsze pytania</a>
+        </li>
+        <li class="sidebar-nav__item sidebar-nav__item--cta">
+            <a href="{{ home_url }}#kontakt" class="sidebar-nav__link sidebar-nav__link--cta">Kontakt</a>
+        </li>
+    </ul>
+</nav>

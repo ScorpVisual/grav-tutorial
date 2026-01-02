@@ -35,8 +35,9 @@ pages:
     - 'page://'
   theme: vk-theme
   order:
-    by: default
+    by: folder
     dir: asc
+  numeric_prefix: true
   list:
     count: 20
   dateformat:
@@ -54,7 +55,6 @@ pages:
     twig: true
   markdown:
     extra: true
-    parser: ParsedownExtra
     auto_line_breaks: false
     auto_url_links: false
     escape_markup: false
@@ -67,6 +67,7 @@ pages:
       - id
       - class
       - classes
+    parser: ParsedownExtra
   types:
     - html
     - htm
@@ -98,7 +99,7 @@ pages:
       - form
       - forms
 cache:
-  enabled: false 
+  enabled: false
   check:
     method: file
   driver: auto
@@ -178,7 +179,7 @@ images:
     aspect_ratio: false
     retina_scale: '1'
   defaults:
-    loading: auto
+    loading: lazy
     decoding: auto
     fetchpriority: auto
   watermark:
@@ -218,7 +219,7 @@ http:
   proxy_url: null
   proxy_cert_path: null
   concurrent_connections: 5
-  verify_peer: true
+  verify_peer: false
   verify_host: true
 accounts:
   type: regular
@@ -242,5 +243,5 @@ strict_mode:
   plugins:
     admin:
       notifications:
-        feed: false 
+        feed: false
         updates: false

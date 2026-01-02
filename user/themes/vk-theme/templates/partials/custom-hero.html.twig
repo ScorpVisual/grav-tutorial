@@ -1,5 +1,52 @@
-{# === POPRAWKA === #}
-{# Pobieramy obrazek z naszego nowego, dedykowanego pola 'hero_image' #}
+{# 1. Pobieramy nazwę pliku z headera #}
+{% set hero_image_name = page.header.hero_image %}
+
+{# 2. Tworzymy ścieżkę do pliku wewnątrz motywu #}
+{% set hero_image_url = hero_image_name ? url('theme://images/covers/' ~ hero_image_name) : null %}
+
+<section 
+    class="hero-section relative flex items-center justify-center w-full min-h-[780px] text-center overflow-hidden bg-cover bg-overlay-custom bg-center navbar-gradient-down" 
+    style="{% if hero_image_url %}background-image: url('{{ hero_image_url }}');{% else %}background-color: #333;{% endif %}"
+>
+    {# Nakładka przyciemniająca #}
+    <div class="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
+
+    {# --- KONTENER TREŚCI --- #}
+    {# Zmiany: usunięto px-[40%], dodano mx-auto, flex-col i kontrolę szerokości (max-w) #}
+    <div class="relative z-10 w-full px-4 mx-auto flex flex-col items-center max-w-[95%] md:max-w-2xl lg:max-w-[60%]">
+        
+        {# TYTUŁ #}
+        <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold c-white drop-shadow-lg font-cormorant underline-cherry text-center leading-tight">
+            {{ page.title }}
+        </h1>
+
+        {# PODTYTUŁ #}
+        {% if page.header.hero_subtitle %}
+            <p class="text-base sm:text-lg md:text-xl mt-6 w-full max-w-3xl mx-auto c-white drop-shadow-md text-center leading-relaxed">
+                {{ page.header.hero_subtitle }}
+            </p>
+        {% endif %}
+
+        {# BUTTONY #}
+        {% if page.header.hero_buttons %}
+            <div class="flex flex-col sm:flex-row gap-0.5 justify-center items-center w-full mt-10">
+                {% for button in page.header.hero_buttons %}
+                    <a href="{{ button.url }}" 
+                       class="{{ button.class | default('btn-primary') }} 
+                              flex items-center justify-center text-center transition-all 
+                              w-full sm:w-auto min-w-[240px]">
+                        {{ button.text }}
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+    </div>
+</section>
+
+
+{# 
+
 {% set hero_image = page.media[page.header.hero_image] %}
 
 <section 
@@ -13,14 +60,12 @@
             {{ page.title }}
         </h1>
 
-        {# Ten kod jest już poprawny i teraz zadziała #}
         {% if page.header.hero_subtitle %}
             <p class="text-base sm:text-md md:text-xl mt-4 max-w-[90vw] sm:max-w-3xl mx-auto c-white drop-shadow-md text-center leading-snug">
                 {{ page.header.hero_subtitle }}
             </p>
         {% endif %}
 
-        {# Ten kod jest już poprawny i teraz zadziała #}
         {% if page.header.hero_buttons %}
             <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 {% for button in page.header.hero_buttons %}
@@ -29,4 +74,4 @@
             </div>
         {% endif %}
     </div>
-</section>
+</section>  #}

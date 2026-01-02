@@ -1,0 +1,82 @@
+{% extends 'partials/base.html.twig' %}
+
+{# Ustawiamy zmienną z wariantami, ale tym razem czytając ją z frontmatteru strony #}
+{% set productVariants = page.header.product_variants %}
+
+{% block content %}
+
+{# 
+  SEKCJA HERO PRODUKTU 
+  Pobiera dane z pól zdefiniowanych w blueprints/produkt.yaml
+#}
+<section class="lg:px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div>
+          {# Używamy pierwszego obrazka z pierwszego wariantu jako domyślny #}
+          {# WAŻNE: Zakładam, że pole 'img' to ścieżka względna do theme, jak w oryginale #}
+          {# Jeśli użyjesz page.media, ścieżka będzie inna: page.media[productVariants[0].img].url #}
+          <img id="product-image" src="{{ theme_url }}/{{ productVariants[0].img }}" 
+               alt="{{ page.title }}" 
+               class="w-full object-cover golden-img-border hard-shadow animated-opacity">
+      </div>
+      <div class="overflow-hidden h-full flex flex-col">
+          <div class="p-0 flex flex-col flex-grow gap-4 md:p-6">
+              {# Tytuł strony pobierany z CMS #}
+              <h2 class="text-3xl font-bold text-gray-800 underline--cherry lg:whitespace-nowrap">
+                  {{ page.title }}
+              </h2>
+
+              {# Przyciski generowane dynamicznie z listy wariantów #}
+              <div class="flex flex-col justify-around lg:flex-row gap-3">
+                  {% for variant in productVariants %}
+                      <button
+                          type="button"
+                          class="variant-button btn-tertiary text-center 
+                                 text-gray-600 hover:text-gray-900 shrink-0 
+                                 whitespace-nowrap {% if loop.first %}is-active{% endif %}"
+                          data-price="{{ variant.price }}"
+                          data-desc="{{ variant.full_desc }}"
+                          data-img="{{ theme_url }}/{{ variant.img }}"
+                      >
+                          {{ variant.size }}
+                      </button>
+                  {% endfor %}
+              </div>
+
+              {# Cena - pobierana z pierwszego wariantu #}
+              <div class="text-xl md:text-2xl font-bold mt-2 price-highlighted">
+                  Cena: <span class="c-white">od <span id="product-price" class="animated-opacity">{{ productVariants[0].price }}</span> PLN</span>
+              </div>
+
+              {# Opis - pobierany z pierwszego wariantu #}
+              <p id="product-description" class="min-h-[200px] text-gray-700 text-lg animated-opacity">
+                  {{ productVariants[0].full_desc }}
+              </p>
+
+              {# Linki statyczne - można je też przenieść do blueprintu #}
+              <div class="flex flex-col lg:flex-row gap-3 mt-auto">
+                  <a href="#szczegoly" class="btn-primary flex-grow text-center">
+                      Zobacz realizacje
+                  </a>
+                  <a href="#kontakt" class="btn-cta flex-grow text-center">
+                      Zamów produkt
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+{# 
+  TUTAJ DZIEJE SIĘ MAGIA MODUŁÓW
+  Ta jedna linijka renderuje wszystkie moduły 
+  dodane na stronie w zakładce "Treść".
+#}
+{% for module in page.collection() %}
+    {{ module.content|raw }}
+{% endfor %}
+
+{# Twoje pozostałe include, jeśli są globalne dla każdego produktu #}
+{% include 'modular/_gallery_modal.html.twig'%}
+
+{% endblock %}

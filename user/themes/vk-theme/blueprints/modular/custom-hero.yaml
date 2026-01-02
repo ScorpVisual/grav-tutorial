@@ -16,9 +16,15 @@ form:
 
             # Pole na obrazek tła
             header.hero_image:
-              type: pagemedia
-              label: Obraz tła w sekcji Hero
-              help: "Przeciągnij i upuść tutaj obraz, który będzie tłem sekcji. Zostanie użyty pierwszy dodany obraz."
+              type: filepicker
+              label: Wybierz obraz tła Hero
+              folder: 'theme@:/images/covers'
+              preview_images: true
+              accept:
+                - .jpg
+                - .png
+                - .webp
+              help: "Wybierz plik z folderu theme/images/covers"
 
             # Pole na podtytuł
             header.hero_subtitle:

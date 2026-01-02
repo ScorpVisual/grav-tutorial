@@ -1,0 +1,62 @@
+title: Produkt (Nagrobek)
+extends: default
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        # Zakładka na główne dane produktu
+        product_details:
+          type: tab
+          title: 💎 Dane Produktu
+
+          fields:
+            header.product_variants:
+              type: list
+              label: Warianty Produktu (np. Standard, Rodzinny)
+              style: vertical
+              
+              fields:
+                .title:
+                  type: text
+                  label: Tytuł wariantu
+                .price:
+                  type: text
+                  label: Cena
+                .img:
+                  type: filepicker
+                  label: Zdjęcie wariantu
+                  folder: 'theme@:/images/products/product-01'
+                  preview_images: true
+                .size:
+                  type: text
+                  label: Rozmiar (etykieta przycisku)
+                .full_desc:
+                  type: textarea
+                  label: Pełny opis wariantu
+
+        # Zakładka na modułową treść
+        content:
+          type: tab
+          title: 📜 Treść (Moduły)
+          fields:
+            content:
+              type: modular
+              label: Moduły strony
+              
+              # --- POCZĄTEK POPRAWKI ---
+              # Jawnie definiujemy listę modułów, które można dodać.
+              # To rozwiązuje problem automatycznego wykrywania.
+              options:
+                addons: 'Moduł - Dodatki (Galanteria)'
+                faq: 'Moduł - FAQ'
+                feature-cards: 'Moduł - Karty z Cechami'
+                gallery: 'Moduł - Galeria'
+                stones: 'Moduł - Polecane Kamienie'
+                
+                # Pamiętaj, aby dodać tutaj swój własny moduł
+                article-cards: 'Moduł - Karty Artykułów' 
+              # --- KONIEC POPRAWKI ---

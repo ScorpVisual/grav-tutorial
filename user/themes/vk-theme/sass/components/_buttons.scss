@@ -131,35 +131,154 @@
     @include other-btn ();
 }
 
+#scrollToTopBtn {
 
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 50;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;  
+  height: 3rem; 
+  border-radius: 50%;
+  border: 2px solid transparent; 
+  
 
-.shuffle-carousel__btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 50px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.3s;
+  background-color: $cherry;
+  color: $white; 
+  
+  box-shadow: 0 4px 15px rgba($ink, 0.3);
+  
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px); 
 
-    &:hover {
-        background-color: $white;
-        transform: translateY(-50%) scale(1.05);
+  &.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background-color: $white;
+    color: $cherry;
+    border-color: $cherry; // Dodatkowy obrys dla kontrastu
+    box-shadow: 0 6px 20px rgba($ink, 0.4);
+    transform: translateY(-3px); // Lekki skok w górę
+    &::after{
+      content: 'Przewiń do góry';
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 220px;
+      height: 32px;
+      font-weight: 500;
+      top: 9px;
+      left: 54px;
+      right: 60px;
+      bottom: -6px;
+      border: 2px solid rgba($cherry, 0.5);
+      background-color: $white;
+      border-radius: 8px;
+      animation: fadeInUp .5s ease-in-out forwards;
     }
+  }
 
-    &--prev { left: calc(50% - 250px); }
-    &--next { right: calc(50% - 250px); }
+  svg {
+    width: 1.5rem; 
+    height: 1.5rem;
+    fill: currentColor; 
+    stroke: none;       
+  }
+
+  @media (min-width: $breakpoint-md) { 
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
 }
+
+
+// .shuffle-carousel__btn {
+//     position: absolute;
+//     top: 50%;
+//     transform: translateY(-50%);
+//     z-index: 10;
+//     width: 50px;
+//     height: 50px;
+//     background-color: rgba(255, 255, 255, 0.9);
+//     border: none;
+//     border-radius: 50%;
+//     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     color: #333;
+//     cursor: pointer;
+//     transition: all 0.3s;
+
+//     &:hover {
+//         background-color: $white;
+//           @media (max-width: $breakpoint-lg) {
+//               transform: translateY(-50%) scale(1.05);
+//         }
+//     }
+
+//     &--prev { left: calc(50% - 250px); }
+//     &--next { right: calc(50% - 250px); }
+// }
+
+// .shuffle-carousel__btn {
+//   position: absolute;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   z-index: 10;
+//   width: 50px;
+//   height: 50px;
+//   background-color: rgba(255, 255, 255, 0.9);
+//   border: none;
+//   border-radius: 50%;
+//   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   color: #333;
+//   cursor: pointer;
+//   transition: all 0.3s;
+
+//   &--prev {
+//     left: 10px;
+
+//     @media (min-width: $breakpoint-lg) {
+//       left: calc(50% - 250px);
+//     }
+//   }
+
+//   &--next {
+//     right: 10px;
+
+//     @media (min-width: $breakpoint-lg) {
+//       right: calc(50% - 250px);
+//     }
+//   }
+//   // ---------------------------------------------------------------------
+
+//   &:hover {
+//     background-color: $white;
+    
+//   }
+  
+//   @media (min-width: $breakpoint-lg) {
+//      &:hover {
+//         transform: translateY(-50%) scale(1.1); 
+//      }
+//   }
+// }
 
 .shortcut-button {
   border-radius: $border-radius;

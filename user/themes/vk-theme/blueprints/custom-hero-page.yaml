@@ -1,0 +1,55 @@
+title: Custom Hero Page
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        # Zmieniamy nazwę taba na 'hero_tab', aby nie kolidowała z polem 'content'
+        hero_tab:
+          type: tab
+          title: Treść Hero
+          fields:
+            header.custom_hero_section:
+              type: section
+              title: Ustawienia Sekcji Hero
+              underline: true
+
+            header.hero_image:
+              type: filepicker
+              label: Wybierz obraz tła Hero
+              folder: 'theme@:/images/covers'
+              value: name
+              preview_images: true
+              accept:
+                - .jpg
+                - .png
+                - .webp
+
+            header.hero_subtitle:
+              type: textarea
+              label: Podtytuł Hero
+              rows: 3
+
+            header.hero_buttons:
+              type: list
+              label: Przyciski Hero
+              style: vertical
+              fields:
+                .text:
+                  type: text
+                  label: Tekst przycisku
+                .url:
+                  type: text
+                  label: Link (URL)
+                .class:
+                  type: select
+                  label: Styl przycisku
+                  default: 'btn-primary'
+                  options:
+                    'btn-primary': 'Podstawowy'
+                    'btn-cta': 'Cherry CTA'

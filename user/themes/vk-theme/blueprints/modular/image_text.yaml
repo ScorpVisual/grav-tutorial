@@ -1,0 +1,100 @@
+title: 'Moduł - Tekst i Obraz (Podstawowy)'
+icon: columns
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: 📜 Treść
+          fields:
+            header.title:
+              type: text
+              label: Tytuł
+              default: "Tytuł sekcji"
+            header.subtitle:
+              type: text
+              label: Podtytuł (opcjonalny)
+            
+            # ZMIANA: Teraz wybierasz spośród plików wgranych do folderu modułu
+            header.image:
+              type: file
+              label: Zdjęcie
+              destination: 'self@' # Zapisuje w folderze modułu
+              multiple: false      # Chcemy tylko jedno zdjęcie
+              random_name: false
+              accept:
+                - image/*
+
+            
+            header.image_alt:
+              type: text
+              label: Tekst alternatywny (SEO)
+              default: "Zdjęcie"
+            header.main_text:
+              type: textarea
+              label: Główny tekst
+              size: large
+
+        info:
+          type: tab
+          title: ℹ️ Linie Informacyjne
+          fields:
+            header.info_lines:
+              type: list
+              label: 'Linie informacyjne'
+              fields:
+                .label:
+                  type: text
+                  label: Etykieta
+                .value:
+                  type: text
+                  label: Wartość
+                .style:
+                  type: select
+                  label: Styl
+                  default: 'default'
+                  options:
+                    'default': 'Standardowy'
+                    'highlighted': 'Wyróżniony'
+
+        buttons:
+          type: tab
+          title: 🔘 Przyciski
+          fields:
+            header.buttons:
+              type: list
+              label: Przyciski
+              fields:
+                .text:
+                  type: text
+                .url:
+                  type: text
+                .class:
+                  type: select
+                  options:
+                    'btn-cta flex-grow text-center': 'CTA (Czerwony)'
+                    'btn-primary flex-grow text-center': 'Primary (Złoty)'
+
+        settings:
+          type: tab
+          title: ⚙️ Ustawienia
+          fields:
+            header.layout_style:
+              type: select
+              label: Układ
+              options:
+                'image_left': 'Obraz po lewej'
+                'text_left': 'Tekst po lewej'
+            header.image_style:
+              type: select
+              options:
+                'golden-border': 'Złota ramka'
+                'rounded': 'Zaokrąglone rogi'
+                'none': 'Brak'
+            header.section_id:
+              type: text
+              label: ID Sekcji

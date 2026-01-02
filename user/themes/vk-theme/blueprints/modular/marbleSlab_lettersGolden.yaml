@@ -1,0 +1,95 @@
+title: 'Moduł - Złote Litery (Marmur)'
+icon: palette
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        content:
+          type: tab
+          title: 📜 Treść
+          fields:
+            header.title:
+              type: text
+              label: Tytuł sekcji
+              default: "Liternictwo nagrobkowe"
+            header.text:
+              type: textarea
+              label: Główny tekst
+              size: large
+              default: "Cena nagrobka zależy przede wszystkim od rodzaju kamienia..."
+            header.image:
+              type: filepicker
+              label: Zdjęcie
+              folder: 'theme@:/images/products/letters'
+              preview_images: true
+              default: 'images/products/letters/letters-main.jpg'
+            header.image_alt:
+              type: text
+              label: Tekst alternatywny dla zdjęcia (SEO)
+              default: "Liternictwo nagrobkowe"
+
+        settings:
+          type: tab
+          title: ⚙️ Ustawienia Wyglądu
+          fields:
+            header.layout_style:
+              type: select
+              label: Układ (Kolejność)
+              default: text_left
+              options:
+                text_left: 'Tekst po lewej, Zdjęcie po prawej'
+                image_left: 'Zdjęcie po lewej, Tekst po prawej'
+            
+            header.background_style:
+              type: select
+              label: Styl tła (Marmur)
+              default: dark-gradient-down
+              options:
+                dark-gradient-down: 'Ciemny (dark-gradient-down)'
+                white-gradient-down: 'Jasny (white-gradient-down)'
+                red-gradient-down: 'Czerwony (red-gradient-down)'
+                '': 'Brak (przezroczyste)'
+                
+            # To pole jest specyficzne dla tego modułu
+            header.title_style:
+              type: select
+              label: Styl tytułu (Litery)
+              default: 'fill-letters-gold-section-dark'
+              options:
+                'fill-letters-gold-section-dark': 'Złote litery (domyślny)'
+                '': 'Standardowy (bez stylu)'
+            header.text_style:
+              type: select
+              label: Kolor tekstu
+              default: 'c-pink'
+              options:
+                'c-pink': 'Różowy (c-pink)'
+                'c-white': 'Biały (c-white)'
+                'text-gray-700': 'Ciemny (text-gray-700)'
+                '': 'Domyślny (bez klasy)'
+        buttons:
+          type: tab
+          title: 🔘 Przyciski (Opcjonalne)
+          fields:
+            header.buttons:
+              type: list
+              label: Przyciski
+              style: vertical
+              fields:
+                .text:
+                  type: text
+                  label: Tekst na przycisku
+                .url:
+                  type: text
+                  label: Link (np. /kontakt lub #kontakt)
+                .class:
+                  type: select
+                  label: Styl przycisku
+                  default: 'btn-primary'
+                  options:
+                    'btn-primary flex-grow text-center': 'Główny (Primary)'
+                    'btn-cta flex-grow text-center': 'CTA (Call to Action)'

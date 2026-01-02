@@ -127,7 +127,7 @@
   &__menu {
     display: none;
 
-    @media (min-width: $breakpoint-lg) {
+    @media (min-width: $breakpoint-xl) {
       display: flex;
       justify-self: center; 
     }
