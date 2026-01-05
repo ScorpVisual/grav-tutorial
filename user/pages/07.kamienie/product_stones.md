@@ -1,5 +1,5 @@
 ---
-title: 'Kamienie'
+title: Kamienie
 published: true
 hero_image: stones-3.jpg
 hero_subtitle: 'Najlepsze płyty granitowe, sprowadzane z całego świata dla naszych klientów'
@@ -13,3 +13,4 @@ hero_buttons:
         url: '#kontakt'
         class: btn-cta
 ---
+

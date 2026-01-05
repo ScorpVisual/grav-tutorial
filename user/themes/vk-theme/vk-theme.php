@@ -20,7 +20,7 @@ class VkTheme extends Theme
     
 public function onAssetsInitialized() {
     if ($this->isAdmin()) {
-        $this->grav['assets']->addCss('user/themes/vk-theme/admin/admin.css');
+        $this->grav['assets']->addCss('user://themes/vk-theme/admin/admin.css', ['priority' => 10]);
     }
 }
 
