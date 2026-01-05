@@ -136,92 +136,92 @@
             </h3>
         </div>
     </div>
-    
-{# === SEKCJA GŁÓWNA: PRODUKT I WARIANTY === #}
-    
-    {# Pobieramy warianty #}
-    {% set variants = page.header.product_variants %}
+    {# === SEKCJA GŁÓWNA: PRODUKT I WARIANTY === #}
 
-    {% if variants is not empty %}
-    <section class="product-hero-container lg:px-4 py-8 lg:py-16 max-w-screen-xl mx-auto product-details-module">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+{# Pobieramy warianty z konfiguracji strony #}
+{% set variants = page.header.product_variants %}
+
+{% if variants is not empty %}
+<section class="lg:px-4 py-16 max-w-screen-xl mx-auto product-details-module">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      
+      {# --- LEWA KOLUMNA: ZDJĘCIE --- #}
+      <div>
+          {# Pobieramy zdjęcie pierwszego wariantu na start #}
+          {% set firstImg = variants[0].img %}
           
-          {# --- LEWA KOLUMNA: ZDJĘCIE --- #}
-          <div>
-              {# Pobieramy zdjęcie pierwszego wariantu na start #}
-              {% set firstImg = variants[0].img %}
+          {# Logika ścieżki: Sprawdzamy czy to pełny URL, czy ścieżka w theme #}
+          {% if 'http' not in firstImg and '/' not in firstImg|first %}
+             {% set firstImgUrl = theme_url ~ '/images/products/' ~ firstImg %}
+          {% else %}
+             {% set firstImgUrl = theme_url ~ firstImg %}
+          {% endif %}
+
+          <img id="product-image" 
+               src="{{ firstImgUrl }}" 
+               alt="{{ page.header.section_title|default(page.title) }}" 
+               class="w-full object-cover golden-img-border hard-shadow animated-opacity transition-opacity duration-200">
+      </div>
+
+      {# --- PRAWA KOLUMNA: TREŚĆ --- #}
+      <div class="overflow-hidden h-full flex flex-col">
+          <div class="p-0 flex flex-col flex-grow gap-4 md:p-6">
               
-              {# Logika ścieżki: Sprawdzamy czy to pełny URL, czy ścieżka w theme #}
-              {% if 'http' not in firstImg and '/' not in firstImg|first %}
-                 {% set firstImgUrl = theme_url ~ '/images/products/' ~ firstImg %}
-              {% else %}
-                 {% set firstImgUrl = theme_url ~ firstImg %}
-              {% endif %}
+              {# Tytuł sekcji #}
+              <h2 class="text-3xl font-bold text-gray-800 underline--cherry lg:whitespace-nowrap">
+                  {{ page.header.section_title|default(page.title) }}
+              </h2>
 
-              <img id="product-image" 
-                   src="{{ firstImgUrl }}" 
-                   alt="{{ page.header.title|default(page.title) }}" 
-                   class="w-full object-cover golden-img-border hard-shadow animated-opacity transition-opacity duration-200 rounded-lg">
-          </div>
+              {# --- BUTTONY WARIANTÓW --- #}
+              <div class="flex flex-col justify-around lg:flex-row gap-3">
+                  {% for variant in variants %}
+                      {# Budowanie ścieżki dla każdego wariantu do data-img #}
+                      {% if 'http' not in variant.img and '/' not in variant.img|first %}
+                         {% set variantImgUrl = theme_url ~ '/images/products/' ~ variant.img %}
+                      {% else %}
+                         {% set variantImgUrl = theme_url ~ variant.img %}
+                      {% endif %}
 
-          {# --- PRAWA KOLUMNA: TREŚĆ --- #}
-          <div class="overflow-hidden h-full flex flex-col">
-              <div class="p-0 flex flex-col flex-grow gap-4 md:p-6">
-                  
-                  {# Tytuł sekcji #}
-                  <h2 class="text-3xl font-bold text-gray-800 underline--cherry lg:whitespace-nowrap">
-                      {{ page.header.title|default(page.title) }}
-                  </h2>
+                      <button
+                          type="button"
+                          class="variant-button btn-tertiary text-center 
+                                 text-gray-600 hover:text-gray-900 shrink-0 
+                                 whitespace-nowrap {% if loop.first %}is-active{% endif %}"
+                          data-price="{{ variant.price }}"
+                          data-desc="{{ variant.full_desc }}"
+                          data-img="{{ variantImgUrl }}"
+                      >
+                          {{ variant.size }}
+                      </button>
+                  {% endfor %}
+              </div>
 
-                  {# --- BUTTONY WARIANTÓW --- #}
-                  {# Dodaję flex-wrap, żeby przy wielu wariantach nie rozwaliło mobile #}
-                  <div class="flex flex-wrap gap-3 my-4">
-                      {% for variant in variants %}
-                          {# Budowanie ścieżki dla każdego wariantu do data-img #}
-                          {% if 'http' not in variant.img and '/' not in variant.img|first %}
-                             {% set variantImgUrl = theme_url ~ '/images/products/' ~ variant.img %}
-                          {% else %}
-                             {% set variantImgUrl = theme_url ~ variant.img %}
-                          {% endif %}
+              {# --- CENA --- #}
+              <div class="text-xl md:text-2xl font-bold mt-2 price-highlighted">
+                  Cena: <span class="c-white">od <span id="product-price" class="animated-opacity">{{ variants[0].price }}</span> PLN</span>
+              </div>
 
-                          <button
-                              type="button"
-                              class="js-variant-btn btn-tertiary text-center text-gray-600 hover:text-gray-900 shrink-0 whitespace-nowrap px-4 py-2 border rounded transition-all {% if loop.first %}is-active ring-2 ring-cherry{% endif %}"
-                              data-price="{{ variant.price }}"
-                              data-desc="{{ variant.full_desc|e('html_attr') }}"
-                              data-img="{{ variantImgUrl }}"
-                          >
-                              {{ variant.size }}
-                          </button>
-                      {% endfor %}
-                  </div>
+              {# --- OPIS --- #}
+              <p id="product-description" class="min-h-[200px] text-gray-700 text-lg animated-opacity transition-opacity duration-200">
+                  {{ variants[0].full_desc }}
+              </p>
 
-                  {# --- CENA --- #}
-                  <div class="text-xl md:text-2xl font-bold mt-2 price-highlighted">
-                      Cena: <span class="c-white">od <span id="product-price" class="animated-opacity text-cherry">{{ variants[0].price }}</span> PLN</span>
-                  </div>
-
-                  {# --- OPIS --- #}
-                  <div class="min-h-[150px]">
-                    <p id="product-description" class="text-gray-700 text-lg animated-opacity transition-opacity duration-200 leading-relaxed">
-                        {{ variants[0].full_desc|raw }}
-                    </p>
-                  </div>
-
-                  {# --- PRZYCISKI CTA --- #}
-                  <div class="flex flex-col lg:flex-row gap-3 mt-auto pt-6">
-                      <a href="#szczegoly" class="btn-primary flex-grow text-center py-3 px-6 rounded shadow hover:shadow-lg transition">
-                          Zobacz realizacje
-                      </a>
-                      <a href="#kontakt" class="btn-cta flex-grow text-center py-3 px-6 rounded shadow hover:shadow-lg transition">
-                          Zamów produkt
-                      </a>
-                  </div>
+              {# --- PRZYCISKI CTA --- #}
+              <div class="flex flex-col lg:flex-row gap-3 mt-auto">
+                  <a href="#szczegoly" class="btn-primary flex-grow text-center">
+                      Zobacz realizacje
+                  </a>
+                  <a href="#kontakt" class="btn-cta flex-grow text-center">
+                      Zamów produkt
+                  </a>
               </div>
           </div>
       </div>
-    </section>
-    {% endif %}
+  </div>
+</section>
+
+{% endif %}
+
 
     {# === SEKCJA 2: GALERIA === #}
          <div class="flex section-header mx-auto my-8">
