@@ -1,5 +1,5 @@
 ---
-template: modular/text_columns
+template: modular/text-columns
 section_id: wylewki
 left_column_blocks:
     -

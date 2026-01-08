@@ -1,5 +1,5 @@
 ---
-template: modular/text_columns
+template: modular/text-columns
 title: 'Wylewki, płytki, okładziny'
 title_border: true
 section_id: wylewki

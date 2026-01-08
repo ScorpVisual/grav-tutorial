@@ -1,5 +1,5 @@
 ---
-template: modular/text_columns
+template: modular/text-columns
 title: 'Testujemy zmiany'
 title_border: false
 section_id: wylewki

@@ -1814,6 +1814,24 @@ hr {
   z-index: -1;
 }
 
+.golden-img-border-pointer {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+  padding: 2px;
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+}
+.golden-img-border-pointer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+}
+
 .cherry-img-border {
   position: relative;
   isolation: isolate;
