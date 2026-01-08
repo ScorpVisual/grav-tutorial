@@ -20,39 +20,79 @@
     { 'url': '#', 'text': 'Link numer 19' },
     { 'url': '#', 'text': 'Link numer 20' }
 ] %}
-
-<section class="relative js-shortcut-carousel-container">
+{# <div class="min-w-0 w-full relative">
     <div class="folder-flag bg-cherry text-white font-bold">Na skróty</div>
-    
-    {# Zmiana: dostosowanie odstępów (gap) i paddingu (p) dla różnych ekranów #}
-    <div class="bg-white p-2 md:p-3 rounded-lg vkCard__red flex flex-nowrap gap-2 md:gap-3 items-center golden-img-border hard-shadow">
+    <section class="js-shortcut-carousel-container">
         
-        {# Zmiana: przycisk ukryty na małych ekranach (hidden), widoczny od średnich (md:flex) #}
-        <button class="shortcut-button shortcut-button__left shrink-0 hidden md:inline-flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-        </button>
-        
-        {# Zmiana: ten div jest teraz "okienkiem" do przewijania #}
-        {# overflow-x-auto -> włącza przewijanie poziome #}
-        {# Klasy [...] -> ukrywają wizualnie pasek przewijania we wszystkich przeglądarkach #}
-        <div class="flex-grow overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {# Zmiana: dostosowanie odstępów między przyciskami #}
-            <div class="shortcut-carousel__track flex gap-3 md:gap-4">
-                {% if shortcut_buttons is defined and shortcut_buttons is not empty %}
-                    {% for button in shortcut_buttons %}
-                        <a href="{{ button.url }}" class="btn-tertiary text-center text-white hover:text-gray-900 shrink-0 whitespace-nowrap">
-                            {{ button.text }}
-                        </a>
-                    {% endfor %}
-                {% else %}
-                    <p class="text-gray-500 w-full text-center">Brak dostępnych skrótów.</p>
-                {% endif %}
+        <div class="bg-white p-2 md:p-3 rounded-lg vkCard__red flex flex-nowrap gap-2 md:gap-3 items-center golden-img-border hard-shadow">
+            <button class="shortcut-button shortcut-button__left shrink-0 hidden md:inline-flex items-center justify-center absolute z-99">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            
+
+            <div class="flex-grow min-w-0 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-[28px]">
+                <div class="shortcut-carousel__track flex gap-3 md:gap-4">
+                    {% if shortcut_buttons is defined and shortcut_buttons is not empty %}
+                        {% for button in shortcut_buttons %}
+                            <a href="{{ button.url }}" class="btn-tertiary text-center text-white hover:text-gray-900 shrink-0 whitespace-nowrap">
+                                {{ button.text }}
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-gray-500 w-full text-center">Brak dostępnych skrótów.</p>
+                    {% endif %}
+                </div>
             </div>
+            
+            <button class="shortcut-button shortcut-button__right shrink-0 hidden md:inline-flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
         </div>
+    </section>
+</div> #}
+
+{# Wrapper: min-w-0 ratuje Grid, relative pozycjonuje flagę, mt-8 robi miejsce na flagę #}
+<div class="min-w-0 w-full relative mt-8">
+    
+    {# Flaga: Dzięki relative na rodzicu wyżej, wyświetli się idealnie nad kartą #}
+    <div class="folder-flag bg-cherry text-white font-bold">Na skróty</div>
+
+    <section class="js-shortcut-carousel-container relative z-10">
         
-        {# Zmiana: przycisk ukryty na małych ekranach (hidden), widoczny od średnich (md:flex) #}
-        <button class="shortcut-button shortcut-button__right shrink-0 hidden md:inline-flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-        </button>
-    </div>
-</section>
+        <div class="bg-white p-2 md:p-3 rounded-lg vkCard__red flex flex-nowrap gap-2 md:gap-3 items-center golden-img-border-pointer hard-shadow">
+            
+            {# LEWY PRZYCISK #}
+            {# Usunięto absolute. Dodano relative z-20 (klikalność) #}
+            <button class="shortcut-button shortcut-button__left relative z-20 shrink-0 hidden md:inline-flex items-center justify-center w-8 h-8 md:w-10 md:h-10 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            
+            {# OBSZAR PRZEWIJANIA #}
+            {# Usunięto zbędne paddingi. min-w-0 zapewnia, że flex nie rozpycha strony #}
+            <div class="flex-grow min-w-0 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-smooth">
+                <div class="shortcut-carousel__track flex gap-3 md:gap-4 py-1">
+                    {% if shortcut_buttons is defined and shortcut_buttons is not empty %}
+                        {% for button in shortcut_buttons %}
+                            {# Linki też muszą mieć z-20, żeby ramka ich nie przykryła #}
+                            <a href="{{ button.url }}" class="relative z-20 btn-tertiary text-center text-white hover:text-gray-900 shrink-0 whitespace-nowrap px-4 py-2 rounded transition-colors">
+                                {{ button.text }}
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-gray-500 w-full text-center text-sm">Brak dostępnych skrótów.</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            {# PRAWY PRZYCISK #}
+            <button class="shortcut-button shortcut-button__right relative z-20 shrink-0 hidden md:inline-flex items-center justify-center w-8 h-8 md:w-10 md:h-10 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+
+        </div>
+    </section>
+</div>
