@@ -8,7 +8,7 @@ hero_buttons:
     -
         text: Renowacje
         url: '#remonty'
-        class: btn-primary
+        class: btn-secondary
     -
         text: 'Zapytaj o wycenę'
         url: '#kontakt'

@@ -13,7 +13,7 @@ hero_buttons:
     -
         text: 'Zobacz galerię'
         url: '#galeria'
-        class: btn-primary
+        class: btn-secondary
     -
         text: 'Zapytaj o cenę'
         url: '#kontakt'

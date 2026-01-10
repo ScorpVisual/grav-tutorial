@@ -7,7 +7,7 @@ hero_buttons:
     -
         text: Oferta
         url: '#oferta'
-        class: btn-primary
+        class: btn-secondary
     -
         text: 'Zapytaj o wycenę'
         url: '#kontakt'

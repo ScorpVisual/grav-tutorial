@@ -2,17 +2,15 @@
 title: Kamelia
 hero_subtitle: 'Kamelia to fajny sarkofag'
 hero_image: main-hero-3.jpg
-
 hero_buttons:
     -
         text: 'Zobacz realizacje'
         url: null
-        class: btn-primary
+        class: btn-secondary
     -
         text: KONTAKT
         url: '#kontakt'
         class: btn-cta
-
 product_variants:
     -
         title: Pojedynczy
@@ -26,9 +24,6 @@ product_variants:
         price: '12 499'
         img: product-01/double-01.jpg
         full_desc: 'Zamknięta forma sarkofagu umożliwia etapowe wykorzystanie miejsca na kolejne pochówki. W zależności od wybranego wariantu konstrukcyjnego nagrobek rodzinny może pomieścić od 2 do 4 trumien lub do 8 urn. Duża płyta wierzchnia zapewnia wystarczającą ilość miejsca na imiona, daty oraz długie sentencje pamiątkowe.'
-
-# --- KONFIGURACJA KAMIENI (Unikalna dostępność) ---
-# Tytuł sekcji usunięty - pobierze się "Polecane kamienie" z blueprintu
 selected_stones:
     srebrzysty_strzegomski: true
     braz_krolewski: true
@@ -67,7 +62,6 @@ selected_stones:
     prada_gold: false
     orion: false
     orion_silk: false
-
 gallery_items:
     -
         image_filename: product-01/product-01-gallery-1.jpg
@@ -90,5 +84,5 @@ gallery_items:
     -
         image_filename: product-01/product-01-gallery-8.jpg
         title: 'Montaż na cmentarzu'
-
 ---
+
