@@ -226,7 +226,7 @@
     {# === SEKCJA 2: GALERIA === #}
          <div class="flex section-header mx-auto my-8">
             <div class="section-header__content section-header__bg--black">
-                <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                <h3 id="szczegoly" class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
                     Realizacje
                 </h3>
             </div>
@@ -361,31 +361,37 @@
                 </a>
             </div>
             {% endif %}
+            
         </div>
     </div>
     {% endif %}
 
     {# LEGENDA (Statyczna - bez zmian) #}
     <div class="max-w-screen-xl mx-auto px-4 mt-20 mb-12">
-         <div class="basic-card-style base-radius p-6 lg:p-10 shadow-sm bg-white">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+         <div class="basic-card-style base-radius p-1 md:p-6 lg:p-10 shadow-sm bg-white">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ">
                 <div class="lg:col-span-4 flex flex-col items-center lg:items-start border-b lg:border-b-0 lg:border-r border-gray-200 pb-6 lg:pb-0 lg:pr-8">
                     <h4 class="text-xl font-bold text-gray-800 mb-4 underline--cherry inline-block">Skala cenowa</h4>
-                    <div class="flex items-center bg-pink-50 px-4 py-3 rounded-xl shadow-inner border border-gray-200">
-                        <span class="text-sm font-bold text-slate-600 uppercase tracking-wider mr-3">Przykład:</span>
-                        <div class="flex space-x-1">
-                            <img class="h-6 w-auto" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
-                            <img class="h-6 w-auto" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
-                            <img class="h-6 w-auto" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
-                            <img class="h-6 w-auto opacity-20" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
-                            <img class="h-6 w-auto opacity-20" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
-                        </div>
-                    </div>
+            <div class="flex grow w-full items-center justify-around sm:justify-between overflow-x-auto bg-pink-50 px-2 md:px-4 py-3 rounded-xl shadow-inner border border-gray-200 gap-2">
+                <span class="text-xs md:text-sm  font-bold text-slate-600 uppercase tracking-wider whitespace-nowrap">
+                    Przykład:
+                </span>
+                <div class="flex space-x-1 shrink-0">
+                    <img class="h-4 sm:h-6 w-auto" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                    <img class="h-4 sm:h-6 w-auto" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                    <img class="h-4 sm:h-6 w-auto" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                    <img class="h-4 sm:h-6 w-auto opacity-20" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                    <img class="h-4 sm:h-6 w-auto opacity-20" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                </div>
+            </div>
                 </div>
                 <div class="lg:col-span-8 text-center lg:text-left">
                     <p class="text-gray-700 text-base lg:text-lg leading-relaxed mb-4">
                         Końcowa wycena zależy od wielu czynników: <strong>dostępności</strong> danego kamienia, <strong>ilości potrzebnego materiału</strong> oraz aktualnej sytuacji na rynkach światowych.
                     </p>
+                    <a href="{{ page.find('/kamienie').url }}" class="btn-primary flex-grow text-center">
+                    Wszystkie dostępne kamienie
+                </a>
                 </div>
             </div>
         </div>
