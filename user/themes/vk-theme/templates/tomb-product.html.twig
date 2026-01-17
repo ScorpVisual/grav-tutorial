@@ -10,58 +10,49 @@
 
 {% set default_addons = [
     {
-        name: "Galanteria Ogólna",
-        title: "Galanteria nagrobkowa",
-        short_desc: "Pamięć o bliskich może przybrać fizyczną formę.",
-        full_desc: "Stworzyliśmy naszą kolekcję galanterii nagrobkowej właśnie po to – byś mógł nadać pomnikowi ten osobisty, ciepły wymiar.",
+        name: "Liternictwo",
+        title: "Liternictwo nagrobkowe",
+        short_desc: "Każdy napis projektujemy indywidualnie.",
+        full_desc: "Każdy napis projektujemy indywidualnie, uwzględniając unikalną strukturę i barwę wybranego granitu. Oferujemy litery głęboko piaskowane, malowane specjalistyczną emalią, złocenie płatkowe lub litery nakładane ze stali kwasoodpornej. Doradzimy Ci technikę, która najlepiej sprawdzi się przy twardości i ziarnistości danego kamienia.",
+        price: "od 25 PLN za literę lub znak",
+        image: "addons-text.jpg",
+        alt_text: "Liternictwo nagrobkowe"
+    },
+    {
+        name: "Wazony i misy",
+        title: "Wazony i misy nagrobkowe",
+        short_desc: "Miejsce na kwiaty lub znicz równie trwałe co pomnik.",
+        full_desc: "Misy, wazony i latarnie toczymy z litego granitu dopasowanego do barwy nagrobka lub wykonujemy z mosiądzu. Każdy element jest wyposażony w otwór drenażowy zapobiegający pękaniu zimą. Montaż realizujemy metodą kotwienia na szpilki ze stali kwasoodpornej oraz przy użyciu specjalistycznych spoiw kamieniarskich.",
         price: "",
-        image: "addons-main.jpg",
-        alt_text: "Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski"
+        image: "addons-vase.jpg",
+        alt_text: "Wazony i misy nagrobkowe"
     },
     {
         name: "Ławeczki",
         title: "Ławeczki nagrobkowe",
-        short_desc: "Wiemy, że każdy potrzebuje czegoś innego, by w spokoju przeżyć chwilę refleksji.",
-        full_desc: "Ławeczki granitowe, metalowe lub nowoczesne z tworzywa – dobierz idealne rozwiązanie.",
+        short_desc: "Spokój i chwila refleksji.",
+        full_desc: "Proponujemy rozwiązania w trzech wariantach: stalowe, z tworzywa PCV oraz z granitu w odcieniu nagrobka. Ławeczki możemy dodatkowo wyposażyć w funkcję składania oraz zintegrowany schowek. Całość osadzamy trwale w podłożu na ławie betonowej.",
         price: "",
-        image: "addons-bench-2-square.jpg",
-        alt_text: "Granitowa ławeczka"
-    },
-    {
-        name: "Wazony",
-        title: "Wazony nagrobkowe",
-        short_desc: "Nasz klimat wymaga rozwiązań odpornych na mróz, deszcz i słońce.",
-        full_desc: "Wazony z granitu lub metali szlachetnych – trwałe, eleganckie i odporne na warunki atmosferyczne.",
-        price: "",
-        image: "addons-vase-square-alt-2.jpg",
-        alt_text: "Wazon nagrobkowy"
-    },
-    {
-        name: "Płyty i Księgi",
-        title: "Płyty, nakładki i kamienne księgi nagrobkowe",
-        short_desc: "Proces dodania nowego napisu do istniejącego pomnika jest prosty.",
-        full_desc: "Nowe płyty, nakładki lub księgi – eleganckie rozwiązania na dodatkowe napisy.",
-        price: "od 800 PLN",
-        image: "addons-surnames-alt.jpg",
-        alt_text: "Płyty i księgi nagrobkowe"
+        image: "addons-bench-3.jpg",
+        alt_text: "Ławeczka nagrobkowa z montażem"
     },
     {
         name: "Rzeźby",
-        title: "Rzeźby nagrobkowe",
+        title: "Rzeźby i dekoracje kamienne",
         short_desc: "Jedna rzeźba potrafi zawrzeć w sobie całą miłość i szacunek.",
-        full_desc: "Anioły, krzyże i inne rzeźby z granitu, marmuru lub piaskowca.",
-        price: "Wycena indywidualna",
+        full_desc: "Elementy rzeźbiarskie realizujemy we współpracy z profesjonalnym artystą, wyłącznie na Twoje indywidualne zamówienie. Wykonujemy autorskie płaskorzeźby, wizerunki oraz pełne figury kute ręcznie w masie kamienia. Ze względu na unikatowy charakter dzieła, czas oczekiwania podlega odrębnym ustaleniom.",
+        price: "Cena: do indywidualnego ustalenia",
         image: "addons-sculpture.jpg",
-        alt_text: "Rzeźba nagrobkowa"
+        alt_text: "Ręcznie kuta rzeźba nagrobkowa"
     },
     {
-        name: "Wylewki i Okładziny",
-        title: "Wylewki, płytki, okładziny",
-        short_desc: "Zawsze zaczynamy od solidnego fundamentu.",
-        full_desc: "Zbrojone fundamenty, antypoślizgowy granit, płytki lub kostka brukowa.",
-        price: "od 1000 PLN",
-        image: "leveling.jpg",
-        alt_text: "Wylewka i okładzina"
+        name: "Grawerunek",
+        title: "Grawerunek laserowy",
+        short_desc: "Fotograficzna jakość obrazu na kamieniu.",
+        full_desc: "Przenosimy na kamień każdą formę graficzną – wizerunki, ornamentykę oraz indywidualne kompozycje. Wiązka lasera usuwa warstwę poleru, odsłaniając jasną strukturę kamienia. Dzięki temu uzyskujemy obraz o fotograficznej jakości i idealnym odwzorowaniu detali. Powierzchnię pokrywamy chemią kamieniarską, aby zabezpieczyć grawerunek przed czynnikami zewnętrznymi.",
+        price: "Wycena indywidualna",
+        image: "addons-laser-engraving.jpg",
+        alt_text: "Grawerunek laserowy na granicie"
     }
 ] %}
 
@@ -87,11 +78,27 @@
 ] %}
 
 {% set default_faq = [
-    { question: "Jak mogę zamówić usługę?", answer: "Skontaktuj się z nami przez formularz lub telefonicznie." },
-    { question: "Ile trwa realizacja?", answer: "Standardowo 2–4 tygodnie, zależnie od projektu." },
-    { question: "Czy oferujecie gwarancję?", answer: "Tak, wszystkie produkty objęte są wieloletnią gwarancją." }
+    {
+        question: "Kiedy można postawić pomnik po pogrzebie?",
+        answer: "Optymalny czas na postawienie nagrobka to <strong>ok. 6 miesięcy po pogrzebie</strong> (jeśli nie ma silnych mrozów). Głównym powodem jest <strong>naturalne osiadanie gruntu</strong>. Po pochówku ziemia jest rozluźniona i potrzebuje czasu oraz opadów atmosferycznych, aby odpowiednio się zagęścić. Zbyt szybki montaż ciężkiego, granitowego pomnika na niestabilnym podłożu może doprowadzić do <strong>przechylenia się nagrobka</strong>, pęknięcia betonowej ramy, lub uszkodzenia elementów kamiennych. \n\n W przypadku <strong>grobowców murowanych</strong>, czyli tzw. piwniczek, montaż pomnika jest możliwy niemal natychmiast po pogrzebie. Konstrukcja opiera się na <strong>betonowych fundamentach</strong>, a nie na luźnej ziemi, więc nie ma ryzyka, że nagrobek się zapadanie."
+    },
+    {
+        question: "Ile trwa realizacja zamówienia na nagrobek?",
+        answer: "Czas oczekiwania na realizację nagrobka wynosi zazwyczaj <strong>od 3 do 8 tygodni</strong>. Ostateczny termin zależy jednak od stopnia skomplikowania projektu oraz dostępności wybranego kamienia. Jeśli wybierzesz gotowy wzór z ekspozycji zamontujemy nagrobek szybciej, natomiast <strong>projekty indywidualne</strong> lub sprowadzanie rzadkich granitów mogą wydłużyć proces do kilku miesięcy. \n\n Podczas planowania zamówienia, prosimy o uwzględnienie <strong>sezonowości (duże obłożenie przed 1 listopada)</strong> oraz czas potrzebny na uzyskanie formalnych zgód od administracji cmentarza."
+    },
+    {
+        question: "Od czego zależy cena nagrobka?",
+        answer: "Cena nagrobka zależy przede wszystkim od <strong>rodzaju granitu oraz wymiarów pomnika</strong>. Na końcowy koszt istotnie wpływa również stopień skomplikowania projektu, np. niestandardowe kształty, rzeźbienia, grubość płyt, <strong>rodzaj wybranych liter</strong> oraz dodatki. Ważnym elementem wyceny jest także zakres prac montażowych oraz ewentualna konieczność <strong>demontażu starego nagrobka</strong>."
+    },
+    {
+        question: "Czy cena obejmuje montaż i litery?",
+        answer: "Bazowa cena nagrobka obejmuje przygotowanie elementów kamiennych oraz ich <strong>montaż na zbrojonym fundamencie</strong>. Ze względu na ogromną różnorodność technik wykonania <strong>liternictwo oraz dodatki</strong> w postaci ławeczek, wazonów, mis, lampionów, rzeźb, czy grawerunku, <strong>wyceniamy oddzielnie</strong>."
+    },
+    {
+        question: "Jakie formalności muszę załatwić w administracji cmentarza przed montażem?",
+        answer: "Realizacja pomnika na terenie cmentarza wiąże się z koniecznością <strong>zgłoszenia planowanych prac w biurze administracji</strong>. W tym celu musisz przedstawić <strong>uprawnienia do opieki nad grobem</strong> oraz wnieść wymagane opłaty za nadzór i udostępnienie terenu. Uzyskanie stosownego zezwolenia gwarantuje, że montaż odbędzie się w wyznaczonym terminie i zgodnie ze <strong>standardami technicznymi</strong> obowiązującymi na danym obiekcie."
+    }
 ] %}
-
 {% set default_articles = [
     {
         title: "Nowoczesne trendy w kamieniarstwie",
@@ -125,8 +132,6 @@
 
 
 {% block content %}
-
-
 
     {# === SEKCJA 1: HERO / WYBÓR WARIANTU === #}
     <div class="flex section-header mx-auto my-8">
@@ -555,7 +560,7 @@
                                 </svg>
                             </div>
                             <div class="faq-answer-content">
-                                <p class="text-gray-600 p-5 pt-0">{{ item.answer|nl2br }}</p>
+                                <p class="text-gray-600 p-5 pt-0">{{ item.answer|raw|nl2br }}</p>
                             </div>
                         </div>
                     {% endfor %}

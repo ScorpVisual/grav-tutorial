@@ -1,24 +1,11 @@
 {% set shortcut_buttons = [
-    { 'url': '#', 'text': 'Link numer 1' },
-    { 'url': '#', 'text': 'Link numer 2' },
-    { 'url': '#', 'text': 'Link numer 3' },
-    { 'url': '#', 'text': 'Link numer 4' },
-    { 'url': '#', 'text': 'Link numer 5' },
-    { 'url': '#', 'text': 'Link numer 6' },
-    { 'url': '#', 'text': 'Link numer 7' },
-    { 'url': '#', 'text': 'Link numer 8' },
-    { 'url': '#', 'text': 'Link numer 9' },
-    { 'url': '#', 'text': 'Link numer 10' },
-    { 'url': '#', 'text': 'Link numer 11' },
-    { 'url': '#', 'text': 'Link numer 12' },
-    { 'url': '#', 'text': 'Link numer 13' },
-    { 'url': '#', 'text': 'Link numer 14' },
-    { 'url': '#', 'text': 'Link numer 15' },
-    { 'url': '#', 'text': 'Link numer 16' },
-    { 'url': '#', 'text': 'Link numer 17' },
-    { 'url': '#', 'text': 'Link numer 18' },
-    { 'url': '#', 'text': 'Link numer 19' },
-    { 'url': '#', 'text': 'Link numer 20' }
+    { 'url': page.find('/produkty').url, 'text': 'Postawienie pomnika' },
+    { 'url': page.find('/uslugi#wylewki').url, 'text': 'Wylewki i płytki' },
+    { 'url': page.find('/liternictwo-i-zdobienia').url, 'text': 'Dopiski liter' },
+    { 'url': page.find('/galanteria-nagrobkowa').url, 'text': 'Montaż wazonów i dodatków' },
+    { 'url': page.find('/uslugi#remonty').url, 'text': 'Przebudowa pomnika' },
+    { 'url': page.find('/liternictwo-i-zdobienia#malowanie').url, 'text': 'Malowanie liter' },
+    { 'url': page.find('/uslugi#impregnacja').url, 'text': 'Szlifowanie' }
 ] %}
 {# <div class="min-w-0 w-full relative">
     <div class="folder-flag bg-cherry text-white font-bold">Na skróty</div>
