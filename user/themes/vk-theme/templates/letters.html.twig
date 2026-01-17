@@ -96,7 +96,7 @@
 <section class="px-4 py-16 max-w-screen-xl mx-auto">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
     <div>
-        <img src="{{ theme_url }}/images/products/letters/letters-3d.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+        <img src="{{ theme_url }}/images/products/letters/letters-3d-alt.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
     </div>
     <div class="flex flex-col gap-4 items-stretch">
         <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
@@ -175,7 +175,44 @@
 {% include 'modular/gallery-modular.html.twig' with {'items': lettersGoldData} %}
 </section>
 
-
+<section id="malowanie" class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <img src="{{ theme_url }}/images/products/letters/letters-repaint.jpg" alt="Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div class="flex flex-col gap-4 items-stretch">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Malowanie liter
+        </h2>
+        <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena: <span class="c-white">od XX PLN</span>  za literę lub znak
+        </div>
+        <p class="text-lg text-gray-700">
+             <strong></strong>, 
+             montowane w kamieniu na dyskretnych kołkach.
+             Duis et massa tincidunt, consectetur ipsum vel, aliquam metus. Nullam id ante ac ex posuere fringilla. 
+        </p>
+        <p class="text-lg text-gray-700">
+             Aenean purus odio, elementum sit amet vulputate a, posuere at metus. 
+             Nulla suscipit sapien et mauris tincidunt eleifend. 
+             Donec <strong>efficitur elit sed diam viverra</strong>, at sodales mauris mollis. 
+             Praesent in dui pulvinar, varius mauris blandit, ultrices eros. Nam eget mi magna. Duis et massa tincidunt, consectetur ipsum vel, aliquam metus. Nullam id ante ac ex posuere fringilla. 
+        </p>
+        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#main-content" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
+<section>
+{% set lettersGoldData = [
+    { image_filename: '/images/products/letters/letters-repaint-gallery-1.jpg', title: 'Złote litery malowane' },
+    { image_filename: '/images/products/letters/letters-repaint-gallery-2.jpg', title: 'Złote litery malowane' },
+    { image_filename: '/images/products/letters/letters-repaint-gallery-3.jpg', title: 'Złote litery malowane' }
+] %}
+{% include 'modular/gallery-modular.html.twig' with {'items': lettersGoldData} %}
+</section>
 {% set features = [
         {
             icon: 'tombstone.svg',

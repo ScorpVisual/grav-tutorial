@@ -1,11 +1,32 @@
 {% set shortcut_buttons = [
-    { 'url': page.find('/produkty').url, 'text': 'Postawienie pomnika' },
-    { 'url': page.find('/uslugi#wylewki').url, 'text': 'Wylewki i płytki' },
-    { 'url': page.find('/liternictwo-i-zdobienia').url, 'text': 'Dopiski liter' },
-    { 'url': page.find('/galanteria-nagrobkowa').url, 'text': 'Montaż wazonów i dodatków' },
-    { 'url': page.find('/uslugi#remonty').url, 'text': 'Przebudowa pomnika' },
-    { 'url': page.find('/liternictwo-i-zdobienia#malowanie').url, 'text': 'Malowanie liter' },
-    { 'url': page.find('/uslugi#impregnacja').url, 'text': 'Szlifowanie' }
+    { 
+        'url': pages.find('/produkty').url, 
+        'text': 'Postawienie pomnika' 
+    },
+    { 
+        'url': pages.find('/uslugi').url ~ '#wylewki', 
+        'text': 'Wylewki i płytki' 
+    },
+    { 
+        'url': pages.find('/liternictwo-i-zdobienia').url, 
+        'text': 'Dopiski liter' 
+    },
+    { 
+        'url': pages.find('/galanteria-nagrobkowa').url, 
+        'text': 'Montaż wazonów i dodatków' 
+    },
+    { 
+        'url': pages.find('/uslugi').url ~ '#remonty', 
+        'text': 'Przebudowa pomnika' 
+    },
+    { 
+        'url': pages.find('/liternictwo-i-zdobienia').url ~ '#malowanie', 
+        'text': 'Malowanie liter' 
+    },
+    { 
+        'url': pages.find('/uslugi').url ~ '#impregnacja', 
+        'text': 'Szlifowanie' 
+    }
 ] %}
 {# <div class="min-w-0 w-full relative">
     <div class="folder-flag bg-cherry text-white font-bold">Na skróty</div>
