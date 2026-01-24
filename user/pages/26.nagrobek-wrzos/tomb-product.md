@@ -1,5 +1,5 @@
 ---
-title: Chryzantema
+title: Wrzos
 hero_subtitle: 'Jednopłytowy nagrobek pojedynczy na urny z napisówką stojącą '
 hero_image: tombs-specific.jpg
 hero_overlay: 75
@@ -14,37 +14,37 @@ hero_buttons:
         class: btn-cta
 product_variants:
     -
-        title: Pojedynczy
-        size: Standard
+        title: Podwójny
+        size: Dwupłytowy
         price: '5 499'
-        img: product-05/product-05-single.jpg
-        full_desc: '„Chryzantema” jest klasycznym, pełnowymiarowym nagrobkiem na trumnę. Duża, jednolita tafla granitu prezentuje się dostojnie i stanowi piękne tło dla zniczy i kwiatów. Gładka powierzchnia pozwala w pełni wyeksponować naturalne piękno kamienia i daje swobodę w ustawianiu dekoracji. Możemy nadać jej indywidualny charakter, stosując proste, nowoczesne krawędzie lub bardziej ozdobne, klasyczne profilowanie. Pionowa płyta napisowa sprawia, że inskrypcja jest widoczna z daleka'
-    # -
-    #     title: Podwójny
-    #     size: Podwójny
-    #     price: '5 499'
-    #     img: product-05/product-05-double.jpg
-    #     full_desc: 'Malwa to klasyczny nagrobek, który łatwo można przekształcić w rodzinny grobowiec. Poprzez wykorzystanie wzorca "z krawatem", czyli wstawką pomiędzy dwoma płytami, mamy klasyczny i piękny grób, który będzie służył przez pokolenia. Ilość urn warunkuje głębokość piwniczki.'
+        img: product-06/product-06-double.jpg
+        full_desc: '„Wrzos” to duży, podwójny nagrobek przeznaczony na grób rodzinny. Jego szeroka konstrukcja pozwala na godne pochowanie dwóch osób obok siebie. Sercem tego pomnika jest szeroka płyta napisowa, na której możesz umieścić czytelne dane zmarłych bliskich i sentencje. To piękny symbol bliskości. Taka przestrzeń daje Ci też pełną swobodę w doborze dodatków –wazonów, mis, lampionów oraz zdjęć. Ten model realizujemy na indywidualne zamówienie, dopasowując go do Twojej wizji – możesz wybrać wersję przykrytą dwiema lub trzema płytami.'
+    -
+        title: Potrójny
+        size: Trójpłytowy
+        price: '5 499'
+        img: product-06/product-06-triple.jpg
+        full_desc: 'Wersja potrójna charakteryzuje się nakładającymi się płytami granitowymi, tworzącymi zakładki. Takie rozwiązanie przekształca zwykły nagrobek w architektoniczną rzeźbę. Istnieje możliwość dobrania różnych granitów na płyty, tworząc w ten sposób niepowtaralną kompozycję kolorystyczną.'
 selected_stones:
     srebrzysty_strzegomski: false
-    braz_krolewski: false
+    braz_krolewski: true
     impala_ciemna: false
     astoria: false
     himalaya_blue: false
     szary_perlowy: false
     roz_srebrzysty: false
     china_juparana: false
-    yellow_queen: true
+    yellow_queen: false
     crystal_grey: false
     polar_grey: false
-    impala_indie: false
+    impala_indie: true
     impala_jasna: false
-    viscount_white: false
+    viscount_white: true
     padang_dark: false
     padang_black: false
     steel_grey: false
     braz_mysi: false
-    silver: true
+    silver: false
     nowy_zbik: false
     zbik_szary: false
     chinska_aurora: false
@@ -53,40 +53,40 @@ selected_stones:
     monte_grey: false
     szary_piekny: false
     skalisty: false
-    mwhite: false
-    star_galaxy: true
-    angola_black: false
+    mwhite: true
+    star_galaxy: false
+    angola_black: true
     bengal_black: false
-    ruby_star: true
-    czarny_szwed: false
+    ruby_star: false
+    czarny_szwed: true
     aurora: false
     prada_gold: false
     orion: false
-    orion_silk: true
+    orion_silk: false
 gallery_items:
     -
-        image_filename: product-05/product-05-gallery-1.jpg
+        image_filename: product-06/product-06-gallery-1.jpg
         title: 'Nagrobek pojedynczy - Granit Szwed'
     -
-        image_filename: product-05/product-05-gallery-2.jpg
+        image_filename: product-06/product-06-gallery-2.jpg
         title: 'Zbliżenie na detale wykończenia'
     -
-        image_filename: product-05/product-05-gallery-3.jpg
+        image_filename: product-06/product-06-gallery-3.jpg
         title: 'Wariant rodzinny w jasnym kamieniu'
     -
-        image_filename: product-05/product-05-gallery-4.jpg
+        image_filename: product-06/product-06-gallery-4.jpg
         title: 'Montaż na cmentarzu'
     -
-        image_filename: product-05/product-05-gallery-5.jpg
+        image_filename: product-06/product-06-gallery-5.jpg
         title: 'Montaż na cmentarzu'
     -
-        image_filename: product-05/product-05-gallery-6.jpg
+        image_filename: product-06/product-06-gallery-6.jpg
         title: 'Montaż na cmentarzu'
     -
-        image_filename: product-05/product-05-gallery-7.jpg
+        image_filename: product-06/product-06-gallery-7.jpg
         title: 'Montaż na cmentarzu'
     -
-        image_filename: product-05/product-05-gallery-8.jpg
+        image_filename: product-06/product-06-gallery-8.jpg
         title: 'Montaż na cmentarzu'
 top_label: 'Wybierz wersję produktu'
 stones_title: 'Polecane kamienie'
