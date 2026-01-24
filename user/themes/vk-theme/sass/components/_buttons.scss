@@ -131,8 +131,78 @@
     @include other-btn ();
 }
 
-#scrollToTopBtn {
+// #scrollToTopBtn {
 
+//   position: fixed;
+//   bottom: 1rem;
+//   left: 1rem;
+//   z-index: 50;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 3rem;  
+//   height: 3rem; 
+//   border-radius: 50%;
+//   border: 2px solid transparent; 
+  
+
+//   background-color: $cherry;
+//   color: $white; 
+  
+//   box-shadow: 0 4px 15px rgba($ink, 0.3);
+  
+//   cursor: pointer;
+//   transition: all 0.3s ease-in-out;
+//   opacity: 0;
+//   pointer-events: none;
+//   transform: translateY(20px); 
+
+//   &.is-visible {
+//     opacity: 1;
+//     pointer-events: auto;
+//     transform: translateY(0);
+//   }
+
+//   &:hover {
+//     background-color: $white;
+//     color: $cherry;
+//     border-color: $cherry; // Dodatkowy obrys dla kontrastu
+//     box-shadow: 0 6px 20px rgba($ink, 0.4);
+//     transform: translateY(-3px); // Lekki skok w górę
+//     &::after{
+//       content: 'Przewiń do góry';
+//       position: absolute;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       width: 220px;
+//       height: 32px;
+//       font-weight: 500;
+//       top: 9px;
+//       left: 54px;
+//       right: 60px;
+//       bottom: -6px;
+//       border: 2px solid rgba($cherry, 0.5);
+//       background-color: $white;
+//       border-radius: 8px;
+//       animation: fadeInUp .5s ease-in-out forwards;
+//     }
+//   }
+
+//   svg {
+//     width: 1.5rem; 
+//     height: 1.5rem;
+//     fill: currentColor; 
+//     stroke: none;       
+//   }
+
+//   @media (min-width: $breakpoint-md) { 
+//     bottom: 1.5rem;
+//     left: 1.5rem;
+//   }
+// }
+#scrollToTopBtn {
   position: fixed;
   bottom: 1rem;
   left: 1rem;
@@ -146,7 +216,6 @@
   border-radius: 50%;
   border: 2px solid transparent; 
   
-
   background-color: $cherry;
   color: $white; 
   
@@ -158,6 +227,21 @@
   pointer-events: none;
   transform: translateY(20px); 
 
+  //Animacja pulsowania ---
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba($cherry, 0.7);
+    z-index: -1; 
+    animation: pulse-white 2s infinite cubic-bezier(0.66, 0, 0, 1);
+  }
+  // ------------------------------------
+
   &.is-visible {
     opacity: 1;
     pointer-events: auto;
@@ -167,9 +251,15 @@
   &:hover {
     background-color: $white;
     color: $cherry;
-    border-color: $cherry; // Dodatkowy obrys dla kontrastu
+    border-color: $cherry;
     box-shadow: 0 6px 20px rgba($ink, 0.4);
-    transform: translateY(-3px); // Lekki skok w górę
+    transform: translateY(-3px);
+    
+    // Opcjonalnie: zatrzymanie pulsowania po najechaniu, aby nie rozpraszało
+    // &::before {
+    //   animation: none;
+    // }
+
     &::after{
       content: 'Przewiń do góry';
       position: absolute;
@@ -202,7 +292,6 @@
     left: 1.5rem;
   }
 }
-
 
 // .shuffle-carousel__btn {
 //     position: absolute;

@@ -1,7 +1,7 @@
 title: Produkt (Hero + Warianty)
 '@extends':
-    type: default
-    context: blueprints://pages
+  type: default
+  context: blueprints://pages
 
 form:
   fields:
@@ -26,7 +26,6 @@ form:
               type: filepicker
               label: Wybierz obraz tła Hero
               folder: 'theme@:/images/covers'
-              value: name
               preview_images: true
               accept:
                 - .jpg
@@ -87,7 +86,10 @@ form:
                 .img:
                   type: filepicker
                   label: Zdjęcie wariantu
-                  folder: 'theme@:/images/products'
+                  # Startujemy w katalogu głównym produktów
+                  folder: 'user://themes/vk-theme/images/products'
+                  # WAŻNE: recurse: true pozwala klikać w podfoldery (jak product-02)
+                  recurse: true
                   preview_images: true
                   accept:
                     - image/*
@@ -107,17 +109,17 @@ form:
               type: text
               label: Nagłówek sekcji kamieni
               default: "Polecane kamienie"
-            
+
             header.selected_stones:
               type: checkboxes
               label: Wybierz dostępne kamienie
               help: "Zaznacz klucze kamieni zdefiniowane w pliku konfiguracyjnym."
               use: keys
               classes: stone-grid-wrapper
-              data-options@: '\Grav\Theme\VkTheme::getStoneOption' 
+              data-options@: '\Grav\Theme\VkTheme::getStoneOption'
 
         # ==========================================================
-        # ZAKŁADKA 4: GALANTERIA (DODATKI) - Z DEFAULTAMI
+        # ZAKŁADKA 4: GALANTERIA (DODATKI)
         # ==========================================================
         addons_tab:
           type: tab
@@ -127,63 +129,11 @@ form:
               type: text
               label: Tytuł sekcji dodatków
               default: "Galanteria"
-            
+
             header.product_addons:
               type: list
               label: Lista Dodatków
               style: vertical
-              # --------------------------------------------------------
-              # DOMYŚLNE WARTOŚCI DLA DODATKÓW (Na bazie Twojego HTML)
-              # --------------------------------------------------------
-              default:
-                - name: "Galanteria Ogólna"
-                  title: "Galanteria nagrobkowa"
-                  short_desc: "Pamięć o bliskich może przybrać fizyczną formę. To ona sprawia, że zimny kamień staje się bliższy, bardziej ludzki."
-                  full_desc: "Stworzyliśmy naszą kolekcję galanterii nagrobkowej właśnie po to – byś mógł nadać pomnikowi ten osobisty, ciepły wymiar. Rzeźbiony detal, przy którym zatrzymasz dłoń, ławeczka zapraszająca do chwili ciszy, wazon gotowy przyjąć żywy kolor kwiatów. To Twoje gesty miłości i pamięci, którym nadaliśmy trwałą, szlachetną formę. Każdy nagrobek przyozdobimy w wybrane przez Ciebie elementy z naszej oferty galanterii nagrobkowej."
-                  price: ""
-                  image: "addons-main.jpg"
-                  alt_text: "Nowoczesny nagrobek wykonany przez Kamieniarstwo Wiśniewski"
-                
-                - name: "Ławeczki"
-                  title: "Ławeczki nagrobkowe"
-                  short_desc: "Wiemy, że każdy potrzebuje czegoś innego, by w spokoju przeżyć chwilę refleksji."
-                  full_desc: "Jeśli Twoim celem jest stworzenie jednolitej, kamiennej kompozycji z pomnikiem, najlepszym rozwiązaniem będzie ławeczka granitowa. Gdy chcesz dodać przestrzeni klasycznej elegancji i szlachetnego detalu, najlepiej sprawdzi się kunsztowny metal. A jeśli po prostu szukasz wygodnego i trwałego siedziska, wybierz praktyczne, nowoczesne ławeczki z tworzywa."
-                  price: ""
-                  image: "addons-bench-2-square.jpg"
-                  alt_text: "Granitowa ławeczka"
-
-                - name: "Wazony"
-                  title: "Wazony nagrobkowe"
-                  short_desc: "Nasz klimat wymaga rozwiązań, które są odporne na mróz, deszcz i słońce."
-                  full_desc: "Wazony z granitu, który jest naturalną skałą, są absolutnie niewrażliwe na cykle zamarzania i odmarzania. Integrujemy je z pomnikiem na stałe, eliminując ryzyko przypadkowego strącenia przez wiatr. Wazony z metali szlachetnych zabezpieczamy specjalnymi powłokami, które chronią je przed korozją i utratą koloru przez wiele lat."
-                  price: ""
-                  image: "addons-vase-square-alt-2.jpg"
-                  alt_text: "Wazon nagrobkowy"
-
-                - name: "Płyty i Księgi"
-                  title: "Płyty, nakładki i kamienne księgi nagrobkowe"
-                  short_desc: "Proces dodania nowego napisu do istniejącego pomnika jest prosty."
-                  full_desc: "Jeśli na istniejącej płycie jest miejsce, bezpiecznie ją demontujemy, a w naszym warsztacie nanosimy nowe dane, odtwarzając styl napisu. Gdy potrzebujesz nowej przestrzeni, stworzymy ją, montując na pomniku elegancką nakładkę lub symboliczną kamienną księgę. Oferujemy także możliwość montażu całkowicie nowej płyty napisowej z granitu."
-                  price: "od 800 PLN"
-                  image: "addons-surnames-alt.jpg"
-                  alt_text: "Płyty i księgi nagrobkowe"
-
-                - name: "Rzeźby"
-                  title: "Rzeźby nagrobkowe"
-                  short_desc: "Jedna, prosta rzeźba potrafi zawrzeć w sobie całą miłość, tęsknotę i szacunek."
-                  full_desc: "Postać anioła, symbolizująca nadzieję i ochronę lub krzyż upamiętniający mękę Chrystusa, przypominający o życiu wiecznym. Niezależnie od Twojej wizji z granitu, marmuru lub piaskowca wydobędziemy kształt, który stanie się wiecznym wyrazem Twoich najgłębszych uczuć."
-                  price: "Wycena indywidualna"
-                  image: "addons-sculpture.jpg"
-                  alt_text: "Rzeźba nagrobkowa"
-
-                - name: "Wylewki i Okładziny"
-                  title: "Wylewki, płytki, okładziny"
-                  short_desc: "Naszą pracę zawsze zaczynamy od oceny podłoża i jeśli to konieczne, tworzymy solidny fundament."
-                  full_desc: "Tworzymy solidny, zbrojony fundament, który zabezpiecza teren przed zapadaniem i przesuwaniem się elementów. Dopiero na tak przygotowanym gruncie układamy wybrane przez Ciebie wykończenie: antypoślizgowy granit, eleganckie płytki lub klasyczną kostkę brukową. W ten sposób zyskujesz nienaganny wygląd otoczenia pomnika oraz pewność, że całość zachowa estetykę i stabilność przez dekady."
-                  price: "od 1000 PLN"
-                  image: "leveling.jpg" # Uwaga: upewnij się, że plik jest w folderze products/addons lub zmień folder w filepickerze
-                  alt_text: "Wylewka i okładzina"
-
               fields:
                 .name:
                   type: text
@@ -208,9 +158,45 @@ form:
                 .alt_text:
                   type: text
                   label: Alt Text
+              # default:
+              #   - name: "Liternictwo"
+              #     title: "Liternictwo nagrobkowe"
+              #     short_desc: "Każdy napis projektujemy indywidualnie, uwzględniając unikalną strukturę i barwę wybranego granitu."
+              #     full_desc: "Oferujemy litery głęboko piaskowane, malowane specjalistyczną emalią, złocenie płatkowe lub litery nakładane ze stali kwasoodpornej. Doradzimy Ci technikę, która najlepiej sprawdzi się przy twardości i ziarnistości danego kamienia."
+              #     price: "od 25 PLN za znak"
+              #     image: "addons-surnames-alt.jpg"
+              #     alt_text: "Liternictwo nagrobkowe"
+              #   - name: "Rzeźby"
+              #     title: "Rzeźby i dekoracje kamienne"
+              #     short_desc: "Elementy rzeźbiarskie realizujemy we współpracy z profesjonalnym artystą, wyłącznie na Twoje indywidualne zamówienie."
+              #     full_desc: "Wykonujemy autorskie płaskorzeźby, wizerunki oraz pełne figury kute ręcznie w masie kamienia. Ze względu na unikatowy charakter dzieła, czas oczekiwania podlega odrębnym ustaleniom."
+              #     price: "Wycena indywidualna"
+              #     image: "addons-sculpture.jpg"
+              #     alt_text: "Rzeźba w kamieniu"
+              #   - name: "Galanteria"
+              #     title: "Galanteria nagrobkowa"
+              #     short_desc: "Misy, wazony i latarnie toczymy z litego granitu dopasowanego do barwy nagrobka lub wykonujemy z mosiądzu."
+              #     full_desc: "Każdy element jest wyposażony w otwór drenażowy zapobiegający pękaniu zimą. Montaż realizujemy metodą kotwienia na szpilki ze stali kwasoodpornej oraz przy użyciu specjalistycznych spoiw kamieniarskich."
+              #     price: ""
+              #     image: "addons-vase-square-alt-2.jpg"
+              #     alt_text: "Wazony i galanteria nagrobkowa"
+              #   - name: "Ławeczki"
+              #     title: "Ławeczki"
+              #     short_desc: "Proponujemy rozwiązania w trzech wariantach: stalowe, z tworzywa PCV oraz z granitu w odcieniu nagrobka."
+              #     full_desc: "Ławeczki możemy dodatkowo wyposażyć w funkcję składania oraz zintegrowany schowek. Całość osadzamy trwale w podłożu na ławie betonowej."
+              #     price: ""
+              #     image: "addons-bench-2-square.jpg"
+              #     alt_text: "Ławeczka przygrobnia"
+              #   - name: "Grawerunek"
+              #     title: "Grawerunek laserowy"
+              #     short_desc: "Przenosimy na kamień każdą formę graficzną – wizerunki, ornamentykę oraz indywidualne kompozycje."
+              #     full_desc: "Wiązka lasera usuwa warstwę poleru, odsłaniając jasną strukturę kamienia. Dzięki temu uzyskujemy obraz o fotograficznej jakości i idealnym odwzorowaniu detali. Powierzchnię pokrywamy chemią kamieniarską, aby zabezpieczyć grawerunek przed czynnikami zewnętrznymi."
+              #     price: ""
+              #     image: "laser-engraving.jpg"
+              #     alt_text: "Grawerunek laserowy na nagrobku"
 
         # ==========================================================
-        # ZAKŁADKA 5: CECHY (FEATURES) - Z DEFAULTAMI
+        # ZAKŁADKA 5: CECHY (FEATURES)
         # ==========================================================
         features_tab:
           type: tab
@@ -223,27 +209,10 @@ form:
             header.features_subtitle:
               type: textarea
               label: Podtytuł sekcji Cechy
-            
+
             header.features:
               type: list
               label: Lista Cech (Ikony)
-              # --------------------------------------------------------
-              # DOMYŚLNE CECHY
-              # --------------------------------------------------------
-              default:
-                - title: "Mrozoodporność i niska nasiąkliwość"
-                  text: "Granit wyróżnia się niską porowatością, dlatego jest całkowicie odporny na deszcz, śnieg i skrajne temperatury."
-                  icon: "tombstone.svg"
-                  alt: "Ikona nagrobka odpornego na mróz"
-                - title: "Trwały poler"
-                  text: "Granitowe płyty poddajemy mechanicznej obróbce, która zamyka pory kamienia, tworząc idealnie gładką, lustrzaną taflę, odporną na osadzanie się mchu i brudu. Taka powierzchnia ułatwia czyszczenie pomnika."
-                  icon: "tombstone.svg"
-                  alt: "Ikona trwałego poleru"
-                - title: "Gwarancja satysfakcji"
-                  text: "Twoje zadowolenie jest naszym priorytetem. Służymy wsparciem na każdym etapie realizacji zamówienia."
-                  icon: "tombstone.svg"
-                  alt: "Ikona gwarancji"
-
               fields:
                 .title:
                   type: text
@@ -257,6 +226,19 @@ form:
                 .alt:
                   type: text
                   label: Alt ikony
+              default:
+                - title: "Mrozoodporność i niska nasiąkliwość"
+                  text: "Granit wyróżnia się niską porowatością, dlatego jest całkowicie odporny na deszcz, śnieg i skrajne temperatury."
+                  icon: "tombstone.svg"
+                  alt: "Ikona nagrobka odpornego na mróz"
+                - title: "Trwały poler"
+                  text: "Granitowe płyty poddajemy mechanicznej obróbce, która zamyka pory kamienia, tworząc idealnie gładką, lustrzaną taflę, odporną na osadzanie się mchu i brudu. Taka powierzchnia ułatwia czyszczenie pomnika."
+                  icon: "tombstone.svg"
+                  alt: "Ikona trwałego poleru"
+                - title: "Gwarancja satysfakcji"
+                  text: "Twoje zadowolenie jest naszym priorytetem. Służymy wsparciem na każdym etapie realizacji zamówienia."
+                  icon: "tombstone.svg"
+                  alt: "Ikona gwarancji"
 
         # ==========================================================
         # ZAKŁADKA 6: GALERIA
@@ -279,7 +261,7 @@ form:
                   label: Podpis (Alt/Overlay)
 
         # ==========================================================
-        # ZAKŁADKA 7: FAQ - Z DEFAULTAMI
+        # ZAKŁADKA 7: FAQ
         # ==========================================================
         faq_tab:
           type: tab
@@ -292,19 +274,6 @@ form:
             header.faq_items:
               type: list
               label: Pytania
-              # --------------------------------------------------------
-              # DOMYŚLNE PYTANIA FAQ
-              # --------------------------------------------------------
-              default:
-                - question: "Jak mogę zamówić usługę?"
-                  answer: "Wystarczy skontaktować się z nami przez formularz kontaktowy lub telefonicznie, a nasz zespół poprowadzi Cię krok po kroku przez cały proces, od wyboru materiału po finalizację zamówienia."
-                - question: "Ile trwa realizacja zamówienia?"
-                  answer: "Standardowy czas realizacji to od 2 do 4 tygodni, w zależności od złożoności projektu i dostępności wybranych materiałów. Zawsze informujemy o przewidywanym terminie na etapie składania zamówienia."
-                - question: "Czy mogę liczyć na wsparcie po wykonaniu usługi?"
-                  answer: "Oczywiście. Oferujemy pełne wsparcie posprzedażowe, w tym porady dotyczące konserwacji i pielęgnacji. Jesteśmy do Twojej dyspozycji w razie jakichkolwiek pytań."
-                - question: "Czy oferujecie gwarancję na swoje produkty?"
-                  answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
-
               fields:
                 .question:
                   type: text
@@ -312,9 +281,24 @@ form:
                 .answer:
                   type: textarea
                   label: Odpowiedź
+              # default:
+              #   - question: "Kiedy można postawić pomnik po pogrzebie?"
+              #     answer: "Optymalny czas na postawienie nagrobka to <strong>ok. 6 miesięcy po pogrzebie</strong> (jeśli nie ma silnych mrozów). Głównym powodem jest <strong>naturalne osiadanie gruntu</strong>. Po pochówku ziemia jest rozluźniona i potrzebuje czasu oraz opadów atmosferycznych, aby odpowiednio się zagęścić. Zbyt szybki montaż ciężkiego, granitowego pomnika na niestabilnym podłożu może doprowadzić do <strong>przechylenia się nagrobka</strong>, pęknięcia betonowej ramy, lub uszkodzenia elementów kamiennych. \n\n W przypadku <strong>grobowców murowanych</strong>, czyli tzw. piwniczek, montaż pomnika jest możliwy niemal natychmiast po pogrzebie. Konstrukcja opiera się na <strong>betonowych fundamentach</strong>, a nie na luźnej ziemi, więc nie ma ryzyka, że nagrobek się zapadanie."
+
+              #   - question: "Ile trwa realizacja zamówienia na nagrobek?"
+              #     answer: "Czas oczekiwania na realizację nagrobka wynosi zazwyczaj <strong>od 3 do 8 tygodni</strong>. Ostateczny termin zależy jednak od stopnia skomplikowania projektu oraz dostępności wybranego kamienia. Jeśli wybierzesz gotowy wzór z ekspozycji zamontujemy nagrobek szybciej, natomiast <strong>projekty indywidualne</strong> lub sprowadzanie rzadkich granitów mogą wydłużyć proces do kilku miesięcy. \n\n Podczas planowania zamówienia, prosimy o uwzględnienie <strong>sezonowości (duże obłożenie przed 1 listopada)</strong> oraz czas potrzebny na uzyskanie formalnych zgód od administracji cmentarza."
+
+              #   - question: "Od czego zależy cena nagrobka?"
+              #     answer: "Cena nagrobka zależy przede wszystkim od <strong>rodzaju granitu oraz wymiarów pomnika</strong>. Na końcowy koszt istotnie wpływa również stopień skomplikowania projektu, np. niestandardowe kształty, rzeźbienia, grubość płyt, <strong>rodzaj wybranych liter</strong> oraz dodatki. Ważnym elementem wyceny jest także zakres prac montażowych oraz ewentualna konieczność <strong>demontażu starego nagrobka</strong>."
+
+              #   - question: "Czy cena obejmuje montaż i litery?"
+              #     answer: "Bazowa cena nagrobka obejmuje przygotowanie elementów kamiennych oraz ich <strong>montaż na zbrojonym fundamencie</strong>. Ze względu na ogromną różnorodność technik wykonania <strong>liternictwo oraz dodatki</strong> w postaci ławeczek, wazonów, mis, lampionów, rzeźb, czy grawerunku, <strong>wyceniamy oddzielnie</strong>."
+
+              #   - question: "Jakie formalności muszę załatwić w administracji cmentarza przed montażem?"
+              #     answer: "Realizacja pomnika na terenie cmentarza wiąże się z koniecznością <strong>zgłoszenia planowanych prac w biurze administracji</strong>. W tym celu musisz przedstawić <strong>uprawnienia do opieki nad grobem</strong> oraz wnieść wymagane opłaty za nadzór i udostępnienie terenu. Uzyskanie stosownego zezwolenia gwarantuje, że montaż odbędzie się w wyznaczonym terminie i zgodnie ze <strong>standardami technicznymi</strong> obowiązującymi na danym obiekcie."
 
         # ==========================================================
-        # ZAKŁADKA 8: ARTYKUŁY - Z DEFAULTAMI
+        # ZAKŁADKA 8: ARTYKUŁY
         # ==========================================================
         articles_tab:
           type: tab
@@ -328,13 +312,33 @@ form:
               type: textarea
               label: Tekst wprowadzający
               default: "Dowiedz się więcej o naszych usługach kamieniarskich, projektowaniu nagrobków i renowacji pomników poprzez nasze artykuły i porady ekspertów."
-            
+
             header.articles:
               type: list
               label: Wybrane artykuły
-              # --------------------------------------------------------
-              # DOMYŚLNE ARTYKUŁY
-              # --------------------------------------------------------
+              fields:
+                .title:
+                  type: text
+                  label: Tytuł
+                .hero_subtitle:
+                  type: text
+                  label: Podtytuł
+                .description:
+                  type: textarea
+                  label: Zajawka
+                .image_src:
+                  type: filepicker
+                  label: Obrazek
+                  folder: 'theme@:/images/articles'
+                .url:
+                  type: text
+                  label: Link
+                .date:
+                  type: text
+                  label: Data
+                .category:
+                  type: text
+                  label: Kategoria
               default:
                 - title: "Nowoczesne trendy w kamieniarstwie"
                   hero_subtitle: "Innowacje i Design"
@@ -357,29 +361,3 @@ form:
                   url: "#"
                   date: "10-09-2025"
                   category: "Wiedza"
-
-              fields:
-                .title:
-                  type: text
-                  label: Tytuł
-                .hero_subtitle:
-                  type: text
-                  label: Podtytuł
-                .description:
-                  type: textarea
-                  label: Zajawka
-                .image_src:
-                  type: filepicker
-                  label: Obrazek
-                  folder: 'theme@:/images/articles'
-                  # Zmieniłem folder na 'articles' zgodnie z logiką, 
-                  # ale jeśli trzymasz je gdzie indziej, popraw tutaj.
-                .url:
-                  type: text
-                  label: Link
-                .date:
-                  type: text # Zmieniłem na text, bo format daty w defaultach YAML może być kapryśny
-                  label: Data
-                .category:
-                  type: text
-                  label: Kategoria
