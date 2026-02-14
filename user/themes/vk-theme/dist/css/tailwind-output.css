@@ -752,6 +752,10 @@ video {
   margin-bottom: auto;
 }
 
+.mb-0 {
+  margin-bottom: 0px;
+}
+
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -980,6 +984,10 @@ video {
   min-height: 100vh;
 }
 
+.min-h-\[140px\] {
+  min-height: 140px;
+}
+
 .w-16 {
   width: 4rem;
 }
@@ -1176,6 +1184,10 @@ video {
 
 .gap-0\.5 {
   gap: 0.125rem;
+}
+
+.gap-1 {
+  gap: 0.25rem;
 }
 
 .gap-12 {
@@ -2138,6 +2150,11 @@ video {
   .md\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
+  }
+
+  .md\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 
   .md\:text-sm {

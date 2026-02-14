@@ -24,7 +24,7 @@ product_variants:
         size: Trójpłytowy
         price: '5 499'
         img: product-06/product-06-triple.jpg
-        full_desc: 'Wersja potrójna charakteryzuje się nakładającymi się płytami granitowymi, tworzącymi zakładki. Takie rozwiązanie przekształca zwykły nagrobek w architektoniczną rzeźbę. Istnieje możliwość dobrania różnych granitów na płyty, tworząc w ten sposób niepowtaralną kompozycję kolorystyczną.'
+        full_desc: 'Wersja potrójna charakteryzuje się nakładającymi się płytami granitowymi, tworzącymi zakładki. Takie rozwiązanie przekształca zwykły nagrobek w architektoniczną rzeźbę. Istnieje możliwość dobrania różnych granitów na płyty, tworząc w ten sposób niepowtarzalną kompozycję kolorystyczną.'
 selected_stones:
     srebrzysty_strzegomski: false
     braz_krolewski: true

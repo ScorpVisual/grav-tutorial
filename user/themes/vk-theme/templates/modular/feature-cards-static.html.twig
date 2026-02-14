@@ -1,5 +1,24 @@
 {# LEGACY CODE TO BE REPLACED!!! #}
-
+{% set features = [
+        {
+            icon: 'tombstone.svg',
+            title: 'Wyselekcjonowane materiały',
+            text: '<strong>Korzystamy wyłącznie z granitu pierwszego gatunku.</strong><br><br>Zyskujesz pewność, że nagrobek zachowa swoją strukturę i&nbsp;piękno mimo upływu lat. Tworzymy pomniki odporne na mróz wilgoć i słońce.',
+            alt: 'Ikona jakości materiału'
+        },
+        {
+            icon: 'tombstone.svg',
+            title: 'Kunszt detalu',
+            text: '<strong>Dbałość o detal to nasz znak rozpoznawczy.</strong> <br><br>Każde cięcie i&nbsp;rzeźbienie wykonujemy z&nbsp;najwyższą starannością, wydobywając z kamienia jego naturalne piękno i&nbsp;perfekcyjny&nbsp;połysk.',
+            alt: 'Ikona precyzji wykonania'
+        },
+        {
+            icon: 'tombstone.svg',
+            title: 'Partnerskie podejście',
+            text: '<strong>Jesteśmy po to, by słuchać i&nbsp;doradzać.</strong> <br><br>Poprowadzimy Cię przez cały proces - oferujemy fachowe wsparcie na każdym etapie powstawania nagrobka.',
+            alt: 'Ikona gwarancji satysfakcji'
+        }
+    ] %}
 <section class="py-8 lg:py-16">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         {# --- Section Header --- #}
@@ -8,9 +27,9 @@
                 Co nas wyróżnia?
             </h1>
             <p>
-                Specjalizujemy się w pracach cmentarnych, budowie nagrobków i renowacji pomników.
-                Skontaktuj się w celu zapoznania się z pełną ofertą naszych usług - nasza strona pozostaje w budowie, 
-                ale jesteśmy dostępni telefonicznie i mailowo.
+                <strong>Tworzymy w kamieniu historię, która przetrwa próbę czasu. </strong>
+                Projektujemy unikalne wzory, budujemy trwałe nagrobki i przeprowadzamy kompleksowe konserwacje pomników, dbając o każdy detal struktury. 
+                <strong>Skontaktuj się z nami i zapoznaj się z naszymi realizacjami.</strong>
             </p>
         </div>
 
@@ -31,7 +50,7 @@
                     <hr class="w-full hr-underline bg-cherry mb-3">
 
                     <p class="text-text-brown leading-relaxed grow">
-                        {{ feature.text }}
+                        {{ feature.text|raw }}
                     </p>
                 </div>
             {% endfor %}
