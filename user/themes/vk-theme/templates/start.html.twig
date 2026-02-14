@@ -1,7 +1,7 @@
 {% extends 'partials/base.html.twig' %}
 {% block content %}
 
-{% include 'partials/old_shortcut.html.twig'%}
+{% include 'partials/shortcut-static.html.twig'%}
 
 
 {% include 'partials/video-ad.html.twig'%}
@@ -14,12 +14,14 @@
     </div>
     <div>
         <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
-            Specjalizujemy się w nagrobkach
+            Tworzymy nagrobki na pokolenia
         </h1>
         <p class="text-lg text-gray-700">
-            Specjalizujemy się w kompleksowym tworzeniu nagrobków. 
-            Zapewniamy naszym klientom pełne wsparcie i fachowe doradztwo. 
-            Oferujemy zarówno pomoc z przygotowaniem projektu pomnika, jak i realizację gotowych projektów.
+            <strong>Specjalizujemy się w realizacji nagrobków z wyselekcjonowanych kamieni naturalnych. </strong>
+            Niezależnie od tego, czy masz własną wizję, czy wybierasz gotowy projekt, 
+            Kamieniarstwo Wiśniewski zapewni Ci pełne wsparcie i doradztwo na każdym etapie realizacji. 
+            Pomagamy dobrać odpowiedni rodzaj i barwę kamienia, formę pomnika oraz galanterię nagrobkową. 
+            Całą konstrukcję osadzamy na <strong>zbrojonym, betonowym fundamencie</strong>, który zabezpiecza jej trwałość na dziesięciolecia.
         </p>
         <p class="text-lg text-gray-700">
             <strong>Nasze usługi obejmują cały proces:</strong> od selekcji odpowiedniego kamienia,
@@ -45,10 +47,11 @@
             Zaufany zakład kamieniarski na Śląsku
         </h1>
         <p class="text-lg text-gray-700">
-              Od ponad 30 lat dostarczamy wysokiej jakości usługi kamieniarskie, specjalizując się w projektowaniu i wykonawstwie nagrobków dla klientów z Dąbrowy Górniczej i całego Śląska.
+        <strong>Od trzech dekad udowadniamy, że w kamieniarstwie nie ma dróg na skróty.</strong> Prawdziwe rzemiosło to połączenie surowej dyscypliny z empatią wobec drugiego człowieka. 
+        Wybór szlachetnych odmian granitu i <strong>autorskie techniki montażu</strong> to nasz sposób na to, by pomóc Ci w godnym pożegnaniu bliskich.        
         </p>
         <p class="text-lg text-gray-700">
-              Stawiamy na najwyższą jakość materiałów i precyzję pracy. Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla rzemiosła. 
+              Stawiamy na najwyższą jakość materiałów i precyzję pracy. <strong>Podstawą naszej działalności są niezachwiana solidność wykonania i szacunek dla klientów.</strong> 
         </p>
                 <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
                 <a href="{{ page.find('/uslugi').url }}" class="btn-primary flex-grow text-center">
@@ -78,7 +81,9 @@
             </h2>
 
             <p class="text-lg text-gray-700 leading-relaxed">
-                Wybór odpowiedniego nagrobka to ważna i często trudna decyzja. Rozumiemy to, dlatego nasze wieloletnie doświadczenie jest do Państwa dyspozycji. Służymy wsparciem na każdym etapie – od wyboru materiału, przez projekt, aż po finalny montaż, dbając o każdy detal.
+                W Kamieniarstwie Wiśniewski wiemy, że <strong>w obliczu straty trudno skupić się na technicznych szczegółach</strong>, 
+                dlatego bierzemy je na siebie. Doradzamy przy wyborze materiału, 
+                projektujemy nagrobek i <strong>przechodzimy przez cały ten proces razem z Tobą, krok po kroku.</strong>
             </p>
                 <a href="https://biznes.interia.pl/finanse/news-ile-kosztuje-pomnik-granitowy-ceny-u-kamieniarza,nId,7977744"
                    class="btn-tertiary w-full sm:w-auto text-center justify-center text-gray-700 hover:text-gray-900 text-xl font-semibold">
@@ -86,7 +91,9 @@
                 </a>
             
             <p class="text-lg text-gray-700 leading-relaxed">
-                Naszym celem jest transparentność i Państwa spokój. Chętnie odpowiemy na wszystkie pytania, wyjaśnimy różnice w cenach i pomożemy znaleźć rozwiązanie, które najlepiej odda hołd pamięci Państwa bliskich, mieszcząc się w założonym budżecie.
+                <strong>Naszym celem jest transparentność i Twój spokój. </strong>
+                Chętnie odpowiemy na wszystkie pytania, wyjaśnimy różnice w cenach i pomożemy znaleźć rozwiązanie, 
+                które najlepiej odda hołd pamięci Twoich bliskich.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 pt-4">
@@ -169,29 +176,7 @@
 {% include 'modular/article-cards-static.html.twig' %}
 {# end articles #}
 {# FAQ #}
-{% set faq_items = [
-    {
-        question: "Jak mogę zamówić usługę?",
-        answer: "Wystarczy skontaktować się z nami przez formularz kontaktowy lub telefonicznie, a nasz zespół poprowadzi Cię krok po kroku przez cały proces, od wyboru materiału po finalizację zamówienia."
-    },
-    {
-        question: "Ile trwa realizacja zamówienia?",
-        answer: "Standardowy czas realizacji to od 2 do 4 tygodni, w zależności od złożoności projektu i dostępności wybranych materiałów. Zawsze informujemy o przewidywanym terminie na etapie składania zamówienia."
-    },
-    {
-        question: "Czy mogę liczyć na wsparcie po wykonaniu usługi?",
-        answer: "Oczywiście. Oferujemy pełne wsparcie posprzedażowe, w tym porady dotyczące konserwacji i pielęgnacji. Jesteśmy do Twojej dyspozycji w razie jakichkolwiek pytań."
-    },
-    {
-        question: "Czy oferujecie gwarancję na swoje produkty?",
-        answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
-    }
-] %}
-   <div class="flex section-header mx-auto my-8">
-        <div class="section-header__content section-header__bg--red">
-            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Najczęstsze pytania</h3>
-        </div>
-    </div>
-{% include 'modular/faq-static.html.twig'%}
+
+{% include 'modular/faq-general.html.twig'%}
 {# END FAQ #}
 {% endblock %}

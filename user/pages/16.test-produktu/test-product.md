@@ -1,6 +1,7 @@
 ---
 title: 'Test produktu'
-published: true
+published: false
+visible: false
 hero_type: custom-hero
 media_order: VK-nagrobki-125.jpg
 hero_image: VK-nagrobki-125.jpg

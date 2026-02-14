@@ -32,7 +32,7 @@
 
 
 {# --- SEKCJA 1: KAMIENIE EKONOMICZNE (TANIE) --- #}
-<section class="px-4 py-16 max-w-screen-xl mx-auto">
+<section id="oferta" class="px-4 py-16 max-w-screen-xl mx-auto">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
     <div class="flex flex-col gap-4 items-stretch">
         <h1 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry uppercase">
@@ -48,10 +48,10 @@
             Grupa kamieni charakteryzujących się dużą dostępnością i przystępną ceną. Ich atrakcyjna cena wynika z efektu skali, ponieważ są to zazwyczaj bardzo popularne granity, wydobywane masowo i sprowadzane w dużych ilościach transportem kontenerowym.
         </p>
         <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4 mt-4">
-            <a href="#economic-carousel" class="btn-primary flex-grow text-center">
+            <a href="#ekonomiczne" class="btn-primary flex-grow text-center">
                 Zobacz dostępne wzory
             </a>
-            <a href="#contact" class="btn-cta flex-grow text-center">
+            <a href="#kontakt" class="btn-cta flex-grow text-center">
                 Zapytaj o wycenę
             </a>
         </div>
@@ -66,7 +66,7 @@
         with { group_title: 'Ekonomiczne', group_keys: economic_keys }
     %}
 {# Galeria (Statyczna - Twoje stare dane) #}
-<section>
+<section id="ekonomiczne">
 {% set popularStonesData = [
     { image_filename: '/images/products/stones/stones-strzegomski-1.jpg', title: 'Granit strzegomski' },
     { image_filename: '/images/products/stones/stones-strzegomski-2.jpg', title: 'Granit strzegomski' },
@@ -96,10 +96,10 @@
              <strong>Kompromis Cena/Jakość.</strong> Materiały o najlepszym stosunku ceny do jakości. Oferują szlachetniejszy wygląd i bogatszą kolorystykę niż warianty ekonomiczne.
         </p>
         <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4 mt-4">
-            <a href="#medium-carousel" class="btn-primary flex-grow text-center">
+            <a href="#premium" class="btn-primary flex-grow text-center">
                 Zobacz dostępne wzory
             </a>
-            <a href="#contact" class="btn-cta flex-grow text-center">
+            <a href="#kontakt" class="btn-cta flex-grow text-center">
                 Skontaktuj się
             </a>
         </div>
@@ -112,7 +112,7 @@
     %}
 
 {# Galeria (Statyczna - Twoje stare dane) #}
-<section>
+<section id="premium">
 {% set exclusiveStonesData = [
     { image_filename: '/images/products/stones/stones-exclusive-1.jpg', title: 'Czarny Szwed' },
     { image_filename: '/images/products/stones/stones-exclusive-2.jpg', title: 'Granit Drogi' },
@@ -140,7 +140,7 @@
              Najdroższe materiały na rynku. Obejmują granity w odcieniach głębokiej czerni oraz unikalne granity egzotyczne. Często są trudnodostępne, ponieważ muszą być importowane z odległych rejonów świata (Indie, Skandynawia, Brazylia).
         </p>
         <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4 mt-4">
-            <a href="#contact" class="btn-cta flex-grow text-center">
+            <a href="#kontakt" class="btn-cta flex-grow text-center">
                 Zamów wycenę indywidualną
             </a>
         </div>

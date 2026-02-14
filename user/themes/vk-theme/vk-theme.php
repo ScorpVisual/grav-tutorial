@@ -3,6 +3,7 @@ namespace Grav\Theme;
 
 use Grav\Common\Theme;
 use Grav\Common\Grav;
+use RocketTheme\Toolbox\Event\Event;
 
 class VkTheme extends Theme
 {
@@ -20,7 +21,7 @@ class VkTheme extends Theme
     
 public function onAssetsInitialized() {
     if ($this->isAdmin()) {
-        $this->grav['assets']->addCss('user/themes/vk-theme/admin/admin.css');
+        $this->grav['assets']->addCss('user://themes/vk-theme/admin/admin.css', ['priority' => 10]);
     }
 }
 
@@ -78,6 +79,43 @@ public function onAssetsInitialized() {
         // Teraz zwracamy pełną tablicę
         return $stoneOptionsListing;
     }
+
+    // public function onBlueprintCreated(Event $event)
+    // {
+    //     // 1. Działamy tylko w Adminie
+    //     if (!$this->isAdmin()) {
+    //         return;
+    //     }
+
+    //     // 2. Pobieramy stronę
+    //     $page = $this->grav['admin']->page();
+    //     if (!$page) {
+    //         return;
+    //     }
+
+    //     $blueprint = $event['blueprint'];
+    //     $slug = $page->slug(); // np. "product-01" albo "nagrobek-wz-1"
+        
+    //     // 3. Sprawdzamy, czy dedykowany folder istnieje
+    //     // Używamy lokatora, żeby sprawdzić fizyczną obecność folderu
+    //     $locator = $this->grav['locator'];
+    //     $specificPathRelative = 'images/products/' . $slug;
+    //     $resource = $locator->findResource('theme://' . $specificPathRelative);
+
+    //     if ($resource) {
+    //         // Folder istnieje -> wchodzimy do niego
+    //         $targetFolder = 'theme@:/' . $specificPathRelative;
+    //     } else {
+    //         // Folder NIE istnieje -> pokazujemy katalog główny (fallback)
+    //         $targetFolder = 'theme@:/images/products';
+    //     }
+
+    //     // 4. Ścieżka do pola w YAML (nie zmieniaj tego, jeśli działało wcześniej)
+    //     $fieldPath = 'form/fields/tabs/fields/product_tab/fields/header.product_variants/fields/.img/folder';
+
+    //     // 5. Ustawiamy folder
+    //     $blueprint->set($fieldPath, $targetFolder);
+    // }
 }
 
     //     // 1. Zbuduj ścieżkę do Twojego pliku JSON

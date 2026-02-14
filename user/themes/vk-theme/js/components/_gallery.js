@@ -289,41 +289,81 @@ document.addEventListener('DOMContentLoaded', () => {
     //  4. KARUZELA "NA SKRÓTY"
     // ====================================================================
     function initShortcutCarousel() {
-        const carouselContainer = document.querySelector('.js-shortcut-carousel-container');
-        if (!carouselContainer) return;
+    // 1. Pobieramy WSZYSTKIE kontenery karuzeli na stronie
+    const carousels = document.querySelectorAll('.js-shortcut-carousel-container');
 
+    if (carousels.length === 0) {
+        console.log('Grav Carousel: Nie znaleziono kontenerów .js-shortcut-carousel-container');
+        return;
+    }
+
+    // 2. Uruchamiamy logikę dla każdego znalezionego slidera osobno
+    carousels.forEach((carouselContainer, index) => {
         const track = carouselContainer.querySelector('.shortcut-carousel__track');
         const prevButton = carouselContainer.querySelector('.shortcut-button__left');
         const nextButton = carouselContainer.querySelector('.shortcut-button__right');
-        const viewport = track.parentElement; 
+        
+        // Viewport to bezpośredni rodzic tracka (ten z overflow-x-auto)
+        const viewport = track ? track.parentElement : null;
 
-        if (!track || !prevButton || !nextButton || !viewport) return;
+        // Walidacja dla konkretnej instancji
+        if (!track || !prevButton || !nextButton || !viewport) {
+            console.error(`Grav Carousel (Index ${index}): Brakuje wymaganych elementów HTML.`);
+            return;
+        }
 
         const updateNavButtons = () => {
-            const tolerance = 1;
-            const isAtStart = viewport.scrollLeft <= tolerance;
-            const isAtEnd = viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - tolerance;
+            // Używamy Math.ceil dla pewności przy skalowaniu przeglądarki
+            const scrollLeft = Math.ceil(viewport.scrollLeft);
+            const maxScrollLeft = viewport.scrollWidth - viewport.clientWidth;
+            
+            // Tolerancja 2px dla niedokładności przeglądarek
+            const tolerance = 2; 
 
+            const isAtStart = scrollLeft <= tolerance;
+            const isAtEnd = scrollLeft >= maxScrollLeft - tolerance;
+
+            // Logika stanów przycisków
+            // Lewy
             prevButton.disabled = isAtStart;
-            nextButton.disabled = isAtEnd;
             prevButton.style.opacity = isAtStart ? '0.5' : '1';
+            prevButton.style.cursor = isAtStart ? 'default' : 'pointer';
+
+            // Prawy
+            nextButton.disabled = isAtEnd;
             nextButton.style.opacity = isAtEnd ? '0.5' : '1';
+            nextButton.style.cursor = isAtEnd ? 'default' : 'pointer';
         };
 
-        nextButton.addEventListener('click', () => {
-            const scrollAmount = viewport.clientWidth * 0.8;
-            viewport.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        // Obsługa kliknięć
+        const scrollAmount = () => viewport.clientWidth * 0.7; // 70% szerokości
+
+        nextButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            viewport.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
         });
 
-        prevButton.addEventListener('click', () => {
-            const scrollAmount = viewport.clientWidth * 0.8;
-            viewport.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        prevButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            viewport.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
         });
 
+        // Nasłuchiwanie
         viewport.addEventListener('scroll', updateNavButtons, { passive: true });
+        
+        // Observer zmian rozmiaru (np. obrót telefonu)
         new ResizeObserver(updateNavButtons).observe(viewport);
-        updateNavButtons();
-    }
+
+        // Inicjalizacja startowa
+        // Mały timeout, żeby upewnić się, że style CSS się załadowały i wymiary są poprawne
+        setTimeout(updateNavButtons, 50);
+    });
+}
+
+// Wywołanie na dole (zgodnie z Twoim info)
+if (document.querySelector('.js-shortcut-carousel-container')) {
+    initShortcutCarousel();
+}
 
     // ====================================================================
     //  5. OBSŁUGA KART PRODUKTÓW (NAKŁADKI)
@@ -459,4 +499,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.js-shortcut-carousel-container')) initShortcutCarousel();
     if (document.querySelector('.product-card')) initOverlayProductCards();
     if (document.querySelector('.js-product-carousel')) initProductCarousel();
+    
 });

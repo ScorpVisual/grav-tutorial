@@ -1,6 +1,6 @@
 title: 'Moduł - Dwie Kolumny Tekstu'
 icon: align-left
-template: modular/text_columns
+template: modular/text-columns
 
 form:
   fields:
@@ -36,10 +36,10 @@ form:
           title: ⬅️ Lewa Kolumna
           fields:
             header.left_column_blocks:
-              name: header.left_column_blocks
               type: list
               label: Bloki treści w lewej kolumnie
               style: vertical
+              btnLabel: 'Dodaj blok do lewej kolumny'
               fields:
                 .type:
                   type: select
@@ -50,18 +50,17 @@ form:
                     styled_list: 'Stylowana Lista (Kamyczki)'
                     subheading: 'Podnagłówek'
 
-                
                 .content:
                   type: textarea
                   label: Treść (dla Akapitu)
                   rows: 5
                   display_if: "this.type == 'paragraph'"
-                
+
                 .text:
                   type: text
                   label: Treść Podnagłówka
                   display_if: "this.type == 'subheading'"
-                
+
                 .underline:
                   type: toggle
                   label: 'Podkreślenie podnagłówka?'
@@ -73,10 +72,11 @@ form:
                   validate:
                     type: int
                   display_if: "this.type == 'subheading'"
-                
+
                 .items:
                   type: list
                   label: Punkty listy
+                  style: vertical
                   display_if: "this.type == 'styled_list'"
                   fields:
                     .text:
@@ -88,10 +88,10 @@ form:
           title: ➡️ Prawa Kolumna
           fields:
             header.right_column_blocks:
-              name: header.right_column_blocks
               type: list
               label: Bloki treści w prawej kolumnie
               style: vertical
+              btnLabel: 'Dodaj blok do prawej kolumny'
               fields:
                 .type:
                   type: select
@@ -102,18 +102,17 @@ form:
                     styled_list: 'Stylowana Lista (Kamyczki)'
                     subheading: 'Podnagłówek'
 
-                
                 .content:
                   type: textarea
                   label: Treść (dla Akapitu)
                   rows: 5
                   display_if: "this.type == 'paragraph'"
-                
+
                 .text:
                   type: text
                   label: Treść Podnagłówka
                   display_if: "this.type == 'subheading'"
-                
+
                 .underline:
                   type: toggle
                   label: 'Podkreślenie podnagłówka?'
@@ -125,10 +124,11 @@ form:
                   validate:
                     type: int
                   display_if: "this.type == 'subheading'"
-                
+
                 .items:
                   type: list
                   label: Punkty listy
+                  style: vertical
                   display_if: "this.type == 'styled_list'"
                   fields:
                     .text:

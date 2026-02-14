@@ -1,0 +1,621 @@
+{% extends 'partials/base.html.twig' %}
+
+{# --- KONFIGURACJA I DANE --- #}
+{% set productVariants = page.header.product_variants %}
+{% set mainVariant = productVariants|first %}
+{% set unique_id = unique_id|default(random()) %}
+{% set defaults = config.themes['vk-theme']['tomb-defaults'] %}
+
+{# --- DEFAULTY STATYCZNE (BEZ YAML, BEZ CONFIG) --- #}
+
+{% set default_addons = [
+    {
+        name: "Liternictwo",
+        title: "Liternictwo nagrobkowe",
+        short_desc: "Każdy napis projektujemy indywidualnie.",
+        full_desc: "Każdy napis projektujemy indywidualnie, uwzględniając unikalną strukturę i barwę wybranego granitu. Oferujemy litery głęboko piaskowane, malowane specjalistyczną emalią, złocenie płatkowe lub litery nakładane ze stali kwasoodpornej. Doradzimy Ci technikę, która najlepiej sprawdzi się przy twardości i ziarnistości danego kamienia.",
+        price: "od 25 PLN za literę lub znak",
+        image: "addons-text.jpg",
+        alt_text: "Liternictwo nagrobkowe"
+    },
+    {
+        name: "Galanteria nagrobkowa",
+        title: "Wazony, misy i latarnie",
+        short_desc: "Miejsce na kwiaty lub znicz równie trwałe co pomnik.",
+        full_desc: "Misy, wazony i latarnie toczymy z litego granitu dopasowanego do barwy nagrobka lub wykonujemy z mosiądzu. Każdy element jest wyposażony w otwór drenażowy zapobiegający pękaniu zimą. Montaż realizujemy metodą kotwienia na szpilki ze stali kwasoodpornej oraz przy użyciu specjalistycznych spoiw kamieniarskich.",
+        price: "",
+        image: "addons-vase.jpg",
+        alt_text: "Wazony i misy nagrobkowe"
+    },
+    {
+        name: "Ławeczki",
+        title: "Ławeczki nagrobkowe",
+        short_desc: "Spokój i chwila refleksji.",
+        full_desc: "Proponujemy rozwiązania w trzech wariantach: stalowe, z tworzywa PCV oraz z granitu w odcieniu nagrobka. Ławeczki możemy dodatkowo wyposażyć w funkcję składania oraz zintegrowany schowek. Całość osadzamy trwale w podłożu na ławie betonowej.",
+        price: "",
+        image: "addons-bench-3.jpg",
+        alt_text: "Ławeczka nagrobkowa z montażem"
+    },
+    {
+        name: "Detale dekoracyjne",
+        title: "Dodatki i ozdobniki",
+        short_desc: "Jedna rzeźba potrafi zawrzeć w sobie całą miłość i szacunek.",
+        full_desc: "Oferujemy dwie sprawdzone metody zdobienia, które są w pełni bezpieczne dla struktury granitu. Pierwszą z nich są aplikacje z metali szlachetnych montowanie mechanicznie na ukrytych trzpieniach i profesjonalnych klejach dwuskładnikowych. Alternatywnie proponujemy też lekkie detale kompozytowe oraz odlewy żywiczne utwardzane promieniami UV.",
+        price: "Cena: do indywidualnego ustalenia",
+        image: "addons-sculpture.jpg",
+        alt_text: "Ręcznie kuta rzeźba nagrobkowa"
+    },
+    {
+        name: "Grawerunek",
+        title: "Grawerunek laserowy",
+        short_desc: "Fotograficzna jakość obrazu na kamieniu.",
+        full_desc: "Przenosimy na kamień każdą formę graficzną – wizerunki, ornamentykę oraz indywidualne kompozycje. Wiązka lasera usuwa warstwę poleru, odsłaniając jasną strukturę kamienia. Dzięki temu uzyskujemy obraz o fotograficznej jakości i idealnym odwzorowaniu detali. Powierzchnię pokrywamy profesjonalnymi środkami, aby zabezpieczyć grawerunek przed czynnikami zewnętrznymi.",
+        price: "Wycena indywidualna",
+        image: "addons-laser-engraving.jpg",
+        alt_text: "Grawerunek laserowy na granicie"
+    }
+] %}
+
+{% set default_features = [
+    {
+        title: "Mrozoodporność i niska nasiąkliwość",
+        text: "Granit jest odporny na deszcz, śnieg i skrajne temperatury.",
+        icon: "tombstone.svg",
+        alt: "Ikona nagrobka odpornego na mróz"
+    },
+    {
+        title: "Trwały poler",
+        text: "Mechaniczna obróbka zamyka pory kamienia, tworząc gładką taflę.",
+        icon: "tombstone.svg",
+        alt: "Ikona trwałego poleru"
+    },
+    {
+        title: "Gwarancja satysfakcji",
+        text: "Oferujemy wsparcie na każdym etapie realizacji zamówienia.",
+        icon: "tombstone.svg",
+        alt: "Ikona gwarancji"
+    }
+] %}
+
+{% set default_faq = [
+    {
+        question: "Kiedy można postawić pomnik po pogrzebie?",
+        answer: "Optymalny czas na postawienie nagrobka to <strong>ok. 6 miesięcy po pogrzebie</strong> (jeśli nie ma silnych mrozów). Głównym powodem jest <strong>naturalne osiadanie gruntu</strong>. Po pochówku ziemia jest rozluźniona i potrzebuje czasu oraz opadów atmosferycznych, aby odpowiednio się zagęścić. Zbyt szybki montaż ciężkiego, granitowego pomnika na niestabilnym podłożu może doprowadzić do <strong>przechylenia się nagrobka</strong>, pęknięcia betonowej ramy, lub uszkodzenia elementów kamiennych. \n\n W przypadku <strong>grobowców murowanych</strong>, czyli tzw. piwniczek, montaż pomnika jest możliwy niemal natychmiast po pogrzebie. Konstrukcja opiera się na <strong>betonowych fundamentach</strong>, a nie na luźnej ziemi, więc nie ma ryzyka, że nagrobek się zapadanie."
+    },
+    {
+        question: "Ile trwa realizacja zamówienia na nagrobek?",
+        answer: "Czas oczekiwania na realizację nagrobka wynosi zazwyczaj <strong>od 3 do 8 tygodni</strong>. Ostateczny termin zależy jednak od stopnia skomplikowania projektu oraz dostępności wybranego kamienia. Jeśli wybierzesz gotowy wzór z ekspozycji zamontujemy nagrobek szybciej, natomiast <strong>projekty indywidualne</strong> lub sprowadzanie rzadkich granitów mogą wydłużyć proces do kilku miesięcy. \n\n Podczas planowania zamówienia, prosimy o uwzględnienie <strong>sezonowości (duże obłożenie przed 1 listopada)</strong> oraz czas potrzebny na uzyskanie formalnych zgód od administracji cmentarza."
+    },
+    {
+        question: "Od czego zależy cena nagrobka?",
+        answer: "Cena nagrobka zależy przede wszystkim od <strong>rodzaju granitu oraz wymiarów pomnika</strong>. Na końcowy koszt istotnie wpływa również stopień skomplikowania projektu, np. niestandardowe kształty, rzeźbienia, grubość płyt, <strong>rodzaj wybranych liter</strong> oraz dodatki. Ważnym elementem wyceny jest także zakres prac montażowych oraz ewentualna konieczność <strong>demontażu starego nagrobka</strong>."
+    },
+    {
+        question: "Czy cena obejmuje montaż i litery?",
+        answer: "Bazowa cena nagrobka obejmuje przygotowanie elementów kamiennych oraz ich <strong>montaż na zbrojonym fundamencie</strong>. Ze względu na ogromną różnorodność technik wykonania <strong>liternictwo oraz dodatki</strong> w postaci ławeczek, wazonów, mis, lampionów, rzeźb, czy grawerunku, <strong>wyceniamy oddzielnie</strong>."
+    },
+    {
+        question: "Jakie formalności muszę załatwić w administracji cmentarza przed montażem?",
+        answer: "Realizacja pomnika na terenie cmentarza wiąże się z koniecznością <strong>zgłoszenia planowanych prac w biurze administracji</strong>. W tym celu musisz przedstawić <strong>uprawnienia do opieki nad grobem</strong> oraz wnieść wymagane opłaty za nadzór i udostępnienie terenu. Uzyskanie stosownego zezwolenia gwarantuje, że montaż odbędzie się w wyznaczonym terminie i zgodnie ze <strong>standardami technicznymi</strong> obowiązującymi na danym obiekcie."
+    }
+] %}
+{% set default_articles = [
+    {
+        title: "Nowoczesne trendy w kamieniarstwie",
+        hero_subtitle: "Innowacje i Design",
+        description: "Minimalistyczne formy i nowoczesne materiały.",
+        image_src: "services-photo.jpg",
+        url: "#",
+        date: "20-09-2025",
+        category: "Inspiracje"
+    },
+    {
+        title: "Jak dbać o nagrobek z granitu?",
+        hero_subtitle: "Poradnik Pielęgnacji",
+        description: "Jak czyścić i konserwować granit.",
+        image_src: "stones-photo-2.jpg",
+        url: "#",
+        date: "15-09-2025",
+        category: "Porady"
+    },
+    {
+        title: "Personalizacja pomnika – co warto wiedzieć?",
+        hero_subtitle: "Unikalny Charakter",
+        description: "Grawerunek, rzeźba, indywidualne detale.",
+        image_src: "stones-photo.jpg",
+        url: "#",
+        date: "10-09-2025",
+        category: "Wiedza"
+    }
+] %}
+
+
+
+{% block content %}
+
+    {# === SEKCJA 1: HERO / WYBÓR WARIANTU === #}
+    <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--black-darkened ">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                {{ page.header.top_label|default('Wybierz wersję produktu') }}
+            </h3>
+        </div>
+    </div>
+    {# === SEKCJA GŁÓWNA: PRODUKT I WARIANTY === #}
+
+{# Pobieramy warianty z konfiguracji strony #}
+{% set variants = page.header.product_variants %}
+
+{% if variants is not empty %}
+<section class="lg:px-4 py-16 max-w-screen-xl mx-auto product-details-module">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      
+      {# --- LEWA KOLUMNA: ZDJĘCIE --- #}
+      <div>
+          {# Pobieramy zdjęcie pierwszego wariantu na start #}
+          {% set firstImg = variants[0].img %}
+          
+          {# Logika ścieżki: Sprawdzamy czy to pełny URL, czy ścieżka w theme #}
+          {% if 'http' not in firstImg and '/' not in firstImg|first %}
+             {% set firstImgUrl = theme_url ~ '/images/products/' ~ firstImg %}
+          {% else %}
+             {% set firstImgUrl = theme_url ~ firstImg %}
+          {% endif %}
+
+          <img id="product-image" 
+               src="{{ firstImgUrl }}" 
+               alt="{{ page.header.section_title|default(page.title) }}" 
+               class="w-full object-cover golden-img-border hard-shadow animated-opacity transition-opacity duration-200">
+      </div>
+
+      {# --- PRAWA KOLUMNA: TREŚĆ --- #}
+      <div class="overflow-hidden h-full flex flex-col">
+          <div class="p-0 flex flex-col flex-grow gap-4 md:p-6">
+              
+              {# Tytuł sekcji #}
+              <h2 class="text-3xl font-bold text-gray-800 underline--cherry lg:whitespace-nowrap">
+                  {{ page.header.section_title|default(page.title) }}
+              </h2>
+
+              {# --- BUTTONY WARIANTÓW --- #}
+              <div class="flex flex-col justify-around lg:flex-row gap-3">
+                  {% for variant in variants %}
+                      {# Budowanie ścieżki dla każdego wariantu do data-img #}
+                      {% if 'http' not in variant.img and '/' not in variant.img|first %}
+                         {% set variantImgUrl = theme_url ~ '/images/products/' ~ variant.img %}
+                      {% else %}
+                         {% set variantImgUrl = theme_url ~ variant.img %}
+                      {% endif %}
+
+                      <button
+                          type="button"
+                          class="variant-button btn-tertiary text-center 
+                                 text-gray-600 hover:text-gray-900 shrink-0 
+                                 whitespace-nowrap {% if loop.first %}is-active{% endif %}"
+                          data-price="{{ variant.price }}"
+                          data-desc="{{ variant.full_desc }}"
+                          data-img="{{ variantImgUrl }}"
+                      >
+                          {{ variant.size }}
+                      </button>
+                  {% endfor %}
+              </div>
+
+              {# --- CENA --- #}
+              <div class="text-xl md:text-2xl font-bold mt-2 price-highlighted">
+                  Cena: <span class="c-white">od <span id="product-price" class="animated-opacity">{{ variants[0].price }}</span> PLN</span>
+              </div>
+
+              {# --- OPIS --- #}
+              <p id="product-description" class="min-h-[200px] text-gray-700 text-lg animated-opacity transition-opacity duration-200">
+                  {{ variants[0].full_desc }}
+              </p>
+
+              {# --- PRZYCISKI CTA --- #}
+              <div class="flex flex-col lg:flex-row gap-3 mt-auto">
+                  <a href="#szczegoly" class="btn-primary flex-grow text-center">
+                      Zobacz realizacje
+                  </a>
+                  <a href="#kontakt" class="btn-cta flex-grow text-center">
+                      Zamów produkt
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+{% endif %}
+
+
+    {# === SEKCJA 2: GALERIA === #}
+         <div class="flex section-header mx-auto my-8">
+            <div class="section-header__content section-header__bg--black">
+                <h3 id="szczegoly" class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                    Realizacje
+                </h3>
+            </div>
+        </div>
+
+    
+    {% set items = page.header.gallery_items %}
+    {% if items is defined and items is not empty %}
+        <div class="lg:px-[5%]" >
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for item in items %}
+                    <div class="relative w-full h-64 rounded-lg shadow-lg overflow-hidden pale-img-border product-img cursor-pointer js-gallery-item"
+                         data-src="{{ theme_url }}/images/products/{{ item.image_filename }}"
+                         data-title="{{ item.title }}">
+                        <img src="{{ theme_url }}/images/products/{{ item.image_filename }}" 
+                             alt="{{ item.title }}" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-white bg-black bg-opacity-20">
+                            <span class="product-img__mini--check text-lg font-bold tracking-widest">OBEJRZYJ</span>
+                            <div class="product-img__mini--title mt-2 text-xl font-semibold">{{ item.title }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {# MODAL GALERII #}
+        <div id="fullscreen-modal" class="is-hidden fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ease-in-out opacity-0 reset-fadeIn">
+            <button id="close-modal-btn" class="absolute top-5 right-5 text-white text-5xl font-bold z-[52] hover:text-gray-300 transition-colors">&times;</button>
+            <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl font-bold z-[52] p-4 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl font-bold z-[52] p-4 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+            <div class="relative flex flex-col items-center justify-center">
+                <img id="fullscreen-image" src="" alt="Fullscreen product image" class="max-w-[85vw] max-h-[85vh] rounded-lg shadow-2xl">
+                <div id="fullscreen-alt-text" class="product-img__mini--title mt-4 text-xl font-semibold text-white text-center"></div>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+    {# === SEKCJA 3: POLECANE KAMIENIE  === #}
+  <section class="py-4 lg:py-8">
+    {% set stones_source = stone_options %}
+    {% set selected_keys = page.header.selected_stones %}
+    
+    {% set stones_to_show = [] %}
+
+    {% if selected_keys is iterable %}
+        {% for key, is_active in selected_keys %}
+            {# 2. Kluczowy warunek: 'is_active' musi być true #}
+            {% if is_active and stones_source[key] is defined %}
+                {% set stones_to_show = stones_to_show|merge([stones_source[key]]) %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {# Fallback: Opcjonalnie - jeśli lista pusta, pokaż np. 3 domyślne lub nic #}
+
+
+    {# --- NAGŁÓWEK --- #}
+    <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--black">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                {{ page.header.top_label|default('Polecane kamienie') }}
+            </h3>
+        </div>
+    </div>
+
+
+    {# --- KARUZELA --- #}
+    {% set unique_id = unique_id|default(random()) %}
+
+    {% if stones_to_show is not empty %}
+    <div class="js-material-carousel max-w-screen-xl mx-auto md:px-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-20 items-center my-12">
+
+        <div class="relative flex items-center justify-center">
+            
+            <button data-dir="prev" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--prev z-30" data-target="carousel-container-{{ unique_id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+
+            <div id="carousel-container-{{ unique_id }}" class="carousel-main-container w-full h-full flex items-center justify-center">
+                {% for material in stones_to_show %}
+                    {% if material.img %}
+                        <img src="{{ theme_url }}/images/stones/{{ material.img }}"
+                             alt="{{ material.name|default('Kamień') }}"
+                             {# Atrybuty dla JS #}
+                             data-name="{{ material.name }}"
+                             data-desc="{{ material.desc }}"
+                             data-price="{{ material.price_level|default(1) }}"
+                             data-availability="{{ material.availability_level|default(5) }}"
+                             {# Klasy stylizujące z Twojego starego kodu #}
+                             class="carousel-item rounded-lg object-cover cursor-pointer material-info-container"
+                        >
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <button data-dir="next" class="carousel-btn shuffle-carousel__btn shuffle-carousel__btn--next z-30" data-target="carousel-container-{{ unique_id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+        </div>
+
+        {# PRAWA: OPIS #}
+        <div id="materialInfo-{{ unique_id }}" class="p-4 lg:p-6 lg:ml-12 material-info-container z-20 relative self-start">
+            <div class="flex justify-center lg:justify-start border-bot-cherry mb-4 items-end">
+                <h3 id="materialName-{{ unique_id }}" class="text-3xl font-bold text-gray-800 transition-opacity duration-300 inline-block"></h3>
+            </div>
+            {# Cena (Z ID dla Labela) #}
+            <div id="rowPrice-{{ unique_id }}" class="flex row justify-center lg:justify-start items-center space-x-2 text-xl font-semibold text-gray-800 mt-2">
+                <span id="labelPrice-{{ unique_id }}" class="w-32 text-right lg:text-left text-gray-500 text-base uppercase tracking-wider transition-opacity duration-300">Cena:</span> 
+                <div class="js-price-stars flex space-x-1 ml-2 transition-opacity duration-300 opacity-0" data-icon="{{ theme_url }}/images/svg/stone.svg"></div>
+            </div>
+
+            {# Dostępność (Z ID dla Labela) #}
+            <div id="rowAvail-{{ unique_id }}" class="flex row justify-center lg:justify-start items-center space-x-2 text-xl font-semibold text-gray-800 mt-1">
+                <span id="labelAvail-{{ unique_id }}" class="w-32 text-right lg:text-left text-gray-500 text-base uppercase tracking-wider transition-opacity duration-300">Dostępność:</span> 
+                <div class="js-availability-stars flex space-x-1 ml-2 transition-opacity duration-300 opacity-0" data-icon="{{ theme_url }}/images/svg/stone.svg"></div>
+            </div>
+
+            <p id="materialDesc-{{ unique_id }}" class="text-gray-600 text-lg leading-relaxed transition-opacity duration-300 mt-4 min-h-[160px] lg:min-h-[250px] text-left">
+                {# JS wypełni to pole #}
+            </p>
+            
+            {% if page.header.button_text %}
+            <div class="flex justify-center lg:justify-start w-full mt-8 mb-8">
+                <a href="{{ page.header.button_link|default('#') }}" class="btn-primary px-10 py-4 shadow-lg hover:shadow-xl transition-all">
+                    {{ page.header.button_text }}
+                </a>
+            </div>
+            {% endif %}
+            
+        </div>
+    </div>
+    {% endif %}
+
+    {# LEGENDA (Statyczna - bez zmian) #}
+    <div class="max-w-screen-xl mx-auto px-4 mt-20 mb-12">
+         <div class="basic-card-style base-radius p-1 md:p-6 lg:p-10 shadow-sm bg-white">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ">
+                <div class="lg:col-span-4 flex flex-col items-center lg:items-start border-b lg:border-b-0 lg:border-r border-gray-200 pb-6 lg:pb-0 lg:pr-8">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4 underline--cherry inline-block">Skala cenowa</h4>
+            <div class="flex grow w-full items-center justify-around sm:justify-between overflow-x-auto bg-pink-50 px-2 md:px-4 py-3 rounded-xl shadow-inner border border-gray-200 gap-2">
+                <span class="text-xs md:text-sm  font-bold text-slate-600 uppercase tracking-wider whitespace-nowrap">
+                    Przykład:
+                </span>
+                <div class="flex space-x-1 shrink-0">
+                    <img class="h-4 sm:h-6 w-auto" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                    <img class="h-4 sm:h-6 w-auto" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                    <img class="h-4 sm:h-6 w-auto" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                    <img class="h-4 sm:h-6 w-auto opacity-20" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                    <img class="h-4 sm:h-6 w-auto opacity-20" src="{{ theme_url }}/images/svg/stone.svg" alt="cena">
+                </div>
+            </div>
+                </div>
+                <div class="lg:col-span-8 text-center lg:text-left">
+                    <p class="text-gray-700 text-base lg:text-lg leading-relaxed mb-4">
+                        Końcowa wycena zależy od wielu czynników: <strong>dostępności</strong> danego kamienia, <strong>ilości potrzebnego materiału</strong> oraz aktualnej sytuacji na rynkach światowych.
+                    </p>
+                    <a href="{{ page.find('/kamienie').url }}" class="btn-primary flex-grow text-center">
+                    Wszystkie dostępne kamienie
+                </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    {# === SEKCJA 4: DODATKI (CONTENT SWITCHER)  === #}
+    {# === DODATKI (CONTENT SWITCHER) === #}
+
+{# Pobranie dodatków z headera lub z tomb-defaults.yaml #}
+{% set addons = page.header.product_addons ?: default_addons %}
+
+{# Normalizacja ścieżek obrazków #}
+{% set path_prefix = theme_url ~ '/images/products/addons/' %}
+{% set product_addons = [] %}
+
+{% for item in addons %}
+    {% set fixed = item|merge({
+        'image': path_prefix ~ item.image
+    }) %}
+    {% set product_addons = product_addons|merge([fixed]) %}
+{% endfor %}
+
+{% if product_addons is not empty %}
+    <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--black-darkened ">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                {{ page.header.addons_title|default('Galanteria') }}
+            </h3>
+        </div>
+    </div>
+
+    <section class="content-switcher js-content-switcher max-w-7xl mx-auto p-0 md:p-6 lg:p-8"
+        data-content-items='{{ product_addons|json_encode|raw }}'
+    >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+
+            {# --- LISTA DODATKÓW --- #}
+            <div class="md:col-span-1">
+                <button id="addon-drawer-trigger" type="button"
+                        class="w-full flex justify-between items-center p-4 rounded-lg pick-a-card transition-all duration-300 mb-3">
+                    <span id="current-addon-name" class="font-bold text-lg">{{ product_addons[0].name }}</span>
+                    <svg id="addon-drawer-icon" class="w-6 h-6 transition-transform duration-300" fill="none"
+                         stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+
+                <div id="addon-drawer-panel"
+                     class="overflow-hidden transition-all duration-500 ease-in-out max-h-0 md:max-h-none md:overflow-visible">
+                    <div class="flex flex-col gap-3 py-2">
+                        {% for addon in product_addons %}
+                            <div class="content-switcher__card pick-a-card p-4 rounded-lg cursor-pointer transition-all duration-300 {% if loop.first %}--is-active{% endif %}"
+                                 data-index="{{ loop.index0 }}"
+                                 role="button"
+                                 aria-pressed="{{ loop.first ? 'true' : 'false' }}"
+                                 tabindex="0">
+                                <h3 class="font-bold text-lg underline--light-grey">{{ addon.name }}</h3>
+                                <p class="text-sm">{{ addon.short_desc }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            {# --- WYŚWIETLANIE DODATKU --- #}
+            <div class="md:col-span-2">
+                <div class="content-switcher__display rounded-lg overflow-hidden h-full flex flex-col lg:p-6 md:min-h-[52rem]">
+
+                    <img src="{{ product_addons[0].image }}" alt="{{ product_addons[0].alt_text }}"
+                         class="content-switcher__image content-switcher__fade-in w-full object-cover cherry-img-border mb-4 rounded-md">
+
+                    <div class="flex flex-col flex-grow gap-4">
+                        <h2 class="content-switcher__title content-switcher__fade-in text-3xl font-bold underline--cherry">
+                            {{ product_addons[0].title|default(product_addons[0].name) }}
+                        </h2>
+
+                        <div class="content-switcher__price-wrapper text-xl md:text-2xl font-bold mt-2">
+                            <span class="content-switcher__fade-in">
+                                Cena: <span class="content-switcher__price c-cherry">{{ product_addons[0].price }}</span>
+                            </span>
+                        </div>
+
+                        <p class="content-switcher__description content-switcher__fade-in text-lg">
+                            {{ product_addons[0].full_desc|nl2br }}
+                        </p>
+
+                        <div class="flex flex-col lg:flex-row gap-3 mt-auto">
+                            <a href="#szczegoly" class="btn-primary flex-grow text-center">Zobacz realizacje</a>
+                            <a href="#kontakt" class="btn-cta flex-grow text-center">Zamów Dodatek</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endif %}
+
+
+
+    {# === SEKCJA 5: CECHY (FEATURES) === #}
+    {# ZMIANA: Pobranie features z nagłówka lub z blueprintu #}
+    {% set features_list = page.header.features ?: default_features %}
+
+    {% if features_list is defined and features_list is not empty %}
+    <section class="py-8 lg:py-16">
+      <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 ">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
+                {{ page.header.features_title|default('Cechy produktu') }}
+            </h1>
+            <p>{{ page.header.features_subtitle|nl2br }}</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-8 py-8 lg:py-16">
+            {% for feature in features_list %}
+                <div class="p-4 flex flex-col items-center text-center h-full article-card hover-up-4">
+                    <div class="flex-shrink-0 my-auto">
+                        <div class="flex items-start justify-center h-16 w-16">
+                            {# Zakładam, że ikony są w images/icons/ #}
+                            <img src="{{ theme_url }}/images/icons/{{ feature.icon }}" alt="{{ feature.alt }}">
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-ink mb-3 min-h-[3.5rem] flex items-center justify-center text-center">
+                        {{ feature.title }}
+                    </h3>
+                    <hr class="w-full hr-underline bg-cherry mb-3">
+                    <p class="text-text-brown leading-relaxed grow">
+                        {{ feature.text }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+
+    {# === SEKCJA 6: FAQ === #}
+    {# ZMIANA: Pobranie FAQ z nagłówka lub z blueprintu #}
+    {% set faq_items = page.header.faq_items ?: default_faq %}
+
+    {% if faq_items is not empty %}
+    <section class="py-4 lg:py-8">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
+                    {{ page.header.faq_title|default('Najczęściej zadawane pytania') }}
+                </h1>
+                <div class="space-y-4 pt-8">
+                    {% for item in faq_items %}
+                        <div class="faq-item pick-a-card rounded-lg shadow-sm transition-all duration-300 {% if loop.first %}is-active{% endif %}">
+                            <div class="faq-question flex justify-between items-center p-5 cursor-pointer">
+                                <h3 class="font-bold text-lg text-gray-800">{{ item.question }}</h3>
+                                <svg class="faq-icon w-5 h-5 text-gray-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                            <div class="faq-answer-content">
+                                <p class="text-gray-600 p-5 pt-0">{{ item.answer|raw|nl2br }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+
+    {# === SEKCJA 7: ARTYKUŁY  === #}
+    {# ZMIANA: Pobranie artykułów z nagłówka lub z blueprintu #}
+    {% set articles = page.header.articles ?: default_articles %}
+
+    {% if articles is defined and articles is not empty %}
+    <section class="py-8 lg:py-12">
+        <div class="flex section-header mx-auto my-8">
+            <div class="section-header__content section-header__bg--black">
+                <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                    {{ page.header.articles_title|default('Artykuły') }}
+                </h3>
+            </div>
+        </div>
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="max-w-4xl mx-auto mb-8">
+                 <p class="text-center text-gray-700">{{ page.header.articles_text|default("Dowiedz się więcej z naszych artykułów")|nl2br }}</p>
+             </div>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-12">
+                {% for article in articles %}
+                    <div class="article-card">
+                      <div class="article-card__image">
+                        {% if article.image_src %}
+                             {# ZMIANA: Dodano obsługę ścieżki theme:// dla obrazków domyślnych #}
+                             <img src="{{ url('theme://images/photos/' ~ article.image_src) }}" alt="{{ article.title }}">
+                        {% endif %}
+                      </div>
+                      <div class="article-card__content">
+                        <h3 class="article-card__title underline--light-grey">{{ article.title }}</h3>
+                        <p class="article-card__description">{{ article.description }}</p>
+                        <a href="{{ article.url }}" class="btn-tertiary">Czytaj więcej</a>
+                        <div class="article-card__meta">
+                          <div class="article-card__meta-item">
+                            <img src="{{ url('theme://images/svg/articleCard--calendar.svg') }}" alt="" class="icon-svg">
+                            <span>{{ article.date }}</span>
+                          </div>
+                          <div class="article-card__meta-item">
+                            <span>{{ article.category }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}
+             </div>
+        </div>
+    </section>
+    {% endif %}
+
+{% endblock %}

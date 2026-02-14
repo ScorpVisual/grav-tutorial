@@ -1,5 +1,6 @@
 enabled: true
 production: false
+
 dropdown:
   enabled: true
 
@@ -8,3 +9,4 @@ streams:
     theme:
       paths:
         - user/themes/vk-theme
+

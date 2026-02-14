@@ -1,4 +1,30 @@
-/* user/themes/vk-theme/admin/admin.css */
+/* ==========================================================================
+   DEBUGGING - USUŃ TĘ SEKCJĘ PO POTWIERDZENIU DZIAŁANIA
+   ========================================================================== */
+.stone-grid-wrapper {
+    border: 4px dashed #ff0000 !important; /* Czerwona przerywana ramka */
+    background-color: #fff0f0 !important;  /* Lekko różowe tło */
+    position: relative;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.stone-grid-wrapper::before {
+    content: "✅ ADMIN.CSS ZAŁADOWANY POPRAWNIE";
+    display: block;
+    background: #ff0000;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   TWOJE STYLE PRODUKCYJNE
+   ========================================================================== */
 
 /* Układ siatki dla kontenera */
 .stone-grid-wrapper .form-data {
@@ -31,6 +57,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: all 0.2s ease;
 }
 
 /* Hover */
@@ -45,9 +72,10 @@
     color: white !important;
     border-color: #0066cc !important;
     font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Ukrycie domyślnego checka przy labelu (opcjonalne, dla czystszego wyglądu) */
+/* Ukrycie domyślnego checka przy labelu */
 .stone-grid-wrapper input[type="checkbox"] + label:before {
     display: none !important;
 }

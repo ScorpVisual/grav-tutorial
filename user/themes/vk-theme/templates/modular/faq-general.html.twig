@@ -1,0 +1,30 @@
+{% set faq_items = [
+    {
+        question: "Kiedy można postawić pomnik po pogrzebie?",
+        answer: "Optymalny czas na postawienie nagrobka to <strong>ok. 6 miesięcy po pogrzebie</strong> (jeśli nie ma silnych mrozów).<br><br>Głównym powodem jest naturalne osiadanie gruntu. Po pochówku ziemia jest rozluźniona i potrzebuje czasu oraz opadów atmosferycznych, aby odpowiednio się zagęścić. Zbyt szybki montaż ciężkiego, granitowego pomnika na niestabilnym podłożu może doprowadzić do przechylenia się nagrobka, pęknięcia betonowej ramy lub uszkodzenia elementów kamiennych.<br><br><strong>W przypadku grobowców murowanych (tzw. piwniczek)</strong>, montaż pomnika jest możliwy niemal natychmiast po pogrzebie. Konstrukcja opiera się na betonowych fundamentach, a nie na luźnej ziemi, więc nie ma ryzyka, że nagrobek się zapadnie."
+    },
+    {
+        question: "Ile trwa realizacja zamówienia na nagrobek?",
+        answer: "Czas oczekiwania na realizację nagrobka wynosi zazwyczaj <strong>od 3 do 8 tygodni</strong>. Ostateczny termin zależy jednak od stopnia skomplikowania projektu oraz dostępności wybranego kamienia.<br><br>Jeśli wybierzesz gotowy wzór z ekspozycji, zamontujemy nagrobek szybciej, natomiast projekty indywidualne lub sprowadzanie rzadkich granitów mogą wydłużyć proces do kilku miesięcy.<br><br><strong>Ważne:</strong> Podczas planowania zamówienia prosimy o uwzględnienie sezonowości (duże obłożenie przed 1 listopada) oraz czasu potrzebnego na uzyskanie formalnych zgód od administracji cmentarza."
+    },
+    {
+        question: "Od czego zależy cena nagrobka?",
+        answer: "Cena nagrobka zależy przede wszystkim od <strong>rodzaju granitu oraz wymiarów pomnika</strong>.<br>Na końcowy koszt istotnie wpływa również stopień skomplikowania projektu, w tym:<br><br>🪨 niestandardowe kształty i rzeźbienia,<br>📐 grubość płyt,<br>🪦 rodzaj wybranych liter oraz dodatki.<br><br>Ważnym elementem wyceny jest także zakres prac montażowych oraz ewentualna konieczność demontażu starego nagrobka."
+    },
+    {
+        question: "Czy cena obejmuje montaż i litery?",
+        answer: "<strong>Bazowa cena nagrobka obejmuje:</strong> przygotowanie elementów kamiennych oraz ich montaż na zbrojonym fundamencie.<br><br><strong>Wyceniamy oddzielnie:</strong> ze względu na ogromną różnorodność technik wykonania – liternictwo oraz dodatki w postaci ławeczek, wazonów, mis, lampionów, rzeźb czy grawerunku."
+    },
+    {
+        question: "Jakie formalności muszę załatwić w administracji cmentarza przed montażem?",
+        answer: "Realizacja pomnika na terenie cmentarza wiąże się z koniecznością zgłoszenia planowanych prac w biurze administracji.<br><br><strong>W tym celu musisz:</strong><br>1. Przedstawić uprawnienia do opieki nad grobem.<br>2. Wnieść wymagane opłaty za nadzór i udostępnienie terenu.<br><br>Uzyskanie stosownego zezwolenia gwarantuje, że montaż odbędzie się w wyznaczonym terminie i zgodnie ze standardami technicznymi obowiązującymi na danym obiekcie."
+    }
+] %}
+
+<div class="flex section-header mx-auto my-8">
+    <div class="section-header__content section-header__bg--red">
+        <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Najczęstsze pytania</h3>
+    </div>
+</div>
+
+{% include 'modular/faq-static.html.twig'%}
