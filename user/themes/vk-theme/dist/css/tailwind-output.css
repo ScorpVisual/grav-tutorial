@@ -952,6 +952,10 @@ video {
   min-height: 8rem;
 }
 
+.min-h-\[140px\] {
+  min-height: 140px;
+}
+
 .min-h-\[160px\] {
   min-height: 160px;
 }
@@ -982,10 +986,6 @@ video {
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.min-h-\[140px\] {
-  min-height: 140px;
 }
 
 .w-16 {
@@ -1301,6 +1301,10 @@ video {
 
 .whitespace-nowrap {
   white-space: nowrap;
+}
+
+.text-nowrap {
+  text-wrap: nowrap;
 }
 
 .break-words {

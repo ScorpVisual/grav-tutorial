@@ -18,13 +18,13 @@ product_variants:
         size: Standard
         price: '5 499'
         img: product-03/product-03-single.jpg
-        full_desc: 'Model „Malwa” stanowi najpopularniejszą formę nagrobków urnowych o konstrukcji zamkniętej. Pionowa tablica trwale eksponuje dane zmarłego, natomiast gładką poziomą płytę można łatwo utrzymać w czystości. Nagrobek jest niemal bezobsługowy – wystarczy zmieść z niego liście i przemyć go wodą. Idealnie sprawdza się w miejscach zadrzewionych, gdzie łatwo o zabrudzenia.'
+        full_desc: 'Model "Malwa" to nasza najpopularniejsza propozycja wśród **nagrobków urnowych o konstrukcji zamkniętej**. Pionowa tablica w godny sposób eksponuje dane zmarłych, a gładka, pozioma płyta jest wyjątkowo **łatwa w pielęgnacji**. Nagrobek ten jest niemal **bezobsługowy** – aby przywrócić mu pełny blask, wystarczy przemyć go wodą. **To idealne rozwiązanie, jeśli pomnik znajduje się w pobliżu drzew**, z których często opadają liście.'
     -
         title: Podwójny
         size: 'Podwójny'
         price: '5 499'
         img: product-03/product-03-double.jpg
-        full_desc: 'Malwa to klasyczny nagrobek, który łatwo można przekształcić w rodzinny grobowiec. Poprzez wykorzystanie wzorca "z krawatem", czyli wstawką pomiędzy dwoma płytami, mamy klasyczny i piękny grób, który będzie służył przez pokolenia. Ilość urn warunkuje głębokość piwniczki.'
+        full_desc: '"Malwa" to klasyczny nagrobek, który łatwo można przekształcić w rodzinny grobowiec. Poprzez wykorzystanie wzorca "z krawatem", czyli wstawką pomiędzy dwoma płytami, mamy klasyczny i piękny grób, który będzie służył przez pokolenia. Ilość urn warunkuje głębokość piwniczki.'
 selected_stones:
     srebrzysty_strzegomski: false
     braz_krolewski: false

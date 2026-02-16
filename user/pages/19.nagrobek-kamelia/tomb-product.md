@@ -18,7 +18,7 @@ product_variants:
         size: Standard
         price: '5 499'
         img: product-01/single-01.jpg
-        full_desc: 'Sarkofag to klasyczna i trwała forma nagrobka, która swoją masywną, zamkniętą bryłą przypomina lity blok granitu. W tym modelu wszystkie napisy umieszczamy na płycie wierzchniej. W ten sposób zyskujesz dużo miejsca na dane zmarłego i czytelne, długie sentencje. Krawędzie kamienia elegancko ścinamy lub zaokrąglamy, a całość osadzamy na szerokiej ramie połączonej z betonowym, zbrojnym fundamentem.'
+        full_desc: 'Sarkofag "Kamelia" to **klasyczna i trwała forma nagrobka**, która swoją masywną, zamkniętą bryłą przypomina lity blok granitu. W tym modelu wszystkie napisy umieszczamy na płycie wierzchniej. W ten sposób zyskujesz dużo miejsca na dane zmarłego i czytelne, długie sentencje. Krawędzie kamienia elegancko ścinamy lub zaokrąglamy, a całość osadzamy na szerokiej ramie połączonej z **betonowym, zbrojnym fundamentem**.'
     -
         title: Rodzinny
         size: Rodzinny

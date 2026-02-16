@@ -18,7 +18,7 @@ product_variants:
         size: Standard
         price: '5 499'
         img: product-04/product-04-standard.jpg
-        full_desc: '„Aster” to nagrobek urnowy o wzbogaconej konstrukcji. Jego podstawą jest solidna rama, którą przykrywają dwie osobne płyty granitowe, a całość zwieńcza pionowa tablica napisowa. Takie rozwiązanie przełamuje monotonię jednej tafli i pozwala na ciekawe aranżacje – płyty możemy ułożyć na różnych poziomach, tworząc efektowną kaskadę lub zestawić kontrastowe kolory kamienia. Mimo bardziej ozdobnej formy, nagrobek jest łatwy w utrzymaniu czystości.'
+        full_desc: 'Model „Aster” to nagrobek urnowy, który wyróżnia się konstrukcją opartą na **solidnej ramie i dwóch osobnych płytach granitowych**. Możemy zamontować je na różnych poziomach, aby uzyskać **efekt kaskady**, lub połączyć dwa rodzaje kamienia. Całość wieńczy pionowa tablica na napisy. Mimo bardziej ozdobnej formy, nagrobek jest **łatwy w utrzymaniu czystości**.'
 
 selected_stones:
     srebrzysty_strzegomski: false
