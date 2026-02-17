@@ -1,6 +1,7 @@
 ---
 title: Kamienie
 published: true
+visible: true
 hero_image: stones-4.jpg
 hero_overlay: 45
 hero_subtitle: 'Najlepsze płyty granitowe, sprowadzane z całego świata dla naszych klientów'
