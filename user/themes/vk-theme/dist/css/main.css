@@ -4181,6 +4181,61 @@ option {
   background: linear-gradient(to bottom, rgba(3, 2, 8, 0.9) 0%, rgba(3, 2, 8, 0.5) 50%, rgba(3, 2, 8, 0) 100%);
 }
 
+/* ================================
+   OVERLAY MENU – STABILNA TYPOGRAFIA (FIX)
+   ================================ */
+.navbar__full .navbar__links {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+  padding-inline: 2rem;
+  list-style: none;
+  margin: 0;
+}
+@media (min-width: 1024px) {
+  .navbar__full .navbar__links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-inline: 4rem;
+    gap: 3rem;
+  }
+}
+@media (min-width: 1280px) {
+  .navbar__full .navbar__links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.navbar__full .navbar__links--a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+.navbar__full .menu-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  min-height: 48px;
+}
+.navbar__full .menu-icon {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar__full .menu-label {
+  flex: 1;
+  min-width: 0;
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: normal;
+  hyphens: auto;
+  line-height: 1.4;
+  text-align: left;
+}
+
 .sidebar-nav {
   position: sticky !important;
   top: 1rem;

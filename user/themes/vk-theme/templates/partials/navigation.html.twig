@@ -1,33 +1,26 @@
 <ul class="navbar__links">
-    {# Pętla tworząca linki do widocznych podstron #}
-    {% for page in pages.children.visible %}
-        {% set current_page = (page.active or page.activeChild) ? 'selected' : '' %}
-        <li class="{{ current_page }}">
-            {# Każdy link musi mieć klasę navbar__links--a #}
-            <a class="navbar__links--a" href="{{ page.url|e }}">
-                {% if page.header.icon %}<i class="fa fa-{{ page.header.icon|e }}"></i>{% endif %}
-                {{ page.menu|e }}
-            </a>
-        </li>
-    {% endfor %}
+  {% for page in pages.children.visible %}
+    {% set current_page = (page.active or page.activeChild) ? 'selected' : '' %}
 
-    {# Pętla dodająca niestandardowe linki z pliku site.yaml #}
-    {% for mitem in site.menu %}
-        <li>
-            {# Każdy link musi mieć klasę navbar__links--a #}
-            <a class="navbar__links--a" href="{{ mitem.url|e }}">
-                {% if mitem.icon %}<i class="fa fa-{{ mitem.icon|e }}"></i>{% endif %}
-                {{ mitem.text|e }}
-            </a>
-        </li>
-    {% endfor %}
+    <li class="{{ current_page }}">
+      <a class="navbar__links--a" href="{{ page.url|e }}">
+
+        <div class="menu-item">
+
+          {% if page.header.menu_icon %}
+            <div class="menu-icon">
+              {% include 'partials/icons/' ~ page.header.menu_icon ~ '.svg.twig' %}
+            </div>
+          {% endif %}
+
+          <div class="menu-label">
+            {{ page.menu|e }}
+          </div>
+
+        </div>
+
+      </a>
+    </li>
+
+  {% endfor %}
 </ul>
-
-
-
-
-
-
-
-
-      
