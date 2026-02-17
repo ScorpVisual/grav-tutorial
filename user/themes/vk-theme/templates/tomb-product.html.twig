@@ -49,7 +49,7 @@
         name: "Grawerunek",
         title: "Grawerunek laserowy",
         short_desc: "Fotograficzna jakość obrazu na kamieniu.",
-        full_desc: "Przenosimy na kamień każdą formę graficzną – wizerunki, ornamentykę oraz indywidualne kompozycje. Wiązka lasera usuwa warstwę poleru, odsłaniając jasną strukturę kamienia. Dzięki temu uzyskujemy obraz o fotograficznej jakości i idealnym odwzorowaniu detali. Powierzchnię pokrywamy profesjonalnymi środkami, aby zabezpieczyć grawerunek przed czynnikami zewnętrznymi.",
+        full_desc: "Przenosimy na kamień każdą formę graficzną – wizerunki, ornamentykę oraz indywidualne kompozycje. Wiązka lasera usuwa warstwę poleru, odsłaniając jasną strukturę kamienia. W ten sposób uzyskujemy obraz o fotograficznej jakości i idealne odwzorowanie detali. Powierzchnię pokrywamy chemią kamieniarską, aby zabezpieczyć grawerunek przed utratą czytelności i czynnikami zewnętrznymi.",
         price: "Wycena indywidualna",
         image: "addons-laser-engraving.jpg",
         alt_text: "Grawerunek laserowy na granicie"
@@ -207,9 +207,9 @@
               </div>
 
               {# --- OPIS --- #}
-              <p id="product-description" class="min-h-[200px] text-gray-700 text-lg animated-opacity transition-opacity duration-200">
-                  {{ variants[0].full_desc }}
-              </p>
+              <div id="product-description" class="min-h-[200px] text-lg animated-opacity transition-opacity duration-200">
+                  {{ variants[0].full_desc|markdown }}
+              </div>
 
               {# --- PRZYCISKI CTA --- #}
               <div class="flex flex-col lg:flex-row gap-3 mt-auto">

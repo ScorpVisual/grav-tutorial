@@ -3,7 +3,7 @@ title: Nagrobki
 published: true
 hero_image: tombs-5.jpg
 hero_overlay: 45
-hero_subtitle: 'Cośtam cośtam o nagrobkach '
+hero_subtitle: 'Piszemy w kamieniu historię, która przetrwa wieki.'
 hero_buttons:
     -
         text: Oferta

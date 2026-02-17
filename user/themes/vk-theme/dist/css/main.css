@@ -2354,6 +2354,22 @@ hr {
   color: #393c45;
 }
 
+.shortcut-button {
+  border-radius: 4px;
+  height: 3.2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(225, 223, 221, 0.2);
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
+  transition: all 0.3s ease-in-out;
+}
+.shortcut-button:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  mix-blend-mode: lighten;
+}
+
 #scrollToTopBtn {
   position: fixed;
   bottom: 1rem;
@@ -2430,20 +2446,79 @@ hr {
   }
 }
 
-.shortcut-button {
-  border-radius: 4px;
-  height: 3.2rem;
-  width: 2rem;
+#callUsBtn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background-color: #800020;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(3, 2, 8, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+#callUsBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(128, 0, 32, 0.7);
+  z-index: -1;
+  animation: pulse-white 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+#callUsBtn.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+#callUsBtn:hover {
+  background-color: #393c45;
+  color: #800020;
+  border-color: #393c45;
+  box-shadow: 0 6px 20px rgba(57, 60, 69, 0.4);
+  transform: translateY(-3px);
+}
+#callUsBtn:hover::after {
+  content: "Skontaktuj się";
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(225, 223, 221, 0.2);
-  background: linear-gradient(45deg, rgba(213, 168, 72, 0.5) 0%, rgba(243, 198, 102, 0.7) 50%, rgba(213, 168, 72, 0.5) 100%);
-  transition: all 0.3s ease-in-out;
+  width: 220px;
+  height: 32px;
+  font-weight: 500;
+  top: 9px;
+  right: 54px;
+  left: auto;
+  border: 2px solid rgba(128, 0, 32, 0.5);
+  background-color: #fff;
+  border-radius: 8px;
+  animation: fadeInUp 0.5s ease-in-out forwards;
 }
-.shortcut-button:hover {
-  background-color: rgba(255, 255, 255, 0.25);
-  mix-blend-mode: lighten;
+#callUsBtn svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+  stroke: none;
+}
+@media (min-width: 768px) {
+  #callUsBtn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
 }
 
 .vkCard__white {
@@ -3364,6 +3439,14 @@ option {
   .hero-overlay-animated {
     animation: blend-fade 15s infinite ease-in-out;
   }
+}
+
+.hero-title-shadow {
+  text-shadow: 1px 1px 16px #030208, 0 0 8px #030208;
+}
+
+.hero-sub-shadow {
+  text-shadow: 1px 1px 4px #030208, 0 0 8px #030208, 0 0 2px #030208, 0 0 2px #030208;
 }
 
 .content-switcher__card.--is-active {

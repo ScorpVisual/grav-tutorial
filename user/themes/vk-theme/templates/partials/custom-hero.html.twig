@@ -30,13 +30,13 @@
     <div class="relative z-10 w-full px-4 mx-auto flex flex-col items-center max-w-[95%] md:max-w-2xl lg:max-w-[60%]">
         
         {# TYTUŁ #}
-        <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold c-white drop-shadow-lg font-cormorant underline-cherry text-center leading-tight">
+        <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold c-white drop-shadow-lg font-cormorant underline-cherry text-center leading-tight hero-title-shadow">
             {{ page.title }}
         </h1>
 
         {# PODTYTUŁ #}
         {% if page.header.hero_subtitle %}
-            <p class="text-base sm:text-lg md:text-xl mt-6 w-full max-w-3xl mx-auto c-white drop-shadow-md text-center leading-relaxed">
+            <p class="text-base sm:text-lg md:text-xl mt-6 w-full max-w-3xl mx-auto c-white drop-shadow-md text-center leading-relaxed hero-sub-shadow">
                 {{ page.header.hero_subtitle }}
             </p>
         {% endif %}

@@ -1,16 +1,16 @@
 ---
-title: 'Usługi kamieniarskie'
+title: 'O firmie'
 published: true
-hero_image: services.jpg
+hero_image: about-us.jpg
 hero_overlay: 45
-hero_subtitle: 'Remonty, renowacje i wylewki - sprawdź jak zadbamy o Twój pomnik'
+hero_subtitle: 'Historia wykuta w kamieniu i zasadach'
 hero_buttons:
     -
-        text: Renowacje
-        url: '#remonty'
+        text: 'Kim jesteśmy?'
+        url: '#onas'
         class: btn-secondary
     -
-        text: 'Zapytaj o wycenę'
+        text: 'Złóż zamówienie!'
         url: '#kontakt'
         class: btn-cta
 content:
@@ -20,9 +20,9 @@ content:
         dir: desc
 taxonomy:
     category:
-        - services
+        - about
     tag:
-        - usługi
+        - o-firmie
 external_links:
     target: _blank
 ---

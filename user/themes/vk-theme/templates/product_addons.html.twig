@@ -9,17 +9,14 @@
             Galanteria nagrobkowa
         </h1>
         <p class="text-lg text-gray-700">
-            Pamięć o bliskich może przybrać fizyczną formę. 
-            To ona sprawia, że zimny kamień staje się bliższy, bardziej ludzki. 
-            <strong>Stworzyliśmy naszą kolekcję galanterii nagrobkowej właśnie po to – byś mógł nadać pomnikowi ten osobisty, 
-            ciepły wymiar. Rzeźbiony detal, przy którym zatrzymasz dłoń, ławeczka zapraszająca do chwili ciszy, 
-            wazon gotowy przyjąć żywy kolor kwiatów.</strong> To Twoje gesty miłości i pamięci, którym nadaliśmy trwałą, 
-            szlachetną formę.
+            Surowy monolit granitu staje się pomnikiem dopiero wtedy, <strong>gdy jego chłodna struktura zaczyna opowiadać osobistą historię</strong>.
+             Ławeczka zapraszająca do chwili zadumy czy szlachetny detal rzeźbiarski łagodzą surowość kamienia, zamieniając go w przestrzeń bliską sercu.
         </p>
         <p class="text-lg text-gray-700">
-           Każdy nagrobek przyozdobimy w wybrane przez Ciebie elementy z naszej oferty galanterii nagrobkowej.<br>
-           <strong>Sprawdź dostępne wzory i materiały, aby pomnik nabrał wyjątkowego charakteru i godnie upamiętniał 
-           Twoich bliskich.</strong>
+           To, co najtrudniej ubrać w słowa, często wybrzmiewa w najprostszych gestach. 
+           Wazon gotowy przyjąć bukiet ulubionych kwiatów, światło lampionu rozpraszające zmrok czy 
+           precyzyjnie dobrany krój liter kreują niemy dialog między tym, co minione, a tym, co wciąż trwa. 
+          <strong>W naszej pracowni kamieniarskiej nadajemy tym gestom trwałą formę</strong> – wybierając rozwiązania odporne na czas i pogodę, autentyczne w swojej prostocie.
         </p>
         <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
                 <a href="#nazwiska" class="btn-primary flex-grow text-center">
@@ -41,60 +38,189 @@
         <img src="{{ theme_url }}/images/products/addons/addons-bench-2-square.jpg" alt="Granitowa ławeczka wykonana przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
     </div>
     <div class="flex flex-col gap-4 items-stretch">
-        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
-            Ławeczki nagrobkowe
-        </h2>
-        <p class="text-lg text-gray-700">
-            Wiemy, że każdy potrzebuje czegoś innego, by w spokoju przeżyć chwilę refleksji. 
-            Jeśli Twoim celem jest stworzenie jednolitej, kamiennej kompozycji z pomnikiem, 
-            najlepszym rozwiązaniem będzie <strong>ławeczka granitowa</strong>. Gdy chcesz dodać przestrzeni klasycznej elegancji 
-            i szlachetnego detalu, najlepiej sprawdzi się kunsztowny metal. A jeśli po prostu szukasz wygodnego 
-            i trwałego siedziska, które nie będzie wymagało Twojej uwagi, wybierz praktyczne, 
-            nowoczesne ławeczki z tworzywa.
-        </p>
-        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
+                Ławeczki nagrobkowe 
+            </h2>
+        {# <div class="text-xl md:text-2xl font-bold price-highlighted">
+            Cena: <span class="c-white">od <span class="">1000</span> PLN</span>
+        </div> #}
+            <div class="text-lg min-h-[240px] flex flex-col gap-4">
+                <p>
+                Każdy rodzaj ławeczki cmentarnej charakteryzuje się specyficznymi właściwościami, 
+                które bezpośrednio wpływają na jej <strong>trwałość oraz sposób konserwacji</strong>. 
+                </p>
+                <p>
+                    W miejscach <strong>bardzo nasłonecznionych najlepiej sprawdzi się granit</strong> lub malowana proszkowo stal, 
+                    natomiast <strong>w wąskich alejkach polecamy modele składane</strong>. 
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-3">
                 <a href="#kontakt" class="btn-cta flex-grow text-center">
                     Skontaktuj się
                 </a>
+            </div>
+        </div>
+</section>
+{% set benches = [
+    {
+        name: "Ławeczki granitowe",
+        short_desc: "Trwałość i naturalny kamień dopasowany do nagrobka.",
+        image: theme_url ~ "/images/products/addons/addons-bench-granite.jpg",
+        alt_text: "Elegancka ławeczka wykonana z polerowanego granitu",
+        title: "Ławeczki granitowe",
+        price: "Wycena indywidualna",
+        full_desc: "W całości wykonujemy je z naturalnego kamienia dopasowanego do kolorystyki nagrobka. Jego największą zaletą jest odporność na silny mróz, wilgoć i promieniowanie UV. W przeciwieństwie do innych materiałów, granit zachowuje swoją barwę i strukturę przez dziesięciolecia bez dodatkowych zabiegów konserwacyjnych.",
+        link: '#granitowe'
+    },
+    {
+        name: "Ławeczki metalowe",
+        short_desc: "Stal ocynkowana z praktycznym schowkiem na akcesoria.",
+        image: theme_url ~ "/images/products/addons/addons-bench-metal.jpg",
+        alt_text: "Metalowa ławeczka cmentarna ze schowkiem pod siedziskiem",
+        title: "Ławeczki metalowe ze schowkiem",
+        price: "od 450 PLN",
+        full_desc: "Powstają ze stali ocynkowanej lub malowanej proszkowo. Ich unikalną cechą jest zamykany schowek umieszczony pod siedziskiem, który służy do przechowywania zniczy, narzędzi i środków czystości. Są lżejsze od modeli kamiennych i wymagają zabezpieczenia przed korozją, ale po przykręceniu do podłoża gwarantują pełną stabilność.",
+        link: '#metalowe'
+    },
+    {
+        name: "Tworzywo sztuczne",
+        short_desc: "Lekkie, składane konstrukcje idealne do wąskich alejek.",
+        image: theme_url ~ "/images/products/addons/addons-bench-plastic.jpg",
+        alt_text: "Składana ławeczka z tworzywa sztucznego w kolorze czarnym",
+        title: "Ławeczki z tworzywa sztucznego",
+        price: "od 180 PLN",
+        full_desc: "Ich konstrukcja opiera się polipropylenie lub kompozytach, które są odporne na wilgoć i korozję. Można je złożyć, więc świetnie sprawdzą się w wąskich alejkach cmentarnych. Z czasem mogą stracić intensywność koloru pod wpływem słońca i nie dorównują trwałością konstrukcjom kamiennym czy metalowym, są jednak wygodnym i funkcjonalnym rozwiązaniem dla osób preferujących proste formy.",
+        link: '#tworzywo'
+    }
+] %}
+
+{% if benches is not empty %}
+<section
+    class="content-switcher js-content-switcher max-w-7xl mx-auto p-0 md:p-6 lg:p-8 lg:mb-16"
+    data-content-items='{{ benches|json_encode|raw }}'
+>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        {# LEWA KOLUMNA - WYBÓR #}
+        <div class="md:col-span-1">
+            <h2 class="text-xl md:text-2xl font-bold mb-8 underline--cherry">
+                Modele ławeczek
+            </h2>
+            
+            <button id="addon-drawer-trigger" type="button" class="w-full flex justify-between items-center p-4 rounded-lg pick-a-card transition-all duration-300 mb-3">
+                <span id="current-addon-name" class="font-bold text-lg">{{ benches[0].name }}</span>
+                <svg id="addon-drawer-icon" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            
+            <div 
+                id="addon-drawer-panel" 
+                class="overflow-hidden transition-all duration-500 ease-in-out max-h-0 md:max-h-none md:overflow-visible"
+            >
+                <div class="flex flex-col gap-3 py-2">
+                    {% for bench in benches %}
+                        <div
+                            class="content-switcher__card pick-a-card p-4 rounded-lg cursor-pointer transition-all duration-300 {% if loop.first %}--is-active{% endif %}"
+                            data-index="{{ loop.index0 }}"
+                            role="button" aria-pressed="{{ loop.first ? 'true' : 'false' }}" tabindex="0"
+                        >
+                            <h3 class="font-bold text-lg underline--light-grey">{{ bench.name }}</h3>
+                            <p class="text-sm ">{{ bench.short_desc }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        {# PRAWA KOLUMNA - WYŚWIETLANIE #}
+        <div class="md:col-span-2">
+            <div class="content-switcher__display rounded-lg overflow-hidden h-full flex flex-col lg:p-6 text-grey-600 md:min-h-[52rem]">
+                
+                <img
+                    src="{{ benches[0].image }}" alt="{{ benches[0].alt_text }}"
+                    class="content-switcher__image content-switcher__fade-in w-full h-64 md:h-80 object-cover cherry-img-border mb-4 rounded-md"
+                >
+                <div class="flex flex-col flex-grow gap-4">
+                    <h2 class="content-switcher__title content-switcher__fade-in text-3xl font-bold underline--cherry">
+                        {{ benches[0].title }}
+                    </h2>
+                    
+                    <div class="content-switcher__price-wrapper text-xl md:text-2xl font-bold mt-2">
+                        <span class="content-switcher__fade-in"> Cena: <span class="content-switcher__price c-cherry">{{ benches[0].price }}</span></span>
+                    </div>
+                    
+                    <p class="content-switcher__description content-switcher__fade-in text-lg">
+                        {{ benches[0].full_desc|nl2br }}
+                    </p>
+                    
+                    <div class="flex flex-col lg:flex-row gap-3 mt-auto">
+                        <a href="{{ page.find('/uslugi').url }}{{ benches[0].link }}" class="btn-primary flex-grow text-center">Dowiedz się więcej</a>
+                        <a href="{{ page.find('/kontakt').url }}" class="btn-cta flex-grow text-center">Zapytaj o produkt</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+{% endif %}
+ 
+
 <section>
 {% set benchData = [
-    { image_filename: '/images/products/addons/addons-bench-gallery-1.jpg', title: 'Ławeczka składana, z tworzywa' },
+    { image_filename: '/images/products/addons/addons-bench-gallery-4.jpg', title: 'Ławeczka składana, ze schowkiem' },
     { image_filename: '/images/products/addons/addons-bench-gallery-2.jpg', title: 'Ławeczka granitowa' },
     { image_filename: '/images/products/addons/addons-bench-gallery-3.jpg', title: 'Ławeczka w zestawie z pomnikiem' }
 ] %}
 {% include 'modular/gallery-modular.html.twig' with {'items': benchData} %}
 </section>
 <section class="px-4 py-16 max-w-screen-xl mx-auto">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-    <div class="flex flex-col gap-4 items-stretch">
-        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
-            Wazony nagrobkowe
-        </h2>
-        <p class="text-lg text-gray-700">
-            Nasz klimat wymaga rozwiązań, które są odporne na mróz, deszcz i słońce. 
-            Wazony z granitu, który jest naturalną skałą, są <strong>absolutnie niewrażliwe 
-            na cykle zamarzania i odmarzania</strong>, a zatem nie pękną zimą. Integrujemy je z pomnikiem na stałe, 
-            eliminując ryzyko przypadkowego strącenia przez wiatr. Wazony z metali szlachetnych 
-            <strong>zabezpieczamy specjalnymi powłokami</strong>, które chronią je przed korozją i utratą koloru przez wiele lat. 
-        </p>
-        <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
-                <a href="#kontakt" class="btn-cta flex-grow text-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div class="flex flex-col gap-4 items-stretch">
+            <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-4 border-bot-cherry">
+                Wazony nagrobkowe 
+            </h2>
+
+            <p class="text-lg text-gray-700">
+                Wszystkie nasze wazony wyposażyliśmy w <strong>system odprowadzania wody</strong>. 
+                Zapobiega on gromadzeniu się deszczówki i <strong>chroni płytę nagrobkową</strong> przed nieestetycznymi zaciekami.
+            </p>
+
+            {# Lista z Twoimi niestandardowymi bulletami #}
+            <ul class="custom-list space-y-6 my-4">
+                <li class="text-lg">
+                    <strong>Wazony granitowe:</strong> to wyroby z naturalnej skały, które są całkowicie odporne na skrajne temperatury oraz cykle zamarzania i odmarzania wody. Dobieramy rodzaj i kolor kamienia do płyty nagrobka i na stałe integrujemy wazon z pomnikiem.
+                </li>
+                <li class="text-lg">
+                    <strong>Wazony z metali szlachetnych:</strong> zabezpieczamy je specjalistycznymi powłokami ochronnymi, które chronią kolor przed blaknięciem pod wpływem silnego promieniowania UV i kwaśnych deszczy. Lekka, nowoczesna forma doskonale komponuje się z różnymi typami pomników.
+                </li>
+            </ul>
+
+            <p class="text-lg">
+                <strong> Wazony granitowe</strong>  najlepiej prezentują się na  pomnikach tradycyjnych, masywnych i rodzinnych grobowcach.
+                <br>Z kolei <strong> wazony z metali szlachetnych</strong>  doskonale sprawdzają się w przypadku  nagrobków minimalistycznych i urnowych.
+            </p>
+
+            <div class="flex flex-col lg:flex-row gap-3 mt-4">
+                <a href="{{ page.find('/kontakt').url }}" class="btn-cta flex-grow text-center">
                     Skontaktuj się
                 </a>
+            </div>
         </div>
-    </div>
-    <div>
-        <img src="{{ theme_url }}/images/products/addons/addons-vase-square-alt-2.jpg" alt="Granitowa ławeczka wykonana przez Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+
+        <div class="h-full">
+            <img src="{{ theme_url }}/images/products/addons/addons-vase-square-alt-2.jpg" 
+                 alt="Granitowy wazon nagrobkowy z systemem odprowadzania wody" 
+                 class="w-full h-full object-cover golden-img-border hard-shadow">
+        </div>
     </div>
 </section>
 <section>
 {% set vaseData = [
-    { image_filename: '/images/products/addons/addons-vase-gallery-1.jpg', title: 'Ławeczka składana, z tworzywa' },
-    { image_filename: '/images/products/addons/addons-vase-gallery-2.jpg', title: 'Ławeczka granitowa' },
-    { image_filename: '/images/products/addons/addons-vase-gallery-3.jpg', title: 'Ławeczka w zestawie z pomnikiem' }
+    { image_filename: '/images/products/addons/addons-vase-gallery-1.jpg', title: 'Wazon granitowy, obok pomnika' },
+    { image_filename: '/images/products/addons/addons-vase-gallery-2.jpg', title: 'Wazon granitowy na płycie nagrobka' },
+    { image_filename: '/images/products/addons/addons-vase-gallery-3.jpg', title: 'Wazon granitowy obok sarkofagu Kamelia' },
+    { image_filename: '/images/products/addons/addons-vase-gallery-4.jpg', title: 'Wazon granitowy obok pomnika Niezapominajka' },
+    { image_filename: '/images/products/addons/addons-vase-gallery-5.jpg', title: 'Chryzantema z wazonem granitowym' },
+    { image_filename: '/images/products/addons/addons-vase-gallery-6.jpg', title: 'Chryzantema z dwoma wazonami metalowymi' }
 ] %}
 {% include 'modular/gallery-modular.html.twig' with {'items': vaseData} %}
 </section>
@@ -119,12 +245,15 @@
             <li>Montaż nowych napisówek z granitu: <span class="font-bold c-cherry">od 1800 PLN</span></li>
         </ul>
         <p class="text-lg text-gray-700 min-h-[240px]">
-           Proces dodania nowego napisu do istniejącego pomnika jest prosty. 
-           Jeśli na istniejącej płycie jest miejsce, bezpiecznie ją demontujemy, 
-           a w naszym warsztacie nanosimy nowe dane, odtwarzając styl napisu. 
-           Gdy potrzebujesz nowej przestrzeni, stworzymy ją, montując na pomniku <strong>elegancką nakładkę</strong> 
-           lub symboliczną <strong>kamienną księgę</strong>. Oferujemy także możliwość montażu 
-           <strong>całkowicie nowej płyty napisowej z granitu</strong>, jeśli pragniesz odświeżyć wygląd całości pomnika.
+           Każda nowa inskrypcja na pomniku wymaga od nas wcześniejszej <strong>oceny stanu technicznego kamienia</strong>. 
+           Zanim przystąpimy do pracy, sprawdzamy, czy płyta ma odpowiednią grubość oraz czy wieloletnie działanie 
+           czynników atmosferycznych nie naruszyło jej struktury. Jeśli na istniejącej płycie jest jeszcze miejsce, 
+           bezpiecznie ją demontujemy, przewozimy do naszego warsztatu i <strong>odtwarzamy styl, krój oraz kolor liter</strong>.
+        </p>
+        <p class="text-lg text-gray-700 min-h-[240px]">
+           W sytuacjach, gdy płyta okaże się zbyt cienka na ponowną obróbkę lub na głównej tablicy brakuje już wolnej przestrzeni, 
+           proponujemy <strong>montaż eleganckich nakładek</strong> lub symbolicznych <strong>kamiennych ksiąg</strong>. 
+           <br>Oferujemy również <strong>możliwość wykonania całkowicie nowej płyty napisowej z wybranego granitu</strong>.
         </p>
         <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
                 <a href="#kontakt" class="btn-cta flex-grow text-center">
@@ -136,7 +265,7 @@
 
 <section>
 {% set surnamesData = [
-    { image_filename: '/images/products/addons/surnames-gallery-4.jpg', title: 'Płyta na grobowcu' },
+    { image_filename: '/images/products/addons/surnames-gallery-5.jpg', title: 'Litery platynowane' },
     { image_filename: '/images/products/addons/surnames-gallery-3.jpg', title: 'Płyta z Czarnego Szweda' },
     { image_filename: '/images/products/addons/surnames-gallery-1.jpg', title: 'Księga nagrobkowa' }
 ] %}
@@ -154,17 +283,23 @@
 
     <div class="flex flex-col gap-4 items-stretch">
         <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry">
-            Rzeźby nagrobkowe 
+            Detale dekoracyjne 
         </h2>
         <div class="text-xl md:text-2xl font-bold price-highlighted">
-            Cena: <span class="c-white">od <span class="">???</span> PLN</span>
+            Cena: <span class="c-white"><span class="">Wycena indywidualna</span></span>
         </div>
-        <p class="text-lg text-gray-700 min-h-[240px]">
-          Jedna, prosta rzeźba potrafi zawrzeć w sobie całą miłość, tęsknotę i szacunek, 
-          stając się cichym strażnikiem miejsca pamięci. Postać anioła, 
-          symbolizująca nadzieję i ochronę lub krzyż upamiętniający mękę Chrystusa, przypominający o życiu wiecznym.
-          Niezależnie od Twojej wizji z granitu, marmuru lub piaskowca wydobędziemy kształt, 
-          który stanie się wiecznym wyrazem Twoich najgłębszych uczuć.
+        <ul class="list-inside mt-2 space-y-1 text-base text-lg custom-list">
+            <li>Grawerowanie laserowe</li>
+            <li>Dekoracje z metali szlachetnych</li>
+            <li>Nowoczesne detale kompozytowe</li>
+        </ul>
+        <p class="text-lg">
+        Zawsze dbamy o to, by dodatki były proporcjonalnie dopasowane do wielkości płyty i współgrały z kolorem liter. 
+        Stosujemy zdobienia, które są <strong>w pełni bezpieczne dla struktury granitu</strong>.
+        </p>
+        <p class="text-lg">
+        Na ciemnym, czarnym granicie, <strong>grawerowanie laserowe</strong> da najbardziej szlachetny, fotorealistyczny efekt. 
+        Jeśli jednak na pomniku znajdują się już metalowe litery, najlepiej zdecydować się na <strong>detale z metalu lub kompozytu</strong> w tym samym kolorze.
         </p>
         <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
                 <a href="#kontakt" class="btn-cta flex-grow text-center">
@@ -176,9 +311,12 @@
 
 <section>
 {% set sculptureData = [
-    { image_filename: '/images/products/addons/sculpture-gallery-4.jpg', title: 'Płyta na grobowcu' },
-    { image_filename: '/images/products/addons/sculpture-gallery-2.jpg', title: 'Płyta z Czarnego Szweda' },
-    { image_filename: '/images/products/addons/sculpture-gallery-3.jpg', title: 'Księga nagrobkowa' }
+    { image_filename: '/images/products/addons/sculpture-gallery-5.jpg', title: 'Rzeźba metalowa' },
+    { image_filename: '/images/products/addons/sculpture-gallery-2.jpg', title: 'Krzyż granitowy' },
+    { image_filename: '/images/products/addons/sculpture-gallery-6.jpg', title: 'Krzyż metalowy' },
+    { image_filename: '/images/products/addons/sculpture-gallery-7.jpg', title: 'Grawer laserowy' },
+    { image_filename: '/images/products/addons/sculpture-gallery-8.jpg', title: 'Granitowe dodatki' },
+    { image_filename: '/images/products/addons/sculpture-gallery-4.jpg', title: 'Rzeźba na granitowym krzyżu' }
 ] %}
 {% include 'modular/gallery-modular.html.twig' with {'items': sculptureData} %}
 </section>
@@ -203,12 +341,15 @@
             <li>Płytki betonowe z mozaiką: <span class="font-bold c-cherry">od 1200 PLN</span></li>
         </ul>
         <p class="text-lg text-gray-700 min-h-[240px]">
-            Naszą pracę zawsze zaczynamy od oceny podłoża i jeśli to konieczne, 
-            tworzymy solidny, zbrojony fundament, który zabezpiecza teren przed zapadaniem 
-            i przesuwaniem się elementów. Dopiero na tak przygotowanym gruncie układamy 
-            wybrane przez Ciebie wykończenie: antypoślizgowy granit, eleganckie płytki 
-            lub klasyczną kostkę brukową. W ten sposób zyskujesz nienaganny wygląd otoczenia pomnika 
-            oraz pewność, że całość zachowa estetykę i stabilność przez dekady.
+        Trwałość nagrobka zależy przede wszystkim od tego, co znajduje się pod jego konstrukcją, 
+        dlatego każdą realizację rozpoczynamy od oceny stabilności podłoża. Jeśli warunki gruntowe tego wymagają, 
+        <strong>wykonujemy solidny, zbrojony fundament</strong>, który stanowi bezpieczną bazę i skutecznie chroni całą konstrukcję 
+        przed zapadaniem się czy przesuwaniem elementów pod wpływem wód opadowych. 
+        </p>
+        <p class="text-lg text-gray-700 min-h-[240px]">
+        Dopiero na tak przygotowanym podkładzie układamy wybrane przez Ciebie wykończenie – może to być szlachetny, 
+        <strong>antypoślizgowy granit opalany</strong>, eleganckie <strong>płytki z mozaiką</strong> lub klasyczna <strong>kostka brukowa</strong>. 
+        <br>Otoczenie nagrobka będzie w wówczas <strong>estetyczne i łatwe w pielęgnacji</strong> przez wiele lat.
         </p>
         <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
                 <a href="#kontakt" class="btn-cta flex-grow text-center">
