@@ -1,0 +1,183 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+
+{# Sekcja 1: Początek działalności #}
+<section class="px-4 py-16 max-w-screen-xl mx-auto" id="onas">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div>
+            <img src="{{ theme_url }}/images/placeholders/renowacja-pomnika.jpg" alt="Założyciele firmy Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+        </div>
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+                Początek działalności
+            </h2>
+            <div class="text-lg flex flex-col gap-4">
+                <p>
+                    Wszystko zaczęło się w latach 90., w czasach, gdy rynek kamieniarski dopiero się kształtował, a prawdziwa jakość była towarem deficytowym. To właśnie wtedy założyciel firmy <strong>Mieczysław Wiśniewski</strong> wraz ze swoim bliskim przyjacielem <strong>Zbigniewem Węgrzynowiczem</strong>, <strong>postanowili stworzyć zakład kamieniarski oparty na twardych zasadach rzemiosła</strong>.
+                </p>
+                <p>
+                    Świadomie postawili na <strong>wyselekcjonowane gatunki granitu i pełne przekroje płyt</strong>. Ich ambicją było tworzenie nagrobków, które swoją trwałość zawdzięczają <strong>naturalnym kamieniom</strong> i sprawdzonej sztuce budowlanej.
+                </p>
+            </div>
+                <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                    <a href="{{ home_url }}#realizacje" class="btn-primary flex-grow text-center">
+                        Galeria realizacji
+                    </a>
+                    <a href="#kontakt" class="btn-cta flex-grow text-center">
+                        Skontaktuj się
+                    </a>
+                </div>
+        </div>
+    </div>
+</section>
+
+{# Sekcja 2: Fundament #}
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div class="order-1 md:order-2">
+            <img src="{{ theme_url }}/images/photos/about-us-foundations.jpg" alt="Zbrojona wylewka wokół piwniczki" class="w-full object-cover golden-img-border hard-shadow">
+        </div>
+        <div class="order-2 md:order-1">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+                Fundament to podstawa – standard zbrojonej wylewki
+            </h2>
+            <div class="text-lg flex flex-col gap-4">
+                <p>
+                    Właśnie wtedy narodził się standard, który do dziś jest wizytówką Kamieniarstwa Wiśniewski: <strong>każdy pomnik zawsze osadzany jest na zbrojonej wylewce</strong>.
+                </p>
+                <p>
+                    To podejście wynika z czystej logiki rzemieślniczej, ponieważ <strong>piękno kamienia będzie trwałe tylko wtedy, gdy jego podstawa jest nienaruszalna</strong>. Ta bezkompromisowa rzetelność pozwoliła firmie przez dekady budować zaufanie Klientów, oparte na latach uczciwej pracy.
+                </p>
+            </div>
+                <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                    <a href="{{ page.find('/produkty').url }}" class="btn-primary flex-grow text-center">
+                        Oferta nagrobków
+                    </a>
+                    <a href="#kontakt" class="btn-cta flex-grow text-center">
+                        Skontaktuj się
+                    </a>
+                </div>
+        </div>
+    </div>
+</section>
+
+{# Sekcja 3: Wierność wartościom #}
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div>
+            <img src="{{ theme_url }}/images/photos/about-us-values.jpg" alt="Marcin Wiśniewski - sukcesja firmy" class="w-full object-cover golden-img-border hard-shadow">
+        </div>
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+                Z pokolenia na pokolenie
+            </h2>
+            <div class="text-lg flex flex-col gap-4">
+                <p>
+                    Rok 2025 w historii Kamieniarstwa Wiśniewski jest datą szczególną. Po ponad trzech dekadach budowania marki, założyciel przeszedł na zasłużoną emeryturę, <strong>przekazując prowadzenie firmy swojemu synowi, Marcinowi Wiśniewskiemu</strong>.
+                </p>
+                <p>
+                    Obecny właściciel dorastał w warsztacie kamieniarskim, chłonąc wiedzę, której nie sposób nauczyć się z podręczników. Przejęcie biznesu oznaczało <strong>transfer unikalnych technik obróbki i odpowiedzialności za nazwisko</strong>, które stało się <strong>synonimem solidności</strong>.
+                </p>
+            </div>
+                <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                    <a href="{{ page.find('/uslugi').url }}" class="btn-primary flex-grow text-center">
+                        Nasze usługi
+                    </a>
+                    <a href="#kontakt" class="btn-cta flex-grow text-center">
+                        Skontaktuj się
+                    </a>
+                </div>
+        </div>
+    </div>
+</section>
+
+{# Sekcja 4: Nowa Sekcja Wartości (zgodna z Twoim wzorcem) #}
+<section class="px-4 py-16 max-w-screen-xl mx-auto" id="wartosci">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div class="order-1 md:order-2">
+            <img src="{{ theme_url }}/images/photos/kamieniarstwo-wisniewski-wlasciciel.jpg" alt="Rzemiosło kamieniarskie Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+        </div>
+
+        <div class="flex flex-col gap-4 items-stretch order-2 md:order-1">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+                Wierność wartościom
+            </h2>
+
+            <div class="text-lg flex flex-col gap-4">
+                <p>
+                    W pracowni Wiśniewskich czas płynie w rytmie starego rzemiosła wspartego nowoczesną technologią. Jesteśmy wierni trzem nienaruszalnym wartościom:
+                </p>
+
+                <div class="flex flex-col gap-1">
+                    <ul class="list-inside space-y-3 text-base md:text-lg custom-list">
+                        <li>
+                            <span class="font-bold">Rzemieślnicza dbałość o detale:</span> precyzyjny szlif i idealnie wyprowadzona krawędź decydują o klasie nagrobka.
+                        </li>
+                        <li>
+                            <span class="font-bold">Techniczne bezpieczeństwo:</span> zbrojona wylewka jako stabilne oparcie dla całej konstrukcji pomnika.
+                        </li>
+                        <li>
+                            <span class="font-bold">Uczciwa relacja:</span> budowana na szczerej rozmowie, fachowej poradzie i szacunku dla emocji Klienta.
+                        </li>
+                    </ul>
+                </div>
+
+                <p>
+                    W Kamieniarstwie Wiśniewski budujemy na fundamencie doświadczenia dwóch pokoleń. Tworzymy nagrobki, które zachowają formę przez dziesięciolecia.
+                </p>
+            </div>
+                <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                    <a href="{{ page.find('/kamienie').url }}" class="btn-primary flex-grow text-center">
+                        Wybierz swój kamień
+                    </a>
+                    <a href="#kontakt" class="btn-cta flex-grow text-center">
+                        Skontaktuj się
+                    </a>
+                </div>
+        </div>
+    </div>
+</section>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+        
+        <div>
+            <img src="{{ theme_url }}/images/photos/article-photo.jpg" alt="Renowacja starego nagrobka granitowego" class="w-full object-cover rounded-lg shadow-lg golden-img-border hard-shadow">
+        </div>
+
+        <div class="flex flex-col space-y-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 border-bot-cherry">
+                <span class="c-cherry block font-semibold text-2xl">Potrzebujesz pomocy?</span>
+                Zawsze służymy fachowym doradztwem!
+            </h2>
+
+            <p class="text-lg text-gray-700 leading-relaxed">
+                W Kamieniarstwie Wiśniewski wiemy, że <strong>w obliczu straty trudno skupić się na technicznych szczegółach</strong>, 
+                dlatego bierzemy je na siebie. Doradzamy przy wyborze materiału, 
+                projektujemy nagrobek i <strong>przechodzimy przez cały ten proces razem z Tobą, krok po kroku.</strong>
+            </p>
+                <a href="https://biznes.interia.pl/finanse/news-ile-kosztuje-pomnik-granitowy-ceny-u-kamieniarza,nId,7977744"
+                   class="btn-tertiary w-full sm:w-auto text-center justify-center text-gray-700 hover:text-gray-900 text-xl font-semibold">
+                    Przeczytaj nasz wywiad dla Interii Biznes!
+                </a>
+            
+            <p class="text-lg text-gray-700 leading-relaxed">
+                <strong>Naszym celem jest transparentność i Twój spokój. </strong>
+                Chętnie odpowiemy na wszystkie pytania, wyjaśnimy różnice w cenach i pomożemy znaleźć rozwiązanie, 
+                które najlepiej odda hołd pamięci Twoich bliskich.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                <a href="#kontakt" class="btn-cta--big w-full sm:w-auto flex-grow text-center justify-center ">
+                    Skontaktuj się!
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# FAQ i Galeria #}
+{% include 'modular/faq-general.html.twig' %}
+{% include 'modular/gallery_modal.html.twig' %}
+
+{% endblock %}

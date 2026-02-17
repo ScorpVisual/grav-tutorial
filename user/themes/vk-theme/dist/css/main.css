@@ -3441,6 +3441,14 @@ option {
   }
 }
 
+.hero-title-shadow {
+  text-shadow: 1px 1px 16px #030208, 0 0 8px #030208;
+}
+
+.hero-sub-shadow {
+  text-shadow: 1px 1px 4px #030208, 0 0 8px #030208, 0 0 2px #030208, 0 0 2px #030208;
+}
+
 .content-switcher__card.--is-active {
   box-shadow: 0 0 0 2px #800020;
 }

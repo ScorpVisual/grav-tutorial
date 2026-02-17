@@ -49,7 +49,7 @@
 
         {# Tytuł #}
         {% if title %}
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 border-bot-cherry pb-2">
+            <h2 class="text-3xl md:text-4xl font-bold  border-bot-cherry pb-2">
                 {{ title }}
             </h2>
         {% endif %}
@@ -68,7 +68,7 @@
 
         {# Główny tekst #}
         {% if main_text %}
-            <div class="text-lg text-gray-700 leading-relaxed space-y-4 prose prose-slate max-w-none">
+            <div class="text-lg leading-relaxed space-y-4 prose prose-slate max-w-none c-ink">
                 {{ main_text|markdown|raw }}
             </div>
         {% endif %}
