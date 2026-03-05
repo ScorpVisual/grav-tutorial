@@ -17,7 +17,7 @@ product_variants:
     -
         title: Podwójny
         size: Dwupłytowy
-        price: '5 499'
+        price: '6 499'
         img: product-06/product-06-double.jpg
         full_desc: '„Wrzos” to nagrobek podwójny o szerokiej konstrukcji, zaprojektowany z myślą o **grobach rodzinnych**. Pozwala na **pochówek dwóch osób obok siebie**, zapewniając przy tym dużo miejsca na tablicy napisowej – można umieścić na niej dane kilku osób oraz wybraną sentencję. Duża powierzchnia płyty głównej daje pełną swobodę w ustawieniu dodatków, lampionów i wazonów. **Ten model realizujemy na indywidualne zamówienie** w dwóch wariantach: z dwiema lub trzema płytami nakrywającymi, zależnie od Twoich preferencji.'
     -
@@ -67,28 +67,26 @@ selected_stones:
 gallery_items:
     -
         image_filename: product-06/product-06-gallery-1.jpg
-        title: 'Nagrobek pojedynczy - Granit Szwed'
+        title: 'Pełnowymiarowy nagrobek na trumny z krawatem'
     -
         image_filename: product-06/product-06-gallery-2.jpg
-        title: 'Zbliżenie na detale wykończenia'
+        title: 'Napisówka z artystycznym kształtem wokół krzyża'
     -
         image_filename: product-06/product-06-gallery-3.jpg
-        title: 'Wariant rodzinny w jasnym kamieniu'
+        title: 'Wazony po dwóch stronach napisówki'
     -
         image_filename: product-06/product-06-gallery-4.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Granitowe wazony charakteryzują się największą trwałością'
     -
         image_filename: product-06/product-06-gallery-5.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Wariant na zamówienie z napisówką w kształcie żagla'
     -
         image_filename: product-06/product-06-gallery-6.jpg
-        title: 'Montaż na cmentarzu'
-    -
-        image_filename: product-06/product-06-gallery-7.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Wrzos z dwoma napisówkami oddzielonymi krzyżem i czarnym krawatem'
     -
         image_filename: product-06/product-06-gallery-8.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Pomnik z granitu srebrzystego i ciemnymi napisówkami, oddzielonymi krzyżem'
+
 top_label: 'Wybierz wersję produktu'
 stones_title: 'Polecane kamienie'
 addons_title: Galanteria

@@ -67,37 +67,37 @@ selected_stones:
 gallery_items:
     -
         image_filename: product-01/product-01-gallery-1.jpg
-        title: 'Nagrobek pojedynczy - Granit Szwed'
+        title: 'Kamelia - mały pomnik na urny'
     -
         image_filename: product-01/product-01-gallery-2.jpg
-        title: 'Zbliżenie na detale wykończenia'
+        title: 'Piaskowane litery na płycie nagrobnej'
     -
         image_filename: product-01/product-01-gallery-3.jpg
-        title: 'Wariant rodzinny w jasnym kamieniu'
+        title: 'Wazon z granitu White Viscont'
     -
         image_filename: product-01/product-01-gallery-4.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Okładziny antypoślizgowe z granitu'
     -
         image_filename: product-01/product-01-gallery-5.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Sarkofag Kamelia w wersji rodzinnej pomieści wiele urn'
     -
         image_filename: product-01/product-01-gallery-7.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Kamelia w wariancie z granitu Impala'
     -
         image_filename: product-01/product-01-gallery-8.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Litery kute na płycie nagrobka'
     -
         image_filename: product-01/product-01-gallery-9.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Kamelia z indywidualnym projektem krzyża'
     -
         image_filename: product-01/product-01-gallery-10.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Sarkofag z rzeźbą stojącą obok pomnika'
     -
         image_filename: product-01/product-01-gallery-11.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Wykonanie z granitu Impala'
     -
         image_filename: product-01/product-01-gallery-12.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Montaż wazonu na granitowych, antypoślizgowych okładzinach'
 top_label: 'Wybierz wersję produktu'
 stones_title: 'Polecane kamienie'
 addons_title: Galanteria

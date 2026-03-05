@@ -67,31 +67,31 @@ selected_stones:
 gallery_items:
     -
         image_filename: product-03/product-03-gallery-1.jpg
-        title: 'Nagrobek pojedynczy - Granit Szwed'
+        title: 'Malwa - pełnowymiarowy nagrobek z granitu Czarny Szwed'
     -
         image_filename: product-03/product-03-gallery-2.jpg
-        title: 'Zbliżenie na detale wykończenia'
+        title: 'Litery pokryte złotem'
     -
         image_filename: product-03/product-03-gallery-3.jpg
-        title: 'Wariant rodzinny w jasnym kamieniu'
+        title: 'Wazon typu diamentowego jest świetnym dodatkiem do Malwy'
     -
         image_filename: product-03/product-03-gallery-4.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Granitowe okładziny antypoślizgowe wokół pomnika'
     -
         image_filename: product-03/product-03-gallery-5.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Malwa z płytą z granitu strzegomskiego'
     -
         image_filename: product-03/product-03-gallery-6.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Malwa wykonana na indywidualne zamówienie z krzyżem artystycznym'
     -
         image_filename: product-03/product-03-gallery-7.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Malwa z granitu Monumental Black w zestawie z okładzinami, ławeczką i wazonem'
     -
         image_filename: product-03/product-03-gallery-8.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Wazon montowany na płycie nagrobka'
     -
         image_filename: product-03/product-03-gallery-9.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Malwa wykonana z granitu Impala'
 top_label: 'Wybierz wersję produktu'
 stones_title: 'Polecane kamienie'
 addons_title: Galanteria
