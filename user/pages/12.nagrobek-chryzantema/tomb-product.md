@@ -67,28 +67,28 @@ selected_stones:
 gallery_items:
     -
         image_filename: product-05/product-05-gallery-1.jpg
-        title: 'Nagrobek pojedynczy - Granit Szwed'
+        title: 'Nagrobek z Impali z zaokrąglonymi krawędziami'
     -
         image_filename: product-05/product-05-gallery-2.jpg
-        title: 'Zbliżenie na detale wykończenia'
+        title: 'Chryzantema w zestawie z ławeczką'
     -
         image_filename: product-05/product-05-gallery-3.jpg
-        title: 'Wariant rodzinny w jasnym kamieniu'
+        title: 'White Viscont połączony ze wstawkami z Ciemnej Impali'
     -
         image_filename: product-05/product-05-gallery-4.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Chryzantema z granitu Star Galaxy i dwuczęściową napisówką'
     -
         image_filename: product-05/product-05-gallery-5.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Nagrobek wykonany z granitu Vanga'
     -
         image_filename: product-05/product-05-gallery-6.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Ekskluzywny kamień Vanga charakteryzuje się niepowtarzalną barwą'
     -
         image_filename: product-05/product-05-gallery-7.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Wazon klasyczny komponujący się z nagrobkiem'
     -
         image_filename: product-05/product-05-gallery-8.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Misy donicowe, klasyczny wazon na podstawce i krzyż z granitu Vanga'
 top_label: 'Wybierz wersję produktu'
 stones_title: 'Polecane kamienie'
 addons_title: Galanteria

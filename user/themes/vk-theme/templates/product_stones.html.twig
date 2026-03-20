@@ -5,12 +5,35 @@
 
 {# 1. EKONOMICZNE #}
 {% set economic_keys = [
+    'srebrzysty_strzegomski', 'srebrzysty_zwykly', 'szary_perlowy', 'roz_srebrzysty', 
+    'braz_krolewski', 'china_juparana', 'yellow_queen', 
+    'crystal_grey', 'polar_grey', 'braz_mysi', 'silver', 
+    'szary_piekny', 'padang_black', 'padang_dark'
+] %}
+
+{# 2. PREMIUM #}
+{% set medium_keys = [
+    'astoria', 'impala_ciemna', 'impala_indie', 'orion', 'orion_silk', 
+    'prada_gold', 'ruby_star', 'viscount_white', 'impala_jasna', 'steel_grey', 
+    'china_viscount', 'tan_brown', 'mwhite', 'skalisty', 'monte_grey', 
+    'zbik_szary', 'nowy_zbik', 'star_galaxy', 'angola_black', 'vanga'
+] %}
+
+{# 3. EKSKLUZYWNE #}
+{% set premium_keys = [
+    'bengal_black', 'czarny_szwed', 'himalaya_blue', 'aurora', 'monumental_black'
+] %}
+
+
+
+
+{# 
+{% set economic_keys = [
     'srebrzysty_strzegomski', 'szary_perlowy', 'roz_srebrzysty', 
     'braz_krolewski', 'china_juparana', 'yellow_queen', 
     'crystal_grey', 'polar_grey'
 ] %}
 
-{# 2. ŚREDNIE #}
 {% set medium_keys = [
     'impala_ciemna', 'impala_indie', 'impala_jasna', 'viscount_white', 
     'padang_dark', 'padang_black', 'steel_grey', 'braz_mysi', 'silver', 
@@ -18,16 +41,13 @@
     'tan_brown', 'monte_grey', 'szary_piekny', 'skalisty', 'mwhite', 'astoria'
 ] %}
 
-{# 3. PREMIUM #}
 {% set premium_keys = [
     'star_galaxy', 'angola_black', 'bengal_black', 'ruby_star', 
     'czarny_szwed', 'aurora', 'prada_gold', 'orion', 'orion_silk', 'himalaya_blue'
 ] %}
 
 
-
-
-
+ #}
 
 
 
@@ -70,7 +90,7 @@
 {% set popularStonesData = [
     { image_filename: '/images/products/stones/stones-strzegomski-1.jpg', title: 'Granit strzegomski' },
     { image_filename: '/images/products/stones/stones-strzegomski-2.jpg', title: 'Granit strzegomski' },
-    { image_filename: '/images/products/stones/stones-strzegomski-3.jpg', title: 'Granit strzegomski' }
+    { image_filename: '/images/products/stones/stones-strzegomski-3.jpg', title: 'Granit srebrzysty' }
 ] %}
 {% include 'modular/gallery-modular.html.twig' with {'items': popularStonesData} %}
 </section>
@@ -114,9 +134,9 @@
 {# Galeria (Statyczna - Twoje stare dane) #}
 <section id="premium">
 {% set exclusiveStonesData = [
-    { image_filename: '/images/products/stones/stones-exclusive-1.jpg', title: 'Czarny Szwed' },
-    { image_filename: '/images/products/stones/stones-exclusive-2.jpg', title: 'Granit Drogi' },
-    { image_filename: '/images/products/stones/stones-exclusive-3.jpg', title: 'Drogi granit' }
+    { image_filename: '/images/products/stones/impala-ciemna.jpg', title: 'Ciemna Impala' },
+    { image_filename: '/images/products/stones/stones-exclusive-2.jpg', title: 'White Viscont z paskiem i napisówką z Ciemnej Impali' },
+    { image_filename: '/images/products/stones/astoria.jpg', title: 'Astoria' }
 ] %}
 {% include 'modular/gallery-modular.html.twig' with {'items': exclusiveStonesData} %}
 </section>
@@ -157,9 +177,10 @@
 {# Galeria (Statyczna - Twoje stare dane) #}
 <section>
 {% set rareStonesData = [
-    { image_filename: '/images/products/stones/stones-rare-1.jpg', title: 'Czarny Szwed' },
-    { image_filename: '/images/products/stones/stones-rare-2.jpg', title: 'Granit Drogi' },
-    { image_filename: '/images/products/stones/stones-rare-3.jpg', title: 'Drogi granit' }
+    { image_filename: '/images/products/stones/stones-rare-1.jpg', title: 'Monumental Black' },
+    { image_filename: '/images/products/stones/stones-exclusive-1.jpg', title: 'Star Galaxy' },
+    { image_filename: '/images/products/stones/stones-rare-3.jpg', title: 'Monumental Black i Vanga' },
+    { image_filename: '/images/products/stones/stones-exclusive-3.jpg', title: 'Orion' }
 ] %}
 {% include 'modular/gallery-modular.html.twig' with {'items': rareStonesData} %}
 </section>

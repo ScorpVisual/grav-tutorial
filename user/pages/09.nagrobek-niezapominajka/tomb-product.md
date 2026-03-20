@@ -67,25 +67,25 @@ selected_stones:
 gallery_items:
     -
         image_filename: product-02/product-02-gallery-1.jpg
-        title: 'Nagrobek pojedynczy - Granit Szwed'
+        title: 'Niezapominajka - nagrobek w stylu amerykańskim'
     -
         image_filename: product-02/product-02-gallery-2.jpg
-        title: 'Zbliżenie na detale wykończenia'
+        title: 'Nakładka granitowa w kształcie książki'
     -
         image_filename: product-02/product-02-gallery-3.jpg
-        title: 'Wariant rodzinny w jasnym kamieniu'
+        title: 'Ten wariant został wykonany z granitu Orion'
     -
         image_filename: product-02/product-02-gallery-4.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Niezaminajka z napisówką wolnostojącą'
     -
         image_filename: product-02/product-02-gallery-5.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Krzyż i napis ze stali nierdzewnej'
     -
         image_filename: product-02/product-02-gallery-7.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Płyta nagrobka i podstawa wykonane z granitu Astoria'
     -
         image_filename: product-02/product-02-gallery-8.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Podwójna wylewka zabezpieczająca przed pochyleniem zbocza'
 top_label: 'Wybierz wersję produktu'
 stones_title: 'Polecane kamienie'
 addons_title: Galanteria

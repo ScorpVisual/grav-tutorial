@@ -19,7 +19,7 @@ product_variants:
         size: Standard
         price: '5 499'
         img: product-03/product-03-single.jpg
-        full_desc: 'Model "Malwa" to nasza najpopularniejsza propozycja wśród **nagrobków urnowych o konstrukcji zamkniętej**. Pionowa tablica w godny sposób eksponuje dane zmarłych, a gładka, pozioma płyta jest wyjątkowo **łatwa w pielęgnacji**. Nagrobek ten jest niemal **bezobsługowy** – aby przywrócić mu pełny blask, wystarczy przemyć go wodą. **To idealne rozwiązanie, jeśli pomnik znajduje się w pobliżu drzew**, z których często opadają liście.'
+        full_desc: 'Model "Malwa" to nasza najpopularniejsza propozycja wśród **nagrobków urnowych o konstrukcji zamkniętej**. Pionowa tablica w godny sposób eksponuje dane zmarłych, a gładka, pozioma płyta jest wyjątkowo **łatwa w pielęgnacji**. Nagrobek ten jest niemal **bezobsługowy** – aby przywrócić mu pełny blask, wystarczy przemyć go wodą. **To idealne rozwiązanie, jeśli pomnik znajduje się w pobliżu drzew**, z których często opadają liście. Istnieje możliwość postawienia pełnowymiarowej wersji na trumny.'
     -
         title: Podwójny
         size: 'Podwójny'
@@ -64,34 +64,35 @@ selected_stones:
     prada_gold: false
     orion: false
     orion_silk: false
+    vanga: true
 gallery_items:
     -
         image_filename: product-03/product-03-gallery-1.jpg
-        title: 'Nagrobek pojedynczy - Granit Szwed'
+        title: 'Malwa - pełnowymiarowy nagrobek z granitu Czarny Szwed'
     -
         image_filename: product-03/product-03-gallery-2.jpg
-        title: 'Zbliżenie na detale wykończenia'
+        title: 'Litery pokryte złotem'
     -
         image_filename: product-03/product-03-gallery-3.jpg
-        title: 'Wariant rodzinny w jasnym kamieniu'
+        title: 'Wazon typu diamentowego jest świetnym dodatkiem do Malwy'
     -
         image_filename: product-03/product-03-gallery-4.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Granitowe okładziny antypoślizgowe wokół pomnika'
     -
         image_filename: product-03/product-03-gallery-5.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Malwa z płytą z granitu strzegomskiego'
     -
         image_filename: product-03/product-03-gallery-6.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Malwa wykonana na indywidualne zamówienie z krzyżem artystycznym'
     -
         image_filename: product-03/product-03-gallery-7.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Malwa z granitu Monumental Black w zestawie z okładzinami, ławeczką i wazonem'
     -
         image_filename: product-03/product-03-gallery-8.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Wazon montowany na płycie nagrobka'
     -
         image_filename: product-03/product-03-gallery-9.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Malwa wykonana z granitu Impala'
 top_label: 'Wybierz wersję produktu'
 stones_title: 'Polecane kamienie'
 addons_title: Galanteria
