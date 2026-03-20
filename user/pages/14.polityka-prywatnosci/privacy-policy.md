@@ -1,5 +1,6 @@
 ---
 title: 'Polityka prywatności'
+visible: false
 ---
 
 # Polityka Prywatności
