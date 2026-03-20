@@ -1,15 +1,22 @@
 {
     "srebrzysty_strzegomski": {
-        "name": "Srebrzysty (Strzegomski)",
+        "name": "Strzegomski",
+        "img": "40-polski-strzegomski.jpg",
+        "desc": "Polski, jasny granit typu „pieprz i sól”. Dzięki jasnej barwie pomnik zawsze wygląda schludnie, a drobna ziarnistość sprawia, że kurz jest na nim prawie niewidoczny. Wyróżnia się niezwykłą trwałością i wysoką odpornością na mróz.",
+        "price_level": 2,
+        "availability_level": 5
+    },
+    "srebrzysty_zwykly": {
+        "name": "Srebrzysty",
         "img": "26-srebrzysty.jpg",
-        "desc": "Polski, jasny granit typu „pieprz i sól”. Dzięki jasnej barwie pomnik zawsze wygląda schludnie, a drobna ziarnistość sprawia, że kurz jest na nim prawie niewidoczny.",
+        "desc": "Elegancki granit o jasnym, niemal białym tle i bardzo drobnym, gęstym uziarnieniu w chłodnych odcieniach szarości i czerni. Jego chłodna barwa pięknie eksponuje napisy i dobrze maskuje kurz oraz osad z drzew.",
         "price_level": 2,
         "availability_level": 5
     },
     "szary_perlowy": {
         "name": "Szary Perłowy",
         "img": "1-szary-perlowy.jpg",
-        "desc": "Jasny granit o drobnej, równomiernej ziarnistości, przypominający rozsypane drobinki. To jeden z najbardziej ekonomicznych kamieni, który zawsze wygląda czysto i świeżo, nawet po deszczu.",
+        "desc": "Jasny granit o drobnej, równomiernej ziarnistości, przypominający rozsypane drobinki. To jeden z najbardziej ekonomicznych kamieni, który zawsze wygląda czysto i świeżo, nawet po deszczu. ",
         "price_level": 2,
         "availability_level": 5
     },
@@ -221,7 +228,7 @@
         "img": "36-czarny-szwed.jpg",
         "desc": "Klasyczna, absolutna czerń. To najbardziej elegancki, lustrzany kamień, ale też najbardziej wymagający – widać na nim każdy pyłek i odcisk palca. Jest najdroższy i najtrudniejszy do zdobycia w formie dużej, czystej płyty.",
         "price_level": 5,
-        "availability_level": 2
+        "availability_level": 1
     },
     "aurora": {
         "name": "Aurora",
@@ -254,6 +261,20 @@
     "himalaya_blue": {
         "name": "Himalaya Blue",
         "img": "23-himalaya-blue.jpg",
+        "desc": "Kamień o ciepłej, wielobarwnej kolorystyce, w której przeplatają się tony ceglaste, pomarańczowe i fioletowe. Pięknie komponuje się z zielenią i doskonale maskuje zabrudzenia.",
+        "price_level": 5,
+        "availability_level": 2
+    },
+    "vanga": {
+        "name": "Vanga",
+        "img": "38-vanga.jpg",
+        "desc": "Szwedzki granit o grubej, czerwono-czarnej strukturze i wysokiej odporności na zarysowania. Wyraziste, wielobarwne ziarno sprawia, że naniesiony piasek czy ślady po twardej wodzie wtapiają się w tło.",
+        "price_level": 4,
+        "availability_level": 2
+    },
+    "monumental_black": {
+        "name": "Monumental Black",
+        "img": "39-monumental-black.jpg",
         "desc": "Kamień o ciepłej, wielobarwnej kolorystyce, w której przeplatają się tony ceglaste, pomarańczowe i fioletowe. Pięknie komponuje się z zielenią i doskonale maskuje zabrudzenia.",
         "price_level": 5,
         "availability_level": 2

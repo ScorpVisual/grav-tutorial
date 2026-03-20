@@ -62,19 +62,19 @@ selected_stones:
 gallery_items:
     -
         image_filename: product-04/product-04-gallery-1.jpg
-        title: 'Nagrobek pojedynczy - Granit Szwed'
+        title: 'Nagrobek dwupłytowy - granit srebrzysty z napisówką z granitu Black'
     -
         image_filename: product-04/product-04-gallery-2.jpg
-        title: 'Zbliżenie na detale wykończenia'
+        title: 'Aster występuje w formie kaskadowej'
     -
         image_filename: product-04/product-04-gallery-3.jpg
-        title: 'Wariant rodzinny w jasnym kamieniu'
+        title: 'Aster kaskadowy, wykonany z granitu Impala z napisówką wykonaną z granitu Black'
     -
         image_filename: product-04/product-04-gallery-4.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Wariant z wazą, ławeczką i betonowymi płytkami wokół pomnika'
     -
         image_filename: product-04/product-04-gallery-5.jpg
-        title: 'Montaż na cmentarzu'
+        title: 'Granitowa waza na kwiaty, zamontowana na płycie'
 top_label: 'Wybierz wersję produktu'
 stones_title: 'Polecane kamienie'
 addons_title: Galanteria

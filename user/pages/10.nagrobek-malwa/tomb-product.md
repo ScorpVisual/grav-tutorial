@@ -19,7 +19,7 @@ product_variants:
         size: Standard
         price: '5 499'
         img: product-03/product-03-single.jpg
-        full_desc: 'Model "Malwa" to nasza najpopularniejsza propozycja wśród **nagrobków urnowych o konstrukcji zamkniętej**. Pionowa tablica w godny sposób eksponuje dane zmarłych, a gładka, pozioma płyta jest wyjątkowo **łatwa w pielęgnacji**. Nagrobek ten jest niemal **bezobsługowy** – aby przywrócić mu pełny blask, wystarczy przemyć go wodą. **To idealne rozwiązanie, jeśli pomnik znajduje się w pobliżu drzew**, z których często opadają liście.'
+        full_desc: 'Model "Malwa" to nasza najpopularniejsza propozycja wśród **nagrobków urnowych o konstrukcji zamkniętej**. Pionowa tablica w godny sposób eksponuje dane zmarłych, a gładka, pozioma płyta jest wyjątkowo **łatwa w pielęgnacji**. Nagrobek ten jest niemal **bezobsługowy** – aby przywrócić mu pełny blask, wystarczy przemyć go wodą. **To idealne rozwiązanie, jeśli pomnik znajduje się w pobliżu drzew**, z których często opadają liście. Istnieje możliwość postawienia pełnowymiarowej wersji na trumny.'
     -
         title: Podwójny
         size: 'Podwójny'
@@ -64,6 +64,7 @@ selected_stones:
     prada_gold: false
     orion: false
     orion_silk: false
+    vanga: true
 gallery_items:
     -
         image_filename: product-03/product-03-gallery-1.jpg
