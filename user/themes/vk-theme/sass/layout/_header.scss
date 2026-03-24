@@ -336,11 +336,9 @@
   .menu-label {
     flex: 1; 
     min-width: 0; 
-
-    word-break: normal;
-    overflow-wrap: break-word; 
-    white-space: normal;
-    hyphens: auto; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     
     line-height: 1.4;
     text-align: left;
