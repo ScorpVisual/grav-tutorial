@@ -1,5 +1,6 @@
 ---
 title: Wrzos
+seo_title: Nagrobek Wrzos - Kamieniarstwo Wiśniewski
 menu_icon: tomb
 hero_subtitle: 'Jednopłytowy nagrobek pojedynczy na urny z napisówką stojącą '
 hero_image: tombs-specific.jpg

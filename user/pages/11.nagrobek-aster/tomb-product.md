@@ -1,5 +1,6 @@
 ---
 title: Aster
+seo_title: Nagrobek Aster - Kamieniarstwo Wiśniewski
 menu_icon: tomb
 hero_subtitle: 'Nagrobek dwupłytowy na urny z napisówką stojącą'
 hero_image: tombs-specific.jpg

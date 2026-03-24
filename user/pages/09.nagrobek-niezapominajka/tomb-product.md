@@ -1,5 +1,6 @@
 ---
 title: Niezapominajka
+seo_title: Nagrobek Niezapominajka - Kamieniarstwo Wiśniewski
 menu_icon: tomb
 hero_subtitle: 'Mały nagrobek na urny w stylu amerykańskim'
 hero_image: tombs-specific.jpg
@@ -25,7 +26,7 @@ product_variants:
         size: Z płytą stojącą
         price: '7 499'
         img: product-02/product-02-standing.jpg
-        full_desc: 'Wersja **z płytą stojącą** obejmuje dostawienie płyty granitowej z dodatkowymi napisami. W ten sposób, minimalistyczny nagrobek amerykański staje się bardziej zbliżony do **klasycznych nagrobków **polskich**, zachowując przy tym rozsądną cenę pierwowzoru. Płyta może zostać dodatkowo ozdobiona **grawerem lub rzeźbą**.'
+        full_desc: 'Wersja **z płytą stojącą** obejmuje dostawienie płyty granitowej z dodatkowymi napisami. W ten sposób, minimalistyczny nagrobek amerykański staje się bardziej zbliżony do **klasycznych nagrobków polskich**, zachowując przy tym rozsądną cenę pierwowzoru. Płyta może zostać dodatkowo ozdobiona **grawerem lub rzeźbą**.'
 selected_stones:
     srebrzysty_strzegomski: false
     braz_krolewski: false

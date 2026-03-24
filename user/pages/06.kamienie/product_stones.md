@@ -1,5 +1,6 @@
 ---
 title: Kamienie
+seo_title: Nagrobki kamienne - dostępne kamienie w Kamieniarstwo Wiśniewski
 published: true
 visible: true
 hero_image: stones-4.jpg

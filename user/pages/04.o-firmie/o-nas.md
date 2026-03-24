@@ -1,5 +1,6 @@
 ---
 title: 'O firmie'
+seo_title: Historia firmy Kamieniarstwo Wiśniewski z Dąbrowy Górniczej
 published: true
 visible: true
 hero_image: about-us.jpg

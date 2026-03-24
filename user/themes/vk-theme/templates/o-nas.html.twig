@@ -61,6 +61,16 @@
     </div>
 </section>
 
+<section>
+{% set galleryData = [
+    { image_filename: '/images/services/leveling-gallery-7.jpg', title: 'Przygotowywanie fundamentu pod nowy nagrobek' },
+    { image_filename: '/images/services/leveling-gallery-9.jpg', title: 'Nagrobki Kamieniarstwa Wiśniewski na solidnym fundamencie' },
+    { image_filename: '/images/services/leveling-gallery-10.jpg', title: 'Zabezpieczenie nagrobka Niezapominajka na skarpie' }
+] %}
+{% include 'modular/gallery-modular.html.twig' with {'items': galleryData} %}
+</section>
+
+
 {# Sekcja 3: Wierność wartościom #}
 <section class="px-4 py-16 max-w-screen-xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">

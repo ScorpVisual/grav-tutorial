@@ -1,5 +1,6 @@
 ---
 title: Nagrobki
+seo_title: Nagrobki granitowe w Dąbrowie Górniczej - Kamieniarstwo Wiśniewski
 published: true
 hero_image: tombs-5.jpg
 hero_overlay: 45

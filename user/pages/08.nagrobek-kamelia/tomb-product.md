@@ -1,5 +1,6 @@
 ---
 title: Kamelia
+seo_title: Nagrobek Kamelia - Kamieniarstwo Wiśniewski
 menu_icon: tomb
 hero_subtitle: 'Klasyczny sarkofag na trumny lub urny z napisami na płycie'
 hero_image: tombs-specific.jpg

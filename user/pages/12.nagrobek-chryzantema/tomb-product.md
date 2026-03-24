@@ -1,5 +1,6 @@
 ---
 title: Chryzantema
+seo_title: Nagrobek Chryzantema - Kamieniarstwo Wiśniewski
 menu_icon: tomb
 hero_subtitle: 'Jednopłytowy nagrobek pojedynczy na urny z napisówką stojącą '
 hero_image: tombs-specific.jpg

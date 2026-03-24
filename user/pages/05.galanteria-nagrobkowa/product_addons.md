@@ -1,5 +1,6 @@
 ---
 title: 'Galanteria nagrobkowa'
+seo_title: Galanteria nagrobkowa, dodatki, ławeczki, wazony nagrobne - Kamieniarstwo Wiśniewski
 published: true
 visible: true
 hero_image: addons-4.jpg
