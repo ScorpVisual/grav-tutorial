@@ -836,7 +836,6 @@ html {
 }
 
 html {
-  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -3844,10 +3843,10 @@ option {
 .grid-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   gap: 2rem;
   padding-inline: 4px;
   padding-block: 2rem;
-  min-height: 100vh;
   width: 100%;
 }
 @media (min-width: 1280px) {
@@ -3856,6 +3855,7 @@ option {
     grid-template-columns: repeat(12, 1fr);
     gap: 1.5rem;
     padding-inline: 2rem;
+    align-items: start;
     overflow: visible;
   }
 }
@@ -3869,14 +3869,14 @@ option {
 }
 @media (min-width: 1280px) {
   .grid-container__sidebar {
-    min-width: 9rem;
     display: block;
     grid-column: span 1;
+    min-width: 9rem;
     position: sticky;
     top: 2rem;
     align-self: start;
-    height: calc(100vh - 4rem);
-    overflow-y: auto;
+    height: auto;
+    overflow: visible;
     padding-inline: 0 1rem;
     border-right: 1px solid #cbcdd1;
     z-index: 10;

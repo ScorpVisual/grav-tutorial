@@ -4,24 +4,21 @@
 .grid-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   gap: 2rem;
   padding-inline: $minimal-padding;
   padding-block: 2rem;
-  min-height: 100vh;
-  // overflow: hidden;
-  // max-width: 100vw;
-      width: 100%;
-
+  width: 100%;
+  // Bardzo ważne: brak overflow: hidden tutaj, by sticky działało u dzieci
 
   @media (min-width: $breakpoint-xl) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 1.5rem;
     padding-inline: 2rem;
-    overflow: visible;
+    align-items: start; // Pomaga w pozycjonowaniu elementów sticky
+    overflow: visible;  // Gwarantuje, że sticky nie zostanie zablokowane
   }
-
-
 
   &__navbar {
     @media (min-width: $breakpoint-md) {
@@ -33,14 +30,17 @@
     display: none;
 
     @media (min-width: $breakpoint-xl) {
-      min-width: 9rem;
       display: block;
       grid-column: span 1;
+      min-width: 9rem;
+      
+      // KONFIGURACJA STICKY
       position: sticky;
-      top: 2rem;
-      align-self: start;
-      height: calc(100vh - 4rem);
-      overflow-y: auto;
+      top: 2rem;           // Odstęp od góry ekranu podczas scrollowania
+      align-self: start;   // Zapobiega rozciąganiu tła sidebaru do wysokości main-content
+      height: auto;        // Sidebar zajmuje tyle miejsca, ile jego zawartość
+      overflow: visible;   // Wymagane dla poprawnego działania sticky
+      
       padding-inline: 0 1rem;
       border-right: 1px solid $light-grey;
       z-index: 10;
@@ -56,7 +56,6 @@
 
     @media (min-width: $breakpoint-md) {
       grid-column: span 11;
-      // min-height: 200vh;
     }
   }
 
