@@ -19,7 +19,7 @@ product_variants:
         size: Dwupłytowy
         price: '6 499'
         img: product-06/product-06-double.jpg
-        full_desc: '„Wrzos” to nagrobek podwójny o szerokiej konstrukcji, zaprojektowany z myślą o **grobach rodzinnych**. Pozwala na **pochówek dwóch osób obok siebie**, zapewniając przy tym dużo miejsca na tablicy napisowej – można umieścić na niej dane kilku osób oraz wybraną sentencję. Duża powierzchnia płyty głównej daje pełną swobodę w ustawieniu dodatków, lampionów i wazonów. **Ten model realizujemy na indywidualne zamówienie** w dwóch wariantach: z dwiema lub trzema płytami nakrywającymi, zależnie od Twoich preferencji.'
+        full_desc: '„Wrzos” to nagrobek podwójny o szerokiej konstrukcji, zaprojektowany z myślą o grobach rodzinnych. Pozwala na pochówek dwóch osób obok siebie, zapewniając przy tym dużo miejsca na tablicy napisowej – można umieścić na niej dane kilku osób oraz wybraną sentencję. Duża powierzchnia płyty głównej daje pełną swobodę w ustawieniu dodatków, lampionów i wazonów. Ten model realizujemy na indywidualne zamówienie w dwóch wariantach: z dwiema lub trzema płytami nakrywającymi, zależnie od Twoich preferencji.'
     -
         title: Potrójny
         size: Trójpłytowy urnowy

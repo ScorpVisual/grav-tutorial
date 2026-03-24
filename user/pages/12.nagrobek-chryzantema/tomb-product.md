@@ -19,7 +19,7 @@ product_variants:
         size: Standard
         price: '12 499'
         img: product-05/product-05-single.jpg
-        full_desc: '„Chryzantema” jest klasycznym, pełnowymiarowym **nagrobkiem na trumnę**. Duża, jednolita tafla granitu prezentuje się dostojnie i stanowi **piękne tło dla zniczy i kwiatów**. Gładka powierzchnia eksponuje naturalne piękno kamienia i daje swobodę w ustawianiu dekoracji. Możemy nadać jej **indywidualny charakter**, stosując proste, nowoczesne krawędzie lub bardziej ozdobne, klasyczne profilowanie. Pionowa płyta napisowa sprawia, że **inskrypcja jest widoczna z daleka**.'
+        full_desc: '„Chryzantema” jest klasycznym, pełnowymiarowym nagrobkiem na trumnę. Duża, jednolita tafla granitu prezentuje się dostojnie i stanowi piękne tło dla zniczy i kwiatów. Gładka powierzchnia eksponuje naturalne piękno kamienia i daje swobodę w ustawianiu dekoracji. Możemy nadać jej indywidualny charakter, stosując proste, nowoczesne krawędzie lub bardziej ozdobne, klasyczne profilowanie. Pionowa płyta napisowa sprawia, że inskrypcja jest widoczna z daleka.'
     -
         title: Podwójny
         size: Podwójny
