@@ -60,25 +60,29 @@
         </div>
 
     </div>
-
-    <hr class="border-gray-700 my-8">
+<hr class="border-gray-700 my-8">
 
     {# --- STOPKA DOLNA --- #}
-    <div class="flex flex-col sm:flex-row justify-between items-center text-sm c-ink gap-4">
-        <p class="mb-0 text-center sm:text-left">
-            &copy; <span id="currentYear">{{ "now"|date("Y") }}</span> Kamieniarstwo Wiśniewski. Wszelkie prawa zastrzeżone.
-        </p>
+    <div class="flex flex-col gap-6 text-sm c-ink pb-4">
         
-        <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-            <a href="{{ pages.find('/polityka-prywatnosci').url|default('#') }}" class="hover:text-red transition-colors">Polityka Prywatności</a>
-            
-            {# --- DESIGN BY --- #}
-            <div class="text-gray-500 flex items-center gap-1 mt-2 sm:mt-0">
-                <span>design by</span>
-                <a href="https://kocietexty.pl" target="_blank" rel="noopener noreferrer" class="font-medium text-gray-700 hover:text-black transition-colors">
-                    kocietexty.pl
-                </a>
+        {# 1. PIĘTRO: Prawa autorskie i Polityka w jednej linii (na komputerach/tabletach) #}
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-center sm:text-left">
+                &copy; <span id="currentYear">{{ "now"|date("Y") }}</span> Kamieniarstwo Wiśniewski. Wszelkie prawa zastrzeżone.
             </div>
+            
+            <a href="{{ pages.find('/polityka-prywatnosci').url|default('#') }}" class="hover:text-red transition-colors whitespace-nowrap">
+                Polityka Prywatności
+            </a>
         </div>
+
+        {# 2. PIĘTRO: Podpis autora na samym dole, wyśrodkowany #}
+        <div class="text-gray-500 flex justify-center items-center gap-1 text-xs">
+            <span>design by</span>
+            <a href="https://kocietexty.pl" target="_blank" rel="noopener noreferrer" class="font-medium text-gray-700 hover:text-black transition-colors">
+                kocietexty.pl
+            </a>
+        </div>
+
     </div>
 </div>
