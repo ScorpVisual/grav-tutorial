@@ -23,7 +23,7 @@ product_variants:
     -
         title: Pojedynczy
         size: Z płytą stojącą
-        price: '5 499'
+        price: '7 499'
         img: product-02/product-02-standing.jpg
         full_desc: 'Wersja z płytą stojącą obejmuje dostawienie płyty granitowej z dodatkowymi napisami. W ten sposób, minimalistyczny nagrobek amerykański staje się bardziej zbliżony do klasycznych nagrobków polskich, zachowując przy tym rozsądną cenę pierwowzoru. Płyta może zostać dodatkowo ozdobiona grawerem lub rzeźbą.'
 selected_stones:

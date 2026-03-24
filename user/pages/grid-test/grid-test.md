@@ -2,7 +2,7 @@
 title: 'Grid test'
 template: grid-test
 visible: true
-published: false
+published: true
 ---
 
 <!-- # Grid test

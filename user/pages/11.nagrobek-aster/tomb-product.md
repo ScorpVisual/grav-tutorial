@@ -17,7 +17,7 @@ product_variants:
     -
         title: Podwójny
         size: Standard
-        price: '5 499'
+        price: '10 499'
         img: product-04/product-04-standard.jpg
         full_desc: 'Model „Aster” to nagrobek urnowy, który wyróżnia się konstrukcją opartą na **solidnej ramie i dwóch osobnych płytach granitowych**. Możemy zamontować je na różnych poziomach, aby uzyskać **efekt kaskady**, lub połączyć dwa rodzaje kamienia. Całość wieńczy pionowa tablica na napisy. Mimo bardziej ozdobnej formy, nagrobek jest **łatwy w utrzymaniu czystości**.'
 
