@@ -1,8 +1,8 @@
 ---
 title: 'Grid test'
 template: grid-test
-visible: true
-published: true
+visible: false
+published: false
 ---
 
 <!-- # Grid test

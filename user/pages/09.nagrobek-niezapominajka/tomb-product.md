@@ -19,13 +19,13 @@ product_variants:
         size: Standard
         price: '5 499'
         img: product-02/product-02-standard.jpg
-        full_desc: 'Niezapominajka jest propozycją dla osób szukających skromnego i estetycznego pomnika. Ta minimalistyczna forma pozwoli niewielkim kosztem wyrazić wielkie emocje. Prostota tego wzoru gwarantuje piękno na wieki. Mały nagrobek urnowy to kompaktowy pomnik w formie zamkniętego bloku, przeznaczony na 1 lub 2 urny. Napisy możemy wykonać bezpośrednio na płycie leżącej lub na ozdobnikach - np. księdze lub dodatkowej płycie.'
+        full_desc: 'Niezapominajka jest propozycją dla osób szukających **skromnego i estetycznego pomnika**. Ta minimalistyczna forma pozwoli **niewielkim kosztem wyrazić wielkie emocje**. Prostota tego wzoru gwarantuje piękno na wieki. Mały nagrobek urnowy to kompaktowy pomnik w formie zamkniętego bloku, przeznaczony na **1 lub 2 urny**. Napisy możemy wykonać bezpośrednio na płycie leżącej lub na ozdobnikach - np. księdze lub dodatkowej płycie.'
     -
         title: Pojedynczy
         size: Z płytą stojącą
         price: '7 499'
         img: product-02/product-02-standing.jpg
-        full_desc: 'Wersja z płytą stojącą obejmuje dostawienie płyty granitowej z dodatkowymi napisami. W ten sposób, minimalistyczny nagrobek amerykański staje się bardziej zbliżony do klasycznych nagrobków polskich, zachowując przy tym rozsądną cenę pierwowzoru. Płyta może zostać dodatkowo ozdobiona grawerem lub rzeźbą.'
+        full_desc: 'Wersja **z płytą stojącą** obejmuje dostawienie płyty granitowej z dodatkowymi napisami. W ten sposób, minimalistyczny nagrobek amerykański staje się bardziej zbliżony do **klasycznych nagrobków **polskich**, zachowując przy tym rozsądną cenę pierwowzoru. Płyta może zostać dodatkowo ozdobiona **grawerem lub rzeźbą**.'
 selected_stones:
     srebrzysty_strzegomski: false
     braz_krolewski: false
