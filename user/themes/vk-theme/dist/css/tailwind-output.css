@@ -725,6 +725,11 @@ video {
   margin-right: auto;
 }
 
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
 .my-12 {
   margin-top: 3rem;
   margin-bottom: 3rem;
@@ -758,11 +763,6 @@ video {
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
-}
-
-.my-10 {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
 }
 
 .mb-0 {
@@ -1599,6 +1599,10 @@ video {
   padding-left: 0.5rem;
 }
 
+.pl-6 {
+  padding-left: 1.5rem;
+}
+
 .pt-0 {
   padding-top: 0px;
 }
@@ -1613,10 +1617,6 @@ video {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pl-6 {
-  padding-left: 1.5rem;
 }
 
 .text-left {
@@ -1796,20 +1796,20 @@ video {
   opacity: 0.2;
 }
 
-.opacity-40 {
-  opacity: 0.4;
-}
-
-.opacity-95 {
-  opacity: 0.95;
-}
-
 .opacity-30 {
   opacity: 0.3;
 }
 
+.opacity-40 {
+  opacity: 0.4;
+}
+
 .opacity-70 {
   opacity: 0.7;
+}
+
+.opacity-95 {
+  opacity: 0.95;
 }
 
 .shadow-2xl {
@@ -2172,14 +2172,14 @@ video {
     padding-right: 1rem;
   }
 
-  .md\:py-32 {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-  }
-
   .md\:py-12 {
     padding-top: 3rem;
     padding-bottom: 3rem;
+  }
+
+  .md\:py-32 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
   }
 
   .md\:text-2xl {
