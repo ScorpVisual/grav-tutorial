@@ -836,7 +836,6 @@ html {
 }
 
 html {
-  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -3844,10 +3843,10 @@ option {
 .grid-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   gap: 2rem;
   padding-inline: 4px;
   padding-block: 2rem;
-  min-height: 100vh;
   width: 100%;
 }
 @media (min-width: 1280px) {
@@ -3856,6 +3855,7 @@ option {
     grid-template-columns: repeat(12, 1fr);
     gap: 1.5rem;
     padding-inline: 2rem;
+    align-items: start;
     overflow: visible;
   }
 }
@@ -3869,14 +3869,14 @@ option {
 }
 @media (min-width: 1280px) {
   .grid-container__sidebar {
-    min-width: 9rem;
     display: block;
     grid-column: span 1;
+    min-width: 9rem;
     position: sticky;
     top: 2rem;
     align-self: start;
-    height: calc(100vh - 4rem);
-    overflow-y: auto;
+    height: auto;
+    overflow: visible;
     padding-inline: 0 1rem;
     border-right: 1px solid #cbcdd1;
     z-index: 10;
@@ -4228,10 +4228,9 @@ option {
 .navbar__full .menu-label {
   flex: 1;
   min-width: 0;
-  word-break: normal;
-  overflow-wrap: break-word;
-  white-space: normal;
-  hyphens: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   line-height: 1.4;
   text-align: left;
 }
@@ -4313,6 +4312,75 @@ option {
 
 .tomb-desc {
   animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.founder {
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 4px solid #cbcdd1;
+  border-radius: 24px;
+  position: relative;
+  margin-top: 6rem;
+  padding: 1rem;
+}
+@media (min-width: 768px) {
+  .founder {
+    margin-top: 4rem;
+    padding: 3rem 2rem 2rem 4rem;
+  }
+}
+.founder__img-container {
+  display: flex;
+  justify-content: center;
+  margin-top: -6rem;
+}
+@media (min-width: 768px) {
+  .founder__img-container {
+    margin-top: 0;
+    margin-left: -8rem;
+  }
+}
+.founder__img-wrapper {
+  position: relative;
+  z-index: 10;
+  display: inline-block;
+}
+.founder__img-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(213, 168, 72, 0.6) 0%, rgba(243, 198, 102, 0.9) 50%, rgba(213, 168, 72, 0.6) 100%);
+  z-index: -1;
+  filter: blur(1px);
+}
+.founder__img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+@media (min-width: 768px) {
+  .founder__img {
+    width: 280px;
+    height: 280px;
+  }
+}
+.founder__quote {
+  font-family: "Cormorant", serif;
+  font-style: italic;
+}
+.founder__quote h4 {
+  font-weight: bold;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+@media (min-width: 768px) {
+  .founder__quote h4 {
+    font-size: 1.5rem;
+    line-height: 1.9;
+  }
 }
 
 .contact {

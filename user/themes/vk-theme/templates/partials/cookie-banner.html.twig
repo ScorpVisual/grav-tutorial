@@ -2,8 +2,11 @@
     <div class="cookie-banner__container">
         <p class="cookie-banner__text">
             Nasza strona używa plików cookies, które są niezbędne do działania witryny.<br>
-            Korzystając z witryny, zgadzasz się na ich użycie.
+            Korzystając z witryny, zgadzasz się na ich użycie.<br>
+            <a href="{{ pages.find('/polityka-prywatnosci').url|default('#') }}" class="hover:text-red transition-colors">Polityka Prywatności</a>
         </p>
+
+        
         <button id="cookie-accept" class="btn-primary button-cta--small cookie-banner__button">
             Akceptuję
         </button>

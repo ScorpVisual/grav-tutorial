@@ -268,14 +268,14 @@
     "vanga": {
         "name": "Vanga",
         "img": "38-vanga.jpg",
-        "desc": "Szwedzki granit o grubej, czerwono-czarnej strukturze i wysokiej odporności na zarysowania. Wyraziste, wielobarwne ziarno sprawia, że naniesiony piasek czy ślady po twardej wodzie wtapiają się w tło.",
+        "desc": "Kamień o ciepłej, wielobarwnej kolorystyce, w której przeplatają się tony ceglaste, pomarańczowe i fioletowe. Pięknie komponuje się z zielenią i doskonale maskuje zabrudzenia.",
         "price_level": 4,
         "availability_level": 2
     },
     "monumental_black": {
         "name": "Monumental Black",
         "img": "39-monumental-black.jpg",
-        "desc": "Kamień o ciepłej, wielobarwnej kolorystyce, w której przeplatają się tony ceglaste, pomarańczowe i fioletowe. Pięknie komponuje się z zielenią i doskonale maskuje zabrudzenia.",
+        "desc": "Szwedzki granit o grubej, czerwono-czarnej strukturze i wysokiej odporności na zarysowania. Wyraziste, wielobarwne ziarno sprawia, że naniesiony piasek czy ślady po twardej wodzie wtapiają się w tło.",
         "price_level": 5,
         "availability_level": 2
     }

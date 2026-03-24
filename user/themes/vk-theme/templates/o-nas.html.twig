@@ -5,7 +5,7 @@
 <section class="px-4 py-16 max-w-screen-xl mx-auto" id="onas">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         <div>
-            <img src="{{ theme_url }}/images/placeholders/renowacja-pomnika.jpg" alt="Założyciele firmy Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
+            <img src="{{ theme_url }}/images/photos/mieczyslaw-wisniewski.jpg" alt="Założyciele firmy Kamieniarstwo Wiśniewski" class="w-full object-cover golden-img-border hard-shadow">
         </div>
         <div>
             <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
@@ -61,11 +61,21 @@
     </div>
 </section>
 
+<section>
+{% set galleryData = [
+    { image_filename: '/images/services/leveling-gallery-7.jpg', title: 'Przygotowywanie fundamentu pod nowy nagrobek' },
+    { image_filename: '/images/services/leveling-gallery-9.jpg', title: 'Nagrobki Kamieniarstwa Wiśniewski na solidnym fundamencie' },
+    { image_filename: '/images/services/leveling-gallery-10.jpg', title: 'Zabezpieczenie nagrobka Niezapominajka na skarpie' }
+] %}
+{% include 'modular/gallery-modular.html.twig' with {'items': galleryData} %}
+</section>
+
+
 {# Sekcja 3: Wierność wartościom #}
 <section class="px-4 py-16 max-w-screen-xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         <div>
-            <img src="{{ theme_url }}/images/photos/about-us-values.jpg" alt="Marcin Wiśniewski - sukcesja firmy" class="w-full object-cover golden-img-border hard-shadow">
+            <img src="{{ theme_url }}/images/photos/about-us-father-and-son.jpg" alt="Marcin Wiśniewski - sukcesja firmy" class="w-full object-cover golden-img-border hard-shadow">
         </div>
         <div>
             <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">

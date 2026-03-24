@@ -36,7 +36,7 @@
         image: "addons-bench-3.jpg",
         alt_text: "Ławeczka nagrobkowa z montażem"
     },
-    {
+    { 
         name: "Detale dekoracyjne",
         title: "Dodatki i ozdobniki",
         short_desc: "Jedna rzeźba potrafi zawrzeć w sobie całą miłość i szacunek.",
@@ -144,10 +144,7 @@
       
       {# --- LEWA KOLUMNA: ZDJĘCIE --- #}
       <div>
-          {# Pobieramy zdjęcie pierwszego wariantu na start #}
           {% set firstImg = variants[0].img %}
-          
-          {# Logika ścieżki: Sprawdzamy czy to pełny URL, czy ścieżka w theme #}
           {% if 'http' not in firstImg and '/' not in firstImg|first %}
              {% set firstImgUrl = theme_url ~ '/images/products/' ~ firstImg %}
           {% else %}
@@ -164,15 +161,22 @@
       <div class="overflow-hidden h-full flex flex-col">
           <div class="p-0 flex flex-col flex-grow gap-4 md:p-6">
               
-              {# Tytuł sekcji #}
               <h2 class="text-3xl font-bold text-gray-800 underline--cherry lg:whitespace-nowrap">
                   {{ page.header.section_title|default(page.title) }}
               </h2>
 
+              {# --- UKRYTE KONTENERY Z WYRENDEROWANYM OPISEM (ŹRÓDŁO DLA JS) --- #}
+              <div style="display: none;">
+                  {% for variant in variants %}
+                      <div id="desc-source-{{ loop.index }}">
+                          {{ variant.full_desc|markdown|raw }}
+                      </div>
+                  {% endfor %}
+              </div>
+
               {# --- BUTTONY WARIANTÓW --- #}
               <div class="flex flex-col justify-around lg:flex-row gap-3">
                   {% for variant in variants %}
-                      {# Budowanie ścieżki dla każdego wariantu do data-img #}
                       {% if 'http' not in variant.img and '/' not in variant.img|first %}
                          {% set variantImgUrl = theme_url ~ '/images/products/' ~ variant.img %}
                       {% else %}
@@ -181,12 +185,10 @@
 
                       <button
                           type="button"
-                          class="variant-button btn-tertiary text-center 
-                                 text-gray-600 hover:text-gray-900 shrink-0 
-                                 whitespace-nowrap {% if loop.first %}is-active{% endif %}"
+                          class="variant-button btn-tertiary text-center text-gray-600 hover:text-gray-900 shrink-0 whitespace-nowrap {% if loop.first %}is-active{% endif %}"
                           data-price="{{ variant.price }}"
-                          data-desc="{{ variant.full_desc }}"
                           data-img="{{ variantImgUrl }}"
+                          data-desc-id="desc-source-{{ loop.index }}"
                       >
                           {{ variant.size }}
                       </button>
@@ -198,25 +200,20 @@
                   Cena: <span class="c-white">od <span id="product-price" class="animated-opacity">{{ variants[0].price }}</span> PLN</span>
               </div>
 
-              {# --- OPIS --- #}
-              <div id="product-description" class="min-h-[200px] text-lg animated-opacity transition-opacity duration-200">
-                  {{ variants[0].full_desc|markdown }}
+              {# --- WIDOCZNY OPIS (MIEJSCE DOCELOWE) --- #}
+              <div id="product-description" class="min-h-[200px] text-lg animated-opacity transition-opacity duration-200 prose">
+                  {{ variants[0].full_desc|markdown|raw }}
               </div>
 
               {# --- PRZYCISKI CTA --- #}
               <div class="flex flex-col lg:flex-row gap-3 mt-auto">
-                  <a href="#szczegoly" class="btn-primary flex-grow text-center">
-                      Zobacz realizacje
-                  </a>
-                  <a href="#kontakt" class="btn-cta flex-grow text-center">
-                      Zamów produkt
-                  </a>
+                  <a href="#szczegoly" class="btn-primary flex-grow text-center">Zobacz realizacje</a>
+                  <a href="#kontakt" class="btn-cta flex-grow text-center">Zamów produkt</a>
               </div>
           </div>
       </div>
   </div>
 </section>
-
 {% endif %}
 
 

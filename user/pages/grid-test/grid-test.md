@@ -1,7 +1,7 @@
 ---
 title: 'Grid test'
 template: grid-test
-visible: true
+visible: false
 published: false
 ---
 

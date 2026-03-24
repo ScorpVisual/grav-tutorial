@@ -1,5 +1,6 @@
 ---
 title: Wrzos
+seo_title: Nagrobek Wrzos - Kamieniarstwo Wiśniewski
 menu_icon: tomb
 hero_subtitle: 'Jednopłytowy nagrobek pojedynczy na urny z napisówką stojącą '
 hero_image: tombs-specific.jpg
@@ -22,10 +23,10 @@ product_variants:
         full_desc: '„Wrzos” to nagrobek podwójny o szerokiej konstrukcji, zaprojektowany z myślą o **grobach rodzinnych**. Pozwala na **pochówek dwóch osób obok siebie**, zapewniając przy tym dużo miejsca na tablicy napisowej – można umieścić na niej dane kilku osób oraz wybraną sentencję. Duża powierzchnia płyty głównej daje pełną swobodę w ustawieniu dodatków, lampionów i wazonów. **Ten model realizujemy na indywidualne zamówienie** w dwóch wariantach: z dwiema lub trzema płytami nakrywającymi, zależnie od Twoich preferencji.'
     -
         title: Potrójny
-        size: Trójpłytowy
+        size: Trójpłytowy urnowy
         price: '5 499'
         img: product-06/product-06-triple.jpg
-        full_desc: 'Wersja potrójna charakteryzuje się nakładającymi się płytami granitowymi, tworzącymi zakładki. Takie rozwiązanie przekształca zwykły nagrobek w architektoniczną rzeźbę. Istnieje możliwość dobrania różnych granitów na płyty, tworząc w ten sposób niepowtarzalną kompozycję kolorystyczną.'
+        full_desc: 'Wersja potrójna, **przeznaczona na urny**, charakteryzuje się nakładającymi się płytami granitowymi, tworzącymi zakładki. Takie rozwiązanie przekształca zwykły nagrobek w architektoniczną rzeźbę. **Istnieje możliwość dobrania różnych granitów na płyty**, tworząc w ten sposób **niepowtarzalną kompozycję kolorystyczną**.'
 selected_stones:
     srebrzysty_strzegomski: false
     braz_krolewski: true

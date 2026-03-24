@@ -13,15 +13,15 @@
 
 {# 2. PREMIUM #}
 {% set medium_keys = [
-    'astoria', 'impala_ciemna', 'impala_indie', 'orion', 'orion_silk', 
+    'vanga', 'astoria', 'impala_ciemna', 'impala_indie', 'orion', 'orion_silk', 
     'prada_gold', 'ruby_star', 'viscount_white', 'impala_jasna', 'steel_grey', 
     'china_viscount', 'tan_brown', 'mwhite', 'skalisty', 'monte_grey', 
-    'zbik_szary', 'nowy_zbik', 'star_galaxy', 'angola_black', 'vanga'
+    'zbik_szary', 'nowy_zbik'
 ] %}
 
 {# 3. EKSKLUZYWNE #}
 {% set premium_keys = [
-    'bengal_black', 'czarny_szwed', 'himalaya_blue', 'aurora', 'monumental_black'
+     'monumental_black', 'bengal_black', 'star_galaxy', 'angola_black', 'czarny_szwed', 'himalaya_blue', 'aurora'
 ] %}
 
 
@@ -179,8 +179,8 @@
 {% set rareStonesData = [
     { image_filename: '/images/products/stones/stones-rare-1.jpg', title: 'Monumental Black' },
     { image_filename: '/images/products/stones/stones-exclusive-1.jpg', title: 'Star Galaxy' },
-    { image_filename: '/images/products/stones/stones-rare-3.jpg', title: 'Monumental Black i Vanga' },
-    { image_filename: '/images/products/stones/stones-exclusive-3.jpg', title: 'Orion' }
+    { image_filename: '/images/products/stones/stones-rare-3.jpg', title: 'Monumental Black i Vanga' }
+    
 ] %}
 {% include 'modular/gallery-modular.html.twig' with {'items': rareStonesData} %}
 </section>

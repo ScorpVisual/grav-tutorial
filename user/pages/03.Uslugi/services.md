@@ -1,5 +1,6 @@
 ---
 title: 'Usługi kamieniarskie'
+seo_title: Usługi kamieniarskie, usługi cmentarne w Dąbrowie Górniczej - Kamieniarstwo Wiśniewski
 published: true
 visible: true
 hero_image: services.jpg

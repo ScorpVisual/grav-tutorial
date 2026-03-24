@@ -1,5 +1,6 @@
 ---
 title: Chryzantema
+seo_title: Nagrobek Chryzantema - Kamieniarstwo Wiśniewski
 menu_icon: tomb
 hero_subtitle: 'Jednopłytowy nagrobek pojedynczy na urny z napisówką stojącą '
 hero_image: tombs-specific.jpg
@@ -17,15 +18,15 @@ product_variants:
     -
         title: Pojedynczy
         size: Standard
-        price: '5 499'
+        price: '12 499'
         img: product-05/product-05-single.jpg
         full_desc: '„Chryzantema” jest klasycznym, pełnowymiarowym **nagrobkiem na trumnę**. Duża, jednolita tafla granitu prezentuje się dostojnie i stanowi **piękne tło dla zniczy i kwiatów**. Gładka powierzchnia eksponuje naturalne piękno kamienia i daje swobodę w ustawianiu dekoracji. Możemy nadać jej **indywidualny charakter**, stosując proste, nowoczesne krawędzie lub bardziej ozdobne, klasyczne profilowanie. Pionowa płyta napisowa sprawia, że **inskrypcja jest widoczna z daleka**.'
     -
         title: Podwójny
         size: Podwójny
-        price: '5 499'
-        img: product-05/product-05-single.jpg
-        full_desc: 'To nagrobek rodzinny o jednolitej budowie, przykryty szeroką, monolityczną płytą. Dzięki zastosowaniu grubego granitu (5–7 cm), konstrukcja jest wyjątkowo wytrzymała i odporna na osiadanie. Duża płaszczyzna pozwala też na zastosowanie bardziej zaawansowanej obróbki boków – np. frezowania schodkowego lub "wklęsłego". Szeroka płyta napisowa dopełnia całość, zapewniając miejsce na dane kilku osób.'
+        price: '15 999'
+        img: product-05/product-05-double.jpg
+        full_desc: 'To nagrobek rodzinny o jednolitej budowie, przykryty **szeroką, monolityczną płytą**. Dzięki zastosowaniu grubego granitu (5–7 cm), konstrukcja jest **wyjątkowo wytrzymała i odporna na osiadanie**. Duża płaszczyzna pozwala też na zastosowanie bardziej zaawansowanej obróbki boków – np. frezowania schodkowego lub "wklęsłego". **Szeroka płyta napisowa dopełnia całość, zapewniając miejsce na dane kilku osób.**'
 selected_stones:
     srebrzysty_strzegomski: false
     braz_krolewski: false

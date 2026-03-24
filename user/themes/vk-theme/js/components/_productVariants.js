@@ -12,30 +12,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (variantButtons.length > 0 && priceElement && descriptionElement && imageElement) {
         variantButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            if (this.classList.contains('is-active')) return;
+            button.addEventListener('click', function () {
+                if (this.classList.contains('is-active')) return;
 
-            variantButtons.forEach(btn => btn.classList.remove('is-active'));
-            this.classList.add('is-active');
+                variantButtons.forEach(btn => btn.classList.remove('is-active'));
+                this.classList.add('is-active');
 
-            priceElement.classList.add('is-fading');
-            descriptionElement.classList.add('is-fading');
-            imageElement.classList.add('is-fading');
+                priceElement.classList.add('is-fading');
+                descriptionElement.classList.add('is-fading');
+                imageElement.classList.add('is-fading');
 
-            setTimeout(() => {
-            priceElement.textContent = this.dataset.price;
-            descriptionElement.textContent = this.dataset.desc;
-            imageElement.src = this.dataset.img;
+                // Pobranie identyfikatora i elementu z wyrenderowanym opisem
+                const sourceDescId = this.dataset.descId;
+                const sourceDescElement = document.getElementById(sourceDescId);
 
-            priceElement.classList.remove('is-fading');
-            descriptionElement.classList.remove('is-fading');
-            imageElement.classList.remove('is-fading');
-            }, 200);
-        });
+                setTimeout(() => {
+                    priceElement.textContent = this.dataset.price;
+                    imageElement.src = this.dataset.img;
+                    
+                    // Podmiana na gotowy, wyrenderowany kod HTML z Grav
+                    if (sourceDescElement) {
+                        descriptionElement.innerHTML = sourceDescElement.innerHTML;
+                    }
+
+                    priceElement.classList.remove('is-fading');
+                    descriptionElement.classList.remove('is-fading');
+                    imageElement.classList.remove('is-fading');
+                }, 200);
+            });
         });
     }
-
-
 
     // ====================================================================
     //  SKRYPT 2: Obsługa mobilnej szuflady (zaktualizowany)
@@ -70,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
             window.addEventListener('resize', handleTriggerVisibility);
             // --- KONIEC NOWEJ LOGIKI ---
 
-
             // Istniejąca logika animacji (bez zmian)
             const closeDrawer = () => {
                 panel.style.maxHeight = '0px';
@@ -100,5 +105,4 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
-
 });

@@ -1,5 +1,6 @@
 ---
 title: 'Liternictwo i zdobienia'
+seo_title: Liternictwo nagrobkowe, dopiski liter w Kamieniarstwo Wiśniewski z Dąbrowy Górniczej
 published: true
 visible: true
 hero_image: letters.jpg
