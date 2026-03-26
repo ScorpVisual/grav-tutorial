@@ -1,6 +1,7 @@
 ---
 title: 'O firmie'
-seo_title: Historia firmy Kamieniarstwo Wiśniewski z Dąbrowy Górniczej
+seo_title: O nas - Kamieniarstwo Wiśniewski | 30 lat tradycji na Śląsku
+full_desc: Od ponad 30 lat tworzymy nagrobki na pokolenia. Prawdziwe rzemiosło, autorskie techniki montażu i szacunek dla klientów. Dowiedz się o nas więcej.
 published: true
 visible: true
 hero_image: about-us.jpg

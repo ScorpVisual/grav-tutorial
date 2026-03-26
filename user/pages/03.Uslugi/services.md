@@ -1,6 +1,7 @@
 ---
 title: 'Usługi kamieniarskie'
-seo_title: Usługi kamieniarskie, usługi cmentarne w Dąbrowie Górniczej - Kamieniarstwo Wiśniewski
+seo_title: Usługi kamieniarskie, usługi cmentarne, renowacja pomników w Dąbrowie Górniczej - Kamieniarstwo Wiśniewski
+full_desc: Kompleksowe usługi kamieniarskie: wylewki, układanie kostki wokół grobu, szlifowanie, renowacja starych pomników i impregnacja. Sprawdź ofertę!
 published: true
 visible: true
 hero_image: services.jpg

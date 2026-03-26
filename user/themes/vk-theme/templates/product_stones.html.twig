@@ -48,16 +48,74 @@
 
 
  #}
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Jaki kamień na nagrobek wybrać?
+        </h1>
+        <p class="text-lg text-gray-700">
+           <strong>Najważniejszym elementem pomnika jest materiał, z którego zostanie wykonany</strong>. 
+            W Kamieniarstwie Wiśniewski stosujemy tylko najlepsze odmiany kamienia - <strong>zwarte bloki granitu,
+            które przetrwają próbę czasu</strong>.
+        </p>
+        <p class="text-lg text-gray-700">
+           <strong>Ceny granitu są bardzo zróżnicowane</strong>. Zależą od jego <strong>struktury, koloru</strong> oraz <strong>dostępności na rynku</strong>.
+           Lokalne kamienie dostarczają przystępnego cenowo materiału. Inne granity, zwłaszcza ciemne, są sprowadzane z zagranicy,
+           czasami z tak <strong>egzotycznych miejsc jak Brazylia lub Indie</strong>. <strong>Czarne granity</strong> osiągają najwyższe ceny, jednak oferują nie tylko niepowtarzalny wygląd.
+            Wykazują się też <strong>wyjątkowo jednolitą strukturą</strong>, zapewniającą <strong>legendarną wytrzymałość</strong>.
+        </p>
 
+                <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#premium" class="btn-primary flex-grow text-center">
+                    Kamienie premium
+                </a>
+                <a href="#kontakt" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+          <div>
+        <img src="{{ theme_url }}/images/photos/stones-photo-main.jpg" alt="Kamienie dostępne w Kamieniarstwo Wiśniewski na Śląsku" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+</section>
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <div>
+        <img src="{{ theme_url }}/images/photos/stones-photo-main-2.jpg" alt="Złocony grawer artystyczny na płycie pomnika w Dąbrowie Górniczej" class="w-full object-cover golden-img-border hard-shadow">
+    </div>
+    <div>
+        <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry">
+            Jakie są ceny pomników?
+        </h2>
+        <p class="text-lg text-gray-700">
+           <strong>Sarkofagi z polskich kamieni</strong> - np. granitu strzegomskiego - to rozwiązanie łączące <strong>prostą estetykę z atrakcyjną ceną</strong>. Lokalne kamienie to sprawdzona opcja, choć wybór kolorów jest niewielki.
+        </p>
+        <p class="text-lg text-gray-700">
+           Dla klientów poszukujacych wyróżniającego się wyglądu oferujemy <strong>granity premium</strong> - tam znajdą Państwo <strong>więcej opcji kolorystycznych</strong>: granity piaskowe, czerwone i ciemne. Połączenie kilku odmian granitu tworzy unikalne wzory, które przyciągają wzrok.
+        </p>
+        <p class="text-lg text-gray-700">
+           Najbardziej <strong>eksluzywną opcją</strong> są granity sprowadzane zamówienie - charakteryzują się <strong>głęboką, ciemną barwą</strong>. Wzbogacone <strong>złotymi zdobieniami</strong> oraz artystycznym grawerem, te granity są  <strong>prawdziwym dziełem sztuki kamieniarskiej</strong>.
+        </p>
+                <div class="flex flex-col lg:flex-row gap-3 lg:col-start-1 lg:row-start-4">
+                <a href="#ekskluzywne" class="btn-primary flex-grow text-center">
+                    Kamienie ekskluzywne
+                </a>
+                <a href="#kontakt" class="btn-cta flex-grow text-center">
+                    Skontaktuj się
+                </a>
+        </div>
+    </div>
+</section>
 
 
 {# --- SEKCJA 1: KAMIENIE EKONOMICZNE (TANIE) --- #}
 <section id="oferta" class="px-4 py-16 max-w-screen-xl mx-auto">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
     <div class="flex flex-col gap-4 items-stretch">
-        <h1 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry uppercase">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry uppercase">
         Kamienie Ekonomiczne
-        </h1>
+        </h2>
         <div class="text-xl md:text-2xl font-bold price-highlighted">
             Cena: <span class="c-white">Najbardziej przystępna</span>
         </div>
@@ -77,7 +135,7 @@
         </div>
     </div>
     <div>
-        <img src="{{ theme_url }}/images/products/stones/stones-main.jpg" alt="Nagrobki z kamieni ekonomicznych" class="w-full object-cover golden-img-border hard-shadow">
+        <img src="{{ theme_url }}/images/products/stones/stones-main.jpg" alt="Niedrogie nagrobki i tanie pomniki z granitu" class="w-full object-cover golden-img-border hard-shadow">
     </div>
   </div>
 </section>
@@ -100,10 +158,10 @@
 <section class="px-4 py-16 max-w-screen-xl mx-auto lg:mt-24">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
     <div>
-        <img src="{{ theme_url }}/images/products/stones/stones-features.jpg" alt="Nagrobki z kamieni średniej klasy" class="w-full object-cover golden-img-border hard-shadow">
+        <img src="{{ theme_url }}/images/products/stones/stones-features.jpg" alt="Kolorowe granity i pomniki cmentarne" class="w-full object-cover golden-img-border hard-shadow">
     </div>
     <div class="flex flex-col gap-4 items-stretch">
-        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry uppercase">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry uppercase" id="premium">
         Kamienie Premium
         </h2>
         <div class="text-xl md:text-2xl font-bold price-highlighted">
@@ -135,7 +193,7 @@
 <section id="premium">
 {% set exclusiveStonesData = [
     { image_filename: '/images/products/stones/impala-ciemna.jpg', title: 'Ciemna Impala' },
-    { image_filename: '/images/products/stones/stones-exclusive-2.jpg', title: 'White Viscont z paskiem i napisówką z Ciemnej Impali' },
+    { image_filename: '/images/products/stones/stones-exclusive-2.jpg', title: 'Viscont White z paskiem i napisówką z Ciemnej Impali' },
     { image_filename: '/images/products/stones/astoria.jpg', title: 'Astoria' }
 ] %}
 {% include 'modular/gallery-modular.html.twig' with {'items': exclusiveStonesData} %}
@@ -147,7 +205,7 @@
 <section class="px-4 py-16 max-w-screen-xl mx-auto lg:mt-24">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
     <div class="flex flex-col gap-4 items-stretch">
-        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry uppercase">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-bot-cherry uppercase" id="ekskluzywne">
         Kamienie Ekskluzywne
         </h2>
         <div class="text-xl md:text-2xl font-bold price-highlighted">
@@ -166,7 +224,7 @@
         </div>
     </div>
     <div>
-        <img src="{{ theme_url }}/images/products/stones/stones-rare.jpg" alt="Ekskluzywne nagrobki premium" class="w-full object-cover golden-img-border hard-shadow">
+        <img src="{{ theme_url }}/images/products/stones/stones-rare.jpg" alt="Ekskluzywne nagrobki premium z czarnego kamienia" class="w-full object-cover golden-img-border hard-shadow">
     </div>
   </div>
 </section>

@@ -1,6 +1,7 @@
 ---
 title: Niezapominajka
 seo_title: Nagrobek Niezapominajka - Kamieniarstwo Wiśniewski
+full_desc: Minimalistyczny pomnik urnowy w stylu amerykańskim. Idealny dla osób szukających estetyki przy niewielkich kosztach. Przeznaczony na 1 lub 2 urny.
 menu_icon: tomb
 hero_subtitle: 'Mały nagrobek na urny w stylu amerykańskim'
 hero_image: tombs-specific.jpg

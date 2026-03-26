@@ -2143,10 +2143,6 @@ video {
     margin-bottom: 5rem;
   }
 
-  .md\:mt-0 {
-    margin-top: 0px;
-  }
-
   .md\:inline-flex {
     display: inline-flex;
   }
@@ -2211,14 +2207,6 @@ video {
     grid-template-columns: 1fr 2fr;
   }
 
-  .md\:flex-row {
-    flex-direction: row;
-  }
-
-  .md\:gap-0 {
-    gap: 0px;
-  }
-
   .md\:gap-12 {
     gap: 3rem;
   }
@@ -2233,10 +2221,6 @@ video {
 
   .md\:gap-4 {
     gap: 1rem;
-  }
-
-  .md\:gap-8 {
-    gap: 2rem;
   }
 
   .md\:overflow-visible {
@@ -2277,10 +2261,6 @@ video {
   .md\:py-32 {
     padding-top: 8rem;
     padding-bottom: 8rem;
-  }
-
-  .md\:text-left {
-    text-align: left;
   }
 
   .md\:text-2xl {

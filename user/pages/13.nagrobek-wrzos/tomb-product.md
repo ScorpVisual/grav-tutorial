@@ -1,6 +1,7 @@
 ---
 title: Wrzos
 seo_title: Nagrobek Wrzos - Kamieniarstwo Wiśniewski
+full_desc: Szeroki nagrobek rodzinny z granitu, pozwalający na pochówek dwóch osób obok siebie. Wykonywany na wymiar z możliwością pełnej personalizacji.
 menu_icon: tomb
 hero_subtitle: 'Jednopłytowy nagrobek pojedynczy na urny z napisówką stojącą '
 hero_image: tombs-specific.jpg
@@ -26,7 +27,7 @@ product_variants:
         size: Trójpłytowy urnowy
         price: '5 499'
         img: product-06/product-06-triple.jpg
-        full_desc: 'Wersja potrójna, **przeznaczona na urny**, charakteryzuje się nakładającymi się płytami granitowymi, tworzącymi zakładki. Takie rozwiązanie przekształca zwykły nagrobek w architektoniczną rzeźbę. **Istnieje możliwość dobrania różnych granitów na płyty**, tworząc w ten sposób **niepowtarzalną kompozycję kolorystyczną**.'
+        full_desc: 'Wersja potrójna, **przeznaczona na urny**, charakteryzuje się nakładającymi się płytami granitowymi nachodzącymi na siebie. Takie rozwiązanie przekształca zwykły nagrobek w architektoniczną rzeźbę. **Istnieje możliwość dobrania różnych granitów na płyty**, tworząc w ten sposób **niepowtarzalną kompozycję kolorystyczną**.'
 selected_stones:
     srebrzysty_strzegomski: false
     braz_krolewski: true

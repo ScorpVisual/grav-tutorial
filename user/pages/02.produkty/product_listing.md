@@ -1,6 +1,7 @@
 ---
 title: Nagrobki
 seo_title: Nagrobki granitowe w Dąbrowie Górniczej - Kamieniarstwo Wiśniewski
+full_desc: Zobacz nasze realizacje nagrobków pojedynczych, podwójnych i urnowych. Najwyższej jakości granit, nowoczesne wzornictwo i montaż na terenie Śląska.
 published: true
 hero_image: tombs-5.jpg
 hero_overlay: 45
