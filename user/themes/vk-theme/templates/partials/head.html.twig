@@ -31,7 +31,7 @@
 {# Favicon w formacie SVG #}
 <link rel="icon" href="{{ url('theme://images/icons/favico.svg') }}" type="image/svg+xml">
 <link rel="shortcut icon" href="{{ url('theme://images/icons/favico.svg') }}" type="image/svg+xml">
-
+<link rel="preload" href="{{ url('theme://dist/css/main.css') }}" as="style">
 {# Add CSS files #}
 {% do assets.addCss('theme://dist/css/site.css', 30) %}
 {% do assets.addCss('theme://dist/css/tailwind-output.css', 50) %}

@@ -562,7 +562,7 @@
 
     {# === SEKCJA 7: ARTYKUŁY  === #}
     {# ZMIANA: Pobranie artykułów z nagłówka lub z blueprintu #}
-    {% set articles = page.header.articles ?: default_articles %}
+    {# {% set articles = page.header.articles ?: default_articles %}
 
     {% if articles is defined and articles is not empty %}
     <section class="py-8 lg:py-12">
@@ -582,7 +582,6 @@
                     <div class="article-card">
                       <div class="article-card__image">
                         {% if article.image_src %}
-                             {# ZMIANA: Dodano obsługę ścieżki theme:// dla obrazków domyślnych #}
                              <img src="{{ url('theme://images/photos/' ~ article.image_src) }}" alt="{{ article.title }}">
                         {% endif %}
                       </div>
@@ -605,6 +604,6 @@
              </div>
         </div>
     </section>
-    {% endif %}
+    {% endif %} #}
 
 {% endblock %}
