@@ -1,6 +1,6 @@
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>
     {% if page.header.seo_title %}
@@ -10,37 +10,23 @@
     {% endif %}
 </title>
 
-{# Favicon w formacie SVG #}
-<link rel="icon" href="{{ url('theme://images/icons/favico.svg') }}" type="image/svg+xml">
+{# GŁÓWNY META DESCRIPTION DLA GOOGLE #}
+<meta name="description" content="{% if page.header.full_desc %}{{ page.header.full_desc|striptags|e('html') }}{% else %}{{ site.metadata.description|e('html') }}{% endif %}">
 
-{# Opcjonalnie dla starszych przeglądarek #}
-<link rel="shortcut icon" href="{{ url('theme://images/icons/favico.svg') }}" type="image/svg+xml">
-    {# <link rel="icon" href="{{ url('theme://images/brand/favicon.svg') }}" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="{{ url('theme://images/brand/favicon.svg') }}" /> #}
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<title>
-    {% if page.header.seo_title %}
-        {{ page.header.seo_title|e('html') }}
-    {% else %}
-        {% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}
-    {% endif %}
-</title>
-
-{# --- OPEN GRAPH (Facebook, LinkedIn, iMessage itp.) --- #}
+{# --- OPEN GRAPH --- #}
+<meta property="og:url" content="{{ page.url(true) }}">
+<meta property="og:type" content="website">
 <meta property="og:title" content="{% if page.header.seo_title %}{{ page.header.seo_title|e('html') }}{% else %}{{ page.title|e('html') }} | {{ site.title|e('html') }}{% endif %}">
 <meta property="og:description" content="{% if page.header.full_desc %}{{ page.header.full_desc|truncate(160)|striptags|e('html') }}{% else %}{{ site.metadata.description|e('html') }}{% endif %}">
-<meta property="og:type" content="website">
-<meta property="og:url" content="{{ page.url(true) }}">
 
-{# KLUCZOWE: Zdjęcie (musi być absolutny URL, stąd 'true' na końcu) #}
-<meta property="og:image" content="{{ url('theme://images/og-image.jpg', true) }}">
+<meta property="og:image" content="https://kamieniarstwowisniewski.pl/user/themes/vk-theme/images/og-image.jpg">
+<meta property="og:image:secure_url" content="https://kamieniarstwowisniewski.pl/user/themes/vk-theme/images/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kamieniarstwo Wiśniewski - Nagrobki i usługi kamieniarskie">
 
-{# --- TWITTER CARDS (X / Twitter) --- #}
+{# --- TWITTER CARDS --- #}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{% if page.header.seo_title %}{{ page.header.seo_title|e('html') }}{% else %}{{ page.title|e('html') }}{% endif %}">
 <meta name="twitter:description" content="{% if page.header.full_desc %}{{ page.header.full_desc|truncate(160)|striptags|e('html') }}{% else %}{{ site.metadata.description|e('html') }}{% endif %}">
@@ -48,30 +34,14 @@
 
 {# Favicon w formacie SVG #}
 <link rel="icon" href="{{ url('theme://images/icons/favico.svg') }}" type="image/svg+xml">
-
-{# Opcjonalnie dla starszych przeglądarek #}
 <link rel="shortcut icon" href="{{ url('theme://images/icons/favico.svg') }}" type="image/svg+xml">
-    {# <link rel="icon" href="{{ url('theme://images/brand/favicon.svg') }}" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="{{ url('theme://images/brand/favicon.svg') }}" /> #}
+<link rel="preload" href="{{ url('theme://dist/css/main.css') }}" as="style">
+{# Add CSS files #}
+{% do assets.addCss('theme://dist/css/site.css', 30) %}
+{% do assets.addCss('theme://dist/css/tailwind-output.css', 50) %}
+{% do assets.addCss('theme://dist/css/main.css', 100) %}
+{{ assets.css()|raw }}
 
-    {# Add CSS files #}
-    {% do assets.addCss('theme://dist/css/site.css', 30) %}
-    {% do assets.addCss('theme://dist/css/tailwind-output.css', 50) %}
-    {% do assets.addCss('theme://dist/css/main.css', 100) %}
-    {{ assets.css()|raw }}
-
-    {# Add JS files #}
-    {% do assets.addJs('theme://js/main.js', {'priority': 100, 'attributes': {'type': 'module'}}) %}
-    {{ assets.js()|raw }}
-
-
-    {# Add CSS files #}
-    {% do assets.addCss('theme://dist/css/site.css', 30) %}
-    {% do assets.addCss('theme://dist/css/tailwind-output.css', 50) %}
-    {% do assets.addCss('theme://dist/css/main.css', 100) %}
-    {{ assets.css()|raw }}
-
-    {# Add JS files #}
-    {% do assets.addJs('theme://js/main.js', {'priority': 100, 'attributes': {'type': 'module'}}) %}
-    {{ assets.js()|raw }}
-
+{# Add JS files #}
+{% do assets.addJs('theme://js/main.js', {'priority': 100, 'attributes': {'type': 'module'}}) %}
+{{ assets.js()|raw }}

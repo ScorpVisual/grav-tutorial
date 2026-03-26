@@ -1,6 +1,7 @@
 ---
 title: Aster
 seo_title: Nagrobek Aster - Kamieniarstwo Wiśniewski
+full_desc: Efektowny nagrobek z dwiema osobnymi płytami dający możliwość zestawiania kontrastowych kolorów granitu. Ozdobna forma łatwa w pielęgnacji.
 menu_icon: tomb
 hero_subtitle: 'Nagrobek dwupłytowy na urny z napisówką stojącą'
 hero_image: tombs-specific.jpg

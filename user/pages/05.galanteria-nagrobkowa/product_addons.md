@@ -1,6 +1,7 @@
 ---
 title: 'Galanteria nagrobkowa'
 seo_title: Galanteria nagrobkowa, dodatki, ławeczki, wazony nagrobne - Kamieniarstwo Wiśniewski
+full_desc: Uzupełnij pomnik o trwałą i elegancką galanterię. W naszej ofercie znajdziesz granitowe wazony, misy, krzyże i lampiony z profesjonalnym montażem.
 published: true
 visible: true
 hero_image: addons-4.jpg

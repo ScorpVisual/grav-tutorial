@@ -1,6 +1,7 @@
 ---
 title: Malwa
 seo_title: Nagrobek Malwa - Kamieniarstwo Wiśniewski
+full_desc: Popularny i łatwy w czyszczeniu jednopłytowy nagrobek na urny. Gładka powierzchnia sprawdza się świetnie w miejscach zadrzewionych. Zamów w Kamieniarstwie Wiśniewski!
 menu_icon: tomb
 hero_subtitle: 'Jednopłytowy nagrobek pojedynczy na urny z napisówką stojącą '
 hero_image: tombs-specific.jpg

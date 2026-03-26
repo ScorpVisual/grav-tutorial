@@ -1,6 +1,7 @@
 ---
 title: Chryzantema
 seo_title: Nagrobek Chryzantema - Kamieniarstwo Wiśniewski
+full_desc: Klasyczny, pełnowymiarowy nagrobek na trumny. Dostojna, jednolita tafla grubego granitu gwarantująca wytrzymałość przez dziesiątki lat.
 menu_icon: tomb
 hero_subtitle: 'Jednopłytowy nagrobek pojedynczy na urny z napisówką stojącą '
 hero_image: tombs-specific.jpg

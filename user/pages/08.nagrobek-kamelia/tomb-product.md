@@ -1,6 +1,7 @@
 ---
 title: Kamelia
 seo_title: Nagrobek Kamelia - Kamieniarstwo Wiśniewski
+full_desc: Kamelia to klasyczna, trwała forma nagrobka w stylu sarkofagu z masywną bryłą. Duża płyta zapewnia mnóstwo miejsca na długie sentencje i dane.
 menu_icon: tomb
 hero_subtitle: 'Klasyczny sarkofag na trumny lub urny z napisami na płycie'
 hero_image: tombs-specific.jpg
