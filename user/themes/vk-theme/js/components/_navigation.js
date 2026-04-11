@@ -24,6 +24,10 @@ const navToggle = document.getElementById('nav-toggle');
             if (event.target === navMenu) {
                 closeMenu();
             }
+            const link = event.target.closest('a');
+            if (link && link.getAttribute('href').includes('#')) {
+                closeMenu();
+            }
         });
     }
 
