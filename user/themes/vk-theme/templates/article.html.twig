@@ -18,46 +18,153 @@
 }
 </script>
 
-<article class="typography text-gray-700">
-    <section class="px-4 py-16 max-w-screen-xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            
-            <div>
-                {% set hero_image = page.media.images|first %}
-                {% if hero_image %}
-                    {{ hero_image.html('', page.title, 'w-full object-cover golden-img-border hard-shadow')|raw }}
-                {% endif %}
-            </div>
-
-            <div class="flex flex-col gap-4">
-                {% if page.taxonomy.category or page.taxonomy.tag %}
-                    <div class="flex flex-wrap gap-2 text-sm font-semibold uppercase text-gray-500 mb-2">
-                        {% for category in page.taxonomy.category %}
-                            <span class="c-cherry">{{ category }}</span>
-                        {% endfor %}
-                        {% for tag in page.taxonomy.tag %}
-                            <span class="bg-gray-100 px-2 py-1 rounded">{{ tag }}</span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 border-bot-cherry pb-2">
-                    {{ page.title }}
-                </h1>
+<article>
+{# --- SEKCJA TYTUŁOWA --- #}
+    <section class="px-4 pt-16 pb-4 max-w-5xl mx-auto">
+        
+{# 1. Kategorie (do lewej) i Tagi (do prawej) #}
+        {% if page.taxonomy.category or page.taxonomy.tag %}
+            <div class="flex flex-wrap items-center justify-between w-full mb-6 text-sm font-semibold uppercase text-gray-500">
                 
-                <span class="text-sm text-gray-500 font-medium border-b border-gray-200 pb-4 mb-2 block">
-                    Opublikowano: {{ page.date|date('d.m.Y') }}
-                </span>
+                {# Grupa kategorii #}
+                <div class="flex flex-wrap gap-2">
+                    {% for category in page.taxonomy.category %}
+                        <span class="c-cherry">{{ category }}</span>
+                    {% endfor %}
+                </div>
+
+                {# Grupa tagów #}
+                <div class="flex flex-wrap gap-2 mt-2 sm:mt-0">
+                    {% for tag in page.taxonomy.tag %}
+                        <span class="bg-gray-100 px-2 py-1 rounded">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+
             </div>
-            
+        {% endif %}
+
+        {# 2. Tytuł (wyśrodkowany) #}
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-800 border-bot-cherry pb-4 inline-block">
+                {{ page.title }}
+            </h1>
+        </div>
+
+        {# 3. Pasek Meta: Autor i data (do lewej) #}
+        <div class="flex flex-row flex-wrap items-center justify-start gap-4 text-base text-gray-700">
+            <div>
+                <span class="font-bold">Autor:</span> <span class="text-gray-500">{{ page.header.author|default('Kamieniarstwo Wiśniewski') }}</span>
+            </div>
+            <div class="hidden sm:block text-gray-300">|</div> {# Pionowa kreska oddzielająca na większych ekranach #}
+            <div>
+                <span class="font-bold">Opublikowano:</span> <span class="text-gray-500">{{ page.date|date('d.m.Y') }}</span>
+            </div>
+        </div>
+        
+    </section>
+
+    {# --- MAIN IMAGE (Zdjęcie Główne Artykułu) --- #}
+    {# Szukamy pliku zdefiniowanego w main_image, awaryjnie bierzemy pierwsze z brzegu #}
+    {% set main_image_name = page.header.main_image %}
+    {% set main_image = main_image_name ? page.media[main_image_name] : page.media.images|first %}
+
+    {% if main_image %}
+        <section class="px-4 pb-8 mb-8">
+            <figure class="max-w-5xl mx-auto m-0 p-0">
+                <div class="flex justify-center w-full">
+                    <img 
+                        src="{{ main_image.url }}"
+                        alt="{{ page.header.seo_title|default(page.title) }}"
+                        class="w-full golden-img-border hard-shadow block h-auto object-cover"
+                    >
+                </div>
+                
+                {% if page.header.caption %}
+                    <figcaption class="text-center text-gray-600 text-lg mt-4">
+                        {{ page.header.caption }}
+                    </figcaption>
+                {% endif %}
+            </figure>
+        </section>
+    {% endif %}
+
+    {# --- TREŚĆ ARTYKUŁU --- #}
+    <section class="px-4 py-8 max-w-screen-xl mx-auto">
+        <div class="grid grid-cols-1 gap-8">
+            <div class="custom-article-content">
+                {{ page.content|raw }}
+            </div>
         </div>
     </section>
 
-    <section class="px-4 py-8 max-w-screen-xl mx-auto">
-        <div class="grid grid-cols-1 gap-8">
-            <div class="text-lg flex flex-col gap-6 text-gray-800 leading-relaxed custom-article-content">
-                {{ page.content|raw }}
-            </div>
+    {# --- SEKCJA: POWIĄZANE ARTYKUŁY (KARTY) --- #}
+    <section class="px-4 py-16 max-w-7xl mx-auto border-t border-gray-200 mt-12">
+        
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 border-bot-cherry pb-2 inline-block">
+                Zajrzyj również do innych poradników
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {# Pobieramy wszystkie wpisy z tego samego poziomu (bloga), sortujemy od najnowszego #}
+            {% set related_articles = page.parent.children.visible.order('date', 'desc') %}
+            {% set current_route = page.route %}
+            {% set count = 0 %}
+
+            {# Pętla wyświetlająca maksymalnie 3 karty, pomijająca obecny artykuł #}
+            {% for article in related_articles if article.route != current_route and count < 3 %}
+                {% set count = count + 1 %}
+                
+                {# Pobranie miniatury (zgodnie z nową logiką main_image) #}
+                {% set card_image_name = article.header.main_image %}
+                {% set card_image = card_image_name ? article.media[card_image_name] : article.media.images|first %}
+
+                {# Karta Artykułu #}
+                <a href="{{ article.url }}" class="group flex flex-col bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-2 border border-gray-100 hover:shadow-xl">
+                    
+                    {# Zdjęcie #}
+                    <div class="w-full h-56 overflow-hidden bg-gray-100 relative">
+                        {% if card_image %}
+                            {# Funkcja cropZoom automatycznie przycina zdjęcie do równych proporcji #}
+                            <img src="{{ card_image.cropZoom(800, 500).url }}" alt="{{ article.title }}" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500">
+                        {% else %}
+                            <div class="flex items-center justify-center w-full h-full text-gray-400">Brak zdjęcia</div>
+                        {% endif %}
+                    </div>
+
+                    {# Treść karty #}
+                    <div class="p-6 flex flex-col flex-grow">
+                        
+                        {# Kategoria (pobiera pierwszą kategorię z danego wpisu) #}
+                        {% if article.taxonomy.category %}
+                            <span class="text-xs font-bold uppercase c-cherry mb-2 tracking-wider">
+                                {{ article.taxonomy.category|first }}
+                            </span>
+                        {% endif %}
+
+                        {# Tytuł #}
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-gray-600 transition-colors">
+                            {{ article.title }}
+                        </h3>
+
+                        {# Zajawka (Pobiera meta opis lub podsumowanie z Grava i ucina do ~120 znaków) #}
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
+                            {% set summary = article.header.meta_description ?: article.summary|striptags %}
+                            {{ summary|length > 120 ? summary|slice(0, 120) ~ '...' : summary }}
+                        </p>
+
+                        {# Data i "Czytaj dalej" #}
+                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                            <span class="text-xs text-gray-400 font-medium">{{ article.date|date('d.m.Y') }}</span>
+                            <span class="text-sm font-bold c-cherry group-hover:text-gray-900 transition-colors">Czytaj dalej &rarr;</span>
+                        </div>
+                        
+                    </div>
+                </a>
+            {% endfor %}
+
         </div>
     </section>
 </article>
@@ -98,6 +205,14 @@
         </div>
     </div>
 </section>
+
+{# SUTFFFFF #}
+
+
+
+
+
+
 
 {% include 'modular/faq-general.html.twig' %}
 {% include 'modular/gallery_modal.html.twig' %}

@@ -306,7 +306,7 @@
 {# {% include 'modular/article-cards-static.html.twig' %} #}
 {# end articles #}
 
-{# FAQ #}
+{# FAQ
 {% set faq_items = [
     {
         question: "Jak mogę zamówić usługę?",
@@ -324,13 +324,13 @@
         question: "Czy oferujecie gwarancję na swoje produkty?",
         answer: "Tak, wszystkie nasze produkty objęte są wieloletnią gwarancją. Jesteśmy pewni jakości naszych materiałów i wykonania, dlatego zapewniamy pełne bezpieczeństwo Twojej inwestycji."
     }
-] %}
-   <div class="flex section-header mx-auto my-8">
+] %} #}
+   {# <div class="flex section-header mx-auto my-8">
         <div class="section-header__content section-header__bg--red">
             <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">Najczęstsze pytania</h3>
         </div>
-    </div>
-{% include 'modular/faq-static.html.twig'%}
+    </div> #}
+{% include 'modular/faq-general.html.twig'%}
 {# END FAQ #}
 
 {% include 'modular/gallery_modal.html.twig'%}
