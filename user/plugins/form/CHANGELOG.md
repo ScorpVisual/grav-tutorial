@@ -1,12 +1,130 @@
+# v9.1.10
+## 07/02/2026
+
+1. [](#improved)
+    * The `array` field's sort, remove, and add controls now get comfortable spacing and padded hit targets, with a muted look that brightens on hover and reads correctly on dark themes.
+1. [](#bugfix)
+    * Active tab labels in the `tabs` field no longer force black text, keeping them readable on dark themes.
+
+# v9.1.9
+## 06/30/2026
+
+1. [](#bugfix)
+    * The `form` page template now appears in the Add Page template list in the new Grav 2.0 admin.
+
+# v9.1.8
+## 06/25/2026
+
+1. [](#bugfix)
+    * Security: the form `save` action now rejects a `folder` setting that tries to escape the data directory, preventing form files from being written elsewhere on disk.
+    * Security: the form `save` action now re-checks the filename after template processing, so submitted form values can no longer turn it into a disallowed file type or a path outside the data directory.
+
+# v9.1.7
+## 06/23/2026
+
+1. [](#improved)
+    * The `datetime` form field now renders a real date and time picker that follows the visitor's language and region, instead of falling back to a plain text box.
+
+# v9.1.6
+## 06/18/2026
+
+1. [](#bugfix)
+    * Failing a captcha (or any other validation error) no longer blocks you from correcting the form and resubmitting when refresh prevention is enabled.
+    * Custom captcha failure messages set with the older `recaptcha_not_validated` key work again alongside the current `captcha_not_validated` key.
+
+# v9.1.5
+## 06/08/2026
+
+1. [](#bugfix)
+    * Fixed a typo in the form data email template that referenced a non-existent `emarkdown` filter, which on Grav 2.0 could cause form notification emails to arrive with the raw `{% include %}` tag in the body instead of the submitted data.
+
+# v9.1.4
+## 05/29/2026
+
+1. [](#bugfix)
+    * **FilePond previews for files whose names contain `#` or `?` no longer 404.** The `image_url` and `thumb_url` returned by the upload handler now percent-encode those characters in the path so the browser doesn't treat them as fragment/query delimiters.
+
+# v9.1.3
+## 05/06/2026
+
+1. [](#bugfix)
+    * Bumped `trilbymedia/cap-php` to `^1.0` (was `^0.1.1`) to pull in 1.0.0, which fixes a fatal `Cache key length must be less than 65 characters` error from `Psr16Storage` when using the Cap captcha provider with a strict PSR-16 cache backend (e.g. Grav's default cache). Cap challenge/redeem endpoints would 500 immediately on issuance.
+
+# v9.1.2
+## 04/30/2026
+
+1. [](#bugfix)
+    * Fixed PHP 8.1+ deprecation notice — explicit string casts where `null` was being passed to string-typed function arguments.
+
+# v9.1.1
+## 04/30/2026
+
+1. [](#bugfix)
+   * Fix Changelog date on v9.0.0 entry
+
+# v9.1.0
+## 04/29/2026
+
+1. [](#new)
+   * PHP 8.1 now set in dependencies
+1. [](#bugfix)
+   * [security] Fixed unauthenticated page-content overwrite via file upload (GHSA-w4rc-p66m-x6qq). Public form uploads now strip path components from the POST-supplied filename and hard-block page-content extensions (`md`, `yaml`, `yml`, `json`, `twig`, `ini`) regardless of the configurable dangerous-extensions list. A permissive `accept` policy combined with the default `destination: self@` could otherwise let an attacker overwrite the page's own `.md` and pivot to super-admin via a `process: save` action.
+
+# v9.0.3
+## 04/28/2026
+
+1. [](#bugfix)
+   * fix for selectize to support selectize with keys
+
+# v9.0.2
+## 04/27/2026
+
+1. [](#improved)
+   * Support saving keys in selectize field
+
+# v9.0.2
+## 04/25/2026
+
+1. [](#bugfix)
+   * Don't require PHP 8.1+ due to Cap POW Captcha
+
+# v9.0.1
+## 04/24/2026
+
+1. [](#bugfix)
+   * [security] Fixed stored XSS in select-field option text (GHSA-c2q3-p4jr-c55f). Removed the `|raw` filter from `templates/forms/fields/select/select.html.twig`; option labels — including taxonomy values that propagate cross-page through the admin's shared selection pool — are now autoescaped, so a lower-privileged editor can no longer inject script that runs in an admin's browser when they open any page editor.
+
+# v9.0.0
+## 04/21/2026
+
+1. [](#new)
+    * Added new open source Cap.js powered Proof of Work (POW) captcha option, local PHP-based server, so no 3rd party services required, and 'invisible', no checkboxes or visual interaction required.
+
+# v8.2.1
+## 12/28/2025
+
+1. [](#bugfix)
+    * Fix for bad `Twig::setEscaper()` logic
+
+# v8.2.0
+## 12/27/2025
+
+1. [](#improved)
+    - Use new `Twig::setEscaper()` helper if it exists
+    - Automated form none refresh `refresh_nonce` (false by default)
+1. [](#bugfix)
+    - Fix spacer field [#623](https://github.com/getgrav/grav-plugin-form/pulls/623)
+    - Fix number field
+
 # v8.1.0
 ## 11/03/2025
 
-1. [](#bugfix)
-    - Fixed an issue with DropZone file field with `js_pipeline` enabled [#621](https://github.com/getgrav/grav-plugin-form/issues/621)
-    - Fixed general pipeline issues with form javascript
 1. [](#improved)
     - Added a field-based configuration of basic-captcha [#622](https://github.com/getgrav/grav-plugin-form/issues/622)
     - Improved filesize min/max error handling
+2. [](#bugfix)
+    - Fixed an issue with DropZone file field with `js_pipeline` enabled [#621](https://github.com/getgrav/grav-plugin-form/issues/621)
+    - Fixed general pipeline issues with form javascript
 
 # v8.0.6
 ## 10/07/2025

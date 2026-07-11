@@ -1,0 +1,107 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+<section class="py-8 lg:py-12">
+    
+    {# NAGŁÓWEK SEKCJI
+    
+    
+     <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--black">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                {{ page.header.top_label|default('Artykuły') }}
+            </h3>
+        </div>
+    </div> #}
+
+    {# NAGŁÓWEK PODSEKCJI #}
+    
+
+
+<section class="w-full my-8 py-8 px-4">
+    <div class="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-8 md:gap-16 items-center white-gradient-down">
+
+        <div class="py-6 md:py-10">
+            <blockquote class="founder__quote text-gray-700">
+                <h4 class="mb-8 border-bot-pink pb-4 leading-[1.9]">
+                    "Dekady doświadczenia w branży kamieniarskiej przekazałem mojemu synowi, Marcinowi Wiśniewskiemu. Razem dzielimy się wiedzą z klientami, aby współpraca z Państwem była jak najbardziej satysfakcjonująca."
+                </h4>
+                <p class="text-md md:text-base font-medium c-cherry not-italic text-right">
+                    — Mieczysław Wiśniewski, <br>założyciel firmy Kamieniarstwo Wiśniewski z Dąbrowy Górniczej.
+                </p>
+            </blockquote>
+        </div>
+
+
+        <img 
+            src="{{ theme_url }}/images/photos/sharing-knowledge.jpg" 
+            alt="Mieczysław Wiśniewski - założyciel firmy"
+            class="golden-img-border w-56 h-56 md:w-72 md:h-72 mx-auto md:mx-0 object-cover shadow-lg"
+        >
+
+    </div>
+</section>
+
+     <div class="flex section-header mx-auto my-8">
+        <div class="section-header__content section-header__bg--black">
+            <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
+                {{ page.header.top_label|default('Artykuły') }}
+            </h3>
+        </div>
+    </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-12">
+
+            {% set collection = page.collection() %}
+
+            {% if collection|length > 0 %}
+                {% for child in collection %}
+                    <div class="article-card">
+                      
+                      <div class="article-card__image">
+                        {% set image = child.media.images|first %}
+                        {% if image %}
+                            {{ image.cropZoom(800, 600).html(child.title, child.title, 'w-full object-cover')|raw }}
+                        {% endif %}
+                      </div>
+                      
+                      <div class="article-card__content">
+                        <h3 class="article-card__title underline--light-grey">{{ child.title }}</h3>
+                        
+                        <p class="article-card__description">
+                          {{ child.header.meta_description|default(child.summary(150)) }}
+                        </p>
+                        
+                        <a href="{{ child.url }}" class="btn-tertiary">Czytaj więcej</a>
+                        
+                        <div class="article-card__meta">
+                          <div class="article-card__meta-item">
+                            <img src="{{ url('theme://images/svg/articleCard--calendar.svg') }}" alt="" class="icon-svg">
+                            <span>{{ child.date|date("d.m.Y") }}</span>
+                          </div>
+                          
+                          {% if child.taxonomy.category %}
+                          <div class="article-card__meta-item">
+                            <span>{{ child.taxonomy.category|first }}</span>
+                          </div>
+                          {% endif %}
+                        </div>
+
+                      </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-center text-gray-500 md:col-span-2 lg:col-span-3">Brak artykułów do wyświetlenia.</p>
+            {% endif %}
+            
+        </div>
+
+        {% if config.plugins.pagination.enabled and collection.params.pagination %}
+            <div class="mt-8 flex justify-center">
+                {% include 'partials/pagination.html.twig' with {'base_url': page.url, 'pagination': collection.params.pagination} %}
+            </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}

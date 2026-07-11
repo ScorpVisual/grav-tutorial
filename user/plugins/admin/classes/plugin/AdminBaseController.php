@@ -518,7 +518,17 @@ class AdminBaseController
         switch ($type) {
             case 'config':
                 $type = $this->route ?: 'system';
-                $permissions[] = 'admin.configuration.' . $type;
+                // Tool-managed, execution/security-sensitive config scopes must not be
+                // reachable through the inheritable admin.configuration.* permission. The
+                // scheduler scope writes custom_jobs[].command, which the scheduler feeds
+                // straight into a Symfony Process, so a non-super "configuration admin"
+                // could otherwise escalate to arbitrary command execution (GHSA-wx62).
+                // Leaving only 'admin.super' makes these scopes super-only, matching the
+                // Scheduler tool's own gating. (authorize() checks admin.super when it is
+                // the sole permission in the list.)
+                if (!in_array($type, ['scheduler', 'backups'], true)) {
+                    $permissions[] = 'admin.configuration.' . $type;
+                }
                 break;
             case 'plugins':
                 $permissions[] = 'admin.plugins';
@@ -769,8 +779,13 @@ class AdminBaseController
                 } elseif ($obj instanceof UserInterface and $key === 'avatar') {
                     $obj->set($key, $files);
                 } else {
-                    // TODO: [this is JS handled] if it's single file, remove existing and use set, if it's multiple, use join
-                    $obj->join($key, $files); // stores
+                    // For single file fields, replace existing value to prevent stale file entries
+                    $fieldSettings = $obj->blueprints()->schema()->getProperty($key);
+                    if (is_array($fieldSettings) && empty($fieldSettings['multiple'])) {
+                        $obj->set($key, $files);
+                    } else {
+                        $obj->join($key, $files);
+                    }
                 }
 
             }

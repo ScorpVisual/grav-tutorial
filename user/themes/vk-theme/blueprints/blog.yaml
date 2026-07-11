@@ -1,0 +1,46 @@
+title: Lista Artykułów
+@extends:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        blog_settings:
+          type: tab
+          title: Ustawienia Listy
+          fields:
+            header.content.items:
+              type: hidden
+              default: '@self.children'
+            header.content.limit:
+              type: number
+              label: Ilość wpisów na stronie
+              default: 10
+            header.content.order.by:
+              type: select
+              label: Sortuj po
+              classes: fancy
+              options:
+                date: Data
+                title: Tytuł
+              default: date
+            header.content.order.dir:
+              type: toggle
+              label: Kierunek sortowania
+              classes: fancy
+              options:
+                asc: Rosnąco
+                desc: Malejąco
+              default: desc
+            header.content.pagination:
+              type: toggle
+              label: Paginacja
+              classes: fancy
+              options:
+                1: Tak
+                0: Nie
+              default: 1

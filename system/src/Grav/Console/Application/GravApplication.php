@@ -10,6 +10,7 @@
 namespace Grav\Console\Application;
 
 use Grav\Console\Cli\BackupCommand;
+use Grav\Console\Cli\CacheCleanupCommand;
 use Grav\Console\Cli\CleanCommand;
 use Grav\Console\Cli\ClearCacheCommand;
 use Grav\Console\Cli\ComposerCommand;
@@ -19,7 +20,6 @@ use Grav\Console\Cli\NewProjectCommand;
 use Grav\Console\Cli\PageSystemValidatorCommand;
 use Grav\Console\Cli\SandboxCommand;
 use Grav\Console\Cli\SchedulerCommand;
-use Grav\Console\Cli\SafeUpgradeRunCommand;
 use Grav\Console\Cli\SecurityCommand;
 use Grav\Console\Cli\ServerCommand;
 use Grav\Console\Cli\YamlLinterCommand;
@@ -40,6 +40,7 @@ class GravApplication extends Application
             new SandboxCommand(),
             new CleanCommand(),
             new ClearCacheCommand(),
+            new CacheCleanupCommand(),
             new BackupCommand(),
             new NewProjectCommand(),
             new SchedulerCommand(),
@@ -48,7 +49,6 @@ class GravApplication extends Application
             new YamlLinterCommand(),
             new ServerCommand(),
             new PageSystemValidatorCommand(),
-            new SafeUpgradeRunCommand(),
         ]);
     }
 }

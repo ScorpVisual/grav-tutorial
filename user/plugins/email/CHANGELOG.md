@@ -1,3 +1,41 @@
+# v5.0.3
+## 06/14/2026
+
+1. [](#improved)
+    * Email templates that fail to render (a Twig syntax error, or an unresolved include or extends) are now logged to the email and Grav logs instead of failing silently, so a broken template is much easier to track down.
+
+# v5.0.2
+## 06/08/2026
+
+1. [](#improved)
+    * Button links in HTML emails now keep their white text in email clients that force their own link color, by targeting the `a.btn-primary` and `a.btn-secondary` selectors with `!important`.
+
+# v5.0.1
+## 04/17/2026
+
+1. [](improved)
+    * Fixed compatiblity
+
+# v5.0.0
+## 04/17/2026
+
+1. [](#new)
+    * Added Grav 2.0 / Admin 2.0 support
+
+# v4.2.2
+## 12/10/2025
+
+1. [](#bugfix)
+    * Fixed `createAddress()` to gracefully handle empty or invalid email addresses instead of throwing RFC 2822 errors
+    * Fixed Twig processing to bypass Grav 1.8's security filter for trusted email config (fixes issues with `{% include %}` and field names containing `mail`)
+
+# v4.2.1
+## 11/24/2025
+
+1. [](#improved)
+    * Added more details for HTTP error logs when using API-based email providers
+    * Addressed a compatibility issue with Grav 1.8beta
+
 # v4.2.0
 ## 08/25/2025
 

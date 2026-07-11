@@ -1,0 +1,50 @@
+title: Artykuł
+@extends:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        seo_settings:
+          type: tab
+          title: Ustawienia SEO
+          fields:
+            header.seo_title:
+              type: text
+              label: Tytuł SEO
+            header.meta_description:
+              type: textarea
+              label: Meta Description
+            header.canonical_url:
+              type: text
+              label: Canonical URL
+            header.og_image:
+              type: filepicker
+              label: Obrazek Open Graph (Social Media)
+              folder: 'self@'
+              preview_images: true
+              accept:
+                - .png
+                - .jpg
+                - .jpeg
+                - .webp
+        taxonomy_settings:
+          type: tab
+          title: Kategorie i Tagi
+          fields:
+            header.taxonomy.category:
+              type: selectize
+              label: Kategorie
+              classes: fancy
+              validate:
+                type: commalist
+            header.taxonomy.tag:
+              type: selectize
+              label: Tagi
+              classes: fancy
+              validate:
+                type: commalist

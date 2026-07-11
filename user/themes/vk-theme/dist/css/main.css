@@ -656,6 +656,67 @@ h1, h2, h3, h4, h5, h6 {
   color: inherit;
 }
 
+.custom-article-content {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+.custom-article-content p {
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+.custom-article-content h2 {
+  font-size: 1.875rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #1f2937;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #800020;
+  display: inline-block;
+}
+.custom-article-content h3 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #1f2937;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.custom-article-content ul {
+  list-style-position: inside;
+  list-style-type: disc;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+@media (min-width: 768px) {
+  .custom-article-content ul {
+    font-size: 1.125rem;
+  }
+}
+.custom-article-content ul li {
+  margin-bottom: 0.75rem;
+}
+.custom-article-content ul li::marker {
+  color: #800020;
+}
+.custom-article-content strong, .custom-article-content b {
+  font-weight: 700;
+  color: #111827;
+}
+.custom-article-content a {
+  color: #800020;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+.custom-article-content a:hover {
+  color: #111827;
+  text-decoration-color: transparent;
+}
+
 html {
   background-image: url("../../images/textures/asfalt-medium.png");
   background-color: #e2e0dd;

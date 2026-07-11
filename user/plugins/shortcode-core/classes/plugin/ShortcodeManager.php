@@ -10,6 +10,7 @@ use Thunder\Shortcode\EventContainer\EventContainer;
 use Thunder\Shortcode\HandlerContainer\HandlerContainer;
 use Thunder\Shortcode\Parser\RegexParser;
 use Thunder\Shortcode\Parser\RegularParser;
+use Thunder\Shortcode\Parser\HybridParser;
 use Thunder\Shortcode\Parser\WordpressParser;
 use Thunder\Shortcode\Processor\Processor;
 use Thunder\Shortcode\Shortcode\ShortcodeInterface;
@@ -143,6 +144,26 @@ class ShortcodeManager
     public function resetObjects()
     {
         $this->objects = [];
+    }
+
+    /**
+     * reset the states
+     */
+    public function resetStates()
+    {
+        $this->states = [];
+    }
+
+    /**
+     * Reset all accumulated state (objects, assets, states).
+     * Useful for batch processing scenarios like search indexing
+     * where memory needs to be freed between pages.
+     */
+    public function resetAll()
+    {
+        $this->objects = [];
+        $this->assets = [];
+        $this->states = [];
     }
 
     /**
@@ -370,11 +391,16 @@ class ShortcodeManager
             case 'regular':
                 $parser = RegularParser::class;
                 break;
+            case 'regex':
+                $parser = RegexParser::class;
+                break;
             case 'wordpress':
                 $parser = WordpressParser::class;
                 break;
+            case 'tars': // legacy alias kept for configs created before the rename to Hybrid
+            case 'hybrid':
             default:
-                $parser = RegexParser::class;
+                $parser = HybridParser::class;
                 break;
         }
 

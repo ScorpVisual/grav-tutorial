@@ -110,8 +110,74 @@ h1, h2, h3, h4, h5, h6 {
 // =========================================
 // 5. Custom design of Headings
 // =========================================
+.custom-article-content {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.7;
 
+  p {
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
 
+  h2 {
+    font-size: 1.875rem;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid $cherry;
+    display: inline-block;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  ul {
+    list-style-position: inside;
+    list-style-type: disc;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    
+    @media (min-width: 768px) {
+      font-size: 1.125rem;
+    }
+  }
+
+  ul li {
+    margin-bottom: 0.75rem;
+  }
+
+  ul li::marker {
+    color: $cherry;
+  }
+  
+  strong, b {
+    font-weight: 700;
+    color: #111827;
+  }
+
+  a {
+    color: $cherry;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.3s ease, text-decoration-color 0.3s ease;
+  }
+
+  a:hover {
+    color: #111827;
+    text-decoration-color: transparent;
+  }
+}
 // // =========================================================================
 // // MODULE IMPORTS
 // // =========================================================================

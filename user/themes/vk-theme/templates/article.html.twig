@@ -1,0 +1,105 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ page.header.seo_title|default(page.title) }}",
+  "image": [
+    "{{ page.media.images|first.url(true) }}"
+  ],
+  "datePublished": "{{ page.date|date('c') }}",
+  "author": {
+    "@type": "Organization",
+    "name": "{{ site.title }}"
+  }
+}
+</script>
+
+<article class="typography text-gray-700">
+    <section class="px-4 py-16 max-w-screen-xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            
+            <div>
+                {% set hero_image = page.media.images|first %}
+                {% if hero_image %}
+                    {{ hero_image.html('', page.title, 'w-full object-cover golden-img-border hard-shadow')|raw }}
+                {% endif %}
+            </div>
+
+            <div class="flex flex-col gap-4">
+                {% if page.taxonomy.category or page.taxonomy.tag %}
+                    <div class="flex flex-wrap gap-2 text-sm font-semibold uppercase text-gray-500 mb-2">
+                        {% for category in page.taxonomy.category %}
+                            <span class="c-cherry">{{ category }}</span>
+                        {% endfor %}
+                        {% for tag in page.taxonomy.tag %}
+                            <span class="bg-gray-100 px-2 py-1 rounded">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 border-bot-cherry pb-2">
+                    {{ page.title }}
+                </h1>
+                
+                <span class="text-sm text-gray-500 font-medium border-b border-gray-200 pb-4 mb-2 block">
+                    Opublikowano: {{ page.date|date('d.m.Y') }}
+                </span>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="px-4 py-8 max-w-screen-xl mx-auto">
+        <div class="grid grid-cols-1 gap-8">
+            <div class="text-lg flex flex-col gap-6 text-gray-800 leading-relaxed custom-article-content">
+                {{ page.content|raw }}
+            </div>
+        </div>
+    </section>
+</article>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+        
+        <div>
+            <img src="{{ theme_url }}/images/photos/article-photo.jpg" alt="Marcin Wiśniewski prezentuje pomnik z granitu Viscont White" class="w-full object-cover rounded-lg shadow-lg golden-img-border hard-shadow">
+        </div>
+
+        <div class="flex flex-col space-y-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 border-bot-cherry">
+                <span class="c-cherry block font-semibold text-2xl">Potrzebujesz pomocy?</span>
+                Zawsze służymy fachowym doradztwem!
+            </h2>
+
+           <p class="text-lg text-gray-700 leading-relaxed">
+               Wiemy, że w obliczu straty trudno myśleć o sprawach technicznych. Zespół Kamieniarstwa Wiśniewski zajmie się każdym detalem, zdejmując ten ciężar z Twoich barków. 
+               Doradzamy przy wyborze materiału, projektujemy nagrobek i <strong>przechodzimy przez cały ten proces razem z Tobą, krok po kroku.</strong>
+            </p>
+                <a href="{{ theme_url }}/produkty" target="_blank" rel="noopener noreferrer"
+                   class="btn-tertiary w-full sm:w-auto text-center justify-center text-gray-700 hover:text-gray-900 text-xl font-semibold">
+                    Wybierz pomnik z naszej oferty
+                </a>
+            
+            <p class="text-lg text-gray-700 leading-relaxed">
+                <strong>Naszym celem jest transparentność i Twój spokój. </strong>
+                Chętnie odpowiemy na wszystkie pytania, wyjaśnimy różnice w cenach i pomożemy znaleźć rozwiązanie, 
+                które najlepiej odda hołd pamięci Twoich bliskich.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                <a href="#kontakt" class="btn-cta--big w-full sm:w-auto flex-grow text-center justify-center ">
+                    Skontaktuj się!
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'modular/faq-general.html.twig' %}
+{% include 'modular/gallery_modal.html.twig' %}
+
+{% endblock %}
