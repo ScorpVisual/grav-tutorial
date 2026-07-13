@@ -1,5 +1,5 @@
 ---
-title: 'Jaki granit wybrać na pomnik?'
+title: 'Jaki kamień na pomnik wybrać?'
 date: '11-07-2026 10:00'
 taxonomy:
     category:
@@ -8,13 +8,13 @@ taxonomy:
         - 'granit'
         - 'nagrobki'
         - 'materiały'
-seo_title: 'Jaki granit na pomnik wybrać? Trwałość i estetyka | Kamieniarstwo'
+seo_title: 'Jaki kamień na pomnik jest najlepszy? Wybierz trwały granit | Kamieniarstwo'
 meta_description: 'Poznaj różnice między rodzajami granitu. Dowiedz się, który materiał na nagrobek będzie najtrwalszy i najłatwiejszy w utrzymaniu. Zobacz nasz poradnik.'
 published: true
 visible: false
 hero_image: article.jpg
 hero_overlay: 45
-hero_subtitle: 'Remonty, renowacje i wylewki - sprawdź jak zadbamy o Twój pomnik'
+hero_subtitle: 'Kompletny przewodnik po granitach'
 hero_buttons:
     -
         text: Renowacje
