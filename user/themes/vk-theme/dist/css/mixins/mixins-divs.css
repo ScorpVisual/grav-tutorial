@@ -136,6 +136,10 @@
   background-color: rgba(159, 173, 197, 0.8);
 }
 
+.fill-cherry {
+  fill: #800020;
+}
+
 .bg-white {
   background-color: #fff;
 }
