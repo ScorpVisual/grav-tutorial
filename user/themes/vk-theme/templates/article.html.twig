@@ -1,0 +1,172 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ page.header.seo_title|default(page.title) }}",
+  "image": [
+    "{{ page.media.images|first.url(true) }}"
+  ],
+  "datePublished": "{{ page.date|date('c') }}",
+  "author": {
+    "@type": "Organization",
+    "name": "{{ site.title }}"
+  }
+}
+</script>
+
+<article>
+{# --- SEKCJA TYTUŁOWA --- #}
+    <section class="px-4 pt-16 pb-4 max-w-5xl mx-auto">
+        
+{# 1. Kategorie (do lewej) i Tagi (do prawej) #}
+        {% if page.taxonomy.category or page.taxonomy.tag %}
+            <div class="flex flex-wrap items-center justify-between w-full mb-6 text-sm font-semibold uppercase text-gray-500">
+                
+                {# Grupa kategorii #}
+                <div class="flex flex-wrap gap-2">
+                    {% for category in page.taxonomy.category %}
+                        <span class="c-cherry">{{ category }}</span>
+                    {% endfor %}
+                </div>
+
+                {# Grupa tagów #}
+                <div class="flex flex-wrap gap-2 mt-2 sm:mt-0">
+                    {% for tag in page.taxonomy.tag %}
+                        <span class="bg-gray-100 px-2 py-1 rounded">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+
+            </div>
+        {% endif %}
+
+        {# 2. Tytuł (wyśrodkowany) #}
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-5xl font-bold text-gray-800 border-bot-cherry pb-4 inline-block">
+                {{ page.title }}
+            </h1>
+        </div>
+
+        {# 3. Pasek Meta: Autor i data (do lewej) #}
+        <div class="flex flex-row flex-wrap items-center justify-start gap-4 text-base text-gray-700">
+            <div>
+                <span class="font-bold">Autor:</span> <span class="text-gray-500">{{ page.header.author|default('Kamieniarstwo Wiśniewski') }}</span>
+            </div>
+            <div class="hidden sm:block text-gray-300">|</div> {# Pionowa kreska oddzielająca na większych ekranach #}
+            <div>
+                <span class="font-bold">Opublikowano:</span> <span class="text-gray-500">{{ page.date|date('d.m.Y') }}</span>
+            </div>
+        </div>
+        
+    </section>
+
+    {# --- MAIN IMAGE (Zdjęcie Główne Artykułu) --- #}
+    {# Szukamy pliku zdefiniowanego w main_image, awaryjnie bierzemy pierwsze z brzegu #}
+    {% set main_image_name = page.header.main_image %}
+    {% set main_image = main_image_name ? page.media[main_image_name] : page.media.images|first %}
+
+    {% if main_image %}
+        <section class="px-4 pb-8 mb-8">
+            <figure class="max-w-5xl mx-auto m-0 p-0">
+                <div class="flex justify-center w-full">
+                    <img 
+                        src="{{ main_image.url }}"
+                        alt="{{ page.header.seo_title|default(page.title) }}"
+                        class="w-full golden-img-border hard-shadow block h-auto object-cover"
+                    >
+                </div>
+                
+                {% if page.header.caption %}
+                    <figcaption class="text-center text-gray-600 text-lg mt-4">
+                        {{ page.header.caption }}
+                    </figcaption>
+                {% endif %}
+            </figure>
+        </section>
+    {% endif %}
+
+    {# --- TREŚĆ ARTYKUŁU --- #}
+    <section class="px-4 py-8 max-w-screen-xl mx-auto">
+        <div class="grid grid-cols-1 gap-8">
+            <div class="custom-article-content">
+                {{ page.content|raw }}
+            </div>
+        </div>
+    </section>
+
+    {# --- SEKCJA: POWIĄZANE ARTYKUŁY (KARTY) --- #}
+<section class="px-4 py-16 max-w-7xl mx-auto border-t border-gray-300 mt-12">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 border-bot-cherry pb-2 inline-block">
+                Co teraz warto przeczytać?
+            </h2>
+        </div>
+    {% set buttons = [
+        {'label': 'Produkty', 'url': base_url ~ '/produkty'},
+        {'label': 'Usługi', 'url': base_url ~ '/uslugi'},
+        {'label': 'Kamienie', 'url': base_url ~ '/kamienie'},
+        {'label': 'Artykuły', 'url': base_url ~ '/artykuly'}
+    ] %}
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {% for item in buttons %}
+            <a href="{{ item.url }}" class="btn-tertiary w-full sm:w-auto text-center justify-center text-gray-700 hover:text-gray-900 text-xl font-semibold">
+                {{ item.label }}
+            </a>
+        {% endfor %}
+    </div>
+</section>
+</article>
+
+<section class="px-4 py-16 max-w-screen-xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+        
+        <div>
+            <img src="{{ theme_url }}/images/photos/article-photo.jpg" alt="Marcin Wiśniewski prezentuje pomnik z granitu Viscont White" class="w-full object-cover rounded-lg shadow-lg golden-img-border hard-shadow">
+        </div>
+
+        <div class="flex flex-col space-y-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 border-bot-cherry">
+                <span class="c-cherry block font-semibold text-2xl">Potrzebujesz pomocy?</span>
+                Zawsze służymy fachowym doradztwem!
+            </h2>
+
+           <p class="text-lg text-gray-700 leading-relaxed">
+               Wiemy, że w obliczu straty trudno myśleć o sprawach technicznych. Zespół Kamieniarstwa Wiśniewski zajmie się każdym detalem, zdejmując ten ciężar z Twoich barków. 
+               Doradzamy przy wyborze materiału, projektujemy nagrobek i <strong>przechodzimy przez cały ten proces razem z Tobą, krok po kroku.</strong>
+            </p>
+                <a href="{{ theme_url }}/produkty" target="_blank" rel="noopener noreferrer"
+                   class="btn-tertiary w-full sm:w-auto text-center justify-center text-gray-700 hover:text-gray-900 text-xl font-semibold">
+                    Wybierz pomnik z naszej oferty
+                </a>
+            
+            <p class="text-lg text-gray-700 leading-relaxed">
+                <strong>Naszym celem jest transparentność i Twój spokój. </strong>
+                Chętnie odpowiemy na wszystkie pytania, wyjaśnimy różnice w cenach i pomożemy znaleźć rozwiązanie, 
+                które najlepiej odda hołd pamięci Twoich bliskich.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                <a href="#kontakt" class="btn-cta--big w-full sm:w-auto flex-grow text-center justify-center ">
+                    Skontaktuj się!
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# SUTFFFFF #}
+
+
+
+
+
+
+
+{% include 'modular/faq-general.html.twig' %}
+{% include 'modular/gallery_modal.html.twig' %}
+
+{% endblock %}

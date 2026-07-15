@@ -78,9 +78,6 @@ class InitializeProcessor extends ProcessorBase
         // Initialize error handlers.
         $this->initializeErrors();
 
-        // Register recovery shutdown handler early in the lifecycle.
-        $this->container['recovery']->registerHandlers();
-
         // Initialize debugger.
         $debugger = $this->initializeDebugger();
 
@@ -147,9 +144,6 @@ class InitializeProcessor extends ProcessorBase
 
         // Disable debugger.
         $this->container['debugger']->enabled(false);
-
-        // Register recovery handler for CLI commands as well.
-        $this->container['recovery']->registerHandlers();
 
         // Set timezone, locale.
         $this->initializeLocale($config);

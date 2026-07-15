@@ -106,11 +106,20 @@ h1, h2, h3, h4, h5, h6 {
     color: inherit;
   }
 }
+
+figcaption {
+    display: block;
+    text-align: center;
+    font-size: 0.875rem; // Mniejszy tekst (odpowiednik text-sm w Tailwind)
+    color: #6b7280;      // Szary odcień (odpowiednik text-gray-500)
+    font-style: italic;
+    margin-top: -1.5rem; // Przyciąga podpis bliżej zdjęcia (niweluje duży margines img)
+    margin-bottom: 3rem; // Zachowuje pożądany, duży odstęp od następnego akapitu
+  }
     
 // =========================================
 // 5. Custom design of Headings
 // =========================================
-
 
 // // =========================================================================
 // // MODULE IMPORTS

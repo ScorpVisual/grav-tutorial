@@ -1,74 +1,66 @@
 <section class="py-8 lg:py-12">
-    
-    {# --- NAGŁÓWEK SEKCJI (Dynamiczny) --- #}
+    {# --- NAGŁÓWEK SEKCJI --- #}
     <div class="flex section-header mx-auto my-8">
         <div class="section-header__content section-header__bg--black">
-            {# Pobieramy mały napis z YAML #}
             <h3 class="text-xl md:text-2xl text-center font-semibold fill-letters-gold-section uppercase">
-                {{ page.header.top_label|default('Artykuły') }}
+                {{ page.header.top_label|default('Polecane Artykuły') }}
             </h3>
         </div>
     </div>
 
-    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto mb-8">
-            {# Pobieramy główny tytuł z YAML #}
-            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-bot-cherry text-center">
-                {{ page.header.title|default('Dowiedz się więcej z naszych artykułów') }}
-            </h2>
-            {# Pobieramy opis z YAML #}
-            <p class="text-center text-gray-700">
-                {{ page.header.text|nl2br }}
-            </p>
-        </div>
-
+    {# --- SIATKA KART --- #}
+    <div class="max-w-screen-xl mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-12">
 
-            {# --- PĘTLA GENERUJĄCA ARTYKUŁY --- #}
-            {# Pobieramy listę z page.header.articles #}
-            {% set articles = page.header.articles %}
+            {% set collection = page.find('/artykuly').children %}
 
-            {% if articles is defined and articles is not empty %}
-                {% for article in articles %}
-                    <div class="article-card">
+            {% if collection|length > 0 %}
+                {% set random_articles = collection.shuffle().slice(0, 3) %}
+                
+                {% for child in random_articles %}
+                    {# ZMIANA: Dodano 'flex flex-col' aby karta mogła użyć flex-grow #}
+                    <a href="{{ child.url }}" class="flex flex-col article-card group">
                       
                       <div class="article-card__image">
-                        {# Używamy funkcji url() do poprawnego wyświetlenia ścieżki z filepickera #}
-                        {% if article.image_src %}
-                            <img src="{{ url(article.image_src) }}" alt="{{ article.image_alt }}">
+                        {% set card_image_name = child.header.main_image %}
+                        {% set image = card_image_name ? child.media[card_image_name] : child.media.images|first %}
+                        {% if image %}
+                            {{ image.cropZoom(800, 600).html(child.title, child.title, 'w-full object-cover')|raw }}
                         {% endif %}
                       </div>
                       
-                      <div class="article-card__content">
-                        <h3 class="article-card__title underline--light-grey">{{ article.title }}</h3>
+                      {# ZMIANA: Dodano 'flex flex-col flex-grow' aby treść rozpychała kartę #}
+                      <div class="article-card__content flex flex-col flex-grow">
+                        <h3 class="article-card__title underline--light-grey">{{ child.title }}</h3>
                         
-                        <p class="article-card__description">
-                          {{ article.description }}
+                        {# ZMIANA: flex-grow-1 sprawia, że opis zajmuje całe wolne miejsce #}
+                        <p class="article-card__description flex-grow">
+                          {{ child.header.meta_description|default(child.summary(150)) }}
                         </p>
                         
-                        {# Link #}
-                        <a href="{{ article.url }}" class="btn-tertiary">Czytaj więcej</a>
-                        
-                        <div class="article-card__meta">
-                          <div class="article-card__meta-item">
-                            {# Upewnij się, że ta ikona istnieje w Twoim motywie #}
-                            <img src="{{ url('theme://images/svg/articleCard--calendar.svg') }}" alt="" class="icon-svg">
-                            {# Formatujemy datę (opcjonalne, ale zalecane przy polu typu date) #}
-                            <span>{{ article.date|date("d.m.Y") }}</span>
-                          </div>
-                          
-                          <div class="article-card__meta-item">
-                            <span>{{ article.category }}</span>
-                          </div>
+                        {# Elementy poniżej zawsze będą na dole dzięki flex-grow powyżej #}
+                        <div class="mt-4">
+                            <span class="btn-tertiary w-full mx-auto text-center">Czytaj więcej</span>
+                            
+                            <div class="article-card__meta mt-4">
+                              <div class="article-card__meta-item">
+                                <img src="{{ url('theme://images/svg/articleCard--calendar.svg') }}" alt="" class="icon-svg">
+                                <span>{{ child.date|date("d.m.Y") }}</span>
+                              </div>
+                              
+                              {% if child.taxonomy.category %}
+                              <div class="article-card__meta-item">
+                                <span>{{ child.taxonomy.category|first }}</span>
+                              </div>
+                              {% endif %}
+                            </div>
                         </div>
-
                       </div>
-                    </div>
+                    </a>
                 {% endfor %}
             {% else %}
-                <p class="text-center text-gray-500 md:col-span-2 lg:col-span-3">Brak artykułów do wyświetlenia.</p>
+                <p class="text-center text-gray-500 md:col-span-2 lg:col-span-3">Brak artykułów w folderze /artykuly.</p>
             {% endif %}
-            
         </div>
     </div>
 </section>

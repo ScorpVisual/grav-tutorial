@@ -123,7 +123,7 @@ $img-gradient-mobile: linear-gradient(180deg, $trans 5%, $ink 80%);
     &.c-aluminium { background-color: $aluminium; }
 }
 
-
+.fill-cherry { fill: $cherry; }
 // ANIMATIONS
 $fadeInUp: fadeInUp .6s ease-out forwards;
 

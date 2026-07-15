@@ -33,6 +33,16 @@
         </div>
     </div>
 </section>
+
+<section>
+{% set galleryData = [
+    { image_filename: '/images/services/renovation-gallery-1.jpg', title: 'Renowacja wiekowego pomnika' },
+    { image_filename: '/images/services/renovation-gallery-2.jpg', title: 'Zabezpieczenie starego nagrobka poprzez klamrowanie' },
+    { image_filename: '/images/services/renovation-gallery-3.jpg', title: 'Zbrojona wylewka to podstawa!' }
+] %}
+{% include 'modular/gallery-modular.html.twig' with {'items': galleryData} %}
+</section>
+
 <section class="px-4 py-16 max-w-screen-xl mx-auto" id="impregnacja">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
 
@@ -209,6 +219,7 @@
 
 {% include 'modular/feature-cards-static.html.twig'%}
 
+{% include 'modular/article-cards.html.twig' %}
 
 {# FAQ #}
 {% include 'modular/faq-general.html.twig'%}

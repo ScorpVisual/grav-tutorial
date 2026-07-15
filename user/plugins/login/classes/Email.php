@@ -43,6 +43,8 @@ class Email
                 $activationRoute = rtrim($site_host, '/') . '/' . ltrim($activationRoute, '/');
             }
 
+            static::warnIfUntrustedHost('account activation');
+
             $activationLink = Utils::url(
                 $activationRoute . '/token' . $param_sep . $token . '/username' . $param_sep . $user->username,
                 null,
@@ -95,6 +97,8 @@ class Email
             if (!empty($site_host)) {
                 $resetRoute = rtrim($site_host, '/') . '/' . ltrim($resetRoute, '/');
             }
+
+            static::warnIfUntrustedHost('password reset');
 
             $resetLink = Utils::url(
                 "{$resetRoute}/task{$param_sep}login.reset/token{$param_sep}{$token}/user{$param_sep}{$user->username}/nonce{$param_sep}" . Utils::getNonce('reset-form'),
@@ -215,6 +219,56 @@ class Email
         }
     }
 
+    /**
+     * @param UserInterface $user
+     * @param string $token
+     * @param UserInterface|null $actor
+     * @return void
+     * @throws \Exception
+     */
+    public static function sendMagicLoginEmail(UserInterface $user, string $token, ?UserInterface $actor = null): void
+    {
+        if (!$user->email || $token === '') {
+            return;
+        }
+
+        try {
+            $config = static::getConfig();
+            $param_sep = $config->get('system.param_sep', ':');
+            $magicRoute = static::getLogin()->getRoute('magic_login');
+            if (!$magicRoute) {
+                throw new \RuntimeException('Magic login route does not exist!');
+            }
+
+            $site_host = $config->get('plugins.login.site_host');
+            if (!empty($site_host)) {
+                $magicRoute = rtrim($site_host, '/') . '/' . ltrim($magicRoute, '/');
+            }
+
+            static::warnIfUntrustedHost('magic login');
+
+            $loginLink = Utils::url(
+                "{$magicRoute}/token{$param_sep}{$token}/username{$param_sep}{$user->username}",
+                true,
+                true
+            );
+
+            $context = [
+                'login_link' => $loginLink,
+            ];
+
+            $params = [
+                'to' => $user->email,
+            ];
+
+            static::sendEmail('magic-login', $context, $params, $user, $actor);
+        } catch (\Exception $e) {
+            static::getLogger()->error($e->getMessage());
+
+            throw $e;
+        }
+    }
+
     protected static function sendEmail(string $template, array $context, array $params, ?UserInterface $user = null, ?UserInterface $actor = null): void
     {
         $actor = $actor ?? static::getUser();
@@ -235,10 +289,25 @@ class Email
             'author' => $config->get('site.author.name', ''),
         ];
 
-        $params += [
-            'body' => '',
-            'template' => "emails/login/{$template}.html.twig",
-        ];
+        if (!isset($params['body']) && !isset($params['template'])) {
+            $body = [
+                [
+                    'content_type' => 'text/html',
+                    'template' => "emails/login/{$template}.html.twig",
+                    'body' => '',
+                ],
+            ];
+
+            if (static::templateExists("emails/login/{$template}.txt.twig")) {
+                $body[] = [
+                    'content_type' => 'text/plain',
+                    'template' => "emails/login/{$template}.txt.twig",
+                    'body' => '',
+                ];
+            }
+
+            $params['body'] = $body;
+        }
 
         $email = static::getEmail();
 
@@ -267,6 +336,54 @@ class Email
     protected static function getLogger(): LoggerInterface
     {
         return Grav::instance()['log'];
+    }
+
+    /**
+     * Warn when a security-sensitive email link has to be built from the
+     * incoming request `Host` header.
+     *
+     * When neither `plugins.login.site_host` nor `system.custom_base_url` is
+     * set, password reset, activation and magic-login links are made absolute
+     * using the request host, which a client can spoof to redirect the link to
+     * an attacker-controlled host and capture the token (GHSA-46jp-rc59-w2gc).
+     * On a default install there is no trusted server-side host to substitute,
+     * so rather than silently emit a spoofable link we make the weak
+     * configuration visible. Setting either value pins the link to a trusted
+     * host and silences this warning.
+     *
+     * @param string $context Human label for the email flow, e.g. "password reset".
+     * @return void
+     */
+    protected static function warnIfUntrustedHost(string $context): void
+    {
+        if (static::isTrustedHostConfigured()) {
+            return;
+        }
+
+        static::getLogger()->warning(sprintf(
+            'login: %s email link built from the request Host header because neither plugins.login.site_host nor system.custom_base_url is set. A spoofed Host can redirect this link to an attacker (GHSA-46jp-rc59-w2gc); set one of those to pin it to a trusted host.',
+            $context
+        ));
+    }
+
+    /**
+     * Whether a trusted, server-side host is configured for building absolute
+     * email links.
+     *
+     * Returns true when either the login plugin's `site_host` or the core
+     * `system.custom_base_url` is set. When both are empty, security-sensitive
+     * links fall back to the request `Host` header, which a client can spoof
+     * (GHSA-46jp-rc59-w2gc). The admin notices and the optional
+     * `require_trusted_host` enforcement both key off this.
+     *
+     * @return bool
+     */
+    public static function isTrustedHostConfigured(): bool
+    {
+        $config = static::getConfig();
+
+        return !empty($config->get('plugins.login.site_host'))
+            || !empty($config->get('system.custom_base_url'));
     }
 
     /**
@@ -299,5 +416,19 @@ class Email
     protected static function getLanguage(): Language
     {
         return Grav::instance()['language'];
+    }
+
+    protected static function templateExists(string $template): bool
+    {
+        try {
+            $twig = Grav::instance()['twig'];
+            $twig->init();
+
+            $loader = $twig->twig()->getLoader();
+
+            return method_exists($loader, 'exists') ? $loader->exists($template) : false;
+        } catch (\Throwable $e) {
+            return false;
+        }
     }
 }

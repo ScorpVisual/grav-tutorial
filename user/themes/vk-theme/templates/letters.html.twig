@@ -241,36 +241,8 @@
 {# {% include 'modular/feature-cards.html.twig'%} #}
 
 {# articles #}
-{% set articles = [
-    {
-        image_src: theme_url ~ '/images/photos/services-photo.jpg',
-        image_alt: 'Nagłówek artykułu o nowoczesnych nagrobkach',
-        title: 'Nowoczesne trendy w kamieniarstwie',
-        description: 'Odkryj minimalistyczne formy i innowacyjne materiały, które zyskują na popularności w projektowaniu nagrobków.',
-        url: '#',
-        date: '20.09.2025',
-        category: 'Inspiracje'
-    },
-    {
-        image_src: theme_url ~ '/images/photos/stones-photo-2.jpg',
-        image_alt: 'Granitowa płyta nagrobna',
-        title: 'Jak dbać o nagrobek z granitu?',
-        description: 'Praktyczne porady dotyczące czyszczenia i konserwacji granitu, aby zachował swój blask na długie lata.',
-        url: '#',
-        date: '15.09.2025',
-        category: 'Porady'
-    },
-    {
-        image_src: theme_url ~ '/images/photos/stones-photo.jpg',
-        image_alt: 'Rzeźba anioła na nagrobku',
-        title: 'Personalizacja pomnika – co warto wiedzieć?',
-        description: 'Od grawerunku po rzeźbę - poznaj możliwości personalizacji, które nadadzą pomnikowi unikalny charakter.',
-        url: '#',
-        date: '10.09.2025',
-        category: 'Wiedza'
-    }
-] %}
-{# {% include 'modular/article-cards-static.html.twig' %} #}
+{% include 'modular/article-cards.html.twig' %}
+
 {# end articles #}
 {# FAQ #}
 {% include 'modular/faq-general.html.twig'%}

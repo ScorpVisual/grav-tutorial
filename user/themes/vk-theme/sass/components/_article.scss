@@ -1,6 +1,8 @@
 @use '../mixins/mixins' as *;
 @use '../abstracts/variables' as *;
 @use '../abstracts/colors' as *;
+@use '../base/typography' as *;
+@use '../base/images' as *;
 
 
 .table-of-contents {
@@ -26,3 +28,202 @@
         }
     
 }
+
+
+// =========================================
+// Stylizacja treści artykułów (Markdown)
+// =========================================
+.custom-article-content {
+  color: #374151;
+
+  // 1. Paragrafy (zgodne z Twoim typography + waga 400 dla resetu Tailwinda)
+  p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: inherit;
+    font-weight: 400;
+  }
+
+  // 2. Nagłówki bazujące na Twoich zmiennych mobilnych
+  h1 {
+    font-size: $h1-mobile;
+    line-height: 1.5;
+    font-family: 'Cormorant', serif;
+    font-weight: 700;
+    color: inherit;
+  }
+
+  h2 { 
+    font-size: $h2-mobile;
+    font-weight: 900;
+    color: #1f2937;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+// &::before {
+//       content: ''; 
+//       display: inline-block;
+//       width: 50px;
+//       height: 40px;
+//       margin-right: 10px;
+//       transform: translateY(14px);
+//       background-image: url('../../images/svg/marbleSlabVertical.svg');
+//       background-size: contain;
+//       background-repeat: no-repeat;
+//       background-position: left center;
+//       margin-bottom: 0.5rem;
+//     }
+    //     &::after {
+    //   content: ''; 
+    //   display: block;
+    //   margin-top: 0.5rem;
+    //   width: 6%;
+    //   height: .2rem;
+    //   background-color: $cherry;
+    //   background-size: contain;
+    //   background-repeat: no-repeat;
+    //   background-position: left center;
+    //   margin-bottom: 0.5rem;
+    // }
+  }
+
+  h3 { 
+    font-size: $h3-mobile; 
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    &::before {
+      content: ''; 
+      display: inline-block;
+      width: 1px;
+      height: 32px;
+      margin-right: 8px;
+      transform: translateY(14px);
+      background-color: $cherry;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: left center;
+      margin-bottom: 0.5rem;
+    }
+    // &::after {
+    //   content: ''; 
+    //   display: block;
+    //   margin-top: 0.5rem;
+    //   width: 50px;
+    //   height: 4px;
+    //   background-color: $cherry;
+    //   background-size: contain;
+    //   background-repeat: no-repeat;
+    //   background-position: left center;
+    //   margin-bottom: 0.5rem;
+    // }
+  }
+
+  h4 { font-size: $h4-mobile; font-weight: 700; }
+  h5 { font-size: $base-font-size; font-weight: 700; }
+  h6 { font-size: $small-text; font-weight: 700; }
+
+  // 3. Nagłówki dla Desktopu (zgodne z Twoim typography)
+  @media (min-width: $breakpoint-md) {
+    h1 { font-size: 3.5rem; line-height: 1.2; }
+    h2 { font-size: 2.75rem; line-height: 1.2; }
+    h3 { font-size: 2rem; line-height: 1.2; }
+    h4 { font-size: 1.5rem; line-height: 1.2; }
+    h5 { font-size: 1.25rem; line-height: 1.2; }
+    h6 { font-size: 1rem; line-height: 1.2; }
+  }
+
+  // 4. Naprawa elementów z Markdowna (Czysty SCSS)
+  ul {
+    list-style-position: inside;
+    list-style-type: disc;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    
+    @media (min-width: $breakpoint-md) {
+      font-size: 1.125rem;
+    }
+
+    li {
+      margin-bottom: 0.75rem;
+      
+      &::marker {
+        color: $cherry;
+      }
+    }
+  }
+
+  strong, b {
+    font-weight: 700;
+    color: #111827;
+  }
+
+  a {
+    color: $cherry;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.3s ease, text-decoration-color 0.3s ease;
+
+    &:hover {
+      color: #111827;
+      text-decoration-color: transparent;
+    }
+  }
+  // Zdjęcia wrzucane w treści artykułu (Markdown)
+  img {
+    display: block;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    margin-left: auto;
+    margin-right: auto; // Wyśrodkowanie pionowe i poziome
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    
+    // Używamy @extend by "pożyczyć" gotowe style z Twoich klas
+    @extend .golden-img-border;
+    @extend .hard-shadow;
+  }
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  
+  @media (min-width: 768px) {
+    font-size: 1.125rem;
+  }
+
+  li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.75rem;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      background-image: url('../../images/svg/marbleCube.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}
+figcaption {
+    display: block;
+    text-align: center;
+    font-size: 0.875rem; // Mniejszy tekst (odpowiednik text-sm w Tailwind)
+    color: #6b7280;      // Szary odcień (odpowiednik text-gray-500)
+    font-style: italic;
+    margin-top: -1.5rem; // Przyciąga podpis bliżej zdjęcia (niweluje duży margines img)
+    margin-bottom: 3rem; // Zachowuje pożądany, duży odstęp od następnego akapitu
+  }
+}
+

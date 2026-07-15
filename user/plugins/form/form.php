@@ -32,9 +32,7 @@ use RocketTheme\Toolbox\File\File;
 use RocketTheme\Toolbox\Event\Event;
 use RuntimeException;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
-use Twig\Environment;
 use Twig\Extension\CoreExtension;
-use Twig\Extension\EscaperExtension;
 use Twig\TwigFunction;
 use function count;
 use function function_exists;
@@ -84,6 +82,14 @@ class FormPlugin extends Plugin
             'onPluginsInitialized' => ['onPluginsInitialized', 0],
             'onTwigExtensions' => ['onTwigExtensions', 0],
             'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
+            // Register the `form` page template unconditionally. This must NOT be
+            // gated behind isAdmin(): under Admin Next the admin context (the API
+            // plugin's AdminProxy) isn't established until route dispatch, long
+            // after onPluginsInitialized runs — so an isAdmin() check here would be
+            // false and the template would never appear in the page-type list.
+            // The handler is context-free (just registers a type), so it is safe
+            // to subscribe in every context; the event only fires from getTypes().
+            'onGetPageTemplates' => ['onGetPageTemplates', 0],
         ];
     }
 
@@ -116,21 +122,29 @@ class FormPlugin extends Plugin
 
         // Initialize the captcha manager
         CaptchaManager::initialize();
-        
-
-        if ($this->isAdmin()) {
-            $this->enable([
-                'onPageInitialized' => ['onPageInitialized', 0],
-                'onGetPageTemplates' => ['onGetPageTemplates', 0],
-            ]);
-            return;
-        }
 
         /** @var Uri $uri */
         $uri = $this->grav['uri'];
 
+        // Refresh Nonce Logic - Run early to catch both frontend and admin
+        // Uri::param() returns false when missing, so use fallback even on falsey values.
+        $task = $uri->param('task') ?: $uri->query('task') ?: ($_REQUEST['task'] ?? null);
+        if ($task === 'get-nonce') {
+            $action = $uri->param('action') ?: $uri->query('action') ?: ($_REQUEST['action'] ?? 'form');
+            $nonce = Utils::getNonce($action);
+            $response = new Response(200, ['Content-Type' => 'application/json'], json_encode(['nonce' => $nonce]));
+
+            $this->grav->close($response);
+        }
+
+        if ($this->isAdmin()) {
+            $this->enable([
+                'onPageInitialized' => ['onPageInitialized', 0],
+            ]);
+            return;
+        }
+
         // Mini Keep-Alive Logic
-        $task = $uri->param('task');
         if ($task === 'keep-alive') {
             $response = new Response(200);
 
@@ -138,6 +152,7 @@ class FormPlugin extends Plugin
         }
 
         $this->processBasicCaptchaImage($uri);
+        $this->processCapRoutes($uri);
 
         $this->enable([
             'onPageProcessed' => ['onPageProcessed', 0],
@@ -336,7 +351,7 @@ class FormPlugin extends Plugin
                     $formParam = $form->get('uniqueid_param', 'fid');
                     $uniqueId = $route->getGravParam($formParam);
 
-                    if ($uniqueId && preg_match('/[a-z\d]+/', $uniqueId)) {
+                    if ($uniqueId && preg_match('/[a-z\d]+/', (string) $uniqueId)) {
                         // URL contains unique id, initialize the current form.
                         $form->setUniqueId($uniqueId);
                         $form->initialize();
@@ -368,17 +383,24 @@ class FormPlugin extends Plugin
             new TwigFunction('forms', [$this, 'getForm'])
         );
 
-        if (Environment::VERSION_ID > 20000) {
-            // Twig 2/3
-            $this->grav['twig']->twig()->getExtension(EscaperExtension::class)->setEscaper(
+        // Register yaml escaper for Twig
+        $twig = $this->grav['twig'];
+        if (method_exists($twig, 'setEscaper')) {
+            // Grav 1.8.0-beta.29+ has setEscaper() helper
+            $twig->setEscaper('yaml', function ($twig, $string, $charset) {
+                return Yaml::dump($string);
+            });
+        } elseif (class_exists('Twig\Runtime\EscaperRuntime')) {
+            // Grav 1.8.0-beta.1 to .28 with Twig 3.x (no helper yet)
+            $twig->twig()->getRuntime('Twig\Runtime\EscaperRuntime')->setEscaper(
                 'yaml',
-                function ($twig, $string, $charset) {
+                function ($string, $charset) {
                     return Yaml::dump($string);
                 }
             );
         } else {
-            // Twig 1.x
-            $this->grav['twig']->twig()->getExtension(CoreExtension::class)->setEscaper(
+            // Grav 1.7 with Twig 1.x
+            $twig->twig()->getExtension(CoreExtension::class)->setEscaper(
                 'yaml',
                 function ($twig, $string, $charset) {
                     return Yaml::dump($string);
@@ -441,6 +463,18 @@ class FormPlugin extends Plugin
         if ($this->config->get('plugins.form.built_in_css')) {
             $this->grav['assets']->addCss('plugin://form/assets/form-styles.css');
         }
+        if ($this->config->get('plugins.form.refresh_nonce')) {
+            $timeout = (int)$this->config->get('system.session.timeout', 1800);
+            // Nonce lifetime is ~12h (current + previous tick); cap refresh window to that.
+            $effectiveTimeout = min($timeout, 43200);
+            // Refresh close to expiry: 10% lead time, capped between 5s and 60s.
+            $leadTime = min(60, max(5, (int)round($effectiveTimeout * 0.10)));
+            $intervalSeconds = max(1, $effectiveTimeout - $leadTime);
+            $interval = $intervalSeconds * 1000;
+
+            $this->grav['assets']->addInlineJs("window.GravForm = window.GravForm || {}; window.GravForm.refresh_nonce_interval = $interval;", ['group' => 'bottom', 'position' => 'before']);
+            $this->grav['assets']->addJs('plugin://form/assets/form-nonce-refresh.js', ['group' => 'bottom', 'defer' => true]);
+        }
         $twig->twig_vars['form_max_filesize'] = Form::getMaxFilesize();
         $twig->twig_vars['form_json_response'] = $this->json_response;
     }
@@ -465,6 +499,7 @@ class FormPlugin extends Plugin
         switch ($action) {
             case 'basic-captcha':
             case 'turnstile':
+            case 'cap':
             case 'captcha':
                 // Convert boolean params to array if needed
                 $captcha_params = is_array($params) ? $params : [];
@@ -535,7 +570,7 @@ class FormPlugin extends Plugin
                 if (!$route || $route[0] !== '/') {
                     /** @var Uri $uri */
                     $uri = $this->grav['uri'];
-                    $route = rtrim($uri->route(), '/').'/'.($route ?: '');
+                    $route = rtrim((string) $uri->route(), '/').'/'.($route ?: '');
                 }
 
                 /** @var Twig $twig */
@@ -556,7 +591,7 @@ class FormPlugin extends Plugin
             case 'remember':
                 foreach ($params as $remember_field) {
                     $field_cookie = 'forms-'.$form['name'].'-'.$remember_field;
-                    setcookie($field_cookie, $form->value($remember_field), time() + 60 * 60 * 24 * 60);
+                    setcookie($field_cookie, (string) $form->value($remember_field), time() + 60 * 60 * 24 * 60);
                 }
                 break;
             case 'upload':
@@ -569,10 +604,15 @@ class FormPlugin extends Plugin
                 $format = $params['dateformat'] ?? 'Ymd-His-u';
                 $raw_format = (bool) ($params['dateraw'] ?? false);
                 $postfix = $params['filepostfix'] ?? '';
-                $ext = !empty($params['extension']) ? '.'.trim($params['extension'], '.') : '.txt';
+                $ext = !empty($params['extension']) ? '.'.trim((string) $params['extension'], '.') : '.txt';
                 $filename = $params['filename'] ?? '';
                 $folder = !empty($params['folder']) ? $params['folder'] : $form->getName();
                 $operation = $params['operation'] ?? 'create';
+
+                // Reject path traversal in the folder parameter (folder is never run through checkFilename).
+                if (str_contains($folder, '..') || str_contains($folder, "\0")) {
+                    throw new RuntimeException(sprintf('Form save: Invalid folder path: %s', $folder));
+                }
 
                 if (!$filename) {
                     if ($operation === 'add') {
@@ -596,10 +636,29 @@ class FormPlugin extends Plugin
                 // Process with Twig
                 $filename = $twig->processString($filename, $vars);
 
+                // Re-validate the rendered filename: checkFilename() above ran on the raw template, but Twig may
+                // expand submitted form values into traversal sequences or dangerous extensions.
+                if (!Utils::checkFilename($filename)) {
+                    throw new RuntimeException(sprintf('Form save: Invalid rendered filename: %s', $filename));
+                }
+
                 $locator = $this->grav['locator'];
                 $path = $locator->findResource('user-data://', true);
                 $dir = $path.DS.$folder;
                 $fullFileName = $dir.DS.$filename;
+
+                // Final containment check: the resolved target must stay within user-data://. The target dir may
+                // not exist yet on first save, so resolve the nearest existing ancestor instead of $dir itself.
+                $dataRoot = realpath($path);
+                $ancestor = $dir;
+                while ($ancestor && !file_exists($ancestor) && dirname($ancestor) !== $ancestor) {
+                    $ancestor = dirname($ancestor);
+                }
+                $realAncestor = $ancestor ? realpath($ancestor) : false;
+                if ($dataRoot === false || $realAncestor === false
+                    || ($realAncestor !== $dataRoot && !str_starts_with($realAncestor, $dataRoot.DS))) {
+                    throw new RuntimeException('Form save: Resolved path escapes the data directory.');
+                }
 
                 if (!empty($params['raw']) || !empty($params['template'])) {
                     // Save data as it comes from the form.
@@ -723,6 +782,15 @@ class FormPlugin extends Plugin
             $form->status = 'error';
             $form->message = $event['message'];
             $form->messages = $event['messages'];
+        }
+
+        // Refresh prevention records the form's unique id before validation runs (see shouldProcessForm).
+        // A failed submission must not consume that id, otherwise the user can't correct the mistake
+        // (e.g. a mistyped captcha) and resubmit the same form. Release it here so the corrected
+        // resubmission is allowed; a successful submission keeps the id recorded and still blocks refreshes.
+        $uniqueId = $form->getUniqueId();
+        if ($uniqueId && ($this->grav['session']->unique_form_id ?? null) === $uniqueId) {
+            $this->grav['session']->unique_form_id = null;
         }
 
         /** @var Uri $uri */
@@ -1266,6 +1334,60 @@ class FormPlugin extends Plugin
             $code = $captcha->getCaptchaCode();
             $image = $captcha->createCaptchaImage($code);
             $captcha->renderCaptchaImage($image);
+            exit;
+        }
+    }
+
+    /**
+     * Serve the cap.js-compatible challenge/redeem endpoints used by the
+     * Cap captcha provider. Handled here (before Grav's page pipeline) so
+     * they don't require a dedicated route page.
+     */
+    protected function processCapRoutes(Uri $uri): void
+    {
+        // Cap provider depends on trilbymedia/cap-php which requires PHP 8.1+
+        if (PHP_VERSION_ID < 80100) {
+            return;
+        }
+
+        $path = $uri->path();
+        if ($path !== \Grav\Plugin\Form\Captcha\CapProvider::CHALLENGE_PATH
+            && $path !== \Grav\Plugin\Form\Captcha\CapProvider::REDEEM_PATH) {
+            return;
+        }
+
+        if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+            http_response_code(405);
+            header('Allow: POST');
+            exit;
+        }
+
+        header('Content-Type: application/json; charset=utf-8');
+        header('Cache-Control: no-store');
+
+        try {
+            $cap = \Grav\Plugin\Form\Captcha\CapProvider::getCap();
+
+            if ($path === \Grav\Plugin\Form\Captcha\CapProvider::CHALLENGE_PATH) {
+                echo json_encode($cap->createChallenge(), JSON_UNESCAPED_SLASHES);
+                exit;
+            }
+
+            // Redeem: read JSON body
+            $raw = file_get_contents('php://input') ?: '';
+            $body = json_decode($raw, true);
+            if (!is_array($body) || !isset($body['token'], $body['solutions']) || !is_array($body['solutions'])) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'message' => 'Invalid body']);
+                exit;
+            }
+            $solutions = array_map(static function ($v) { return (int)$v; }, $body['solutions']);
+            echo json_encode($cap->redeemChallenge((string)$body['token'], $solutions), JSON_UNESCAPED_SLASHES);
+            exit;
+        } catch (\Throwable $e) {
+            $this->grav['log']->error('Cap endpoint error: ' . $e->getMessage());
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => 'Server error']);
             exit;
         }
     }

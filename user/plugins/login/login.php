@@ -38,9 +38,11 @@ use Grav\Plugin\Login\Invitations\Invitation;
 use Grav\Plugin\Login\Invitations\Invitations;
 use Grav\Plugin\Login\Login;
 use Grav\Plugin\Login\Controller;
+use Grav\Plugin\Login\Email;
 use Grav\Plugin\Login\RememberMe\RememberMe;
 use RocketTheme\Toolbox\Event\Event;
 use RocketTheme\Toolbox\Session\Message;
+use Twig\TwigFunction;
 use function is_array;
 
 /**
@@ -81,6 +83,7 @@ class LoginPlugin extends Plugin
             'onTask.login.twofa'        => ['loginController', 0],
             'onTask.login.twofa_cancel' => ['loginController', 0],
             'onTask.login.forgot'       => ['loginController', 0],
+            'onTask.login.magicRequest' => ['loginController', 0],
             'onTask.login.logout'       => ['loginController', 0],
             'onTask.login.reset'        => ['loginController', 0],
             'onTask.login.regenerate2FASecret' => ['loginController', 0],
@@ -90,10 +93,15 @@ class LoginPlugin extends Plugin
             'onDisplayErrorPage.403'    => ['onDisplayErrorPage403', -1],
             'onPageInitialized'         => [['authorizeLoginPage', 10], ['authorizePage', 0]],
             'onPageFallBackUrl'         => ['authorizeFallBackUrl', 0],
+            'onTwigInitialized'         => ['onTwigInitialized', 0],
+            'onBuildTwigSandboxPolicy'  => ['onBuildTwigSandboxPolicy', 0],
+            'onShortcodeHandlers'       => ['onShortcodeHandlers', 0],
             'onTwigTemplatePaths'       => ['onTwigTemplatePaths', 0],
             'onTwigSiteVariables'       => ['onTwigSiteVariables', -100000],
+            'onAdminTwigTemplatePaths'  => ['onAdminUntrustedHostNotice', 0],
+            'onApiDashboardNotifications' => ['onApiDashboardNotifications', 0],
             'onFormProcessed'           => ['onFormProcessed', 0],
-            'onUserLoginAuthenticate'   => [['userLoginAuthenticateRateLimit', 10003], ['userLoginAuthenticateByRegistration', 10002], ['userLoginAuthenticateByRememberMe', 10001], ['userLoginAuthenticateByEmail', 10000], ['userLoginAuthenticate', 0]],
+            'onUserLoginAuthenticate'   => [['userLoginAuthenticateByMagic', 10004], ['userLoginAuthenticateRateLimit', 10003], ['userLoginAuthenticateByRegistration', 10002], ['userLoginAuthenticateByRememberMe', 10001], ['userLoginAuthenticateByEmail', 10000], ['userLoginAuthenticate', 0]],
             'onUserLoginAuthorize'      => ['userLoginAuthorize', 0],
             'onUserLoginFailure'        => ['userLoginGuest', 0],
             'onUserLoginGuest'          => ['userLoginGuest', 0],
@@ -255,9 +263,26 @@ class LoginPlugin extends Plugin
             $this->enable([
                 'onPagesInitialized' => ['addForgotPage', 0],
             ]);
+        } elseif ($path === $this->login->getRoute('magic')) {
+            // If route_magic and route_magic_login are the same, dispatch by token presence.
+            $magicLoginRoute = $this->login->getRoute('magic_login');
+            if ($magicLoginRoute === $path) {
+                $uri = $this->grav['uri'];
+                if ($uri->param('token') !== false && $uri->param('username') !== false) {
+                    $this->enable(['onPagesInitialized' => ['handleMagicLogin', 0]]);
+                } else {
+                    $this->enable(['onPagesInitialized' => ['addMagicPage', 0]]);
+                }
+            } else {
+                $this->enable(['onPagesInitialized' => ['addMagicPage', 0]]);
+            }
         } elseif ($path === $this->login->getRoute('reset')) {
             $this->enable([
                 'onPagesInitialized' => ['addResetPage', 0],
+            ]);
+        } elseif ($path === $this->login->getRoute('magic_login')) {
+            $this->enable([
+                'onPagesInitialized' => ['handleMagicLogin', 0],
             ]);
         } elseif ($path === $this->login->getRoute('register', true)) {
             $this->enable([
@@ -320,6 +345,8 @@ class LoginPlugin extends Plugin
             $this->login->getRoute('activate') ?: '/activate_user',
             $this->login->getRoute('forgot') ?: '/forgot_password',
             $this->login->getRoute('reset') ?: '/reset_password',
+            $this->login->getRoute('magic') ?: '/magic_login',
+            $this->login->getRoute('magic_login') ?: '/magic_link',
         ];
 
         /** @var Uri $uri */
@@ -368,6 +395,20 @@ class LoginPlugin extends Plugin
     public function addForgotPage(): void
     {
         $this->login->addPage('forgot');
+    }
+
+    /**
+     * Add Magic Link request page.
+     */
+    public function addMagicPage(): void
+    {
+        if (!$this->config->get('plugins.login.magic_link.enabled', false)) {
+            $loginRoute = $this->login->getRoute('login') ?: '/login';
+            $this->grav->redirectLangSafe($loginRoute);
+            return;
+        }
+
+        $this->login->addPage('magic');
     }
 
     /**
@@ -497,6 +538,111 @@ class LoginPlugin extends Plugin
     }
 
     /**
+     * Handle magic login links.
+     */
+    public function handleMagicLogin(): void
+    {
+        /** @var Uri $uri */
+        $uri = $this->grav['uri'];
+        /** @var Message $messages */
+        $messages = $this->grav['messages'];
+        /** @var UserCollectionInterface $users */
+        $users = $this->grav['accounts'];
+
+        $magicEnabled = $this->config->get('plugins.login.magic_link.enabled', false);
+        $magicRequestRoute = $magicEnabled
+            ? ($this->login->getRoute('magic') ?: ($this->login->getRoute('login') ?: '/'))
+            : ($this->login->getRoute('login') ?: '/');
+
+        if (!$magicEnabled) {
+            $this->grav->redirectLangSafe($magicRequestRoute);
+            return;
+        }
+
+        $username = (string)$uri->param('username');
+        $token = (string)$uri->param('token');
+        if ($username === '' || $token === '') {
+            $this->grav->redirectLangSafe($magicRequestRoute);
+            return;
+        }
+
+        $user = $users->load($username);
+        if (is_callable([$user, 'refresh'])) {
+            $user->refresh(true);
+        }
+
+        $magicData = (string)($user->magic_login ?? '');
+        if (!$user || !$user->exists() || !str_contains($magicData, '::')) {
+            $messages->add($this->grav['language']->translate('PLUGIN_LOGIN.MAGIC_LINK_INVALID'), 'error');
+            $this->grav->redirectLangSafe($magicRequestRoute);
+            return;
+        }
+
+        [$storedHash, $expires] = explode('::', $magicData, 2);
+        $expiresAt = (int)$expires;
+        if ($expiresAt && time() > $expiresAt) {
+            unset($user->magic_login);
+            $user->save();
+            $messages->add($this->grav['language']->translate('PLUGIN_LOGIN.MAGIC_LINK_EXPIRED'), 'error');
+            $this->grav->redirectLangSafe($magicRequestRoute);
+            return;
+        }
+
+        $tokenHash = hash('sha256', $token);
+        if (!hash_equals($storedHash, $tokenHash)) {
+            $messages->add($this->grav['language']->translate('PLUGIN_LOGIN.MAGIC_LINK_INVALID'), 'error');
+            $this->grav->redirectLangSafe($magicRequestRoute);
+            return;
+        }
+
+        // Invalidate token before authorization to prevent race-condition reuse.
+        unset($user->magic_login);
+        $user->save();
+
+        $event = $this->login->login(
+            ['username' => $user->username],
+            [
+                'magic_link' => true,
+                'rate_limit' => false,
+                'remember_me' => false,
+                'twofa' => $this->config->get('plugins.login.twofa_enabled', false)
+            ],
+            ['user' => $user, 'return_event' => true]
+        );
+
+        $message = $event->getMessage();
+        if ($message) {
+            $messages->add($this->grav['language']->translate($message), $event->getMessageType());
+        }
+
+        $redirect = null;
+        $redirectCode = null;
+        $loggedUser = $event->getUser();
+        if ($loggedUser->authenticated) {
+            if ($loggedUser->authorized) {
+                if (!$message) {
+                    $messages->add($this->grav['language']->translate('PLUGIN_LOGIN.LOGIN_SUCCESSFUL'), 'info');
+                }
+                $redirect = $this->grav['session']->redirect_after_login ?: $this->login->getRoute('after_login') ?: '/';
+            } else {
+                $redirect = $this->login->getRoute('login') ?: '/';
+            }
+        } else {
+            if (!$message) {
+                $messages->add($this->grav['language']->translate('PLUGIN_LOGIN.LOGIN_FAILED'), 'error');
+            }
+            $redirect = $magicRequestRoute;
+        }
+
+        if ($event->getRedirect()) {
+            $redirect = $event->getRedirect();
+            $redirectCode = $event->getRedirectCode();
+        }
+
+        $this->grav->redirectLangSafe($redirect ?: '/', $redirectCode);
+    }
+
+    /**
      * Initialize login controller
      */
     public function loginController(): void
@@ -522,6 +668,36 @@ class LoginPlugin extends Plugin
             case 'forgot':
                 if (!isset($post['forgot-form-nonce']) || !Utils::verifyNonce($post['forgot-form-nonce'], 'forgot-form')) {
                     $this->grav['messages']->add($this->grav['language']->translate('PLUGIN_LOGIN.ACCESS_DENIED'),'info');
+                    return;
+                }
+                break;
+
+            case 'magicRequest':
+                if (!isset($post['magic-form-nonce']) || !Utils::verifyNonce($post['magic-form-nonce'], 'magic-form')) {
+                    $this->grav['messages']->add($this->grav['language']->translate('PLUGIN_LOGIN.ACCESS_DENIED'), 'info');
+                    return;
+                }
+                break;
+
+            case 'twofa_cancel':
+                // The 2FA form carries the `login-form` nonce, so verify it here
+                // too — `twofa_cancel` was previously unguarded, letting it run
+                // (and act on a client `_redirect`) without a nonce.
+                if (!isset($post['login-form-nonce']) || !Utils::verifyNonce($post['login-form-nonce'], 'login-form')) {
+                    $this->grav['messages']->add($this->grav['language']->translate('PLUGIN_LOGIN.ACCESS_DENIED'), 'info');
+                    return;
+                }
+                break;
+
+            case 'regenerate2FASecret':
+                // CSRF hardening (GHSA-4px8): this task was previously reachable
+                // with no nonce and via a top-level GET (SameSite=Lax). Require
+                // POST to kill the Lax GET vector, and verify the `login-form`
+                // nonce that the 2FA setup field now sends.
+                if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST'
+                    || !isset($post['login-form-nonce'])
+                    || !Utils::verifyNonce($post['login-form-nonce'], 'login-form')) {
+                    $this->grav['messages']->add($this->grav['language']->translate('PLUGIN_LOGIN.ACCESS_DENIED'), 'info');
                     return;
                 }
                 break;
@@ -588,7 +764,7 @@ class LoginPlugin extends Plugin
 
         // Only applies to the page templates defined by login plugin.
         $template = $page->template();
-        if (!in_array($template, ['forgot', 'login', 'profile', 'register', 'reset', 'unauthorized'])) {
+        if (!in_array($template, ['forgot', 'login', 'magic', 'profile', 'register', 'reset', 'unauthorized'])) {
             return;
         }
 
@@ -731,6 +907,49 @@ class LoginPlugin extends Plugin
     }
 
     /**
+     * [onTwigInitialized] Register the `authenticated()` Twig helper.
+     *
+     * Lets templates and page content ask whether the current visitor is
+     * logged in — and, optionally, whether they hold a given permission or
+     * belong to a given group — without touching the `grav.user` object, which
+     * the content Twig sandbox blocks.
+     */
+    public function onTwigInitialized(): void
+    {
+        $login = $this->grav['login'];
+        $this->grav['twig']->twig()->addFunction(
+            new TwigFunction('authenticated', static function ($permission = null, $group = null) use ($login) {
+                return $login->isAuthenticated($permission, $group);
+            })
+        );
+    }
+
+    /**
+     * [onBuildTwigSandboxPolicy] Allow `authenticated()` inside the content
+     * sandbox so editor-authored page content can use `{% if authenticated() %}`.
+     * The helper only ever returns a boolean about the current visitor, so it is
+     * safe to expose.
+     */
+    public function onBuildTwigSandboxPolicy(Event $event): void
+    {
+        $functions = $event['functions'];
+        $functions[] = 'authenticated';
+        $event['functions'] = $functions;
+    }
+
+    /**
+     * [onShortcodeHandlers] Register the optional `[authenticated]` / `[guest]`
+     * shortcodes. This event is fired only by the shortcode-core plugin, so the
+     * shortcodes are added when it is installed without the Login plugin
+     * depending on it; the same checks are always available via the
+     * `authenticated()` Twig function.
+     */
+    public function onShortcodeHandlers(): void
+    {
+        $this->grav['shortcode']->registerAllShortcodes(__DIR__ . '/classes/shortcodes');
+    }
+
+    /**
      * [onTwigTemplatePaths] Add twig paths to plugin templates.
      */
     public function onTwigTemplatePaths(): void
@@ -809,7 +1028,12 @@ class LoginPlugin extends Plugin
         }
 
         if (null === $this->invitation && !$this->config->get('plugins.login.user_registration.enabled')) {
-            throw new \RuntimeException($language->translate('PLUGIN_LOGIN.USER_REGISTRATION_DISABLED'));
+            $event->stopPropagation();
+            $token = $this->grav['uri']->param('');
+            $message_key = $token ? 'PLUGIN_LOGIN.USER_INVITATION_INVALID' : 'PLUGIN_LOGIN.USER_REGISTRATION_DISABLED';
+            $this->grav['messages']->add($language->translate($message_key), 'error');
+            $this->grav->redirectLangSafe($this->grav['uri']->rootUrl(), 302);
+            return;
         }
 
         $form->validate();
@@ -872,6 +1096,13 @@ class LoginPlugin extends Plugin
 
         $fields = (array)$this->config->get('plugins.login.user_registration.fields', []);
 
+        // Privilege fields must never be sourced from public registration form input —
+        // honoring attacker-supplied values would grant instant super-admin even if an
+        // administrator mistakenly added them to `user_registration.fields`
+        // (GHSA-pxm6-mhxr-q4mj). Server-side `default_values`, invitations, and the
+        // `plugins.login.user_registration.{groups,access}` config remain authoritative.
+        $privilegeFields = ['groups', 'access'];
+
         foreach ($fields as $field) {
             // Process value of field if set in the page process.register_user
             $default_values = (array)$this->config->get('plugins.login.user_registration.default_values');
@@ -887,6 +1118,17 @@ class LoginPlugin extends Plugin
                         $data[$field] = $values;
                     }
                 }
+            }
+
+            if (in_array($field, $privilegeFields, true)) {
+                if ($form_data->get($field) !== null) {
+                    $this->grav['log']->warning(sprintf(
+                        'Login registration: ignored client-supplied "%s" from form submission (username=%s)',
+                        $field,
+                        is_string($username) ? $username : '<invalid>'
+                    ));
+                }
+                continue;
             }
 
             if (!isset($data[$field]) && $form_data->get($field)) {
@@ -968,7 +1210,7 @@ class LoginPlugin extends Plugin
     /**
      * Save user profile information
      *
-     * @param Form $form
+     * @param FormInterface $form
      * @param Event $event
      * @return bool
      */
@@ -1027,8 +1269,26 @@ class LoginPlugin extends Plugin
 
         $fields = (array)$this->config->get('plugins.login.user_registration.fields', []);
 
+        // Privilege fields must never be sourced from self-service profile input, the
+        // same defence the registration handler applies (GHSA-pxm6-mhxr-q4mj). On the
+        // default DataUser backend `update()` is a raw merge with no field-level
+        // security gate, so an attacker-supplied `access`/`groups` would otherwise
+        // persist straight to the account and grant super-admin (GHSA-h33v-82r9-v8pm).
+        $privilegeFields = ['groups', 'access'];
+
         $data = [];
         foreach ($fields as $field) {
+            if (in_array($field, $privilegeFields, true)) {
+                if ($form_data->get($field) !== null) {
+                    $this->grav['log']->warning(sprintf(
+                        'Login profile: ignored client-supplied "%s" from form submission (username=%s)',
+                        $field,
+                        is_string($user->get('username')) ? $user->get('username') : '<invalid>'
+                    ));
+                }
+                continue;
+            }
+
             $data_field = $form_data->get($field);
             if (!isset($data[$field]) && isset($data_field)) {
                 $data[$field] = $form_data->get($field);
@@ -1192,6 +1452,24 @@ class LoginPlugin extends Plugin
         }
     }
 
+    public function userLoginAuthenticateByMagic(UserLoginEvent $event): void
+    {
+        if (!$event->getOption('magic_link')) {
+            return;
+        }
+
+        $user = $event->getUser();
+        if (!$user->exists()) {
+            $event->setStatus($event::AUTHENTICATION_FAILURE);
+            $event->stopPropagation();
+
+            return;
+        }
+
+        $event->setStatus($event::AUTHENTICATION_SUCCESS);
+        $event->stopPropagation();
+    }
+
     public function userLoginAuthenticate(UserLoginEvent $event): void
     {
         $user = $event->getUser();
@@ -1339,5 +1617,62 @@ class LoginPlugin extends Plugin
         }
 
         return $login->getRoute('after_logout') ?? false;
+    }
+
+    /**
+     * [onAdminTwigTemplatePaths] Admin-classic notice.
+     *
+     * Fires only in admin-classic. When neither plugins.login.site_host nor
+     * system.custom_base_url is set, password reset and activation email links
+     * are built from the (spoofable) request host (GHSA-46jp-rc59-w2gc). Surface
+     * a warning banner to the logged-in admin via the messages system so the
+     * weak configuration is visible to the person who can fix it.
+     *
+     * @return void
+     */
+    public function onAdminUntrustedHostNotice(): void
+    {
+        if (Email::isTrustedHostConfigured()) {
+            return;
+        }
+
+        $user = $this->grav['user'] ?? null;
+        if (!$user || !$user->authenticated || !$user->authorize('admin.login')) {
+            return;
+        }
+
+        $this->grav['messages']->add(
+            $this->grav['language']->translate('PLUGIN_LOGIN.UNTRUSTED_HOST_NOTICE'),
+            'warning'
+        );
+    }
+
+    /**
+     * [onApiDashboardNotifications] Admin-next (admin2) notice.
+     *
+     * Contributes the same untrusted-host warning as a persistent, dismissible
+     * dashboard banner in the `top` location. Dismissal and reappearance flow
+     * through the API plugin's standard notification handling.
+     *
+     * @param Event $event
+     * @return void
+     */
+    public function onApiDashboardNotifications(Event $event): void
+    {
+        if (Email::isTrustedHostConfigured()) {
+            return;
+        }
+
+        $notifications = $event['notifications'] ?? [];
+        $notifications['top'][] = [
+            'id'             => 'login-untrusted-host',
+            'date'           => date('c'),
+            'level'          => 'warning',
+            'icon'           => 'shield-alert',
+            'location'       => ['top'],
+            'message'        => $this->grav['language']->translate('PLUGIN_LOGIN.UNTRUSTED_HOST_NOTICE'),
+            'reappear_after' => '+7 days',
+        ];
+        $event['notifications'] = $notifications;
     }
 }

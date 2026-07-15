@@ -1,26 +1,52 @@
-<ul class="navbar__links">
+ <ul class="navbar__links">
   {% for page in pages.children.visible %}
     {% set current_page = (page.active or page.activeChild) ? 'selected' : '' %}
-
     <li class="{{ current_page }}">
       <a class="navbar__links--a" href="{{ page.url|e }}">
-
         <div class="menu-item">
-
           {% if page.header.menu_icon %}
             <div class="menu-icon">
               {% include 'partials/icons/' ~ page.header.menu_icon ~ '.svg.twig' %}
             </div>
           {% endif %}
-
-          <div class="menu-label">
-            {{ page.menu|e }}
-          </div>
-
+          <div class="menu-label">{{ page.menu|e }}</div>
         </div>
-
       </a>
     </li>
-
   {% endfor %}
-</ul>
+  <li>
+    <a class="navbar__links--a" href="{{ home_url }}produkty#realizacje">
+      <div class="menu-item">
+        <div class="menu-label">Realizacje</div>
+      </div>
+    </a>
+  </li>
+</ul> 
+{#
+<ul class="navbar__links">
+  {% for page in pages.children.visible %}
+    {% if page.visible %}
+      {% set current_page = (page.active or page.activeChild) ? 'selected' : '' %}
+      <li class="{{ current_page }}">
+        <a class="navbar__links--a" href="{{ page.url|e }}">
+          <div class="menu-item">
+            {% if page.header.menu_icon %}
+              <div class="menu-icon">
+                {% include 'partials/icons/' ~ page.header.menu_icon ~ '.svg.twig' %}
+              </div>
+            {% endif %}
+            <div class="menu-label">{{ page.menu|e }}</div>
+          </div>
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+
+  <li>
+    <a class="navbar__links--a" href="{{ home_url }}produkty#realizacje">
+      <div class="menu-item">
+        <div class="menu-label">Realizacje</div>
+      </div>
+    </a>
+  </li>
+</ul>#}

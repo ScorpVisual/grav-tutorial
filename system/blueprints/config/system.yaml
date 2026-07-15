@@ -1357,6 +1357,26 @@ form:
               validate:
                 type: bool
 
+            images.url_actions:
+              type: toggle
+              label: PLUGIN_ADMIN.IMAGES_URL_ACTIONS
+              help: PLUGIN_ADMIN.IMAGES_URL_ACTIONS_HELP
+              highlight: 0
+              options:
+                1: PLUGIN_ADMIN.YES
+                0: PLUGIN_ADMIN.NO
+              validate:
+                type: bool
+
+            images.max_pixels:
+              type: text
+              size: small
+              label: PLUGIN_ADMIN.IMAGES_MAX_PIXELS
+              help: PLUGIN_ADMIN.IMAGES_MAX_PIXELS_HELP
+              validate:
+                type: int
+                min: 0
+
             media.enable_media_timestamp:
               type: toggle
               label: PLUGIN_ADMIN.ENABLE_MEDIA_TIMESTAMP
@@ -1595,22 +1615,6 @@ form:
                 1: PLUGIN_ADMIN.YES
                 0: PLUGIN_ADMIN.NO
               default: true
-              validate:
-                type: bool
-
-            updates_section:
-              type: section
-              title: PLUGIN_ADMIN.UPDATES_SECTION
-
-            updates.safe_upgrade:
-              type: toggle
-              label: PLUGIN_ADMIN.SAFE_UPGRADE
-              help: PLUGIN_ADMIN.SAFE_UPGRADE_HELP
-              highlight: 1
-              default: true
-              options:
-                1: PLUGIN_ADMIN.YES
-                0: PLUGIN_ADMIN.NO
               validate:
                 type: bool
 
@@ -1928,3 +1932,6 @@ form:
 #
 #            pages.type:
 #              type: hidden
+
+
+
