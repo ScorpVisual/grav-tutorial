@@ -59,47 +59,52 @@
     </div>
 
     {# SIATKA KART ARTYKUŁÓW #}
+    <div class="max-w-screen-xl mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-12">
 
         {% set collection = page.collection() %}
 
         {% if collection|length > 0 %}
             {% for child in collection %}
-                {# Otwieramy link obejmujący całą kartę #}
-                <a href="{{ child.url }}" class="block article-card group">
-                  
-                  <div class="article-card__image">
-                    {% set card_image_name = child.header.main_image %}
-                    {% set image = card_image_name ? child.media[card_image_name] : child.media.images|first %}
+                {# Dodano flex flex-col i h-full dla poprawnego działania flex-grow #}
+                <a href="{{ child.url }}" class="flex flex-col article-card group">
                     
-                    {% if image %}
-                        {{ image.cropZoom(800, 600).html(child.title, child.title, 'w-full object-cover')|raw }}
-                    {% endif %}
-                  </div>
-                  
-                  <div class="article-card__content">
-                    <h3 class="article-card__title underline--light-grey">{{ child.title }}</h3>
-                    
-                    <p class="article-card__description">
-                      {{ child.header.meta_description|default(child.summary(150)) }}
-                    </p>
-                    
-                    <span class="btn-tertiary">Czytaj więcej</span>
-                    
-                    <div class="article-card__meta">
-                      <div class="article-card__meta-item">
-                        <img src="{{ url('theme://images/svg/articleCard--calendar.svg') }}" alt="" class="icon-svg">
-                        <span>{{ child.date|date("d.m.Y") }}</span>
-                      </div>
-                      
-                      {% if child.taxonomy.category %}
-                      <div class="article-card__meta-item">
-                        <span>{{ child.taxonomy.category|first }}</span>
-                      </div>
-                      {% endif %}
+                    <div class="article-card__image overflow-hidden">
+                        {% set card_image_name = child.header.main_image %}
+                        {% set image = card_image_name ? child.media[card_image_name] : child.media.images|first %}
+                        
+                        {% if image %}
+                            {{ image.cropZoom(800, 600).html(child.title, child.title, 'w-full object-cover')|raw }}
+                        {% endif %}
                     </div>
-
-                  </div>
+                    
+                    {# Dodano flex flex-col flex-grow dla spójnego wyglądu #}
+                    <div class="article-card__content flex flex-col flex-grow p-6">
+                        <h3 class="article-card__title underline--light-grey">{{ child.title }}</h3>
+                        
+                        {# Opis rozpycha kartę #}
+                        <p class="article-card__description flex-grow">
+                            {{ child.header.meta_description|default(child.summary(150)) }}
+                        </p>
+                        
+                        {# Przycisk i meta zawsze na dole #}
+                        <div class="mt-4">
+                            <span class="btn-tertiary w-full mx-auto text-center">Czytaj więcej</span>
+                            
+                            <div class="article-card__meta mt-4">
+                                <div class="article-card__meta-item">
+                                    <img src="{{ url('theme://images/svg/articleCard--calendar.svg') }}" alt="" class="icon-svg">
+                                    <span>{{ child.date|date("d.m.Y") }}</span>
+                                </div>
+                                
+                                {% if child.taxonomy.category %}
+                                <div class="article-card__meta-item">
+                                    <span>{{ child.taxonomy.category|first }}</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </a>
             {% endfor %}
         {% else %}
@@ -107,6 +112,7 @@
         {% endif %}
         
     </div>
+</div>
 
     {# PAGINACJA #}
     {% if config.plugins.pagination.enabled and collection.params.pagination %}

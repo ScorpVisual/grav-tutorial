@@ -1073,6 +1073,10 @@ video {
   max-width: 1200px;
 }
 
+.max-w-\[480px\] {
+  max-width: 480px;
+}
+
 .max-w-\[85vw\] {
   max-width: 85vw;
 }
@@ -1111,14 +1115,6 @@ video {
 
 .max-w-xl {
   max-width: 36rem;
-}
-
-.max-w-\[800px\] {
-  max-width: 800px;
-}
-
-.max-w-\[480px\] {
-  max-width: 480px;
 }
 
 .flex-1 {
@@ -2427,10 +2423,6 @@ video {
 
   .lg\:mt-8 {
     margin-top: 2rem;
-  }
-
-  .lg\:mt-16 {
-    margin-top: 4rem;
   }
 
   .lg\:block {
