@@ -38,6 +38,10 @@ W takiej sytuacji jedynym właściwym wyjściem będzie **pilny kontakt z naszym
 
 Dopiero po pogrzebie przechodzimy do **właściwego etapu ratowania nagrobka**. Cały proces polega na dokładnym oczyszczeniu zdemontowanych elementów z dawnych spoin, wylaniu całkowicie nowej i wzmocnionej podstawy betonowej oraz ponownym złożeniu całości na stabilnym podłożu, zgodnie z aktualnymi zasadami sztuki kamieniarskiej.
 
+
+![Kamieniarstwo Wiśniewski wykonuje pilny remont pomnika przed pochówkiem](pilny-remont.jpg)
+<figcaption>Pilny remont: ekspresowa naprawa starego pomnika przed pochówkiem kolejnej osoby.</figcaption>
+
 ## Osiadanie ziemi. Po jakim czasie od pochówku można stawiać pomnik?
 
 Po pożegnaniu bliskiej osoby naturalnie pojawia się w nas potrzeba, aby jak najszybciej postawić piękny pomnik i symbolicznie zamknąć ten trudny czas. Jednak w rzemiośle kamieniarskim **zawsze musimy ustąpić przed prawami natury**. Prace ziemne na cmentarzu głęboko naruszają zbitą przez dziesięciolecia glebę, pozostawiając w jej wnętrzu **mnóstwo pustych przestrzeni i spulchnionego materiału**. Naruszona ziemia potrzebuje wielu miesięcy na ułożenie się pod wpływem własnego ciężaru, jesiennych deszczy czy powoli topniejącego, zimowego śniegu. Ignorowanie naturalnego osiadania gruntu to najkrótsza droga do niepotrzebnych nerwów i poważnych problemów z nowym pomnikiem.
@@ -48,12 +52,15 @@ Przestrzeganie tej reguły przy nowych piwniczkach jest istotne, zwłaszcza w pr
 
 Rzetelny montaż wymaga w tym wypadku **oparcia całej ramy nagrobkowej bezpośrednio na tak zwanej caliźnie**. Pod tym branżowym pojęciem kryje się po prostu nienaruszona, twarda ziemia leżąca tuż za krawędziami dawnego wykopu, dająca jedyne pewne podparcie dla potężnej konstrukcji pomnika. Po przeniesienie głównego nacisku poza miękki, wciąż pracujący środek mogiły **ciężki granit zyskuje stabilną bazę i przestaje reagować na ruchy spulchnionego gruntu**. Wówczas gotowy pomnik zniesie najtrudniejsze warunki pogodowe bez ryzyka pęknięć czy niebezpiecznych przechyłów.
 
-![Zbrojona wylewka betonowa](wylewka.jpg)
-<figcaption>W Kamieniarstwie Wiśniewski dobra wylewka to podstawa!</figcaption>
+![Ratowanie starego pomnika](stary-pomnik.jpg)
+<figcaption>Zakład Kamieniarstwo Wiśniewski ma duże doświadczenie w remontach wiekowych pomników.</figcaption>
 
 ## Betonowy, zbrojony fundament to najważniejszy element nagrobka
 
 Podczas wyboru nagrobka koncentrujesz się przede wszystkim na estetycznych walorach skały lub kunsztownie wykonanych detalach. Takie podejście jest w pełni uzasadnione, ponieważ pomnik ma być przede wszystkim godną wizytówką pamięci o kimś bliskim. Trzeba jednak pamiętać, **że o długowieczności całej instalacji decyduje element schowany głęboko w gruncie**. Wylewka betonowa pełni funkcję platformy nośnej, która musi udźwignąć kilkusetkilogramowy lub nawet kilkutonowy nagrobek.
+
+![Pręty zbrojeniowe w wylewce wykonanej przez Kamieniarstwo Wiśniewski](prety-zbrojeniowe.jpg)
+<figcaption>Każda wylewka wykonana przez Kamieniarstwo Wiśniewski jest wzmocniona prętami zbrojeniowymi.</figcaption>
 
 Właściwe wykonany fundament pomnika powinien spełniać kilka bardzo ważnych parametrów technicznych:
 
@@ -64,11 +71,12 @@ Właściwe wykonany fundament pomnika powinien spełniać kilka bardzo ważnych 
 W Kamieniarstwie Wiśniewski **uczciwie podchodzimy do prac betoniarskich**. Stawiamy na wysoką jakość materiałów konstrukcyjnych, więc zyskujesz pewność, że wybrany nagrobek zachowa swój nienaganny stan przez wiele pokoleń.
 
 ![Pomnik na nowym fundamencie](pomnik-na-nowym-fundamencie.jpg)
-<figcaption>Remontowane pomniki to nie tylko granit, ale zadbanie o prawidłowy fundament.</figcaption>
+<figcaption>Remontowane pomniki to nie tylko granit, ale zadbanie o prawidłowo wykonany fundament.</figcaption>
 
 **Jak wygląda naprawa i ponowny montaż zapadającego się pomnika?**
 
 Naprawa przechylonego nagrobka wykracza daleko poza doraźne podparcie i wyrównanie płyt. **Aby problem zapadania się nigdy nie powrócił, musimy znaleźć przyczynę, rozebrać konstrukcję i zbudować nową, solidną podstawę**. Cały proces wymaga precyzyjnego planowania oraz wykorzystania specjalistycznych materiałów budowlanych, które oprą się zmiennym warunkom atmosferycznym.
+
 
 **1\. Demontaż starego nagrobka**
 
@@ -76,11 +84,14 @@ W przypadku naprawy zapadającego się pomnika, prace zaczynamy od jego ostrożn
 
 **2\. Ocena gruntu i przygotowanie terenu**
 
-Na tak przygotowanym stanowisku przechodzimy do oceny gruntu. Zaczynamy od sprawdzenia **gęstości oraz wilgotności podłoża**. W ten sposób upewniamy się, czy naruszona ziemia już wystarczająco się uleżała i nie stwarza ryzyka zapadania się pomnika w przyszłości. Usuwamy wszelkie pozostałości po poprzednich konstrukcjach oraz korzenie roślin**.** Jest to konieczne, ponieważ nawet najmniejsze zanieczyszczenia organiczne ukryte bezpośrednio pod fundamentem mogą w przyszłości prowadzić do osiadania całego nagrobka.
+Na tak przygotowanym stanowisku przechodzimy do oceny gruntu. Zaczynamy od sprawdzenia **gęstości oraz wilgotności podłoża**. W ten sposób upewniamy się, czy naruszona ziemia już wystarczająco się uleżała i nie stwarza ryzyka zapadania się pomnika w przyszłości. Usuwamy wszelkie pozostałości po poprzednich konstrukcjach oraz korzenie roślin. Jest to konieczne, ponieważ nawet najmniejsze zanieczyszczenia organiczne ukryte bezpośrednio pod fundamentem mogą w przyszłości prowadzić do osiadania całego nagrobka.
 
 **3\. Osadzenie zbrojonego fundamentu**
 
 Wykorzystujemy **certyfikowany beton wzmocniony stalową kratownicą**, dbając o to, by cała konstrukcja opierała się na twardej i nienaruszonej ziemi otaczającej mogiłę. Wyjście z fundamentem poza obrys wykopu wzmacnia stabilność pomnika niezależnie od procesów zachodzących wewnątrz spulchnionego gruntu.
+
+![Przygotowanie wylewki wokół pomnika przez Kamieniarstwa Wiśniewski](wylewka-kolo-starego.jpg)
+<figcaption>Renowacja: przygotowanie wylewki wokół starego pomnika przez fachowców z Kamieniarstwa Wiśniewski.</figcaption>
 
 **4\. Poziomowanie ramy głównej**
 

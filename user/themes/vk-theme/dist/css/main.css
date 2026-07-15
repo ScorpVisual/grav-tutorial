@@ -660,6 +660,16 @@ h1, h2, h3, h4, h5, h6 {
   color: inherit;
 }
 
+figcaption {
+  display: block;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-style: italic;
+  margin-top: -1.5rem;
+  margin-bottom: 3rem;
+}
+
 html {
   background-image: url("../../images/textures/asfalt-medium.png");
   background-color: #e2e0dd;
