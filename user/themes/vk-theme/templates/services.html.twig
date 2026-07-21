@@ -115,7 +115,14 @@
     </div>
 
 </section>
-
+<section>
+{% set renovationsData = [
+    { image_filename: '/images/services/renovation-gallery-2.jpg', title: 'Klamrowanie rozchodzącego się nagrobka' },
+    { image_filename: '/images/services/renovation-gallery-1.jpg', title: 'Zbrojona wylewka wokół starego pomnika' },
+    { image_filename: '/images/services/renovation-gallery-4.jpg', title: 'Przestrzeń wokół pomnika jest starannie oczyszczana pod wylewkę' }
+] %}
+{% include 'modular/gallery-modular.html.twig' with {'items': renovationsData} %}
+</section>
 
 <section class="px-4 py-16 max-w-screen-xl mx-auto" id="wylewki">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
