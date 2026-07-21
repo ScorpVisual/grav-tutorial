@@ -115,14 +115,6 @@
     </div>
 
 </section>
-<section>
-{% set renovationsData = [
-    { image_filename: '/images/services/renovation-gallery-2.jpg', title: 'Klamrowanie rozchodzącego się nagrobka' },
-    { image_filename: '/images/services/renovation-gallery-1.jpg', title: 'Zbrojona wylewka wokół starego pomnika' },
-    { image_filename: '/images/services/renovation-gallery-4.jpg', title: 'Przestrzeń wokół pomnika jest starannie oczyszczana pod wylewkę' }
-] %}
-{% include 'modular/gallery-modular.html.twig' with {'items': renovationsData} %}
-</section>
 
 <section class="px-4 py-16 max-w-screen-xl mx-auto" id="wylewki">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -167,7 +159,10 @@
     { image_filename: '/images/services/leveling-gallery-3.jpg', title: 'Wylewka zbrojona z zamontowanymi okładzinami' },
     { image_filename: '/images/services/leveling-gallery-4.jpg', title: 'Nagrobek obłożony płytkami' },
     { image_filename: '/images/services/leveling-gallery-5.jpg', title: 'Okładzina z granitu płomieniowanego' },
-    { image_filename: '/images/services/leveling-gallery-6.jpg', title: 'Podwójna wylewka betonowa zabezpieczająca pomnik' }
+    { image_filename: '/images/services/leveling-gallery-6.jpg', title: 'Podwójna wylewka betonowa zabezpieczająca pomnik' }.
+    { image_filename: '/images/services/leveling-gallery-13.jpg', title: 'Pręty zbrojeniowe utrzymują solidność konstrukcji' },
+    { image_filename: '/images/services/leveling-gallery-12.jpg', title: 'Klamrowanie nowego nagrobka na gotowej wylewce' },
+    { image_filename: '/images/services/leveling-gallery-11.jpg', title: 'Proces dopasowywania okładzin z granitu płomieniowanego' }
 ] %}
 {% include 'modular/gallery-modular.html.twig' with {'items': levelingData} %}
 </section>
