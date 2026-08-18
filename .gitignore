@@ -1,22 +1,24 @@
-# Composer
-.composer
-vendor/*
-!*/vendor/*
+# Composer / PHP
+vendor/
+
+# Node / Tailwind
+node_modules/
+.tailwind-cache
+.eslintcache
+.stylelintcache
 
 # Sass
 .sass-cache
 
 # Grav Specific
 backup/*
-!backup/.*
 cache/*
-!cache/.*
 assets/*
-!assets/.*
 logs/*
-!logs/.*
 images/*
-!images/.*
+tmp/
+user/data/*
+!user/data/.gitkeep
 
 # Environments
 .env
@@ -29,23 +31,18 @@ Icon?
 Thumbs.db
 *.swp
 
-# phpstorm
-.idea/*
+# IDE
+.idea/
+.vscode/
 
-# testing stuff
+# Tests
 tests/_output/*
 tests/_support/_generated/*
 tests/cache/*
 tests/error.log
 system/templates/testing/*
 /user/config/versions.yaml
-test-frontend/vendor/symfony/deprecation-contracts/
-test-frontend/vendor/symfony/yaml/
-user/plugins/problems/
-user/plugins/error/
-user/plugins/markdown-notices/
-user/themes/modiquark/
-user/themes/quark/
-user/themes/vk-theme/dist/css/main.css
-/user/data/persist
+
+# Theme-specific
+user/themes/vk-theme/dist/css/
 safeSpace30122025.zip
